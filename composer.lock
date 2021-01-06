@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "e6c65472c28dec1712f801966b53e6d0",
+    "content-hash": "485c92c7ba5bc044387640a61055b762",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -1265,6 +1265,52 @@
                 }
             ],
             "time": "2020-06-13T08:05:20+00:00"
+        },
+        {
+            "name": "kdion4891/laravel-livewire-tables",
+            "version": "1.6.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/kdion4891/laravel-livewire-tables.git",
+                "reference": "47baad20d7b9dc533ce79783c0bea2de15c71bd6"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/kdion4891/laravel-livewire-tables/zipball/47baad20d7b9dc533ce79783c0bea2de15c71bd6",
+                "reference": "47baad20d7b9dc533ce79783c0bea2de15c71bd6",
+                "shasum": ""
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Kdion4891\\LaravelLivewireTables\\Providers\\TableServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Kdion4891\\LaravelLivewireTables\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Kevin Dion",
+                    "email": "kdion4891@icloud.com",
+                    "role": "Developer"
+                }
+            ],
+            "description": "A dynamic, responsive Laravel Livewire table component with searching, sorting, checkboxes, and pagination.",
+            "homepage": "https://github.com/kdion4891/laravel-livewire-tables",
+            "support": {
+                "issues": "https://github.com/kdion4891/laravel-livewire-tables/issues",
+                "source": "https://github.com/kdion4891/laravel-livewire-tables/tree/1.6.1"
+            },
+            "time": "2020-03-04T03:13:42+00:00"
         },
         {
             "name": "laravel/fortify",

@@ -10,13 +10,13 @@ use RouterOS\Query;
 
 class AddUser extends Component
 {
-    public $success, $username, $phone, $email, $password, $profile;
+    public $success, $name, $phone, $email, $password, $profile;
 
     protected $rules = [
-        'username' => 'required|string',
+        'name' => 'required|string',
         'phone' => 'required|min:10|max:10',
         'email' => 'email|required',
-        'password' => 'string|required|min:8',
+        'password' => 'string|required',
         'profile' => 'required|required'
     ];
 
@@ -32,7 +32,7 @@ class AddUser extends Component
         $config = new Config([
             'host' => env('MIKROTIK_HOST'),
             'user' => env('MIKROTIK_USERNAME'),
-            'password' => env('MIKROTIK_PASSWORD'),
+            'pass' => env('MIKROTIK_PASSWORD'),
             'port' => (int)env('MIKROTIK_PORT')
         ]);
 
@@ -49,7 +49,7 @@ class AddUser extends Component
         $response = $client->q($query)->read();
 
         $query = (new Query('/ip/hotspot/user/add'))
-            ->equal('name', $this->username)
+            ->equal('name', $this->name)
             ->equal('server', 'all')
             ->equal('password', $password)
             ->equal('profile', $this->profile);

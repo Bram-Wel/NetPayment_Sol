@@ -20,7 +20,7 @@ class AddUser extends Component
         'profile' => 'required',
         'password' => 'required|min:5',
         'phone' => 'required|unique:users',
-        'email' => 'email|required|unique:users'
+        'email' => 'nullable|email|unique:users'
     ];
 
     public function mount()
@@ -94,8 +94,10 @@ class AddUser extends Component
                 ->equal('service', 'pppoe');
 
             $client->q($query)->read();
+            session()->forget('message');
+            session()->flash('message', 'User added successfully!');
+            $this->redirect(route('Users'));
 
-            $this->success = 'User added successfully';
         }
     }
 

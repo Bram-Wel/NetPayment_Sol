@@ -18,7 +18,7 @@
         <label for="username">Username</label>
 
         <br>
-        <input type="text" id="username" name="username" wire:model="username"
+        <input type="text" id="username" name="username" wire:model="name"
                class="w-full bg-white p-2 rounded border">
         <br>
         @error('username')

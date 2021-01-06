@@ -1,3 +1,3 @@
 <a href="/" class="text-4xl">
-    Winternet
+    Tech Glitch Internet
 </a>

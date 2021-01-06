@@ -18,9 +18,12 @@
     <!-- Scripts -->
     <script src="{{ mix('js/app.js') }}" defer></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
+    <link rel="stylesheet" type="text/css"
+          href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
 </head>
 <body class="font-sans antialiased">
 <div class="min-h-screen bg-gray-100">
@@ -54,6 +57,44 @@
             timer: 1500
         });
     })
+</script>
+
+<script>
+    @if(session()->has('message'))
+        toastr.options =
+        {
+            "closeButton": true,
+            "progressBar": true
+        }
+    toastr.success("{{ session('message') }}");
+    @endif
+
+        @if(session()->has('error'))
+        toastr.options =
+        {
+            "closeButton": true,
+            "progressBar": true
+        }
+    toastr.error("{{ session('error') }}");
+    @endif
+
+        @if(session()->has('info'))
+        toastr.options =
+        {
+            "closeButton": true,
+            "progressBar": true
+        }
+    toastr.info("{{ session('info') }}");
+    @endif
+
+        @if(session()->has('warning'))
+        toastr.options =
+        {
+            "closeButton": true,
+            "progressBar": true
+        }
+    toastr.warning("{{ session('warning') }}");
+    @endif
 </script>
 </body>
 </html>

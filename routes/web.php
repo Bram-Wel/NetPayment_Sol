@@ -66,6 +66,10 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/marketing', [\App\Http\Co
 Route::middleware(['auth:sanctum', 'verified'])->get('/active', [\App\Http\Controllers\activeUsers::class, 'index'])
     ->name('active');
 
+Route::middleware(['auth:sanctum', 'verified'])->get('/payment/record', function () {
+  return view('payments.record-payment');
+})->name('record-payment');
+
 Route::middleware(['auth:sanctum', 'verified'])->get('/user/active/remove/{id}', function ($id) {
     try {
         $config = new Config([

@@ -2,7 +2,7 @@
     <x-slot name="header">
         <div class="flex flex-row">
             <h1 class="text-xl font-bold text-blue-500 border-b border-blue-500 border-gray-500 w-24">{{ __('Payments') }}</h1>
-            <a href="" class="absolute right-20 text-white font-bold bg-green-400 px-3 py-1 shadow-lg rounded-2xl">Record
+            <a href="{{ route('record-payment') }}" class="absolute right-20 text-white font-bold bg-green-400 px-3 py-1 shadow-lg rounded-2xl">Record
                 payment</a>
         </div>
     </x-slot>

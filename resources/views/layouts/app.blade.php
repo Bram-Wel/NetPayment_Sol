@@ -14,6 +14,7 @@
     <link rel="stylesheet" href="{{ mix('css/app.css') }}">
 
     @livewireStyles
+@stack("styles")
 
     <!-- Scripts -->
     <script src="{{ mix('js/app.js') }}" defer></script>
@@ -31,18 +32,19 @@
     <!-- Page Heading -->
     <header class="bg-white shadow">
         <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
-            {{ $header }}
+            {{ $header ?? null }}
         </div>
     </header>
     <!-- Page Content -->
     <main>
-        {{ $slot }}
+        {{ $slot ?? null }}
     </main>
 </div>
 
 @stack('modals')
 
 @livewireScripts
+@stack("scripts")
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 <script type="module" src="https://unpkg.com/ionicons@5.1.2/dist/ionicons/ionicons.esm.js"></script>
 <script nomodule="" src="https://unpkg.com/ionicons@5.1.2/dist/ionicons/ionicons.js"></script>

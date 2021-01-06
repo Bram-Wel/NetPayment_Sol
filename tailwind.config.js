@@ -1,23 +1,28 @@
-const defaultTheme = require('tailwindcss/defaultTheme');
+// const defaultTheme = require('tailwindcss/defaultTheme');
 
 module.exports = {
-    purge: [
-        './vendor/laravel/jetstream/**/*.blade.php',
-        './storage/framework/views/*.php',
-        './resources/views/**/*.blade.php',
+    presets: [
+        require('./vendor/tanthammar/tall-forms/resources/stubs/tailwindcss/1.9/tall-forms-preset.js'),
     ],
+    future: {
+        // Upcoming changes for TailwindCSS v2
+        removeDeprecatedGapUtilities: true,
+        purgeLayersByDefault: true,
+        // defaultLineHeights: true,
+        // standardFontWeights: true,
+    },
+    experimental: {
+        applyComplexClasses: true,
+    },
 
     theme: {
-        extend: {
-            fontFamily: {
-                sans: ['Nunito', ...defaultTheme.fontFamily.sans],
-            },
-        },
+        extend: {}
     },
 
-    variants: {
-        opacity: ['responsive', 'hover', 'focus', 'disabled'],
-    },
+    variants: {},
 
-    plugins: [require('@tailwindcss/ui')],
+    plugins: [
+            require('@tailwindcss/custom-forms'),
+            require('@tailwindcss/typography'),
+    ],
 };

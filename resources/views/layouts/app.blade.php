@@ -15,6 +15,7 @@
 
     @livewireStyles
 @stack("styles")
+@stack("styles")
 
     <!-- Scripts -->
     <script src="{{ mix('js/app.js') }}" defer></script>
@@ -44,6 +45,7 @@
 @stack('modals')
 
 @livewireScripts
+@stack("scripts")
 @stack("scripts")
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 <script type="module" src="https://unpkg.com/ionicons@5.1.2/dist/ionicons/ionicons.esm.js"></script>

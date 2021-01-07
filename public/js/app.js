@@ -21248,7 +21248,7 @@ module.exports = function(module) {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-// removed by extract-text-webpack-plugin
+throw new Error("Module build failed (from ./node_modules/css-loader/index.js):\nModuleBuildError: Module build failed (from ./node_modules/postcss-loader/src/index.js):\nSyntaxError\n\n(534:41) The `bg-indigo-50` class does not exist. If you're sure that `bg-indigo-50` exists, make sure that any `@import` statements are being properly processed before Tailwind CSS sees your CSS, as `@apply` can only be used for classes in the same CSS tree.\n\n \u001b[90m 532 | \u001b[39m    \u001b[90m/* Heading */\u001b[39m\n \u001b[90m 533 | \u001b[39m    \u001b[33m.tf-heading-root\u001b[39m \u001b[33m{\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 534 | \u001b[39m        \u001b[36m@apply\u001b[39m w-full rounded mt-8 mb-4 bg-indigo-50 px-4 py-2 border\u001b[33m;\u001b[39m\n \u001b[90m     | \u001b[39m                                        \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 535 | \u001b[39m    \u001b[33m}\u001b[39m\n \u001b[90m 536 | \u001b[39m    \u001b[33m.tf-heading-wrapper\u001b[39m \u001b[33m{\u001b[39m\n\n    at /home/fabian/code/thetechglitch-internet/node_modules/webpack/lib/NormalModule.js:316:20\n    at /home/fabian/code/thetechglitch-internet/node_modules/loader-runner/lib/LoaderRunner.js:367:11\n    at /home/fabian/code/thetechglitch-internet/node_modules/loader-runner/lib/LoaderRunner.js:233:18\n    at context.callback (/home/fabian/code/thetechglitch-internet/node_modules/loader-runner/lib/LoaderRunner.js:111:13)\n    at /home/fabian/code/thetechglitch-internet/node_modules/postcss-loader/src/index.js:207:9");
 
 /***/ }),
 
@@ -21304,8 +21304,8 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! /home/fabian/code/winternet/resources/js/app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! /home/fabian/code/winternet/resources/css/app.css */"./resources/css/app.css");
+__webpack_require__(/*! /home/fabian/code/thetechglitch-internet/resources/js/app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! /home/fabian/code/thetechglitch-internet/resources/css/app.css */"./resources/css/app.css");
 
 
 /***/ })

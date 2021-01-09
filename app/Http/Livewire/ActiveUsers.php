@@ -21,7 +21,7 @@ class ActiveUsers extends Component
         ]);
         $client = new Client($config);
 
-        $query = (new Query('/ppp/active/print'));
+        $query = (new Query('/ip/hotspot/active/print'));
         $response = $client->q($query)->read();
         $this->activeUsers = count($response);
     }
@@ -36,7 +36,7 @@ class ActiveUsers extends Component
         ]);
         $client = new Client($config);
 
-        $query = (new Query('/ppp/active/print'));
+        $query = (new Query('/ip/hotspot/active/print'));
         $response = $client->q($query)->read();
         $this->activeUsers = count($response);
     }

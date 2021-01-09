@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire\Forms\Hotspot;
 
+use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 use Livewire\Component;
 use RouterOS\Client;
@@ -14,8 +15,8 @@ class AddUser extends Component
 
     protected $rules = [
         'name' => 'required|string',
-        'phone' => 'required|min:10|max:10',
-        'email' => 'email|required',
+        'phone' => 'required|min:10|max:10|unique:users,phone',
+        'email' => 'email|required|unique:users',
         'password' => 'string|required',
         'profile' => 'required|required'
     ];
@@ -40,19 +41,27 @@ class AddUser extends Component
 
         $password = Hash::make($this->password);
 
-        $query = (new Query('/ip/hotspot/user/profile/add'))
+        $query = (new Query('/ip/hotspot/user/add'))
             ->equal('name', $this->name)
-            ->equal('pool', 'dhcp')
-            ->equal('shared-users', 1)
-            ->equal('rate-limit', '0M/0M');
+            ->equal('server', 'SERVER1')
+            ->equal('password', $password)
+            ->equal('comment', ucwords($this->name))
+            ->equal('profile', $this->profile);
 
         $response = $client->q($query)->read();
 
-        $query = (new Query('/ip/hotspot/user/add'))
-            ->equal('name', $this->name)
-            ->equal('server', 'all')
-            ->equal('password', $password)
-            ->equal('profile', $this->profile);
+        $user = new User();
+        $user->username = $this->name;
+        $user->phone = $this->phone;
+        $user->email = $this->email;
+        $user->password = $password;
+        $user->type = 'Hotspot';
+        $user->save();
+
+
+        session()->flash('message', 'User created successfully!');
+
+        $this->redirect(route('hotspot-users'));
     }
 
     public function render()

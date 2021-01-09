@@ -26,9 +26,9 @@
         @enderror
         <br>
         <label for="phone">Phone</label>
-
         <br>
-        <input type="tel" id="phone" name="phone" wire:model="phone" class="w-full bg-white p-2 rounded border">
+        <input type="tel" id="phone" name="phone" wire:model="phone" value="{{ old('phone') }}"
+               class="w-full bg-white p-2 rounded border">
         <br>
         @error('phone')
         <p class="text-red-500 mt-1">{{ $message }}</p>
@@ -55,8 +55,26 @@
         <label for="profile">Profile</label>
 
         <br>
-        <input type="text" name="profile" id="profile" class="bg-white rounded border w-full p-2" wire:model="profile">
+        <select name="profile" id="profile" class="bg-white rounded border w-full p-2" wire:model="profile">
+            <option value="">---select---</option>
+            <?php
+            $config = new \RouterOS\Config([
+                'host' => env('MIKROTIK_HOST'),
+                'user' => env('MIKROTIK_USERNAME'),
+                'pass' => env('MIKROTIK_PASSWORD'),
+                'port' => (int)env('MIKROTIK_PORT')
+            ]);
 
+            $client = new \RouterOS\Client($config);
+
+            $query = new \RouterOS\Query('/ip/hotspot/user/profile/print');
+            $response = $client->q($query)->read();
+
+            ?>
+            @foreach($response as $profile)
+                <option value="{{ $profile['name'] }}">{{ $profile['name'] }}</option>
+            @endforeach
+        </select>
         @error('profile')
         <p class="text-red-500 mt-1">{{ $message }}</p>
         @enderror

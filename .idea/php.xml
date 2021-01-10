@@ -121,7 +121,6 @@
       <path value="$PROJECT_DIR$/vendor/evilfreelancer/routeros-api-php" />
       <path value="$PROJECT_DIR$/vendor/phpseclib/phpseclib" />
       <path value="$PROJECT_DIR$/vendor/divineomega/php-ssh-connection" />
-      <path value="$PROJECT_DIR$/vendor/kdion4891/laravel-livewire-tables" />
       <path value="$PROJECT_DIR$/vendor/predis/predis" />
       <path value="$PROJECT_DIR$/vendor/laravel/sail" />
       <path value="$PROJECT_DIR$/vendor/tanthammar/tall-forms" />

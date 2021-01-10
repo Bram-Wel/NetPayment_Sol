@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Support\Facades\DB;
 use RouterOS\Client;
 use RouterOS\Config;
 use RouterOS\Exceptions\ClientException;
@@ -19,12 +18,7 @@ class Users extends Controller
 
     public function HotspotUsers()
     {
-        $users = DB::table('users')
-            ->where('type', 'hotspot')
-            ->orderBy('id', 'desc')
-            ->paginate();
-
-        return view('hotspot.users', ['users' => $users]);
+        return view('hotspot.users');
     }
 
     public function EditHotspotUser($username)

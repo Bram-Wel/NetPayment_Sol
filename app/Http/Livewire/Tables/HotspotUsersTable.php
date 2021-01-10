@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Livewire;
+namespace App\Http\Livewire\Tables;
 
 use App\Models\User;
 use Mediconesystems\LivewireDatatables\Column;
@@ -10,13 +10,13 @@ use RouterOS\Client;
 use RouterOS\Config;
 use RouterOS\Query;
 
-class PppoeUsersTable extends LivewireDatatable
+class HotspotUsersTable extends LivewireDatatable
 {
     public $model = User::class;
 
     public function builder()
     {
-        return User::where('type', null);
+        return User::where('type', 'Hotspot');
     }
 
     public function columns()
@@ -27,32 +27,35 @@ class PppoeUsersTable extends LivewireDatatable
             'pass' => env('MIKROTIK_PASSWORD'),
             'port' => (int)env('MIKROTIK_PORT')
         ]);
+
         $client = new Client($config);
+
         return [
             NumberColumn::name('id'),
             Column::name('username')->searchable(),
             Column::name('phone')->searchable(),
             Column::name('email')->searchable(),
             Column::callback('username', function ($username) use ($client) {
-                $query = (new Query('/ppp/secret/print'))
+                $query = (new Query('/ip/hotspot/user/print'))
                     ->where('name', $username);
 
                 $response = $client->q($query)->read();
                 foreach ($response as $res) {
-                    return $res['last-caller-id'];
+                    return $res['uptime'];
                 }
-            })->label('mac address'),
-            Column::callback(['username', 'phone'], function ($username) use ($client) {
-                $query = (new Query('/ppp/secret/print'))
-                    ->where('name', $username);
-
-                $response = $client->q($query)->read();
-                foreach ($response as $res) {
-                    return $res['last-logged-out'];
-                }
-            })->label('Last logged out'),
+            })->label('uptime'),
             Column::callback(['username', 'email'], function ($username) use ($client) {
-                $query = (new Query('/ppp/secret/print'))
+                $query = (new Query('/ip/hotspot/user/print'))
+                    ->where('name', $username);
+
+                $response = $client->q($query)->read();
+                foreach ($response as $res) {
+                    $gb = $res['bytes-in'] / 1024 / 1024 / 1024;
+                    return number_format($gb, 2) . 'GB';
+                }
+            })->label('Data Used'),
+            Column::callback(['username', 'phone'], function ($username) use ($client) {
+                $query = (new Query('/ip/hotspot/user/print'))
                     ->where('name', $username);
 
                 $response = $client->q($query)->read();
@@ -60,7 +63,6 @@ class PppoeUsersTable extends LivewireDatatable
                     return $res['profile'];
                 }
             })->label('Profile'),
-
         ];
     }
 }

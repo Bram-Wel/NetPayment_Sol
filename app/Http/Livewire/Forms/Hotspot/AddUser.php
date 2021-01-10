@@ -3,7 +3,6 @@
 namespace App\Http\Livewire\Forms\Hotspot;
 
 use App\Models\User;
-use Illuminate\Support\Facades\Hash;
 use Livewire\Component;
 use RouterOS\Client;
 use RouterOS\Config;
@@ -39,12 +38,10 @@ class AddUser extends Component
 
         $client = new Client($config);
 
-        $password = Hash::make($this->password);
-
         $query = (new Query('/ip/hotspot/user/add'))
             ->equal('name', $this->name)
             ->equal('server', 'SERVER1')
-            ->equal('password', $password)
+            ->equal('password', $this->password)
             ->equal('comment', ucwords($this->name))
             ->equal('profile', $this->profile);
 
@@ -54,7 +51,7 @@ class AddUser extends Component
         $user->username = $this->name;
         $user->phone = $this->phone;
         $user->email = $this->email;
-        $user->password = $password;
+        $user->password = $this->password;
         $user->type = 'Hotspot';
         $user->save();
 

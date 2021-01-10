@@ -14,7 +14,10 @@ class Users extends Controller
 {
     public function index()
     {
-        $users = DB::table('users')->orderBy('id', 'desc')->paginate();
+        $users = DB::table('users')
+            ->where('type', 'PPPOE')
+            ->orderBy('id', 'desc')
+            ->paginate();
 
         return view('users', ['users' => $users]);
     }

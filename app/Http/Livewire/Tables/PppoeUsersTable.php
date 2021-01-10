@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Livewire;
+namespace App\Http\Livewire\Tables;
 
 use App\Models\User;
 use Mediconesystems\LivewireDatatables\Column;
@@ -13,6 +13,7 @@ use RouterOS\Query;
 class PppoeUsersTable extends LivewireDatatable
 {
     public $model = User::class;
+    public $exportable = true;
 
     public function builder()
     {

@@ -24,7 +24,7 @@
                             Add User
                         </a>
                     </div>
-                    @livewire('pppoe-users-table')
+                    @livewire('tables.pppoe-users-table')
                 </div>
             </div>
         </div>

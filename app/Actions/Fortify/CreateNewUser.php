@@ -5,8 +5,12 @@ namespace App\Actions\Fortify;
 use App\Models\Team;
 use App\Models\User;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Laravel\Fortify\Contracts\CreatesNewUsers;
+use RouterOS\Client;
+use RouterOS\Config;
+use RouterOS\Query;
 
 class CreateNewUser implements CreatesNewUsers
 {
@@ -15,24 +19,55 @@ class CreateNewUser implements CreatesNewUsers
     /**
      * Create a newly registered user.
      *
-     * @param  array  $input
+     * @param array $input
      * @return \App\Models\User
      */
     public function create(array $input)
     {
         Validator::make($input, [
-            'username' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'email', 'max:255'],
+            'username' => ['required', 'string', 'max:255', 'unique:users'],
+            'email' => ['required', 'email', 'max:255', 'unique:users'],
             'phone' => ['required', 'string', 'max:255', 'unique:users'],
             'password' => $this->passwordRules(),
         ])->validate();
 
         return DB::transaction(function () use ($input) {
+
+            $config = new Config([
+                'host' => env('MIKROTIK_HOST'),
+                'user' => env('MIKROTIK_USERNAME'),
+                'pass' => env('MIKROTIK_PASSWORD'),
+                'port' => (int)env('MIKROTIK_PORT')
+            ]);
+
+            $client = new Client($config);
+            $password = Hash::make($input['password']);
+
+            $query = (new Query('/ip/hotspot/user/profile/add'))
+                ->equal('name', $input['username'])
+                ->equal('address-pool', 'dhcp')
+                ->equal('idle-timeout', '00:10:00')
+                ->equal('keepalive-timeout', '00:10:00')
+                ->equal('shared-users', 1)
+                ->equal('rate-limit', '0M/0M');
+
+            $client->q($query)->read();
+
+            $query = (new Query('/ip/hotspot/user/add'))
+                ->equal('name', $input['username'])
+                ->equal('server', 'all')
+                ->equal('password', $password)
+                ->equal('profile', $input['username'])
+                ->equal('comment', $input['username']);
+
+            $client->q($query)->read();
+
             return tap(User::create([
                 'email' => $input['email'],
                 'username' => $input['username'],
                 'phone' => $input['phone'],
-                'password' => $input['password'],
+                'password' => $password,
+                'type' => 'hotspot'
             ]), function (User $user) {
                 $this->createTeam($user);
             });

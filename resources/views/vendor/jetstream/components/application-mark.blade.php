@@ -1,1 +1,2 @@
-<h1 class="text-2xl">Tech Glitch Internet</h1>
+<img src="{{ asset('/images/logo.png') }}" alt="logo" style="width: 200px">
+

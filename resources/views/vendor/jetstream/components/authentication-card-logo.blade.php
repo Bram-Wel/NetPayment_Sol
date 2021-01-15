@@ -1,3 +1,3 @@
 <a href="/" class="text-4xl">
-    Tech Glitch Internet
+    <img src="{{ asset('/images/logo.png') }}" alt="logo" style="width: 160px">
 </a>

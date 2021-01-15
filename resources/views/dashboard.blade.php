@@ -16,7 +16,7 @@
                         <li class="text-gray-500">Fast Mobile Payments</li>
                     </ul>
                     <div class="mx-auto">
-                        @livewire('buy-now', ['package'=>3, 'freq'=>'daily'])
+                        @livewire('buy-now', ['package'=>1, 'freq'=>'daily'])
                     </div>
                 </div>
 

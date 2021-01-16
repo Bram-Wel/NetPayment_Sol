@@ -5,7 +5,6 @@ use App\Http\Controllers\Users\Add;
 use App\Http\Controllers\Users\addProfile;
 use App\Http\Controllers\Users\editUser;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use RouterOS\Client;
 use RouterOS\Config;
@@ -37,40 +36,6 @@ Route::get('/', function (Request $request) {
     return view('auth.login');
 });
 
-Route::post('/logout', function (Request $request) {
-    $username = Auth::user()->username;
-
-    $config = new Config([
-        'host' => env('MIKROTIK_HOST'),
-        'user' => env('MiKROTIK_USERNAME'),
-        'pass' => env('MIKROTIK_PASSWORD'),
-        'port' => (int)env('MIKROTIK_PORT')
-    ]);
-
-    $client = new Client($config);
-
-    $query = (new Query('/ip/hotspot/active/print'))
-        ->where('user', $username);
-
-    $response = $client->query($query)->read();
-
-    foreach ($response as $res) {
-        $id = $res['.id'];
-
-        $query = (new Query('/ip/hotspot/active/remove'))
-            ->equal('.id', $id);
-
-        $client->query($query)->read();
-    }
-
-    Auth::logout();
-
-    $request->session()->invalidate();
-
-    $request->session()->regenerateToken();
-
-    redirect('/');
-})->name('logout');
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', [\App\Http\Controllers\Admin::class, 'index'])
     ->name('dashboard');

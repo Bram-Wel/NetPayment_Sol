@@ -25,11 +25,14 @@ use RouterOS\Query;
 */
 
 Route::get('/', function (Request $request) {
-    $ip = $request->ip;
-    $mac = $request->mac;
-    dd($ip);
+    if ($request->ip) {
+        $ip = $request->ip;
+        $mac = $request->mac;
+        session(['ip' => $ip, 'mac' => $mac]);
+    } else {
+        return redirect('http://auth.thetechglitch.net');
+    }
 
-    session(['ip' => $ip, 'mac' => $mac]);
     return view('auth.login');
 });
 

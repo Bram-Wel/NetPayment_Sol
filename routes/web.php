@@ -27,6 +27,7 @@ use RouterOS\Query;
 Route::get('/', function (Request $request) {
     $ip = $request->ip;
     $mac = $request->mac;
+    dd($ip);
 
     session(['ip' => $ip, 'mac' => $mac]);
     return view('auth.login');

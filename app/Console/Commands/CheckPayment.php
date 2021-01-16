@@ -115,7 +115,6 @@ class CheckPayment extends Command
                     $rate = '5MBPS';
                 }
 
-
                 $time = date('H:i:s', strtotime($date));
                 $date = date('M/d/Y', strtotime($date));
 

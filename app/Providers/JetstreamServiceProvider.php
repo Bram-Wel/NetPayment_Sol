@@ -8,6 +8,9 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\ServiceProvider;
 use Laravel\Fortify\Fortify;
 use Laravel\Jetstream\Jetstream;
+use RouterOS\Client;
+use RouterOS\Config;
+use RouterOS\Query;
 
 class JetstreamServiceProvider extends ServiceProvider
 {
@@ -38,6 +41,33 @@ class JetstreamServiceProvider extends ServiceProvider
                 $password = $request->password;
                 $dbPass = $user->password;
                 if ($password == $dbPass) {
+                    $config = new Config([
+                        'host' => env('MIKROTIK_HOST'),
+                        'user' => env('MIKROTIK_USERNAME'),
+                        'pass' => env('MIKROTIK_PASSWORD'),
+                        'port' => (int)env('MIKROTIK_PORT')
+                    ]);
+
+                    $client = new Client($config);
+
+                    $query = (new Query('/ip/hotspot/user/print'))
+                        ->where('name', $request->username);
+
+                    $response = $client->q($query)->read();
+
+                    foreach ($response as $res) {
+                        $profile = $res['profile'];
+
+                        if ($profile != '0MBPS') {
+                            $query = (new Query('/ip/hotspot/active/login'))
+                                ->equal('ip', session()->get('ip'))
+                                ->equal('name', $request->username)
+                                ->equal('password', $request->password);
+
+                            $client->q($query)->read();
+                        }
+                    }
+
                     return $user;
                 } else {
                     return null;

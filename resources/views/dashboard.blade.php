@@ -1,8 +1,8 @@
 <x-app-layout>
     <div class="py-12">
         <div class="mx-auto sm:px-6 lg:px-2">
-            <div class="mt-4 mb-8 w-1/4 ml-20">
-                <h1 class="text-xl font-bold border-b w-1/2">Daily Packages</h1>
+            <div class="mt-4 mb-8 md:w-1/4 md:ml-20">
+                <h1 class="text-xl font-bold border-b md:w-1/2">Daily Packages</h1>
             </div>
             <div class="flex flex-col md:flex-row justify-center flex-wrap">
                 <div
@@ -81,8 +81,8 @@
                     </div>
                 </div>
             </div>
-            <div class="mt-4 mb-8 w-1/4 ml-20 mt-8">
-                <h1 class="text-xl font-bold border-b w-1/2">Weekly Packages</h1>
+            <div class="mt-4 mb-8 w-1/4 md:ml-20 mt-8">
+                <h1 class="text-xl font-bold border-b md:w-1/2">Weekly Packages</h1>
             </div>
             <div class="flex flex-col md:flex-row justify-center flex-wrap">
                 <div
@@ -160,8 +160,8 @@
                     </div>
                 </div>
             </div>
-            <div class="mt-4 mb-8 w-1/3 ml-20 mt-8">
-                <h1 class="text-xl font-bold border-b w-1/2">Monthly Packages</h1>
+            <div class="mt-4 mb-8 w-1/3 md:ml-20 mt-8">
+                <h1 class="text-xl font-bold border-b md:w-1/2">Monthly Packages</h1>
             </div>
             <div class="flex flex-col md:flex-row justify-center flex-wrap">
                 <div

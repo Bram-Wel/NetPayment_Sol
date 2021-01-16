@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire;
 
+use App\Models\Ip;
 use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
 
@@ -20,13 +21,14 @@ class BuyNow extends Component
         $this->phone = '254' . ltrim(Auth::user()->phone, 0);
     }
 
-//    public function saveIp($ip, $phone)
-//    {
-//        $ip = new Ip;
+    public function saveIp($ip, $phone)
+    {
+        $ip = new Ip;
 //        $ip->address = session()->get('ip');
-//        $ip->phone = $this->phone;
-//        $ip->save();
-//    }
+        $ip->address = 'hello';
+        $ip->phone = $this->phone;
+        $ip->save();
+    }
 
     public function buy()
     {
@@ -87,8 +89,8 @@ class BuyNow extends Component
             'Amount' => 1,
             'PartyA' => $this->phone, // replace this with your phone number
             'PartyB' => 5623109,
-            'PhoneNumber' => 254742324193, // replace this with your phone number
-            'CallBackURL' => 'https://91.134.166.24/api/voucher/payment',
+            'PhoneNumber' => $this->phone, // replace this with your phone number
+            'CallBackURL' => 'https://51.178.186.9/api/payment.php',
             'AccountReference' => "The Tech Glitch",
             'TransactionDesc' => "Pay for The Tech Glitch Internet"
         ];
@@ -97,9 +99,8 @@ class BuyNow extends Component
         curl_setopt($curl, CURLOPT_POST, true);
         curl_setopt($curl, CURLOPT_POSTFIELDS, $data_string);
         $response = curl_exec($curl);
-        dd($response);
         session()->flash('message', 'Payment initiated!');
-//        $this->saveIp(session()->get('ip'), $phone);
+        $this->saveIp(session()->get('ip'), $phone);
     }
 
     public function generateAccessToken()

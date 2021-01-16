@@ -14,9 +14,9 @@ return [
      |
      */
 
-    'host' => '192.168.200.1', // Address of Mikrotik RouterOS
-    'user' => 'muema',        // Username
-    'pass' => 'm0FaV1N!kW3tuLvPa552020',           // Password
+    'host' => "192.168.200.1", // Address of Mikrotik RouterOS
+    'user' => "muema",        // Username
+    'pass' => "m0FaV1N!kW3tuLvPa552020",           // Password
     'port' => 4534,           // RouterOS API port number for access (if not set use default or default with SSL if SSL enabled)
     'ssh_port' => 22,             // Number of SSH port
 

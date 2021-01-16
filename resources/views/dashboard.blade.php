@@ -1,6 +1,6 @@
 <x-app-layout>
     <div class="py-12">
-        <div class="mx-auto sm:px-6 lg:px-2">
+        <div class="mx-auto px-6 md:px-0 lg:px-2">
             <div class="mt-4 mb-8 md:w-1/4 md:ml-20 text-center md:text-left">
                 <h1 class="text-xl font-bold border-b md:w-1/2">Daily Packages</h1>
             </div>

@@ -24,8 +24,7 @@ class BuyNow extends Component
     public function saveIp($ip, $phone)
     {
         $ip = new Ip;
-//        $ip->address = session()->get('ip');
-        $ip->address = 'hello';
+        $ip->address = session()->get('ip');
         $ip->phone = $this->phone;
         $ip->save();
     }

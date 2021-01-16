@@ -5,7 +5,6 @@ namespace App\Actions\Fortify;
 use App\Models\Team;
 use App\Models\User;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Laravel\Fortify\Contracts\CreatesNewUsers;
 use RouterOS\Client;
@@ -41,23 +40,13 @@ class CreateNewUser implements CreatesNewUsers
             ]);
 
             $client = new Client($config);
-            $password = Hash::make($input['password']);
-
-            $query = (new Query('/ip/hotspot/user/profile/add'))
-                ->equal('name', $input['username'])
-                ->equal('address-pool', 'dhcp')
-                ->equal('idle-timeout', '00:10:00')
-                ->equal('keepalive-timeout', '00:10:00')
-                ->equal('shared-users', 1)
-                ->equal('rate-limit', '0M/0M');
-
-            $client->q($query)->read();
+            $password = $input['password'];
 
             $query = (new Query('/ip/hotspot/user/add'))
                 ->equal('name', $input['username'])
                 ->equal('server', 'all')
                 ->equal('password', $password)
-                ->equal('profile', $input['username'])
+                ->equal('profile', '0MBPS')
                 ->equal('comment', $input['username']);
 
             $client->q($query)->read();

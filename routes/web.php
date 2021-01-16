@@ -4,6 +4,7 @@ use App\Http\Controllers\EditProfile;
 use App\Http\Controllers\Users\Add;
 use App\Http\Controllers\Users\addProfile;
 use App\Http\Controllers\Users\editUser;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use RouterOS\Client;
 use RouterOS\Config;
@@ -23,7 +24,11 @@ use RouterOS\Query;
 |
 */
 
-Route::get('/', function () {
+Route::get('/', function (Request $request) {
+    $ip = $request->ip;
+    $mac = $request->mac;
+
+    session(['ip' => $ip, 'mac' => $mac]);
     return view('auth.login');
 });
 

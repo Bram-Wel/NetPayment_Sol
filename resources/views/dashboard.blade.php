@@ -1,4 +1,7 @@
 <x-app-layout>
+    <x-slot name="header">
+        {{ __('Packages') }}
+    </x-slot>
     <div class="py-12">
         <div class="mx-auto px-6 md:px-0 lg:px-2">
             <div class="mt-4 mb-8 px-10 md:px-0 md:w-1/4 md:ml-20 text-center md:text-left">

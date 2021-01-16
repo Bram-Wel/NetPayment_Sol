@@ -85,7 +85,7 @@ class BuyNow extends Component
             'Password' => $this->lipaNaMpesaPassword($shortcode, $timestamp),
             'Timestamp' => $timestamp,
             'TransactionType' => 'CustomerBuyGoodsOnline',
-            'Amount' => 1,
+            'Amount' => $this->amount,
             'PartyA' => $this->phone, // replace this with your phone number
             'PartyB' => 5623109,
             'PhoneNumber' => $this->phone, // replace this with your phone number

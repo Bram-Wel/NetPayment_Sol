@@ -61,7 +61,7 @@ class JetstreamServiceProvider extends ServiceProvider
                         if ($profile != '0MBPS') {
                             $query = (new Query('/ip/hotspot/active/login'))
                                 ->equal('ip', session()->get('ip'))
-                                ->equal('name', $request->username)
+                                ->equal('user', $request->username)
                                 ->equal('password', $request->password);
 
                             $response = $client->q($query)->read();

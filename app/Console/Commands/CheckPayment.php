@@ -125,8 +125,10 @@ class CheckPayment extends Command
                         ->where('phone', $p)
                         ->value('password');
 
+                    $phone = '254' . ltrim($p, '0');
+
                     $ip = DB::table('ips')
-                        ->where('phone', $p)
+                        ->where('phone', $phone)
                         ->orderBy('id', 'desc')
                         ->limit(1)
                         ->value('address');
@@ -140,7 +142,7 @@ class CheckPayment extends Command
                         $query =
                             (new Query('/ip/hotspot/user/set'))
                                 ->equal('.id', $id)
-                                ->equal('profile', '2M/2M');
+                                ->equal('profile', $rate);
                         $client->query($query)->read();
                     }
 

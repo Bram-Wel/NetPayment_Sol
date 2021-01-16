@@ -36,6 +36,10 @@ Route::get('/', function (Request $request) {
     return view('auth.login');
 });
 
+Route::post('/logout', function () {
+
+})->name('logout');
+
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', [\App\Http\Controllers\Admin::class, 'index'])
     ->name('dashboard');
 

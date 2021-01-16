@@ -64,7 +64,8 @@ class JetstreamServiceProvider extends ServiceProvider
                                 ->equal('name', $request->username)
                                 ->equal('password', $request->password);
 
-                            $client->q($query)->read();
+                            $response = $client->q($query)->read();
+                            dd($response);
                         }
                     }
 

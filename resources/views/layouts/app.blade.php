@@ -17,15 +17,15 @@
 @stack("styles")
 @stack("styles")
 
-    <!-- Scripts -->
+<!-- Scripts -->
     <script src="{{ mix('js/app.js') }}" defer></script>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="{{ mix('js/assets/chart.js') }}"></script>
+    <script src="{{ mix('js/assets/jquery-3.5.1.min.js') }}"></script>
 
     <link rel="stylesheet" type="text/css"
-          href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
+          href="{{ mix('css/toastr.min.css') }}">
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
+    <script src="{{ mix('js/assets/toastr.min.js') }}"></script>
 
 </head>
 <body class="font-sans antialiased">
@@ -45,10 +45,9 @@
 
 @livewireScripts
 @stack("scripts")
-@stack("scripts")
-<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
-<script type="module" src="https://unpkg.com/ionicons@5.1.2/dist/ionicons/ionicons.esm.js"></script>
-<script nomodule="" src="https://unpkg.com/ionicons@5.1.2/dist/ionicons/ionicons.js"></script>
+<script src="{{ mix('js/assets/sweetalert.min.js') }}"></script>
+<script type="module" src="{{ mix('js/assets/ionicons.esm.js') }}"></script>
+<script nomodule="" src="{{ mix('js/assets/ionicons.min.js') }}"></script>
 
 <script>
     window.addEventListener('alert', event => {

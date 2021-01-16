@@ -81,7 +81,7 @@
                     </div>
                 </div>
             </div>
-            <div class="mt-4 mb-8 px-10 md:px-0 md:w-1/4 md:ml-20 mt-8 md:mb-0 text-center md:text-left">
+            <div class="mt-4 mb-8 px-10 md:px-0 md:w-1/4 md:ml-20 mt-8 text-center md:text-left">
                 <h1 class="text-xl font-bold border-b md:w-1/2">Weekly Packages</h1>
             </div>
             <div class="flex flex-col md:flex-row justify-center flex-wrap">

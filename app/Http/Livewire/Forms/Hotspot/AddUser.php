@@ -20,11 +20,6 @@ class AddUser extends Component
         'profile' => 'required|required'
     ];
 
-    public function updated($propertyName)
-    {
-        $this->validateOnly($propertyName);
-    }
-
     public function add()
     {
         $this->validate();

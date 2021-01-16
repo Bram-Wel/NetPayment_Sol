@@ -48,11 +48,10 @@
 <script>
     window.addEventListener('alert', event => {
         Swal.fire({
-            position: 'top-end',
+            position: 'center',
             icon: event.detail.type,
             title: event.detail.message,
-            showConfirmButton: false,
-            timer: 1500
+            showConfirmButton: true,
         });
     })
 </script>

@@ -11,7 +11,7 @@ class TotalAmountDaily extends Component
 
     public function mount()
     {
-        $this->totalAmount = DB::table('payments')
+        $this->totalAmount = DB::connection('mysql2')->table('payments')
             ->whereDay('created_at', date('d'))
             ->sum('amount');
     }

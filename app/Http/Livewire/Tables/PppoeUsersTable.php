@@ -13,7 +13,6 @@ use RouterOS\Query;
 class PppoeUsersTable extends LivewireDatatable
 {
     public $model = User::class;
-    public $exportable = true;
 
     public function builder()
     {

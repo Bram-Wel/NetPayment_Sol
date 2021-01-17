@@ -25,7 +25,7 @@ class PaymentClicksTable extends LivewireDatatable
             Column::name('address'),
             Column::callback(['created_at'], function ($date) {
                 return date('d, M Y h:i:s A', strtotime($date));
-            })
+            })->label('Clicked on')
         ];
     }
 }

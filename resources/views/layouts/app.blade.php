@@ -23,7 +23,7 @@
     <script src="{{ asset('js/assets/jquery-3.5.1.min.js') }}"></script>
 
     <link rel="stylesheet" type="text/css"
-          href="{{ asset('css/toastr.min.css') }}">
+          href="{{ asset('css/assets/toastr.min.css') }}">
 
     <script src="{{ asset('js/assets/toastr.min.js') }}"></script>
 

@@ -192,27 +192,27 @@ class CheckPayment extends Command
                         $client->query($query)->read();
                     }
                 } else {
-                    $query = ((new Query('/ppp/secret/print')))
+                    $query = (new Query('/ppp/secret/print'))
                         ->where('name', $name);
 
                     $response = $client->query($query)->read();
                     foreach ($response as $res) {
                         $id = $res['.id'];
 
-                        $query = ((new Query('/ppp/secret/set')))
+                        $query = (new Query('/ppp/secret/set'))
                             ->equal('.id', $id)
                             ->equal('profile', $rate);
 
                         $client->query($query)->read();
 
-                        $query = ((new Query('/ppp/secret/enable')))
+                        $query = (new Query('/ppp/secret/enable'))
                             ->equal('.id', $id);
 
                         $client->query($query)->read();
 
                         $source = "/ppp secret disable find[name='$name']";
 
-                        $query = ((new Query('/system/scheduler/print')))
+                        $query = (new Query('/system/scheduler/print'))
                             ->where('name', 'deactivate-' . $name);
 
                         $response = $client->query($query)->read();
@@ -220,12 +220,12 @@ class CheckPayment extends Command
                         if (count($response) > 0) {
                             foreach ($response as $resp) {
                                 $id = $resp['.id'];
-                                $query = ((new Query('/system/scheduler/remove')))
+                                $query = (new Query('/system/scheduler/remove'))
                                     ->equal('.id', $id);
 
                                 $client->query($query)->read();
 
-                                $query = ((new Query('/system/scheduler/add')))
+                                $query = (new Query('/system/scheduler/add'))
                                     ->equal('name', 'deactivate-' . $name)
                                     ->equal('start-date', $date)
                                     ->equal('start-time', $time)
@@ -234,7 +234,7 @@ class CheckPayment extends Command
                                 $client->query($query)->read();
                             }
                         } else {
-                            $query = ((new Query('/system/scheduler/add')))
+                            $query = (new Query('/system/scheduler/add'))
                                 ->equal('name', 'deactivate-' . $name)
                                 ->equal('start-date', $date)
                                 ->equal('start-time', $time)

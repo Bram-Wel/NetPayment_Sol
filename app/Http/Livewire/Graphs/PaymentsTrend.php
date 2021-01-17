@@ -13,14 +13,14 @@ class PaymentsTrend extends Component
 
     public function mount()
     {
-        $this->thisYear = DB::table('payments')->whereYear('created_at', '=', now()->year)->sum('amount');
-        $this->thisMonth = DB::table('payments')->whereMonth('created_at', '=', now()->month)->sum('amount');
-        $this->thisWeek = DB::table('payments')->whereBetween('created_at', [Carbon::now()->startOfWeek('1'), Carbon::now()->endOfWeek('7')])->sum('amount');
-        $this->lastYear = DB::table('payments')->whereYear('created_at', '=', now()->year - 1)->sum('amount');
-        $this->secondLastYear = DB::table('payments')->whereYear('created_at', '=', now()->year - 2)->sum('amount');
-        $this->thirdLastYear = DB::table('payments')->whereYear('created_at', '=', now()->year - 3)->sum('amount');
-        $this->fourthLastYear = DB::table('payments')->whereYear('created_at', '=', now()->year - 4)->sum('amount');
-        $this->fifthLastYear = DB::table('payments')->whereYear('created_at', '=', now()->year - 5)->sum('amount');
+        $this->thisYear = DB::connection('mysql2')->table('payments')->whereYear('created_at', '=', now()->year)->sum('amount');
+        $this->thisMonth = DB::connection('mysql2')->table('payments')->whereMonth('created_at', '=', now()->month)->sum('amount');
+        $this->thisWeek = DB::connection('mysql2')->table('payments')->whereBetween('created_at', [Carbon::now()->startOfWeek('1'), Carbon::now()->endOfWeek('7')])->sum('amount');
+        $this->lastYear = DB::connection('mysql2')->table('payments')->whereYear('created_at', '=', now()->year - 1)->sum('amount');
+        $this->secondLastYear = DB::connection('mysql2')->table('payments')->whereYear('created_at', '=', now()->year - 2)->sum('amount');
+        $this->thirdLastYear = DB::connection('mysql2')->table('payments')->whereYear('created_at', '=', now()->year - 3)->sum('amount');
+        $this->fourthLastYear = DB::connection('mysql2')->table('payments')->whereYear('created_at', '=', now()->year - 4)->sum('amount');
+        $this->fifthLastYear = DB::connection('mysql2')->table('payments')->whereYear('created_at', '=', now()->year - 5)->sum('amount');
 
         $this->one = now()->year;
         $this->two = now()->year - 1;

@@ -15,9 +15,6 @@
                     @livewire('tables.payments-table')
                 </div>
             </div>
-            <div class="p-5">
-                {{ $payments->links() }}
-            </div>
         </div>
     </div>
 </x-app-layout>

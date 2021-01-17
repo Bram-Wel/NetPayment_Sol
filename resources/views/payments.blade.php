@@ -11,7 +11,6 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-10">
             <div class="flex flex-col md:flex-row justify-center">
                 <div class="p-3">
-                    <h1 class="pt-2 pb-2 text-2xl">Payments</h1>
                     @livewire('tables.payments-table')
                 </div>
             </div>

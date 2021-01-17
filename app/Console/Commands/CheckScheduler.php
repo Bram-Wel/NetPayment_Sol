@@ -3,6 +3,7 @@
 namespace App\Console\Commands;
 
 use AfricasTalking\SDK\AfricasTalking;
+use App\Models\Message;
 use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Console\Command;
@@ -79,6 +80,14 @@ class CheckScheduler extends Command
                     'to' => '+254' . ltrim($phone, '0'),
                     'message' => "Your internet subscription expires today at $endTime. Kindly login to our new web portal, http://thetechglitch.net, and click the package you would like to renew."
                 ]);
+
+                $message = new Message();
+                $message->username = ltrim($res['name'], 'deactivate-');
+                $message->phone = $phone;
+                $message->email = User::where('phone', $phone)->value('email');
+                $message->message = "Your internet subscription expires today at $endTime. Kindly login to our new web portal, http://thetechglitch.net, and click the package you would like to renew.";
+                $message->type = 'sms';
+                $message->save();
             }
         }
     }

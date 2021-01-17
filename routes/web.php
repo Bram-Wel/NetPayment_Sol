@@ -24,7 +24,7 @@ use RouterOS\Query;
 |
 */
 
-Route::get('/', function (Request $request) {
+Route::match(['get', 'post'], '/', function (Request $request) {
     if ($request->ip) {
         $ip = $request->ip;
         $mac = $request->mac;
@@ -35,7 +35,6 @@ Route::get('/', function (Request $request) {
 
     return view('auth.login');
 });
-
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', [\App\Http\Controllers\Admin::class, 'index'])
     ->name('dashboard');

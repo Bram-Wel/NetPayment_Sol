@@ -20,7 +20,6 @@
         "livewire/livewire": "^2.0",
         "mediconesystems/livewire-datatables": "^0.4.3",
         "predis/predis": "^1.1",
-        "tanthammar/tall-forms": "^7.8",
         "ext-curl": "*"
     },
     "require-dev": {

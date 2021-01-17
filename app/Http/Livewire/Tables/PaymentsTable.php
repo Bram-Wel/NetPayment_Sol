@@ -25,7 +25,7 @@ class PaymentsTable extends LivewireDatatable
             Column::name('amount'),
             Column::callback(['created_at'], function ($date) {
                 return date('d, M Y h:i:s A', strtotime($date));
-            }),
+            })->label('payment time'),
             BooleanColumn::name('checked')
         ];
     }

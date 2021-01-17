@@ -1,11 +1,10 @@
 <div>
-    {{-- Stop trying to control. --}}
-    <form class="form">
+    <form class="form" wire:submit.prevent="sendSms">
         <label for="user">User</label>
-    <?php
+        <?php
         use Illuminate\Support\Facades\DB;$users = DB::table('users')->orderBy('username', 'asc')->get();
         ?>
-        <select class="bg-white p-2 rounded w-full border" name="user">
+        <select class="bg-white p-2 rounded w-full border" name="user" wire:model="user">
             <option value="">--selected--</option>
             @foreach($users as $user)
                 <option value="{{ $user->username }}"> {{ $user->username }}</option>

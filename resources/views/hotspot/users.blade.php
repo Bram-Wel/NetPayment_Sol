@@ -14,7 +14,7 @@
             <div class="flex flex-row justify-between absolute right-20">
                 <a href="/hotspot/user/add"
                    class="bg-green-400 hover:bg-green-800 text-white shadow-lg rounded-xl h-8 pt-1 px-5">
-                    Add User
+                    Add user
                 </a>
             </div>
         </div>

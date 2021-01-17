@@ -121,8 +121,7 @@ class CheckPayment extends Command
                 $date = date('M/d/Y', strtotime($date));
 
                 $client = new Client($config);
-                $userPhone = '0' . ltrim($p, '254');
-                $type = User::where('phone', $userPhone)->value('type');
+                $type = User::where('phone', $p)->value('type');
                 if ($type == 'hotspot') {
                     $password = DB::table('users')
                         ->where('phone', $p)

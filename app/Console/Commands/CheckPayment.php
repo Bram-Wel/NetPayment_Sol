@@ -196,6 +196,7 @@ class CheckPayment extends Command
                         ->where('name', $name);
 
                     $response = $client->query($query)->read();
+                    dd($response);
                     foreach ($response as $res) {
                         $id = $res['.id'];
 

@@ -17,7 +17,6 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="flex flex-col md:flex-row justify-center">
                 <div class="mb-5 p-3">
-                    <h1 class="pb-2 text-2xl">Active Users</h1>
                     <table class="table table-fixed min-w-full leading-normal">
                         <thead>
                         <tr>

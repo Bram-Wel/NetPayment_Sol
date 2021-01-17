@@ -42,6 +42,10 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', [\App\Http\Co
 Route::middleware(['auth:sanctum', 'verified'])->get('/users', [\App\Http\Controllers\Users::class, 'index'])
     ->name('Users');
 
+Route::middleware(['auth:sanctum', 'verified'])->get('/payments/clicks', function () {
+    return view('payments.payment-clicks');
+})->name('payment.clicks');
+
 Route::middleware(['auth:sanctum', 'verified'])->get('/hotspot/users', [\App\Http\Controllers\Users::class, 'HotspotUsers'])
     ->name('hotspot-users');
 

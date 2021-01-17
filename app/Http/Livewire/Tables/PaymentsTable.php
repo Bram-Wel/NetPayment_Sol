@@ -12,11 +12,6 @@ class PaymentsTable extends LivewireDatatable
 {
     public $model = Payment::class;
 
-    public function builder()
-    {
-
-    }
-
     public function columns()
     {
         return [

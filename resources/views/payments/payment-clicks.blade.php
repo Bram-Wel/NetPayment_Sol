@@ -10,7 +10,7 @@
     <div class="max-w-7xl mx-auto sm:px-6 lg:px-10">
         <div class="flex flex-col md:flex-row justify-center">
             <div class="p-3">
-                @livewire('tables.payments-clicks-table')
+                @livewire('tables.payment-clicks-table')
             </div>
         </div>
     </div>

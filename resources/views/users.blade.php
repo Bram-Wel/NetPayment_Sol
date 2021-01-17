@@ -23,7 +23,6 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-4">
             <div class="flex flex-col md:flex-row justify-center">
                 <div class="p-3">
-                    <h1 class="pt-2 pb-2 text-2xl">Users</h1>
                     @livewire('tables.pppoe-users-table')
                 </div>
             </div>

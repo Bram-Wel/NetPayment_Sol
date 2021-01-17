@@ -60,6 +60,7 @@
                                     {{ $profile['shared-users'] }}
                                 </td>
                                 <td class="px-5 py-2 border-b border-gray-200 bg-white text-sm">
+                                    {{ dd($profile['rate-limit']) }}
                                     {{ $profile['rate-limit'] }}
                                 </td>
                                 <td class="px-2 py-2 border-b border-gray-200 bg-white text-sm">

@@ -65,7 +65,7 @@
 
         <div class="max-w-screen">
             <div class="rounded-lg shadow-lg">
-                <div class="table align-middle min-w-full" style="width: 120%">
+                <div class="table align-middle min-w-full">
                     @unless($this->hideHeader)
                         <div class="table-row divide-x divide-gray-200">
                             @foreach($this->columns as $index => $column)

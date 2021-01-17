@@ -23,7 +23,6 @@ class PaymentsTable extends LivewireDatatable
             Column::name('phone'),
             Column::name('receipt_number')->label('Receipt'),
             Column::name('amount'),
-            Column::name('type'),
             Column::callback(['created_at'], function ($date) {
                 return date('d, M Y h:i:s A', strtotime($date));
             }),

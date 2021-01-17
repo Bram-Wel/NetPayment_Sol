@@ -11,7 +11,7 @@
                    class="font-bold text-blue-500 @if(request()->routeIs('hotspot-users')) border-b border-blue-500 @endif">Hotspot
                     Users</a>
             </div>
-            <div class="absolute right-20">
+            <div class="absolute right-20 flex justify-center content-center items-center">
                 <a href="/user/add"
                    class="bg-green-400 hover:bg-green-800 text-white shadow-lg rounded-xl h-8 pt-1 px-5">
                     Add User

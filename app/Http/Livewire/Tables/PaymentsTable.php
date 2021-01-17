@@ -3,6 +3,7 @@
 namespace App\Http\Livewire\Tables;
 
 use App\Models\Payment;
+use App\Models\User;
 use Mediconesystems\LivewireDatatables\BooleanColumn;
 use Mediconesystems\LivewireDatatables\Column;
 use Mediconesystems\LivewireDatatables\Http\Livewire\LivewireDatatable;
@@ -16,6 +17,9 @@ class PaymentsTable extends LivewireDatatable
     {
         return [
             NumberColumn::name('id'),
+            Column::callback(['phone'], function ($phone) {
+                return User::where('phone', $phone)->value('username');
+            })->label('Name'),
             Column::name('phone'),
             Column::name('receipt_number')->label('Receipt'),
             Column::name('amount'),

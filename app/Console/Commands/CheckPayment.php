@@ -2,7 +2,6 @@
 
 namespace App\Console\Commands;
 
-use App\Models\Payment;
 use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Console\Command;
@@ -45,19 +44,22 @@ class CheckPayment extends Command
      */
     public function handle()
     {
-        $result = DB::table('payments')
+        $result = DB::connection('mysql2')->table('payments')
             ->where('checked', '=', 0)
             ->count();
 
         if ($result > 0) {
-            $result = DB::table('payments')
+            $result = DB::connection('mysql2')->table('payments')
                 ->where('checked', '=', 0)
                 ->get();
 
             foreach ($result as $payment) {
                 $p = $payment->phone;
                 $name = User::where('phone', $p)->value('username');
-                $amount = Payment::where('phone', $p)->where('checked', 0)->value('amount');
+                $amount = DB::connection('mysql2')->table('payments')
+                    ->where('phone', $p)
+                    ->where('checked', 0)
+                    ->value('amount');
 
                 $config = new Config([
                     'host' => env('MIKROTIK_HOST'),
@@ -127,7 +129,7 @@ class CheckPayment extends Command
 
                     $phone = '254' . ltrim($p, '0');
 
-                    $ip = DB::table('ips')
+                    $ip = DB::connection('mysql2')->table('ips')
                         ->where('phone', $phone)
                         ->orderBy('id', 'desc')
                         ->limit(1)
@@ -242,7 +244,7 @@ class CheckPayment extends Command
                         }
                     }
                 }
-                DB::table('payments')
+                DB::connection('mysql2')->table('payments')
                     ->where('phone', '=', $p)
                     ->update(['checked' => 1]);
             }

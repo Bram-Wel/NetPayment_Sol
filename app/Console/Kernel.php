@@ -27,6 +27,9 @@ class Kernel extends ConsoleKernel
     {
         $schedule->command('check:payment')
             ->everyMinute();
+
+        $schedule->command('check:scheduler')
+            ->daily();
     }
 
     /**

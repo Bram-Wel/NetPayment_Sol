@@ -2,6 +2,9 @@
 
 namespace App\Console\Commands;
 
+use AfricasTalking\SDK\AfricasTalking;
+use App\Models\User;
+use Carbon\Carbon;
 use Illuminate\Console\Command;
 use RouterOS\Client;
 use RouterOS\Config;
@@ -54,11 +57,29 @@ class CheckScheduler extends Command
         $query = (new Query('/system/scheduler/print'));
         $response = $client->query($query)->read();
         foreach ($response as $res) {
-            $date = $res['start-date'];
+            $date = ucwords($res['start-date']);
             $time = $res['start-time'];
 
             $end = $date . " " . $time;
+            $endTime = date('h:i A', strtotime($time));
 
+            $end = Carbon::createFromFormat('M/d/Y H:i:s', $end);
+            $hours = Carbon::now()->diffInHours($end);
+
+
+            if ($hours <= 5) {
+                $phone = User::where('username', ltrim($res['name'], 'deactivate-'))->value('phone');
+                $username = "thetechglitch"; // use 'sandbox' for development in the test environment
+                $apiKey = '0355a696e0f0dca94141e9f88dddd738cdcfc98725445473b0e182b7a15fc526'; // use your sandbox app API key for development in the test environment
+                $AT = new AfricasTalking($username, $apiKey);
+
+                $sms = $AT->sms();
+
+                $sms->send([
+                    'to' => '+254' . ltrim($phone, '0'),
+                    'message' => "Your internet subscription expires today at $endTime. Kindly login to our new web portal, http://thetechglitch.net, and click the package you would like to renew."
+                ]);
+            }
         }
     }
 }

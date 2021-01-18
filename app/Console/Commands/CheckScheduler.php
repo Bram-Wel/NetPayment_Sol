@@ -68,7 +68,12 @@ class CheckScheduler extends Command
             $hours = Carbon::now()->diffInHours($end);
 
             if ($hours <= 5) {
-                $phone = User::where('username', ltrim($res['name'], 'deactivate-'))->value('phone');
+                $count = User::where('username', ltrim($res['name'], 'deactivate-'))->count();
+                if ($count == 0) {
+                    $phone = User::where('username', ucfirst(ltrim($res['name'], 'deactivate-')))->value('phone');
+                } else {
+                    $phone = User::where('username', ltrim($res['name'], 'deactivate-'))->value('phone');
+                }
                 $username = "thetechglitch"; // use 'sandbox' for development in the test environment
                 $apiKey = '0355a696e0f0dca94141e9f88dddd738cdcfc98725445473b0e182b7a15fc526'; // use your sandbox app API key for development in the test environment
                 $AT = new AfricasTalking($username, $apiKey);

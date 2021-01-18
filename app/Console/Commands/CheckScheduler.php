@@ -67,7 +67,6 @@ class CheckScheduler extends Command
             $end = Carbon::createFromFormat('M/d/Y H:i:s', $end);
             $hours = Carbon::now()->diffInHours($end);
 
-
             if ($hours <= 5) {
                 $phone = User::where('username', ltrim($res['name'], 'deactivate-'))->value('phone');
                 $username = "thetechglitch"; // use 'sandbox' for development in the test environment

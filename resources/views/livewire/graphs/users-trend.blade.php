@@ -3,12 +3,12 @@
     <h2 class="font-bold pb-3 text-center">Users Trend</h2>
     <div class="flex flex-row text-center w-full justify-between">
         <div class="flex flex-col">
-            <span class="font-bold text-lg text-gray-600">{{ number_format($thisYear) }}</span>
-            <span class="opacity-50">This Year</span>
+            <span class="font-bold text-lg text-gray-600">{{ number_format($thisWeek) }}</span>
+            <span class="opacity-50">This Week</span>
         </div>
         <div class="flex flex-col">
-            <span class="font-bold text-lg text-gray-600">{{ number_format($thisWeek) }}</span>
-            <span class="opacity-50">Last Week</span>
+            <span class="font-bold text-lg text-gray-600">{{ number_format($thisYear) }}</span>
+            <span class="opacity-50">This Year</span>
         </div>
         <div class="flex flex-col">
             <span class="font-bold text-lg text-gray-600">{{ number_format($thisMonth) }}</span>

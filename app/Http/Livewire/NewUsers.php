@@ -13,7 +13,7 @@ class NewUsers extends Component
     {
         $this->newUsers = DB::table('users')
             ->whereMonth('created_at', date('m'))
-            ->count();
+            ->count('id');
     }
 
     public function render()

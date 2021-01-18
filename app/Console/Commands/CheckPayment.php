@@ -48,12 +48,12 @@ class CheckPayment extends Command
     {
         $result = DB::connection('mysql2')->table('payments')
             ->where('checked', '=', 0)
-            ->count();
+            ->count('id');
 
         if ($result > 0) {
             $result = DB::connection('mysql2')->table('payments')
                 ->where('checked', '=', 0)
-                ->get();
+                ->value('phone');
 
             foreach ($result as $payment) {
                 $p = $payment->phone;

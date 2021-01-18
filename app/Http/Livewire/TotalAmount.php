@@ -11,7 +11,7 @@ class TotalAmount extends Component
 
     public function mount()
     {
-        $this->totalAmount = DB::table('payments')
+        $this->totalAmount = DB::connection('mysql2')->table('payments')
             ->whereMonth('created_at', date('m'))
             ->sum('amount');
     }

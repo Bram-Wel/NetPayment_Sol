@@ -64,8 +64,7 @@
         <div class="col-span-6 sm:col-span-4">
             <x-jet-label for="phone" value="{{ __('Phone') }}"/>
             <x-jet-input id="phone" type="phone" class="mt-1 block w-full" wire:model.defer="state.phone"
-                         @if($this->user
-                         ->type != 'hotspot') readonly @endif/>
+                         @if($this->user->type != 'hotspot') readonly @endif/>
             <x-jet-input-error for="phone" class="mt-2"/>
         </div>
     </x-slot>

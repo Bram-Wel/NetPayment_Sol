@@ -48,22 +48,24 @@
                     </x-jet-secondary-button>
                 @endif
 
-                <x-jet-input-error for="photo" class="mt-2" />
+                <x-jet-input-error for="photo" class="mt-2"/>
             </div>
-        @endif
+    @endif
 
-        <!-- Name -->
+    <!-- Name -->
         <div class="col-span-6 sm:col-span-4">
-            <x-jet-label for="username" value="{{ __('Username') }}" />
-            <x-jet-input id="username" type="text" class="mt-1 block w-full" wire:model.defer="state.username" autocomplete="username" readonly/>
-            <x-jet-input-error for="username" class="mt-2" />
+            <x-jet-label for="username" value="{{ __('Username') }}"/>
+            <x-jet-input id="username" type="text" class="mt-1 block w-full" wire:model.defer="state.username"
+                         autocomplete="username" @if($this->user()->type != 'hotspot') readonly @endif/>
+            <x-jet-input-error for="username" class="mt-2"/>
         </div>
 
         <!-- Email -->
         <div class="col-span-6 sm:col-span-4">
-            <x-jet-label for="phone" value="{{ __('Phone') }}" />
-            <x-jet-input id="phone" type="phone" class="mt-1 block w-full" wire:model.defer="state.phone" readonly/>
-            <x-jet-input-error for="phone" class="mt-2" />
+            <x-jet-label for="phone" value="{{ __('Phone') }}"/>
+            <x-jet-input id="phone" type="phone" class="mt-1 block w-full" wire:model.defer="state.phone"
+                         @if($this->user()->type != 'hotspot') readonly @endif/>
+            <x-jet-input-error for="phone" class="mt-2"/>
         </div>
     </x-slot>
 

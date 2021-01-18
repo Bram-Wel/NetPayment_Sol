@@ -33,6 +33,8 @@ class BuyNow extends Component
     public function buy()
     {
         $this->message = "Buying...";
+        $this->openModal = true;
+
 
         if ($this->package == 1 && $this->freq == 'daily') {
             $this->amount = 30;
@@ -69,8 +71,6 @@ class BuyNow extends Component
         $this->customerMpesaSTKPush($this->shortcode, $this->timestamp, $this->phone);
 
         $this->message = "Buy Now";
-
-        $this->openModal = true;
     }
 
     public function customerMpesaSTKPush($shortcode, $timestamp, $phone)

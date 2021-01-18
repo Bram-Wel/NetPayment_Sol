@@ -11,6 +11,7 @@ use Mediconesystems\LivewireDatatables\NumberColumn;
 class PaymentClicksTable extends LivewireDatatable
 {
     public $model = Ip::class;
+    public $exportable = true;
 
     public function columns()
     {

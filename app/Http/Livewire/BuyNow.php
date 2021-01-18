@@ -8,10 +8,11 @@ use Livewire\Component;
 
 class BuyNow extends Component
 {
-    public $package, $message, $freq, $timestamp, $shortcode, $consumerKey, $consumerSecret, $phone, $amount;
+    public $package, $message, $freq, $timestamp, $shortcode, $consumerKey, $consumerSecret, $phone, $amount, $openModal;
 
     public function mount()
     {
+        $this->openModal = false;
         $this->message = "Buy Now";
 
         $this->timestamp = date('YmdHis', time());
@@ -69,8 +70,7 @@ class BuyNow extends Component
 
         $this->message = "Buy Now";
 
-        $this->dispatchBrowserEvent(
-            'alert', ['type' => 'success', 'title' => 'Payment initiated successfully!', 'message' => 'Check your phone to enter your m-pesa pin.']);
+        $this->openModal = true;
     }
 
     public function customerMpesaSTKPush($shortcode, $timestamp, $phone)

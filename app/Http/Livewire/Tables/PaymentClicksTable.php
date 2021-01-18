@@ -11,7 +11,6 @@ use Mediconesystems\LivewireDatatables\NumberColumn;
 class PaymentClicksTable extends LivewireDatatable
 {
     public $model = Ip::class;
-    public $exportable = true;
 
     public function columns()
     {
@@ -26,7 +25,8 @@ class PaymentClicksTable extends LivewireDatatable
             Column::name('address'),
             Column::callback(['created_at'], function ($date) {
                 return date('d, M Y h:i:s A', strtotime($date));
-            })->label('Clicked on')
+            })->label('Clicked on'),
+            Column::delete('Delete')
         ];
     }
 }

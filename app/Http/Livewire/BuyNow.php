@@ -70,7 +70,7 @@ class BuyNow extends Component
         $this->message = "Buy Now";
 
         $this->dispatchBrowserEvent(
-            'alert', ['type' => 'success', 'message' => 'Payment initiated successfully!']);
+            'alert', ['type' => 'success', 'title' => 'Payment initiated successfully!', 'message' => 'Check your phone to enter your m-pesa pin.']);
     }
 
     public function customerMpesaSTKPush($shortcode, $timestamp, $phone)

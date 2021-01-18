@@ -61,7 +61,8 @@
         Swal.fire({
             position: 'center',
             icon: event.detail.type,
-            title: event.detail.message,
+            title: event.detail.title,
+            message: event.detail.message,
             showConfirmButton: true,
         });
     })

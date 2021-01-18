@@ -2,6 +2,8 @@
 
 namespace App\Console\Commands;
 
+use AfricasTalking\SDK\AfricasTalking;
+use App\Models\Message;
 use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Console\Command;
@@ -191,6 +193,24 @@ class CheckPayment extends Command
                                 ->equal('on-event', "$source");
                         $client->query($query)->read();
                     }
+                    $username = "thetechglitch"; // use 'sandbox' for development in the test environment
+                    $apiKey = '0355a696e0f0dca94141e9f88dddd738cdcfc98725445473b0e182b7a15fc526'; // use your sandbox app API key for development in the test environment
+                    $AT = new AfricasTalking($username, $apiKey);
+
+                    $sms = $AT->sms();
+
+                    $sms->send([
+                        'to' => '+254' . ltrim($p, '0'),
+                        'message' => "You have successfully subscribed to the $rate package, expires on $date at $time."
+                    ]);
+
+                    $message = new Message();
+                    $message->username = $name;
+                    $message->phone = $p;
+                    $message->email = User::where('phone', $p)->value('email');
+                    $message->message = "You have successfully subscribed to the $rate package, expires on $date at $time.";
+                    $message->type = 'sms';
+                    $message->save();
                 } else {
                     $query = (new Query('/ppp/secret/print'))
                         ->where('name', $name);
@@ -242,6 +262,24 @@ class CheckPayment extends Command
 
                             $client->query($query)->read();
                         }
+                        $username = "thetechglitch"; // use 'sandbox' for development in the test environment
+                        $apiKey = '0355a696e0f0dca94141e9f88dddd738cdcfc98725445473b0e182b7a15fc526'; // use your sandbox app API key for development in the test environment
+                        $AT = new AfricasTalking($username, $apiKey);
+
+                        $sms = $AT->sms();
+
+                        $sms->send([
+                            'to' => '+254' . ltrim($p, '0'),
+                            'message' => "You have successfully subscribed to the $rate package, expires on $date at $time."
+                        ]);
+
+                        $message = new Message();
+                        $message->username = $name;
+                        $message->phone = $p;
+                        $message->email = User::where('phone', $p)->value('email');
+                        $message->message = "You have successfully subscribed to the $rate package, expires on $date at $time.";
+                        $message->type = 'sms';
+                        $message->save();
                     }
                 }
                 DB::connection('mysql2')->table('payments')

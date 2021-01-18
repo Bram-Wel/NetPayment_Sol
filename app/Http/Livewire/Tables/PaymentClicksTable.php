@@ -18,7 +18,7 @@ class PaymentClicksTable extends LivewireDatatable
             NumberColumn::name('id'),
             Column::callback(['phone'], function ($phone) {
                 return User::where('phone', 0 . ltrim($phone, '254'))->value('username');
-            })->label('Username'),
+            })->label('Username')->searchable(),
             Column::callback(['phone', 'address'], function ($phone) {
                 return 0 . ltrim($phone, '254');
             })->label('Phone'),

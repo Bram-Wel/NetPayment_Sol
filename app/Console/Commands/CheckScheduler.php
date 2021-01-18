@@ -81,6 +81,7 @@ class CheckScheduler extends Command
                 ]);
 
                 $password = User::where('phone', $phone)->value('password');
+                $username = ltrim($res['name'], 'deactivate-');
 
                 $message = new Message();
                 $message->username = ltrim($res['name'], 'deactivate-');

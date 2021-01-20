@@ -21248,7 +21248,7 @@ module.exports = function(module) {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-// removed by extract-text-webpack-plugin
+throw new Error("Module build failed (from ./node_modules/css-loader/index.js):\nModuleBuildError: Module build failed (from ./node_modules/postcss-loader/src/index.js):\nError: Cannot find module './vendor/tanthammar/tall-forms/resources/stubs/tailwindcss/1.9/tall-forms-preset.js'\nRequire stack:\n- /home/fabian/code/thetechglitch_internet/tailwind.config.js\n- /home/fabian/code/thetechglitch_internet/node_modules/tailwindcss/lib/index.js\n- /home/fabian/code/thetechglitch_internet/webpack.mix.js\n- /home/fabian/code/thetechglitch_internet/node_modules/laravel-mix/setup/webpack.config.js\n- /home/fabian/code/thetechglitch_internet/node_modules/webpack-cli/bin/utils/convert-argv.js\n- /home/fabian/code/thetechglitch_internet/node_modules/webpack-cli/bin/cli.js\n- /home/fabian/code/thetechglitch_internet/node_modules/webpack/bin/webpack.js\n    at Function.Module._resolveFilename (node:internal/modules/cjs/loader:925:15)\n    at Function.Module._load (node:internal/modules/cjs/loader:769:27)\n    at Module.require (node:internal/modules/cjs/loader:997:19)\n    at require (/home/fabian/code/thetechglitch_internet/node_modules/v8-compile-cache/v8-compile-cache.js:159:20)\n    at Object.<anonymous> (/home/fabian/code/thetechglitch_internet/tailwind.config.js:5:9)\n    at Module._compile (/home/fabian/code/thetechglitch_internet/node_modules/v8-compile-cache/v8-compile-cache.js:192:30)\n    at Object.Module._extensions..js (node:internal/modules/cjs/loader:1137:10)\n    at Module.load (node:internal/modules/cjs/loader:973:32)\n    at Function.Module._load (node:internal/modules/cjs/loader:813:14)\n    at Module.require (node:internal/modules/cjs/loader:997:19)\n    at require (/home/fabian/code/thetechglitch_internet/node_modules/v8-compile-cache/v8-compile-cache.js:159:20)\n    at /home/fabian/code/thetechglitch_internet/node_modules/tailwindcss/lib/index.js:76:107\n    at /home/fabian/code/thetechglitch_internet/node_modules/tailwindcss/lib/processTailwindFeatures.js:50:20\n    at LazyResult.run (/home/fabian/code/thetechglitch_internet/node_modules/postcss/lib/lazy-result.js:288:14)\n    at LazyResult.asyncTick (/home/fabian/code/thetechglitch_internet/node_modules/postcss/lib/lazy-result.js:212:26)\n    at LazyResult.asyncTick (/home/fabian/code/thetechglitch_internet/node_modules/postcss/lib/lazy-result.js:225:14)\n    at LazyResult.asyncTick (/home/fabian/code/thetechglitch_internet/node_modules/postcss/lib/lazy-result.js:225:14)\n    at /home/fabian/code/thetechglitch_internet/node_modules/postcss/lib/lazy-result.js:217:17\n    at /home/fabian/code/thetechglitch_internet/node_modules/webpack/lib/NormalModule.js:316:20\n    at /home/fabian/code/thetechglitch_internet/node_modules/loader-runner/lib/LoaderRunner.js:367:11\n    at /home/fabian/code/thetechglitch_internet/node_modules/loader-runner/lib/LoaderRunner.js:233:18\n    at context.callback (/home/fabian/code/thetechglitch_internet/node_modules/loader-runner/lib/LoaderRunner.js:111:13)\n    at /home/fabian/code/thetechglitch_internet/node_modules/postcss-loader/src/index.js:208:9");
 
 /***/ }),
 
@@ -21304,10 +21304,11 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! /home/fabian/code/thetechglitch-internet/resources/js/app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! /home/fabian/code/thetechglitch-internet/resources/css/app.css */"./resources/css/app.css");
+            __webpack_require__(/*! /home/fabian/code/thetechglitch_internet/resources/js/app.js */"./resources/js/app.js");
+            module.exports = __webpack_require__(/*! /home/fabian/code/thetechglitch_internet/resources/css/app.css */"./resources/css/app.css");
 
 
-/***/ })
+            /***/
+        })
 
 /******/ });

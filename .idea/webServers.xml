@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="WebServers">
+    <option name="servers">
+      <webServer id="8136e4ae-5df9-4da3-92f1-bfd107595946" name="The Tech Glitch" url="http://thetechglitch.net">
+        <fileTransfer rootFolder="/srv/http/thetechglitch_internet" accessType="SFTP" host="192.168.200.10" port="2435" sshConfigId="9c1fe8a3-9e6d-4516-b36b-7b8735fb5453" sshConfig="thetechglitch@192.168.200.10:2435 password">
+          <advancedOptions>
+            <advancedOptions dataProtectionLevel="Private" passiveMode="true" shareSSLContext="true" />
+          </advancedOptions>
+        </fileTransfer>
+      </webServer>
+    </option>
+  </component>
+</project>

@@ -21,7 +21,8 @@
         "laravel/tinker": "^2.5",
         "livewire/livewire": "^2.0",
         "mediconesystems/livewire-datatables": "^0.4.3",
-        "predis/predis": "^1.1"
+        "predis/predis": "^1.1",
+        "tanthammar/tall-forms": "^7.8"
     },
     "require-dev": {
         "facade/ignition": "^2.5",

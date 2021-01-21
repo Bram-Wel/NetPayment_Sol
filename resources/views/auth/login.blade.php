@@ -1,10 +1,14 @@
 <x-guest-layout>
     <x-jet-authentication-card>
         <x-slot name="logo">
-            <x-jet-authentication-card-logo />
+            <x-jet-authentication-card-logo/>
         </x-slot>
 
-        <x-jet-validation-errors class="mb-4" />
+        <x-jet-validation-errors class="mb-4"/>
+
+        <div class="flex justify-center">
+            <p class="text-green-500 font-bold">Free trial for new users</p>
+        </div>
 
         @if (session('status'))
             <div class="mb-4 font-medium text-sm text-green-600">

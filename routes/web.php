@@ -25,13 +25,13 @@ use RouterOS\Query;
 */
 
 Route::match(['get', 'post'], '/', function (Request $request) {
-    if ($request->ip) {
-        $ip = $request->ip;
-        $mac = $request->mac;
-        session(['ip' => $ip, 'mac' => $mac]);
-    } else {
-        return redirect('http://auth.thetechglitch.net');
-    }
+//    if ($request->ip) {
+//        $ip = $request->ip;
+//        $mac = $request->mac;
+//        session(['ip' => $ip, 'mac' => $mac]);
+//    } else {
+//        return redirect('http://auth.thetechglitch.net');
+//    }
 
     return view('auth.login');
 });
@@ -39,51 +39,55 @@ Route::match(['get', 'post'], '/', function (Request $request) {
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', [\App\Http\Controllers\Admin::class, 'index'])
     ->name('dashboard');
 
-Route::middleware(['auth:sanctum', 'verified'])->get('/users', [\App\Http\Controllers\Users::class, 'index'])
+Route::middleware(['auth:sanctum', 'verified', 'admin'])->get('/users', [\App\Http\Controllers\Users::class, 'index'])
     ->name('Users');
 
-Route::middleware(['auth:sanctum', 'verified'])->get('/payments/clicks', function () {
+Route::middleware(['auth:sanctum', 'verified', 'admin'])->get('/payments/clicks', function () {
     return view('payments.payment-clicks');
 })->name('payment.clicks');
 
-Route::middleware(['auth:sanctum', 'verified'])->get('/hotspot/users', [\App\Http\Controllers\Users::class, 'HotspotUsers'])
+Route::middleware(['auth:sanctum', 'verified'])->get('/movies', function () {
+    return view('movies.index');
+})->name('movies');
+
+Route::middleware(['auth:sanctum', 'verified', 'admin'])->get('/hotspot/users', [\App\Http\Controllers\Users::class, 'HotspotUsers'])
     ->name('hotspot-users');
 
-Route::middleware(['auth:sanctum', 'verified'])->get('/hotspot/user/edit/{username}', [\App\Http\Controllers\Users::class, 'EditHotspotUser'])
+Route::middleware(['auth:sanctum', 'verified', 'admin'])->get('/hotspot/user/edit/{username}', [\App\Http\Controllers\Users::class, 'EditHotspotUser'])
     ->name('hotspot-user-edit');
 
-Route::middleware(['auth:sanctum', 'verified'])->get('/hotspot/user/add', [\App\Http\Controllers\Users::class, 'AddHotspotUser'])
+Route::middleware(['auth:sanctum', 'verified', 'admin'])->get('/hotspot/user/add', [\App\Http\Controllers\Users::class, 'AddHotspotUser'])
     ->name('hotspot-user-add');
 
-Route::middleware(['auth:sanctum', 'verified'])->get('/hotspot/user/activate/{username}', [\App\Http\Controllers\Users::class, 'ActivateHotspotUser'])
+Route::middleware(['auth:sanctum', 'verified', 'admin'])->get('/hotspot/user/activate/{username}', [\App\Http\Controllers\Users::class, 'ActivateHotspotUser'])
     ->name('hotspot-user-activate');
 
-Route::middleware(['auth:sanctum', 'verified'])->get('/hotspot/user/deactivate/{username}', [\App\Http\Controllers\Users::class, 'DeactivateHotspotUser'])
+Route::middleware(['auth:sanctum', 'verified', 'admin'])->get('/hotspot/user/deactivate/{username}', [\App\Http\Controllers\Users::class, 'DeactivateHotspotUser'])
     ->name('hotspot-user-deactivate');
 
-Route::middleware(['auth:sanctum', 'verified'])->get('/hotspot/user/active', [\App\Http\Controllers\Users::class, 'HotspotActive'])
+Route::middleware(['auth:sanctum', 'verified', 'admin'])->get('/hotspot/user/active', [\App\Http\Controllers\Users::class, 'HotspotActive'])
     ->name('hotspot-active');
 
-Route::middleware(['auth:sanctum', 'verified'])->get('/hotspot/user/active/remove/{id}', [\App\Http\Controllers\Controller::class, 'RemoveActive'])
+Route::middleware(['auth:sanctum', 'verified', 'admin'])->get('/hotspot/user/active/remove/{id}', [\App\Http\Controllers\Controller::class, 'RemoveActive'])
     ->name('hotspot-remove-active');
 
-Route::middleware(['auth:sanctum', 'verified'])->get('/profiles', [\App\Http\Controllers\Profiles::class, 'index'])
+Route::middleware(['auth:sanctum', 'verified', 'admin'])->get('/profiles', [\App\Http\Controllers\Profiles::class, 'index'])
     ->name('profiles');
 
-Route::middleware(['auth:sanctum', 'verified'])->get('/payments', [\App\Http\Controllers\Payment::class, 'index'])
+Route::middleware(['auth:sanctum', 'verified', 'admin'])->get('/payments', [\App\Http\Controllers\Payment::class, 'index'])
     ->name('payments');
 
-Route::middleware(['auth:sanctum', 'verified'])->get('/marketing', [\App\Http\Controllers\Marketing::class, 'index'])
+Route::middleware(['auth:sanctum', 'verified', 'admin'])->get('/marketing', [\App\Http\Controllers\Marketing::class, 'index'])
     ->name('marketing');
 
-Route::middleware(['auth:sanctum', 'verified'])->get('/active', [\App\Http\Controllers\activeUsers::class, 'index'])
+Route::middleware(['auth:sanctum', 'verified', 'admin'])->get('/active', [\App\Http\Controllers\activeUsers::class, 'index'])
     ->name('active');
 
-Route::middleware(['auth:sanctum', 'verified'])->get('/payment/record', function () {
-  return view('payments.record-payment');
+Route::middleware(['auth:sanctum', 'verified', 'admin'])->get('/payment/record', function () {
+    return view('payments.record-payment');
 })->name('record-payment');
 
-Route::middleware(['auth:sanctum', 'verified'])->get('/user/active/remove/{id}', function ($id) {
+Route::middleware(['auth:sanctum', 'verified', 'admin'])->get('/user/active/remove/{id}', function ($id) {
     try {
         $config = new Config([
             'host' => env('MIKROTIK_HOST'),
@@ -110,7 +114,7 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/user/active/remove/{id}',
     return redirect('/active');
 });
 
-Route::middleware(['auth:sanctum', 'verified'])->get('/profile/remove/{id}', function ($id) {
+Route::middleware(['auth:sanctum', 'verified', 'admin'])->get('/profile/remove/{id}', function ($id) {
     try {
         $config = new Config([
             'host' => env('MIKROTIK_HOST'),
@@ -137,56 +141,56 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/profile/remove/{id}', fun
     return redirect('/profiles');
 });
 
-Route::middleware(['auth:sanctum', 'verified'])->get('/user/add', [Add::class, 'index'])
+Route::middleware(['auth:sanctum', 'verified', 'admin'])->get('/user/add', [Add::class, 'index'])
     ->name('add-user');
 
-Route::middleware(['auth:sanctum', 'verified'])->get('/profile/add', [AddProfile::class, 'index'])
+Route::middleware(['auth:sanctum', 'verified', 'admin'])->get('/profile/add', [AddProfile::class, 'index'])
     ->name('add-profile');
 
-Route::middleware(['auth:sanctum', 'verified'])->get('/profile/edit/{name}', [EditProfile::class, 'index'])
+Route::middleware(['auth:sanctum', 'verified', 'admin'])->get('/profile/edit/{name}', [EditProfile::class, 'index'])
     ->name('edit-profile');
 
-Route::middleware(['auth:sanctum', 'verified'])->get('/user/edit/{name}', [EditUser::class, 'index'])
+Route::middleware(['auth:sanctum', 'verified', 'admin'])->get('/user/edit/{name}', [EditUser::class, 'index'])
     ->name('edit-user');
 
-Route::middleware(['auth:sanctum', 'verified'])->get('/user/deactivate/{name}', [\App\Http\Controllers\Users\deactivate::class, 'index'])
+Route::middleware(['auth:sanctum', 'verified', 'admin'])->get('/user/deactivate/{name}', [\App\Http\Controllers\Users\deactivate::class, 'index'])
     ->name('deactivate-user');
 
-Route::middleware(['auth:sanctum', 'verified'])->get('/user/activate/{name}', [\App\Http\Controllers\Users\activate::class, 'index'])
+Route::middleware(['auth:sanctum', 'verified', 'admin'])->get('/user/activate/{name}', [\App\Http\Controllers\Users\activate::class, 'index'])
     ->name('activate-user');
 
-Route::middleware(['auth:sanctum', 'verified'])->get('/packages', [\App\Http\Controllers\Controller::class, 'ShowPackages'])
+Route::middleware(['auth:sanctum', 'verified', 'admin'])->get('/packages', [\App\Http\Controllers\Controller::class, 'ShowPackages'])
     ->name('packages');
 
-Route::middleware(['auth:sanctum', 'verified'])->get('/packages/add', [\App\Http\Controllers\Controller::class, 'AddPPPOEPackage'])
+Route::middleware(['auth:sanctum', 'verified', 'admin'])->get('/packages/add', [\App\Http\Controllers\Controller::class, 'AddPPPOEPackage'])
     ->name('packages-add');
 
-Route::middleware(['auth:sanctum', 'verified'])->get('/packages/edit/{id}', [\App\Http\Controllers\Controller::class, 'EditPPPOEPackage'])
+Route::middleware(['auth:sanctum', 'verified', 'admin'])->get('/packages/edit/{id}', [\App\Http\Controllers\Controller::class, 'EditPPPOEPackage'])
     ->name('packages-edit');
 
-Route::middleware(['auth:sanctum', 'verified'])->get('/packages/delete/{id}', [\App\Http\Controllers\Controller::class, 'deletePPPOEPackage'])
+Route::middleware(['auth:sanctum', 'verified', 'admin'])->get('/packages/delete/{id}', [\App\Http\Controllers\Controller::class, 'deletePPPOEPackage'])
     ->name('packages-delete');
 
-Route::middleware(['auth:sanctum', 'verified'])->get('/packages/hotspot', [\App\Http\Controllers\Controller::class, 'ShowHotspotPackages'])
+Route::middleware(['auth:sanctum', 'verified', 'admin'])->get('/packages/hotspot', [\App\Http\Controllers\Controller::class, 'ShowHotspotPackages'])
     ->name('hotspot-packages');
 
-Route::middleware(['auth:sanctum', 'verified'])->get('/profiles/hotspot', [\App\Http\Controllers\Profiles::class, 'ShowHotspotProfiles'])
+Route::middleware(['auth:sanctum', 'verified', 'admin'])->get('/profiles/hotspot', [\App\Http\Controllers\Profiles::class, 'ShowHotspotProfiles'])
     ->name('hotspot-profiles');
 
-Route::middleware(['auth:sanctum', 'verified'])->get('/packages/hotspot/add', [\App\Http\Controllers\Controller::class, 'AddHotspotPackage'])
+Route::middleware(['auth:sanctum', 'verified', 'admin'])->get('/packages/hotspot/add', [\App\Http\Controllers\Controller::class, 'AddHotspotPackage'])
     ->name('packages-hotspot-add');
 
-Route::middleware(['auth:sanctum', 'verified'])->get('/packages/hotspot/edit/{id}', [\App\Http\Controllers\Controller::class, 'EditHotspotPackage'])
+Route::middleware(['auth:sanctum', 'verified', 'admin'])->get('/packages/hotspot/edit/{id}', [\App\Http\Controllers\Controller::class, 'EditHotspotPackage'])
     ->name('packages-hotspot-edit');
 
-Route::middleware(['auth:sanctum', 'verified'])->get('/packages/hotspot/delete/{id}', [\App\Http\Controllers\Controller::class, 'DeleteHotspotPackage'])
+Route::middleware(['auth:sanctum', 'verified', 'admin'])->get('/packages/hotspot/delete/{id}', [\App\Http\Controllers\Controller::class, 'DeleteHotspotPackage'])
     ->name('packages-hotspot-delete');
 
-Route::middleware(['auth:sanctum', 'verified'])->get('/hotspot/profile/add', [\App\Http\Controllers\Profiles::class, 'HotspotProfileAdd'])
+Route::middleware(['auth:sanctum', 'verified', 'admin'])->get('/hotspot/profile/add', [\App\Http\Controllers\Profiles::class, 'HotspotProfileAdd'])
     ->name('hotspot-profile-add');
 
-Route::middleware(['auth:sanctum', 'verified'])->get('/hotspot/profile/edit/{id}', [\App\Http\Controllers\Profiles::class, 'HotspotProfileEdit'])
+Route::middleware(['auth:sanctum', 'verified', 'admin'])->get('/hotspot/profile/edit/{id}', [\App\Http\Controllers\Profiles::class, 'HotspotProfileEdit'])
     ->name('hotspot-profile-edit');
 
-Route::middleware(['auth:sanctum', 'verified'])->get('/hotspot/profile/remove/{id}', [\App\Http\Controllers\Profiles::class, 'HotspotProfileDelete'])
+Route::middleware(['auth:sanctum', 'verified', 'admin'])->get('/hotspot/profile/remove/{id}', [\App\Http\Controllers\Profiles::class, 'HotspotProfileDelete'])
     ->name('hotspot-profile-delete');

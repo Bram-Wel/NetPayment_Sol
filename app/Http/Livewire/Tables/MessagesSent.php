@@ -4,6 +4,7 @@ namespace App\Http\Livewire\Tables;
 
 use App\Models\Message;
 use Mediconesystems\LivewireDatatables\Column;
+use Mediconesystems\LivewireDatatables\DateColumn;
 use Mediconesystems\LivewireDatatables\Http\Livewire\LivewireDatatable;
 use Mediconesystems\LivewireDatatables\NumberColumn;
 
@@ -15,14 +16,15 @@ class MessagesSent extends LivewireDatatable
     {
         return [
             NumberColumn::name('id'),
-            Column::name('username'),
-            Column::name('phone'),
-            Column::name('email'),
-            Column::name('message'),
-            Column::name('type'),
+            Column::name('username')->searchable(),
+            Column::name('phone')->searchable(),
+            Column::name('email')->searchable(),
+            Column::name('message')->truncate(50)->searchable(),
+            Column::name('type')->searchable(),
             Column::callback(['created_at'], function ($date) {
-                return $date->diffForHumans();
-            })
+                return date('d, M Y h:i:s A', strtotime($date));
+            })->label('Sent on'),
+            Column::delete()->label('Delete')
         ];
     }
 }

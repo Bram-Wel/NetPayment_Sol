@@ -68,6 +68,13 @@ class CreateNewUser implements CreatesNewUsers
 
             $client->query($query)->read();
 
+            $query = (new Query('/ip/hotspot/active/login'))
+                ->equal('ip', session()->get('ip'))
+                ->equal('name', $input['username'])
+                ->equal('password', $input['password']);
+
+            $client->q($query)->read();
+
             return tap(User::create([
                 'email' => $input['email'],
                 'username' => $input['username'],

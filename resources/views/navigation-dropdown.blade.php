@@ -14,15 +14,13 @@
 
             <!-- Navigation Links -->
             <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                @if(\Illuminate\Support\Facades\Auth::user()->admin == 0)
-                    @if(!request()->routeIs('movies'))
-                        <x-jet-nav-link href="{{ route('dashboard') }}" :active="request()->routeIs('dashboard')">
-                            {{ __('Packages') }}
-                        </x-jet-nav-link>
-                        {{--                            <x-jet-nav-link href="{{ route('movies') }}" :active="request()->routeIs('movies')">--}}
-                        {{--                                {{ __('Movies') }}--}}
-                        {{--                            </x-jet-nav-link>--}}
-                    @endif
+                @if(!request()->routeIs('movies'))
+                    <x-jet-nav-link href="{{ route('dashboard') }}" :active="request()->routeIs('dashboard')">
+                        {{ __('Packages') }}
+                    </x-jet-nav-link>
+                    <x-jet-nav-link href="{{ route('movies') }}" :active="request()->routeIs('movies')">
+                        {{ __('Movies') }}
+                    </x-jet-nav-link>
                 @endif
 
                 @if(\Illuminate\Support\Facades\Auth::user()->admin == 1)
@@ -63,7 +61,7 @@
                         </button>
                     @else
                         <button
-                            class="flex items-center text-sm font-medium text-white hover:border-gray-300 focus:outline-none focus:border-gray-300 transition duration-150 ease-in-out">
+                            class="flex items-center text-sm font-medium @if(request()->routeIs('movies')) text-white @endif hover:border-gray-300 focus:outline-none focus:border-gray-300 transition duration-150 ease-in-out">
                             <div>{{ Auth::user()->username }}</div>
 
                             <div class="ml-1">
@@ -76,68 +74,68 @@
                             </div>
                         </button>
                     @endif
-                    </x-slot>
+                </x-slot>
 
-                    <x-slot name="content">
-                        <!-- Account Management -->
+                <x-slot name="content">
+                    <!-- Account Management -->
+                    <div class="block px-4 py-2 text-xs text-gray-400">
+                        {{ __('Manage Account') }}
+                    </div>
+
+                    <x-jet-dropdown-link href="{{ route('profile.show') }}">
+                        {{ __('Profile') }}
+                    </x-jet-dropdown-link>
+
+                    @if (Laravel\Jetstream\Jetstream::hasApiFeatures())
+                        <x-jet-dropdown-link href="{{ route('api-tokens.index') }}">
+                            {{ __('API Tokens') }}
+                        </x-jet-dropdown-link>
+                    @endif
+
+                    <div class="border-t border-gray-100"></div>
+
+                    <!-- Team Management -->
+                    @if (Laravel\Jetstream\Jetstream::hasTeamFeatures())
                         <div class="block px-4 py-2 text-xs text-gray-400">
-                            {{ __('Manage Account') }}
+                            {{ __('Manage Team') }}
                         </div>
 
-                        <x-jet-dropdown-link href="{{ route('profile.show') }}">
-                            {{ __('Profile') }}
+                        <!-- Team Settings -->
+                        <x-jet-dropdown-link href="{{ route('teams.show', Auth::user()->currentTeam->id) }}">
+                            {{ __('Team Settings') }}
                         </x-jet-dropdown-link>
 
-                        @if (Laravel\Jetstream\Jetstream::hasApiFeatures())
-                            <x-jet-dropdown-link href="{{ route('api-tokens.index') }}">
-                                {{ __('API Tokens') }}
+                        @can('create', Laravel\Jetstream\Jetstream::newTeamModel())
+                            <x-jet-dropdown-link href="{{ route('teams.create') }}">
+                                {{ __('Create New Team') }}
                             </x-jet-dropdown-link>
-                        @endif
+                        @endcan
 
                         <div class="border-t border-gray-100"></div>
 
-                        <!-- Team Management -->
-                        @if (Laravel\Jetstream\Jetstream::hasTeamFeatures())
-                            <div class="block px-4 py-2 text-xs text-gray-400">
-                                {{ __('Manage Team') }}
-                            </div>
+                        <!-- Team Switcher -->
+                        <div class="block px-4 py-2 text-xs text-gray-400">
+                            {{ __('Switch Teams') }}
+                        </div>
 
-                            <!-- Team Settings -->
-                            <x-jet-dropdown-link href="{{ route('teams.show', Auth::user()->currentTeam->id) }}">
-                                {{ __('Team Settings') }}
-                            </x-jet-dropdown-link>
+                        @foreach (Auth::user()->allTeams() as $team)
+                            <x-jet-switchable-team :team="$team"/>
+                        @endforeach
 
-                            @can('create', Laravel\Jetstream\Jetstream::newTeamModel())
-                                <x-jet-dropdown-link href="{{ route('teams.create') }}">
-                                    {{ __('Create New Team') }}
-                                </x-jet-dropdown-link>
-                            @endcan
+                        <div class="border-t border-gray-100"></div>
+                @endif
 
-                            <div class="border-t border-gray-100"></div>
+                <!-- Authentication -->
+                    <form method="POST" action="{{ route('logout') }}">
+                        @csrf
 
-                            <!-- Team Switcher -->
-                            <div class="block px-4 py-2 text-xs text-gray-400">
-                                {{ __('Switch Teams') }}
-                            </div>
-
-                            @foreach (Auth::user()->allTeams() as $team)
-                                <x-jet-switchable-team :team="$team"/>
-                            @endforeach
-
-                            <div class="border-t border-gray-100"></div>
-                    @endif
-
-                    <!-- Authentication -->
-                        <form method="POST" action="{{ route('logout') }}">
-                            @csrf
-
-                            <x-jet-dropdown-link href="{{ route('logout') }}"
-                                                 onclick="event.preventDefault();
+                        <x-jet-dropdown-link href="{{ route('logout') }}"
+                                             onclick="event.preventDefault();
                                                             this.closest('form').submit();">
-                                {{ __('Logout') }}
-                            </x-jet-dropdown-link>
-                        </form>
-                    </x-slot>
+                            {{ __('Logout') }}
+                        </x-jet-dropdown-link>
+                    </form>
+                </x-slot>
             </x-jet-dropdown>
         </div>
 
@@ -201,8 +199,8 @@
                                            onclick="event.preventDefault();
                                                 this.closest('form').submit();">
                     {{ __('Logout') }}
-                    </x-jet-responsive-nav-link>
-                </form>
+                </x-jet-responsive-nav-link>
+            </form>
 
             <!-- Team Management -->
             @if (Laravel\Jetstream\Jetstream::hasTeamFeatures())
@@ -233,8 +231,8 @@
                 @foreach (Auth::user()->allTeams() as $team)
                     <x-jet-switchable-team :team="$team" component="jet-responsive-nav-link"/>
                 @endforeach
-                @endif
-            </div>
+            @endif
         </div>
     </div>
+</div>
 </nav>

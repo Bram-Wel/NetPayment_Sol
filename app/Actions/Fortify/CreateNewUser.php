@@ -4,6 +4,7 @@ namespace App\Actions\Fortify;
 
 use App\Models\Team;
 use App\Models\User;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
 use Laravel\Fortify\Contracts\CreatesNewUsers;
@@ -46,10 +47,26 @@ class CreateNewUser implements CreatesNewUsers
                 ->equal('name', $input['username'])
                 ->equal('server', 'all')
                 ->equal('password', $password)
-                ->equal('profile', '0MBPS')
+                ->equal('profile', '2MBPS')
                 ->equal('comment', $input['username']);
 
             $client->q($query)->read();
+
+            $now = Carbon::now('Africa/Nairobi');
+            $end = $now->addMinutes(5);
+
+            $date = date('M/d/Y', strtotime($end));
+            $time = date('H:i:s', strtotime($end));
+            $username = $input['username'];
+            $source = "/ip hotspot active remove [find user=\"$username\"]; /ip hotspot user set profile=0MBPS [find name=\"$username\"]";
+
+            $query = (new Query('/system/scheduler/add'))
+                ->equal('name', 'deactivate-' . $input['username'])
+                ->equal('start-date', $date)
+                ->equal('start-time', $time)
+                ->equal('on-event', $source);
+
+            $client->query($query)->read();
 
             return tap(User::create([
                 'email' => $input['email'],

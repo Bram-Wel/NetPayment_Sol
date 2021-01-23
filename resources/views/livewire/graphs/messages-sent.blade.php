@@ -25,7 +25,7 @@
                 labels: [{{ $six }}, {{ $five }}, {{ $four }}, {{ $three }}, {{ $two }}, {{ $one }}],
                 datasets: [{
                     label: '',
-                    data: [{{ $thisYear }}, {{ $lastYear }}, {{ $secondLastYear }}, {{ $thirdLastYear }}, {{ $fourthLastYear }}, {{ $fifthLastYear }}],
+                    data: [{{ $fifthLastYear }}, {{ $fourthLastYear }}, {{ $thirdLastYear }}, {{ $secondLastYear }}, {{ $lastYear }}, {{ $thisYear }}],
                     backgroundColor: [
                         'rgba(255, 99, 132, 0.2)',
                         'rgba(54, 162, 235, 0.2)',

@@ -26,7 +26,6 @@ class CreateNewUser implements CreatesNewUsers
     {
         Validator::make($input, [
             'username' => ['required', 'string', 'max:255', 'unique:users'],
-            'email' => ['required', 'email', 'max:255', 'unique:users'],
             'phone' => ['required', 'string', 'max:255', 'unique:users'],
             'password' => $this->passwordRules(),
         ])->validate();
@@ -58,25 +57,24 @@ class CreateNewUser implements CreatesNewUsers
             $date = date('M/d/Y', strtotime($end));
             $time = date('H:i:s', strtotime($end));
             $username = $input['username'];
-            $source = "/ip hotspot active remove [find user=\"$username\"]; /ip hotspot user set profile=0MBPS [find name=\"$username\"]";
+            $source = "/ip hotspot active remove [find user=\"$username\"]; /ip hotspot user set profile=0MBPS [find name=\"$username\"]; /ip hotspot cookie remove [find user=\"$username\"];";
 
             $query = (new Query('/system/scheduler/add'))
-                ->equal('name', 'deactivate-' . $input['username'])
+                ->equal('name', 'deactivate-' . "$username")
                 ->equal('start-date', $date)
                 ->equal('start-time', $time)
                 ->equal('on-event', $source);
 
-            $client->query($query)->read();
+            $response = $client->query($query)->read();
 
             $query = (new Query('/ip/hotspot/active/login'))
                 ->equal('ip', session()->get('ip'))
-                ->equal('name', $input['username'])
+                ->equal('name', "$username")
                 ->equal('password', $input['password']);
 
-            $client->q($query)->read();
+            $response = $client->q($query)->read();
 
             return tap(User::create([
-                'email' => $input['email'],
                 'username' => $input['username'],
                 'phone' => $input['phone'],
                 'password' => $password,

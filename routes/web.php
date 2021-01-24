@@ -27,8 +27,7 @@ use RouterOS\Query;
 Route::match(['get', 'post'], '/', function (Request $request) {
 //    if ($request->ip) {
 //        $ip = $request->ip;
-//        $mac = $request->mac;
-//        session(['ip' => $ip, 'mac' => $mac]);
+//        session(['ip' => $ip]);
 //    } else {
 //        return redirect('http://auth.thetechglitch.net');
 //    }

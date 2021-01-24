@@ -1,8 +1,26 @@
 <div>
     {{-- Nothing in the world is as soft and yielding as water. --}}
-    <button wire:click="buy"
-            class="bg-green-400 hover:bg-green-600 transition duration-300 p-2 px-5 rounded-2xl text-white font-bold px-5 shadow-lg">{{ $message }}</button>
-
+    @if($package==1)
+        <button wire:click="buy"
+                class="transition duration-300 p-2 px-5 rounded-2xl text-white font-bold px-5 shadow-xl"
+                style="background: #6dd5ed">{{ $message }}</button>
+    @elseif($package==2)
+        <button wire:click="buy"
+                class="transition duration-300 p-2 px-5 rounded-2xl text-white font-bold px-5 shadow-xl"
+                style="background: #38ef7d">{{ $message }}</button>
+    @elseif($package == 3)
+        <button wire:click="buy"
+                class="transition duration-300 p-2 px-5 rounded-2xl text-white font-bold px-5 shadow-xl"
+                style="background:  #8f94fb">{{ $message }}</button>
+    @elseif($package==4)
+        <button wire:click="buy"
+                class="transition duration-300 p-2 px-5 rounded-2xl text-white font-bold px-5 shadow-xl"
+                style="background:  #f16529">{{ $message }}</button>
+    @elseif($package==5)
+        <button wire:click="buy"
+                class="transition duration-300 p-2 px-5 rounded-2xl text-white font-bold px-5 shadow-xl"
+                style="background:  #ffd200">{{ $message }}</button>
+    @endif
 
     <x-jet-confirmation-modal wire:model="openModal">
         <x-slot name="title">

@@ -2,14 +2,14 @@
     <x-slot name="header">
         {{ __('Packages') }}
     </x-slot>
-    <div class="py-12">
+    <div class="md:py-12">
         <div class="mx-auto px-6 md:px-0 lg:px-2">
-            <div class="mt-4 mb-8 px-10 md:px-0 md:w-1/4 md:ml-20 text-center md:text-left">
+            <div class="mt-4 mb-4 px-10 md:px-0 md:w-1/4 md:ml-20 text-center md:text-left">
                 <h1 class="text-xl font-bold border-b md:w-1/2">Daily Packages</h1>
             </div>
             <div class="flex flex-col md:flex-row justify-center flex-wrap items-center md:space-x-4">
                 <div
-                    class="package bg-white shadow-lg mb-4 md:mb-0 rounded-lg p-8 text-center w-4/5
+                    class="package bg-white shadow mb-4 md:mb-0 rounded-lg p-4 text-center w-4/5
                     md:w-1/6 hover:shadow-2xl transition duration-300"
                     style="background-image:linear-gradient(to right, #2193b0, #6dd5ed);">
                     <h1 class="text-white"><span class="text-4xl text-white font-bold">1</span><span
@@ -27,7 +27,7 @@
                 </div>
 
                 <div
-                    class="package bg-white shadow-lg rounded-lg mb-4 md:mb-0 p-8 text-center w-4/5 md:w-1/6 hover:shadow-2xl transition duration-300"
+                    class="package bg-white shadow rounded-lg mb-4 md:mb-0 p-4 text-center w-4/5 md:w-1/6 hover:shadow-2xl transition duration-300"
                     style="background-image:linear-gradient(to right, #11998e, #38ef7d);">
                     <h1 class="text-white"><span class="text-4xl font-bold">2</span><span
                             class="text-sm font-bold">MBPS</span> @ kshs40
@@ -44,7 +44,7 @@
                 </div>
 
                 <div
-                    class="package bg-white rounded-lg shadow-xl p-8 mb-4 md:mb-0 text-center w-4/5 md:w-1/6 hover:shadow-2xl transition duration-300"
+                    class="package bg-white rounded-lg shadow p-4 mb-4 md:mb-0 text-center w-4/5 md:w-1/6 hover:shadow-2xl transition duration-300"
                     style="background-image: linear-gradient(to right, #4e54c8, #8f94fb);">
                     <h1 class="text-white"><span class="text-4xl font-bold">3</span><span
                             class="text-sm font-bold">MBPS</span> @ kshs50
@@ -61,7 +61,7 @@
                 </div>
 
                 <div
-                    class="package bg-white rounded-lg shadow-2xl p-8 mb-4 md:mb-0 text-center w-4/5 md:w-1/6 hover:shadow-2xl transition duration-300"
+                    class="package bg-white rounded-lg shadow-2xl p-6 mb-4 md:mb-0 text-center w-4/5 md:w-1/6 hover:shadow-2xl transition duration-300"
                     style="  background: linear-gradient(to right, #e44d26, #f16529);">
                     <h1 class="text-white"><span class="text-4xl font-bold">4</span><span
                             class="text-sm font-bold">MBPS</span> @ kshs65
@@ -78,7 +78,7 @@
                 </div>
 
                 <div
-                    class="package bg-white rounded-lg shadow-lg p-8 mb-4 md:mb-0 text-center w-4/5 md:w-1/6 hover:shadow-2xl transition duration-300"
+                    class="package bg-white rounded-lg shadow-lg p-4 mb-4 md:mb-0 text-center w-4/5 md:w-1/6 hover:shadow-2xl transition duration-300"
                     style="background: linear-gradient(to right, #f7971e, #ffd200)">
                     <h1 class="text-white"><span class="text-4xl font-bold">5</span><span
                             class="text-sm font-bold">MBPS</span> @ kshs85
@@ -94,12 +94,12 @@
                     </div>
                 </div>
             </div>
-            <div class="mt-4 mb-8 px-10 md:px-0 md:w-1/4 md:ml-20 mt-8 text-center md:text-left">
+            <div class="mt-4 mb-4 px-10 md:px-0 md:w-1/4 md:ml-20 mt-8 text-center md:text-left">
                 <h1 class="text-xl font-bold border-b md:w-1/2">Weekly Packages</h1>
             </div>
             <div class="flex flex-col md:flex-row justify-center flex-wrap items-center md:space-x-4">
                 <div
-                    class="package bg-white shadow-lg rounded-lg mb-4 md:mb-0 p-8 text-center w-4/5 md:w-1/6 hover:shadow-2xl transition duration-300"
+                    class="package bg-white shadow rounded-lg mb-4 md:mb-0 p-4 text-center w-4/5 md:w-1/6 hover:shadow-2xl transition duration-300"
                     style="background-image:linear-gradient(to right, #2193b0, #6dd5ed);">
                     <h1 class="text-white"><span class="text-4xl font-bold">1</span><span
                             class="text-sm font-bold">MBPS</span> @ kshs180
@@ -116,7 +116,7 @@
                 </div>
 
                 <div
-                    class="package bg-white shadow-lg rounded-lg mb-4 md:mb-0 p-8 text-center w-4/5 md:w-1/6 hover:shadow-2xl transition duration-300"
+                    class="package bg-white shadow rounded-lg mb-4 md:mb-0 p-4 text-center w-4/5 md:w-1/6 hover:shadow-2xl transition duration-300"
                     style="background-image:linear-gradient(to right, #11998e, #38ef7d);">
                     <h1 class="text-white"><span class="text-4xl font-bold">2</span><span
                             class="text-sm font-bold">MBPS</span> @ kshs300
@@ -133,7 +133,7 @@
                 </div>
 
                 <div
-                    class="package bg-white rounded-lg shadow-lg p-8 mb-4 md:mb-0 text-center w-4/5 md:w-1/6 hover:shadow-2xl transition duration-300"
+                    class="package bg-white rounded-lg shadow p-4 mb-4 md:mb-0 text-center w-4/5 md:w-1/6 hover:shadow-2xl transition duration-300"
                     style="background-image: linear-gradient(to right, #4e54c8, #8f94fb);">
                     <h1 class="text-white"><span class="text-4xl font-bold">3</span><span
                             class="text-sm font-bold">MBPS</span> @ kshs380
@@ -150,7 +150,7 @@
                 </div>
 
                 <div
-                    class="package bg-white rounded-lg shadow-lg p-8 text-center mb-4 md:mb-0 w-4/5 md:w-1/6 hover:shadow-2xl transition duration-300"
+                    class="package bg-white rounded-lg shadow-2xl p-6 text-center mb-4 md:mb-0 w-4/5 md:w-1/6 hover:shadow-2xl transition duration-300"
                     style="background: linear-gradient(to right, #e44d26, #f16529);">
                     <h1 class="text-white"><span class="text-4xl font-bold">4</span><span
                             class="text-sm font-bold">MBPS</span> @ kshs500
@@ -167,7 +167,7 @@
                 </div>
 
                 <div
-                    class="package bg-white rounded-lg shadow-lg p-8 text-center mb-4 md:mb-0  w-4/5 md:w-1/6 hover:shadow-2xl transition duration-300"
+                    class="package bg-white rounded-lg shadow p-4 text-center mb-4 md:mb-0  w-4/5 md:w-1/6 hover:shadow-2xl transition duration-300"
                     style="background: linear-gradient(to right, #f7971e, #ffd200)">
                     <h1 class="text-white"><span class="text-4xl font-bold">5</span><span
                             class="text-sm font-bold">MBPS</span> @ kshs650
@@ -183,12 +183,12 @@
                     </div>
                 </div>
             </div>
-            <div class="mt-4 mb-8 px-10 md:px-0 md:w-1/3 md:ml-20 mt-8 text-center md:text-left">
+            <div class="mt-4 mb-4 px-10 md:px-0 md:w-1/3 md:ml-20 mt-8 text-center md:text-left">
                 <h1 class="text-xl font-bold border-b md:w-1/2">Monthly Packages</h1>
             </div>
             <div class="flex flex-col md:flex-row justify-center flex-wrap items-center md:space-x-4">
                 <div
-                    class="package bg-white shadow-lg rounded-lg p-8 mb-4 md:mb-0 text-center  w-4/5 md:w-1/6 hover:shadow-2xl transition duration-300"
+                    class="package bg-white shadow rounded-lg p-4 mb-4 md:mb-0 text-center  w-4/5 md:w-1/6 hover:shadow-2xl transition duration-300"
                     style="background-image:linear-gradient(to right, #2193b0, #6dd5ed);">
                     <h1 class="text-white"><span class="text-4xl font-bold">1</span><span
                             class="text-sm font-bold">MBPS</span> @ kshs700
@@ -205,7 +205,7 @@
                 </div>
 
                 <div
-                    class="package bg-white shadow-lg rounded-lg p-8 mb-4 md:mb-0 text-center  w-4/5 md:w-1/6 hover:shadow-2xl transition duration-300"
+                    class="package bg-white shadow rounded-lg p-4 mb-4 md:mb-0 text-center  w-4/5 md:w-1/6 hover:shadow-2xl transition duration-300"
                     style="background-image:linear-gradient(to right, #11998e, #38ef7d);">
                     <h1 class="text-white"><span class="text-4xl font-bold">2</span><span
                             class="text-sm font-bold">MBPS</span> @ kshs1200
@@ -222,7 +222,7 @@
                 </div>
 
                 <div
-                    class="package bg-white rounded-lg shadow-lg p-8 mb-4 md:mb-0 text-center w-4/5 md:w-1/6 hover:shadow-2xl transition duration-300"
+                    class="package bg-white rounded-lg shadow p-4 mb-4 md:mb-0 text-center w-4/5 md:w-1/6 hover:shadow-2xl transition duration-300"
                     style="background-image: linear-gradient(to right, #4e54c8, #8f94fb);">
                     <h1 class="text-white"><span class="text-4xl font-bold">3</span><span
                             class="text-sm font-bold">MBPS</span> @ kshs1500
@@ -239,7 +239,7 @@
                 </div>
 
                 <div
-                    class="package bg-white rounded-lg shadow-lg p-8 mb-4 md:mb-0 text-center w-4/5 md:w-1/6 hover:shadow-2xl transition duration-300"
+                    class="package bg-white rounded-lg shadow-2xl p-6 mb-4 md:mb-0 text-center w-4/5 md:w-1/6 hover:shadow-2xl transition duration-300"
                     style="  background: linear-gradient(to right, #e44d26, #f16529);">
                     <h1 class="text-white"><span class="text-4xl font-bold">4</span><span
                             class="text-sm font-bold">MBPS</span> @ kshs2000
@@ -256,7 +256,7 @@
                 </div>
 
                 <div
-                    class="package bg-white rounded-lg shadow-lg mb-4 md:mb-0 p-8 text-center w-4/5 md:w-1/6  hover:shadow-2xl transition duration-300"
+                    class="package bg-white rounded-lg shadow mb-4 md:mb-0 p-4 text-center w-4/5 md:w-1/6  hover:shadow-2xl transition duration-300"
                     style="background: linear-gradient(to right, #f7971e, #ffd200)">
                     <h1 class="text-white"><span class="text-4xl font-bold">5</span><span
                             class="text-sm font-bold">MBPS</span> @ kshs2500

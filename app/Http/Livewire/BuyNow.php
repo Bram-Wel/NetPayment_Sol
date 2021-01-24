@@ -13,7 +13,7 @@ class BuyNow extends Component
     public function mount()
     {
         $this->openModal = false;
-        $this->message = "Buy Now";
+        $this->message = "Subscribe";
 
         $this->timestamp = date('YmdHis', time());
         $this->shortcode = '7587637';

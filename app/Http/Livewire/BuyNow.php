@@ -20,6 +20,8 @@ class BuyNow extends Component
         $this->consumerKey = 'UEZoZdWPgGlcnKR9cS0rZ3lnrsntsaft';
         $this->consumerSecret = 'acIzhXbEd3O2qubW';
         $this->phone = '254' . ltrim(Auth::user()->phone, 0);
+
+        session(['ip' => '192.168.200.1']);
     }
 
     public function saveIp($ip, $phone)
@@ -98,7 +100,6 @@ class BuyNow extends Component
         curl_setopt($curl, CURLOPT_POST, true);
         curl_setopt($curl, CURLOPT_POSTFIELDS, $data_string);
         $response = curl_exec($curl);
-        session()->flash('message', 'Payment initiated!');
         $this->saveIp(session()->get('ip'), $phone);
     }
 

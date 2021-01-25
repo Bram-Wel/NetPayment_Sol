@@ -10,12 +10,11 @@ use RouterOS\Query;
 
 class AddUser extends Component
 {
-    public $success, $name, $phone, $email, $password, $profile;
+    public $success, $name, $phone, $password, $profile;
 
     protected $rules = [
         'name' => 'required|string',
         'phone' => 'required|min:10|max:10|unique:users,phone',
-        'email' => 'email|required|unique:users',
         'password' => 'string|required',
         'profile' => 'required|required'
     ];
@@ -37,7 +36,6 @@ class AddUser extends Component
             ->equal('name', $this->name)
             ->equal('server', 'SERVER1')
             ->equal('password', $this->password)
-            ->equal('comment', ucwords($this->name))
             ->equal('profile', $this->profile);
 
         $response = $client->q($query)->read();
@@ -45,7 +43,6 @@ class AddUser extends Component
         $user = new User();
         $user->username = $this->name;
         $user->phone = $this->phone;
-        $user->email = $this->email;
         $user->password = $this->password;
         $user->type = 'Hotspot';
         $user->save();

@@ -17,10 +17,14 @@ class CreateMoviesTable extends Migration
             $table->id();
             $table->string('name');
             $table->string('year');
-            $table->string('poster_image');
-            $table->string('fanart_image');
             $table->string('description');
-            $table->string('imdb');
+            $table->boolean('converted')->default(1);
+            $table->string('runtime')->nullable();
+            $table->float('rating')->nullable();
+            $table->string('trailer')->nullable();
+            $table->string('studio')->nullable();
+            $table->string('director')->nullable();
+            $table->string('mpaa')->nullable();
             $table->timestamps();
         });
     }

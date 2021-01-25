@@ -20,7 +20,6 @@ class AddUser extends Component
         'profile' => 'required',
         'password' => 'required|min:5',
         'phone' => 'required|unique:users',
-        'email' => 'nullable|email|unique:users'
     ];
 
     public function mount()
@@ -39,8 +38,6 @@ class AddUser extends Component
 
         $checkName = DB::table('users')
             ->where('username', $this->username)->count();
-        $checkEmail = DB::table('users')
-            ->where('email', $this->email)->count();
         $checkPhone = DB::table('users')
             ->where('phone', $this->phone)->count();
 
@@ -49,18 +46,13 @@ class AddUser extends Component
             $this->success = null;
         }
 
-        if ($checkEmail != 0) {
-            $this->addError('email', 'Email already exists');
-            $this->success = null;
-
-        }
         if ($checkPhone != 0) {
             $this->addError('phone', 'Phone already exists');
             $this->success = null;
 
         }
 
-        if ($checkEmail == 0 && $checkName == 0 && $checkPhone == 0) {
+        if ($checkName == 0 && $checkPhone == 0) {
             $user = new User;
 
             $user->phone = $this->phone;

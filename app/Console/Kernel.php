@@ -32,6 +32,10 @@ class Kernel extends ConsoleKernel
         $schedule->command('check:scheduler')
             ->withoutOverlapping(10)
             ->everySixHours();
+
+        $schedule->command('convert:movies')
+            ->withoutOverlapping(10)
+            ->dailyAt('03:00:00');
     }
 
     /**

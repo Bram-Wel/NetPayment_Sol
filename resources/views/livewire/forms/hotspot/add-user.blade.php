@@ -34,14 +34,6 @@
         <p class="text-red-500 mt-1">{{ $message }}</p>
         @enderror
         <br>
-        <label for="email">Email</label>
-        <br>
-        <input type="email" id="email" name="email" wire:model="email" class="w-full bg-white p-2 rounded border">
-        <br>
-        @error('email')
-        <p class="text-red-500 mt-1">{{ $message }}</p>
-        @enderror
-        <br>
         <label for="password">Password</label>
 
         <br>

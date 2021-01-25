@@ -32,7 +32,6 @@ class PppoeUsersTable extends LivewireDatatable
             NumberColumn::name('id'),
             Column::name('username')->searchable(),
             Column::name('phone')->searchable(),
-            Column::name('email')->searchable(),
             Column::callback('username', function ($username) use ($client) {
                 $query = (new Query('/ppp/secret/print'))
                     ->where('name', $username);
@@ -51,7 +50,7 @@ class PppoeUsersTable extends LivewireDatatable
                     return $res['last-logged-out'];
                 }
             })->label('Last logged out'),
-            Column::callback(['username', 'email'], function ($username) use ($client) {
+            Column::callback(['username', 'password'], function ($username) use ($client) {
                 $query = (new Query('/ppp/secret/print'))
                     ->where('name', $username);
 

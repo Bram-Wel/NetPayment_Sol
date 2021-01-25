@@ -34,7 +34,6 @@ class HotspotUsersTable extends LivewireDatatable
             NumberColumn::name('id'),
             Column::name('username')->searchable(),
             Column::name('phone')->searchable(),
-            Column::name('email')->searchable(),
             Column::callback('username', function ($username) use ($client) {
                 $query = (new Query('/ip/hotspot/user/print'))
                     ->where('name', $username);
@@ -44,7 +43,7 @@ class HotspotUsersTable extends LivewireDatatable
                     return $res['uptime'];
                 }
             })->label('uptime'),
-            Column::callback(['username', 'email'], function ($username) use ($client) {
+            Column::callback(['username', 'password'], function ($username) use ($client) {
                 $query = (new Query('/ip/hotspot/user/print'))
                     ->where('name', $username);
 

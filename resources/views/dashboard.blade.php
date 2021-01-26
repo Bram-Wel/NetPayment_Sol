@@ -1,6 +1,11 @@
 <x-app-layout>
     <x-slot name="header">
-        {{ __('Packages') }}
+        <div class="flex flex-row">
+            <h1 class="text-xl font-bold">Packages</h1>
+            <div class="absolute right-20">
+                2MBPS
+            </div>
+        </div>
     </x-slot>
     <div class="md:py-12">
         <div class="mx-auto px-6 md:px-0 lg:px-2">

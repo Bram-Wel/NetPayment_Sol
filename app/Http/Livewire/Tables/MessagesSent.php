@@ -18,7 +18,6 @@ class MessagesSent extends LivewireDatatable
             NumberColumn::name('id'),
             Column::name('username')->searchable(),
             Column::name('phone')->searchable(),
-            Column::name('email')->searchable(),
             Column::name('message')->truncate(50)->searchable(),
             Column::name('type')->searchable(),
             Column::callback(['created_at'], function ($date) {

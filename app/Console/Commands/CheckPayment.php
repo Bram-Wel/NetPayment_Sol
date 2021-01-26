@@ -53,7 +53,7 @@ class CheckPayment extends Command
         if ($result > 0) {
             $result = DB::connection('mysql2')->table('payments')
                 ->where('checked', '=', 0)
-                ->value('phone');
+                ->get();
 
             foreach ($result as $payment) {
                 $p = $payment->phone;
@@ -124,164 +124,92 @@ class CheckPayment extends Command
 
                 $client = new Client($config);
                 $type = User::where('phone', $p)->value('type');
-                if ($type == 'hotspot') {
-                    $password = DB::table('users')
-                        ->where('phone', $p)
-                        ->value('password');
+                $password = DB::table('users')
+                    ->where('phone', $p)
+                    ->value('password');
 
-                    $phone = '254' . ltrim($p, '0');
+                $phone = '254' . ltrim($p, '0');
 
-                    $ip = DB::connection('mysql2')->table('ips')
-                        ->where('phone', $phone)
-                        ->orderBy('id', 'desc')
-                        ->limit(1)
-                        ->value('address');
+                $ip = DB::connection('mysql2')->table('ips')
+                    ->where('phone', $phone)
+                    ->orderBy('id', 'desc')
+                    ->limit(1)
+                    ->value('address');
 
-                    $query = (new Query('/ip/hotspot/user/print'))
-                        ->where('name', $name);
+                $query = (new Query('/ip/hotspot/user/print'))
+                    ->where('name', $name);
 
-                    $user = $client->query($query)->read();
-                    foreach ($user as $use) {
-                        $id = $use['.id'];
-                        $query =
-                            (new Query('/ip/hotspot/user/set'))
-                                ->equal('.id', $id)
-                                ->equal('profile', $rate);
-                        $client->query($query)->read();
-                    }
-
-                    $query = (new Query('/ip/hotspot/active/login'))
-                        ->equal('ip', $ip)
-                        ->equal('user', $name)
-                        ->equal('password', $password);
-
-                    $client->query($query)->read();
-
-                    $source = "/ip hotspot user set [find name=\"$name\"] profile=0MBPS; /ip hotspot active remove [find user=\"$name\"]; /ip hotspot cookie remove [find user=\"$name\"]; /system scheduler remove [find name=\"deactivate-$name\"];";
-
-                    $query = (new Query('/system/scheduler/print'))
-                        ->where('name', "$name");
-
-                    $response = $client->query($query)->read();
-
-                    if (!empty($response)) {
-                        foreach ($response as $scheduler) {
-                            $id = $scheduler['.id'];
-                            $query = (new Query('/system/scheduler/remove'))
-                                ->equal('.id', "$id");
-
-                            $response = $client->query($query)->read();
-
-                            if (empty($response)) {
-                                $query =
-                                    (new Query('/system/scheduler/add'))
-                                        ->equal('name', "deactivate-$name")
-                                        ->equal('start-date', "$date")
-                                        ->equal('start-time', "$time")
-                                        ->equal('start-time', '00:01:00')
-                                        ->equal('on-event', "$source");
-                                $client->query($query)->read();
-                            }
-                        }
-                    } else {
-                        $query =
-                            (new Query('/system/scheduler/add'))
-                                ->equal('name', "deactivate-$name")
-                                ->equal('start-date', "$date")
-                                ->equal('start-time', "$time")
-                                ->equal('interval', '00:01:00')
-                                ->equal('on-event', "$source");
-                        $client->query($query)->read();
-                    }
-                    $username = "thetechglitch"; // use 'sandbox' for development in the test environment
-                    $apiKey = '0355a696e0f0dca94141e9f88dddd738cdcfc98725445473b0e182b7a15fc526'; // use your sandbox app API key for development in the test environment
-                    $AT = new AfricasTalking($username, $apiKey);
-
-                    $sms = $AT->sms();
-
-                    $sms->send([
-                        'to' => '+254' . ltrim($p, '0'),
-                        'message' => "You have successfully subscribed to the $rate package, expires on $date at $time."
-                    ]);
-
-                    $message = new Message();
-                    $message->username = $name;
-                    $message->phone = $p;
-                    $message->email = User::where('phone', $p)->value('email');
-                    $message->message = "You have successfully subscribed to the $rate package, expires on $date at $time.";
-                    $message->type = 'sms';
-                    $message->save();
-                } else {
-                    $query = (new Query('/ppp/secret/print'))
-                        ->where('name', $name);
-
-                    $response = $client->query($query)->read();
-                    foreach ($response as $res) {
-                        $id = $res['.id'];
-
-                        $query = (new Query('/ppp/secret/set'))
+                $user = $client->query($query)->read();
+                foreach ($user as $use) {
+                    $id = $use['.id'];
+                    $query =
+                        (new Query('/ip/hotspot/user/set'))
                             ->equal('.id', $id)
                             ->equal('profile', $rate);
+                    $client->query($query)->read();
+                }
 
-                        $client->query($query)->read();
+                $query = (new Query('/ip/hotspot/active/login'))
+                    ->equal('ip', $ip)
+                    ->equal('user', $name)
+                    ->equal('password', $password);
 
-                        $query = (new Query('/ppp/secret/enable'))
-                            ->equal('.id', $id);
+                $client->query($query)->read();
 
-                        $client->query($query)->read();
+                $source = "/ip hotspot user set [find name=\"$name\"] profile=0MBPS; /ip hotspot active remove [find user=\"$name\"]; /ip hotspot cookie remove [find user=\"$name\"]; /system scheduler remove [find name=\"deactivate-$name\"];";
 
-                        $source = "/ppp secret disable find[name='$name']";
+                $query = (new Query('/system/scheduler/print'))
+                    ->where('name', "$name");
 
-                        $query = (new Query('/system/scheduler/print'))
-                            ->where('name', 'deactivate-' . $name);
+                $response = $client->query($query)->read();
+
+                if (!empty($response)) {
+                    foreach ($response as $scheduler) {
+                        $id = $scheduler['.id'];
+                        $query = (new Query('/system/scheduler/remove'))
+                            ->equal('.id', "$id");
 
                         $response = $client->query($query)->read();
 
-                        if (count($response) > 0) {
-                            foreach ($response as $resp) {
-                                $id = $resp['.id'];
-                                $query = (new Query('/system/scheduler/remove'))
-                                    ->equal('.id', $id);
-
-                                $client->query($query)->read();
-
-                                $query = (new Query('/system/scheduler/add'))
-                                    ->equal('name', 'deactivate-' . $name)
-                                    ->equal('start-date', $date)
-                                    ->equal('start-time', $time)
-                                    ->equal('on-event', $source);
-
-                                $client->query($query)->read();
-                            }
-                        } else {
-                            $query = (new Query('/system/scheduler/add'))
-                                ->equal('name', 'deactivate-' . $name)
-                                ->equal('start-date', $date)
-                                ->equal('start-time', $time)
-                                ->equal('on-event', $source);
-
+                        if (empty($response)) {
+                            $query =
+                                (new Query('/system/scheduler/add'))
+                                    ->equal('name', "deactivate-$name")
+                                    ->equal('start-date', "$date")
+                                    ->equal('start-time', "$time")
+                                    ->equal('start-time', '00:01:00')
+                                    ->equal('on-event', "$source");
                             $client->query($query)->read();
                         }
-                        $username = "thetechglitch"; // use 'sandbox' for development in the test environment
-                        $apiKey = '0355a696e0f0dca94141e9f88dddd738cdcfc98725445473b0e182b7a15fc526'; // use your sandbox app API key for development in the test environment
-                        $AT = new AfricasTalking($username, $apiKey);
-
-                        $sms = $AT->sms();
-
-                        $sms->send([
-                            'to' => '+254' . ltrim($p, '0'),
-                            'message' => "You have successfully subscribed to the $rate package, expires on $date at $time."
-                        ]);
-
-                        $message = new Message();
-                        $message->username = $name;
-                        $message->phone = $p;
-                        $message->email = User::where('phone', $p)->value('email');
-                        $message->message = "You have successfully subscribed to the $rate package, expires on $date at $time.";
-                        $message->type = 'sms';
-                        $message->save();
                     }
+                } else {
+                    $query =
+                        (new Query('/system/scheduler/add'))
+                            ->equal('name', "deactivate-$name")
+                            ->equal('start-date', "$date")
+                            ->equal('start-time', "$time")
+                            ->equal('interval', '00:01:00')
+                            ->equal('on-event', "$source");
+                    $client->query($query)->read();
                 }
+                $username = "thetechglitch"; // use 'sandbox' for development in the test environment
+                $apiKey = '0355a696e0f0dca94141e9f88dddd738cdcfc98725445473b0e182b7a15fc526'; // use your sandbox app API key for development in the test environment
+                $AT = new AfricasTalking($username, $apiKey);
+
+                $sms = $AT->sms();
+
+                $sms->send([
+                    'to' => '+254' . ltrim($p, '0'),
+                    'message' => "You have successfully subscribed to the $rate package, expires on $date at $time."
+                ]);
+
+                $message = new Message();
+                $message->username = $name;
+                $message->phone = $p;
+                $message->message = "You have successfully subscribed to the $rate package, expires on $date at $time.";
+                $message->type = 'sms';
+                $message->save();
+
                 DB::connection('mysql2')->table('payments')
                     ->where('phone', '=', $p)
                     ->update(['checked' => 1]);

@@ -17,8 +17,8 @@ class CreateMoviesTable extends Migration
             $table->id();
             $table->string('name');
             $table->string('year');
-            $table->string('description');
-            $table->boolean('converted')->default(1);
+            $table->longText('description');
+            $table->boolean('converted')->default(0);
             $table->string('runtime')->nullable();
             $table->float('rating')->nullable();
             $table->string('trailer')->nullable();

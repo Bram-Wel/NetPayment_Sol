@@ -2,6 +2,8 @@
 
 namespace App\Console\Commands;
 
+use App\Models\Actor;
+use App\Models\Genre;
 use App\Models\Movie;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Storage;
@@ -41,7 +43,7 @@ class AddMovies extends Command
     {
         $movies = Storage::disk('movies')->allDirectories();
         foreach ($movies as $name) {
-            $count = Movie::where('name', $name)->count();
+            $count = Movie::where('name', $name)->count('id');
             if ($count == 0) {
                 $movie = new Movie();
                 $movie->name = $name;
@@ -62,15 +64,52 @@ class AddMovies extends Command
                         $movie->year = $info['year'];
                         $movie->runtime = $info['runtime'];
                         $movie->rating = $info['rating'];
-                        $movie->mpaa = $info['mpaa'];
-                        $movie->director = $info['director'];
-                        $movie->studio = $info['studio'];
+                        if (array_key_exists('mpaa', $info)) {
+                            $movie->mpaa = $info['mpaa'];
+                        }
+                        if (array_key_exists('director', $info)) {
+                            if (!is_array($info['director'])) {
+                                $movie->director = $info['director'];
+                            }
+                        }
+                        if (array_key_exists('studio', $info)) {
+                            if (!is_array($info['director'])) {
+                                $movie->studio = $info['studio'];
+                            }
+                        }
                         $movie->trailer = $info['trailer'];
                         $movie->save();
 
-                        $genre = new Genre();
-                        $genre->name = $name;
+                        $genre = $info['genre'];
 
+                        if (is_array($genre)) {
+                            foreach ($genre as $res) {
+                                $genreM = new Genre();
+
+                                $genreM->name = $name;
+                                $genreM->genre = $res;
+
+                                $genreM->save();
+                            }
+                        }
+
+                        $actors = $info['actor'];
+                        $i = 0;
+                        foreach ($actors as $res) {
+                            $actor = new Actor();
+
+                            $actor->name = $name;
+                            $actor->actor = $res['name'];
+                            $actor->thumb = $res['thumb'];
+                            $actor->role = $res['role'];
+                            $actor->save();
+
+                            if (!array_key_exists('thumb', $actors)) {
+                                break;
+                            }
+
+                            $i++;
+                        }
                     }
                 }
             }

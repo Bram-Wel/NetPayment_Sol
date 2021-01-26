@@ -31,9 +31,20 @@ Route::match(['get', 'post'], '/', function (Request $request) {
 //    } else {
 //        return redirect('http://auth.thetechglitch.net');
 //    }
-
+//
     return view('auth.login');
 });
+
+Route::match('get', '/login', function (Request $request) {
+    if ($request->ip) {
+        $ip = $request->ip;
+        session(['ip' => $ip]);
+    } else {
+        return redirect('http://auth.thetechglitch.net');
+    }
+
+    return view('auth.login');
+})->name('login');
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', [\App\Http\Controllers\Admin::class, 'index'])
     ->name('dashboard');

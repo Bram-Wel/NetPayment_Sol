@@ -37,7 +37,6 @@ class BuyNow extends Component
         $this->message = "Buying...";
         $this->openModal = true;
 
-
         if ($this->package == 1 && $this->freq == 'daily') {
             $this->amount = 30;
         } elseif ($this->package == 2 && $this->freq == 'daily') {

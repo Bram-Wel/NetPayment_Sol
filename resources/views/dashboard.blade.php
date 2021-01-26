@@ -2,8 +2,69 @@
     <x-slot name="header">
         <div class="flex flex-row">
             <h1 class="text-xl font-bold">Packages</h1>
-            <div class="absolute right-20">
-                2MBPS
+            <div class="absolute right-6 md:right-20 flex -space-x-5">
+                @if($package != '0MBPS')
+                    <style>
+                        .blinking {
+                            -webkit-animation: 1s blink ease infinite;
+                            -moz-animation: 1s blink ease infinite;
+                            -ms-animation: 1s blink ease infinite;
+                            -o-animation: 1s blink ease infinite;
+                            animation: 1s blink ease infinite;
+
+                        }
+
+                        @keyframes "blink" {
+                            from, to {
+                                opacity: 0;
+                            }
+                            50% {
+                                opacity: 1;
+                            }
+                        }
+
+                        @-moz-keyframes blink {
+                            from, to {
+                                opacity: 0;
+                            }
+                            50% {
+                                opacity: 1;
+                            }
+                        }
+
+                        @-webkit-keyframes "blink" {
+                            from, to {
+                                opacity: 0;
+                            }
+                            50% {
+                                opacity: 1;
+                            }
+                        }
+
+                        @-ms-keyframes "blink" {
+                            from, to {
+                                opacity: 0;
+                            }
+                            50% {
+                                opacity: 1;
+                            }
+                        }
+
+                        @-o-keyframes "blink" {
+                            from, to {
+                                opacity: 0;
+                            }
+                            50% {
+                                opacity: 1;
+                            }
+                        }
+                    </style>
+                    <svg height="50" width="50" class="blinking">
+                        <circle cx="12" cy="12" r="10" fill="lightgreen"/>
+                        Sorry, your browser does not support inline SVG.
+                    </svg>
+                @endif
+                {!! $message !!}
             </div>
         </div>
     </x-slot>

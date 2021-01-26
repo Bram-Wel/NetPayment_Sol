@@ -51,7 +51,7 @@ class ActiveTable extends LivewireDatatable
                     return $res['uptime'];
                 }
             })->label('uptime'),
-            Column::callback(['username', 'phone', 'email'], function ($user) use ($client) {
+            Column::callback(['username', 'phone', 'id'], function ($user) use ($client) {
                 $query = (new Query('/ip/hotspot/active/print'))
                     ->where('user', $user);
 
@@ -60,7 +60,7 @@ class ActiveTable extends LivewireDatatable
                     return $res['mac-address'];
                 }
             })->label('Mac Address'),
-            Column::callback(['username', 'email'], function ($user, $email) use ($client) {
+            Column::callback(['username', 'created_at'], function ($user, $email) use ($client) {
                 $query = (new Query('/ip/hotspot/user/print'))
                     ->where('name', $user);
 

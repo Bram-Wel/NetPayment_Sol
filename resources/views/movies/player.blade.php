@@ -3,9 +3,8 @@
 <link href="https://unpkg.com/@videojs/themes@1/dist/fantasy/index.css"
       rel="stylesheet">
 
-<script src="//cdn.sc.gl/videojs-hotkeys/latest/videojs.hotkeys.min.js"></script>
-
 <link rel="stylesheet" href="{{ mix('css/app.css') }}">
+<link rel="stylesheet" href="{{ mix('js/app.js') }}">
 
 
 <style>
@@ -43,13 +42,30 @@
 
     <script src="https://unpkg.com/video.js/dist/video.js"></script>
     <script src="https://unpkg.com/@videojs/http-streaming/dist/videojs-http-streaming.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/videojs-contextmenu-ui@5.2.0/dist/videojs-contextmenu-ui.min.js"></script>
+
 
     <script>
         var player = videojs('my_video_1', {
             poster: "{{ $poster }}",
             autoplay: true,
             preload: 'auto',
-        });
+            notSupportedMessage: 'Could not play the video',
+            responsive: true,
+
+            userActions: {
+                hotkeys: function (event) {
+                    if (event.which === 32) {
+                        if (!this.paused) {
+                            this.pause();
+                        } else {
+                            this.play();
+                        }
+                    }
+                }
+            }
+
+        })
     </script>
 </div>
 

@@ -3,6 +3,8 @@
 <link href="https://unpkg.com/@videojs/themes@1/dist/fantasy/index.css"
       rel="stylesheet">
 
+<script src="//cdn.sc.gl/videojs-hotkeys/latest/videojs.hotkeys.min.js"></script>
+
 <link rel="stylesheet" href="{{ mix('css/app.css') }}">
 
 
@@ -44,7 +46,9 @@
 
     <script>
         var player = videojs('my_video_1', {
-            poster: "{{ $poster }}"
+            poster: "{{ $poster }}",
+            autoplay: true,
+            preload: 'auto',
         });
     </script>
 </div>

@@ -44,6 +44,10 @@ class Kernel extends ConsoleKernel
         $schedule->command('movie:payment')
             ->withoutOverlapping(10)
             ->everyFourMinutes();
+
+        $schedule->command('unsubscribe:movie')
+            ->withoutOverlapping(10)
+            ->everyFourMinutes();
     }
 
     /**

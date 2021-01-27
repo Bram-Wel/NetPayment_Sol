@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="PublishConfigData" serverName="The Tech Glitch" remoteFilesAllowedToDisappearOnAutoupload="false">
+  <component name="PublishConfigData" serverName="The Tech Glitch" uploadOnCheckin="8136e4ae-5df9-4da3-92f1-bfd107595946" remoteFilesAllowedToDisappearOnAutoupload="false">
     <serverData>
       <paths name="The Tech Glitch">
         <serverdata>
@@ -10,5 +10,6 @@
         </serverdata>
       </paths>
     </serverData>
+    <option name="myUploadOnCheckinName" value="The Tech Glitch" />
   </component>
 </project>

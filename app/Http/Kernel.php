@@ -3,6 +3,7 @@
 namespace App\Http;
 
 use App\Http\Middleware\EnsureAdmin;
+use App\Http\Middleware\EnsureMovieSubscriber;
 use Illuminate\Foundation\Http\Kernel as HttpKernel;
 
 class Kernel extends HttpKernel
@@ -63,6 +64,7 @@ class Kernel extends HttpKernel
         'signed' => \Illuminate\Routing\Middleware\ValidateSignature::class,
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
         'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
-        'admin' => EnsureAdmin::class
+        'admin' => EnsureAdmin::class,
+        'movie' => EnsureMovieSubscriber::class,
     ];
 }

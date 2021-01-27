@@ -6,10 +6,6 @@
 
         <x-jet-validation-errors class="mb-4"/>
 
-        <div class="flex justify-center">
-            <p class="text-green-500 font-bold">Free trial for new users</p>
-        </div>
-
         @if (session('status'))
             <div class="mb-4 font-medium text-sm text-green-600">
                 {{ session('status') }}

@@ -22,13 +22,7 @@
                     } else {
                         $url = \Illuminate\Support\Facades\Storage::disk('movies')->url($movie->name . '/folder.jpg');
                     }
-                    $ch = curl_init();
-curl_setopt($ch, CURLOPT_URL, 'http://webservice.fanart.tv/v3/movies/17645');
-curl_setopt($ch, CURLOPT_HTTPHEADER, array('api-key: 6012ad815ffea10ea5e17f8231576b22', 'client-key: f4f756be630725b39f18509ac8209f9c'));
-curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-$result = curl_exec($ch);
-curl_close($ch);
-echo $result;
+
                 @endphp
                 <a href="{{ route('player', ['movie' => $movie->id]) }}" class="ml-6 mb-6 mt-2">
                     <div

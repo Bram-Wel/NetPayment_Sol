@@ -2,9 +2,12 @@
 
 namespace App\Console\Commands;
 
+use App\Models\Movie;
 use FFMpeg\Format\Video\X264;
 use Illuminate\Console\Command;
 use Illuminate\Filesystem\Filesystem;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Storage;
 use ProtoneMedia\LaravelFFMpeg\Support\FFMpeg;
 
 class ConvertMovies extends Command
@@ -40,15 +43,17 @@ class ConvertMovies extends Command
      */
     public function handle()
     {
-        // create some video formats...
-        $lowBitrateFormat = (new X264('libmp3lame', 'libx264'))->setKiloBitrate(500);
-        $midBitrateFormat = (new X264('libmp3lame', 'libx264'))->setKiloBitrate(1500);
-        $highBitrateFormat = (new X264('libmp3lame', 'libx264'))->setKiloBitrate(3000);
+        $movies = Movie::where('converted', 0)->get();
+        foreach ($movies as $movie) {
+            $name = $movie->name;
+            $path = Storage::disk('movies')->path("$name/$name.mp4");
+            $path2 = Storage::disk('movies')->path("$name");
 
-        FFMpeg::fromDisk('movies')
-            ->open('Outside the Wire/Outside the Wire.mp4')
-            ->export()
-            ->inFormat($highBitrateFormat)
-            ->save('Outside the Wire/Outside the Wire' . '.m3u8');
+
+            $id = Movie::where('name', $name)->value('id');
+            $movieM = Movie::find($id);
+            $movieM->converted = 1;
+//            $movieM->update();
+        }
     }
 }

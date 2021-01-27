@@ -16,10 +16,10 @@
             <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                 @if(!request()->routeIs('movies'))
                     <x-jet-nav-link href="{{ route('dashboard') }}" :active="request()->routeIs('dashboard')">
-                        {{ __('Packages') }}
+                        {{ __('Internet Packages') }}
                     </x-jet-nav-link>
-                    <x-jet-nav-link href="{{ route('movies') }}" :active="request()->routeIs('movies')">
-                        {{ __('Movies') }}
+                    <x-jet-nav-link href="{{ route('movie-packages') }}" :active="request()->routeIs('movies')">
+                        {{ __('Movie Packages') }}
                     </x-jet-nav-link>
                 @endif
 

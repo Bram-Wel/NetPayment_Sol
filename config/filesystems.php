@@ -57,8 +57,9 @@ return [
 
         'movies' => [
             'driver' => 'local',
-            'root' => storage_path('app/movies'),
-            'url' => env('APP_URL') . '/storage',
+            'root' => storage_path('app/public/movies'),
+            'url' => env('APP_URL') . '/storage/movies',
+            'visibility' => 'public'
         ],
 
         's3' => [

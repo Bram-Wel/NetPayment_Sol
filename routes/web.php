@@ -31,23 +31,29 @@ Route::match(['get', 'post'], '/', function (Request $request) {
 //    } else {
 //        return redirect('http://auth.thetechglitch.net');
 //    }
-//
+
     return view('auth.login');
 });
 
 Route::match('get', '/login', function (Request $request) {
-    if ($request->ip) {
-        $ip = $request->ip;
-        session(['ip' => $ip]);
-    } else {
-        return redirect('http://auth.thetechglitch.net');
-    }
+//    if ($request->ip) {
+//        $ip = $request->ip;
+//        session(['ip' => $ip]);
+//    } else {
+//        return redirect('http://auth.thetechglitch.net');
+//    }
 
     return view('auth.login');
 })->name('login');
 
+Route::middleware(['auth:sanctum', 'verified'])->get('/movie/play', [\App\Http\Controllers\MovieController::class, 'playMovie'])
+    ->name('player');
+
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', [\App\Http\Controllers\Admin::class, 'index'])
     ->name('dashboard');
+
+Route::middleware(['auth:sanctum', 'verified'])->get('/movie/packages', [\App\Http\Controllers\MovieController::class, 'showPackages'])
+    ->name('movie-packages');
 
 Route::middleware(['auth:sanctum', 'verified', 'admin'])->get('/users', [\App\Http\Controllers\Users::class, 'index'])
     ->name('Users');
@@ -56,9 +62,8 @@ Route::middleware(['auth:sanctum', 'verified', 'admin'])->get('/payments/clicks'
     return view('payments.payment-clicks');
 })->name('payment.clicks');
 
-Route::middleware(['auth:sanctum', 'verified'])->get('/movies', function () {
-    return view('movies.index');
-})->name('movies');
+Route::middleware(['auth:sanctum', 'verified'])->get('/movies', [\App\Http\Controllers\MovieController::class, 'index'])
+    ->name('movies');
 
 Route::middleware(['auth:sanctum', 'verified', 'admin'])->get('/hotspot/users', [\App\Http\Controllers\Users::class, 'HotspotUsers'])
     ->name('hotspot-users');

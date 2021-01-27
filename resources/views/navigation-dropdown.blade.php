@@ -18,8 +18,11 @@
                     <x-jet-nav-link href="{{ route('dashboard') }}" :active="request()->routeIs('dashboard')">
                         {{ __('Internet Packages') }}
                     </x-jet-nav-link>
-                    <x-jet-nav-link href="{{ route('movie-packages') }}" :active="request()->routeIs('movies')">
+                    <x-jet-nav-link href="{{ route('movie-packages') }}" :active="request()->routeIs('movie-packages')">
                         {{ __('Movie Packages') }}
+                    </x-jet-nav-link>
+                    <x-jet-nav-link href="{{ route('movies') }}" :active="request()->routeIs('movies')">
+                        {{ __('Movies') }}
                     </x-jet-nav-link>
                 @endif
 

@@ -4,9 +4,11 @@ namespace App\Console\Commands;
 
 use AfricasTalking\SDK\AfricasTalking;
 use App\Models\Message;
+use App\Models\MovieSubscription;
 use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Console\Command;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use RouterOS\Client;
 use RouterOS\Config;
@@ -75,6 +77,27 @@ class CheckPayment extends Command
                 if ($amount == 30) {
                     $date = Carbon::createFromFormat('Y-m-d H:i:s', now())->addDay();
                     $rate = '1MBPS';
+                } elseif ($amount == 20) {
+                    $movieSubscription = new MovieSubscription();
+                    $movieSubscription->name = Auth::user()->name;
+                    $date = Carbon::createFromFormat('Y-m-d H:i:s', now())->addDay();
+                    $movieSubscription->package = 1;
+                    $movieSubscription->expiry = $date;
+                    $movieSubscription->save();
+                } elseif ($amount == 120) {
+                    $movieSubscription = new MovieSubscription();
+                    $movieSubscription->name = Auth::user()->name;
+                    $date = Carbon::createFromFormat('Y-m-d H:i:s', now())->addWeek();
+                    $movieSubscription->package = 2;
+                    $movieSubscription->expiry = $date;
+                    $movieSubscription->save();
+                } elseif ($amount == 450) {
+                    $movieSubscription = new MovieSubscription();
+                    $movieSubscription->name = Auth::user()->name;
+                    $date = Carbon::createFromFormat('Y-m-d H:i:s', now())->addMonth();
+                    $movieSubscription->package = 3;
+                    $movieSubscription->expiry = $date;
+                    $movieSubscription->save();
                 } elseif ($amount == 40) {
                     $date = Carbon::createFromFormat('Y-m-d H:i:s', now())->addDay();
                     $rate = '2MBPS';

@@ -74,7 +74,7 @@ class AddMovies extends Command
                             }
                         }
                         if (array_key_exists('studio', $info)) {
-                            if (!is_array($info['director'])) {
+                            if (!is_array($info['studio'])) {
                                 $movie->studio = $info['studio'];
                             }
                         }

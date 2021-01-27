@@ -1,12 +1,35 @@
 @include('movies.layouts.default')
 <div class="py-5">
+    {{--    <div class="genres flex flex-row">--}}
+    {{--        @php--}}
+    {{--            $genres = \App\Models\Genre::distinct('genre')->get();--}}
+    {{--        @endphp--}}
+    {{--        @foreach($genres as $genre)--}}
+    {{--            @php--}}
+    {{--                $converted = \App\Models\Movie::where('name', $genre->name)->value('converted');--}}
+    {{--            @endphp--}}
+    {{--            @if($converted == 1)--}}
+    {{--                <span class="rounded-2xl bg-gray-100">{{ $genre->genre }}</span>--}}
+    {{--            @endif--}}
+    {{--        @endforeach--}}
+    {{--    </div>--}}
     <div>
-        <h1 class="text-gray-600 text-xl pl-6">Latest movies</h1>
         <div class="flex flex-row flex-wrap justify-start">
-            @foreach($movies as $movie)
-                <?php
-                $url = \Illuminate\Support\Facades\Storage::disk('movies')->url($movie->name . '/poster.jpg');
-                ?>
+            @foreach($movies as $index=>$movie)
+                @php
+                    if ($index == 0 || $index == 1) {
+                    $url = \Illuminate\Support\Facades\Storage::disk('movies')->url($movie->name . '/folder.jpg');
+                    } else {
+                        $url = \Illuminate\Support\Facades\Storage::disk('movies')->url($movie->name . '/folder.jpg');
+                    }
+                    $ch = curl_init();
+curl_setopt($ch, CURLOPT_URL, 'http://webservice.fanart.tv/v3/movies/17645');
+curl_setopt($ch, CURLOPT_HTTPHEADER, array('api-key: 6012ad815ffea10ea5e17f8231576b22', 'client-key: f4f756be630725b39f18509ac8209f9c'));
+curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+$result = curl_exec($ch);
+curl_close($ch);
+echo $result;
+                @endphp
                 <a href="{{ route('player', ['movie' => $movie->id]) }}" class="ml-6 mb-6 mt-2">
                     <div
                         style="background: url('{{ $url }}'); background-size: cover; width: 180px; height: 250px; background-position: center; background-repeat: no-repeat"
@@ -27,12 +50,12 @@
                 <?php
                 $url = \Illuminate\Support\Facades\Storage::disk('movies')->url($movie->name . '/poster.jpg');
                 ?>
-{{--                <a href="{{ route('player', ['movie' => $movie->id]) }}" class="">--}}
-                    <div
-                        style="background: url('{{ $url }}'); background-size: cover; width: 180px; height: 250px; background-position: center; background-repeat: no-repeat"
-                        class="rounded-lg shadow-xl ml-6 mb-6 mt-2">
-                    </div>
-                    {{--                </a>--}}
+                {{--                <a href="{{ route('player', ['movie' => $movie->id]) }}" class="">--}}
+                <div
+                    style="background: url('{{ $url }}'); background-size: cover; width: 180px; height: 250px; background-position: center; background-repeat: no-repeat"
+                    class="rounded-lg shadow-xl ml-6 mb-6 mt-2">
+                </div>
+                {{--                </a>--}}
             @endforeach
         </div>
     </div>

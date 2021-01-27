@@ -48,6 +48,10 @@ class Kernel extends ConsoleKernel
         $schedule->command('unsubscribe:movie')
             ->withoutOverlapping(10)
             ->everyFourMinutes();
+
+        $schedule->command('download:fanart')
+            ->withoutOverlapping(10)
+            ->everyFourMinutes();
     }
 
     /**

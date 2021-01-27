@@ -23,6 +23,7 @@ class EnsureMovieSubscriber
         $count = DB::table('movie_subscriptions')
             ->where('name', $name)
             ->count('id');
+        dd($count);
         if ($count == 0) {
             session()->flash('message', 'Kindly subscribe to watch movies!');
             return redirect()->to(route('movie-packages'));

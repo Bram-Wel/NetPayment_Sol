@@ -27,12 +27,12 @@
                 <?php
                 $url = \Illuminate\Support\Facades\Storage::disk('movies')->url($movie->name . '/poster.jpg');
                 ?>
-                <a href="{{ route('player', ['movie' => $movie->id]) }}" class="ml-6 mb-6 mt-2">
+{{--                <a href="{{ route('player', ['movie' => $movie->id]) }}" class="ml-6 mb-6 mt-2">--}}
                     <div
                         style="background: url('{{ $url }}'); background-size: cover; width: 180px; height: 250px; background-position: center; background-repeat: no-repeat"
                         class="rounded-lg shadow-xl hover:transform scale-100 md:scale-75">
                     </div>
-                </a>
+                    {{--                </a>--}}
             @endforeach
         </div>
     </div>

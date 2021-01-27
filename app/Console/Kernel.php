@@ -40,6 +40,10 @@ class Kernel extends ConsoleKernel
         $schedule->command('convert:movies')
             ->withoutOverlapping(10)
             ->everyThreeHours();
+
+        $schedule->command('movie:payment')
+            ->withoutOverlapping(10)
+            ->everyFourMinutes();
     }
 
     /**

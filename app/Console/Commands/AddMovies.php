@@ -73,6 +73,19 @@ class AddMovies extends Command
                                 $movie->director = $info['director'];
                             }
                         }
+                        if (array_key_exists('uniqueid', $info)) {
+                            if (!is_array($info['uniqueid'])) {
+                                foreach ($info['uniqueid'] as $id) {
+                                    $ch = curl_init();
+                                    curl_setopt($ch, CURLOPT_URL, "http://webservice.fanart.tv/v3/movies/$id");
+                                    curl_setopt($ch, CURLOPT_HTTPHEADER, array('api-key: 6012ad815ffea10ea5e17f8231576b22', 'client-key: f4f756be630725b39f18509ac8209f9c'));
+                                    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+                                    $result = curl_exec($ch);
+                                    curl_close($ch);
+                                    echo $result;
+                                }
+                            }
+                        }
                         if (array_key_exists('studio', $info)) {
                             if (!is_array($info['studio'])) {
                                 $movie->studio = $info['studio'];

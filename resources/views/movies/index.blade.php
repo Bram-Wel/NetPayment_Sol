@@ -15,14 +15,9 @@
     {{--    </div>--}}
     <div>
         <div class="flex flex-row flex-wrap justify-start">
-            @foreach($movies as $index=>$movie)
+            @foreach($movies as $movie)
                 @php
-                    if ($index == 0 || $index == 1) {
-                    $url = \Illuminate\Support\Facades\Storage::disk('movies')->url($movie->name . '/folder.jpg');
-                    } else {
-                        $url = \Illuminate\Support\Facades\Storage::disk('movies')->url($movie->name . '/folder.jpg');
-                    }
-
+                    $url = \Illuminate\Support\Facades\Storage::disk('movies')->url($movie->name . '/poster.jpg');
                 @endphp
                 <a href="{{ route('player', ['movie' => $movie->id]) }}" class="ml-6 mb-6 mt-2">
                     <div

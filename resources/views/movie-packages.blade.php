@@ -13,6 +13,7 @@
                     style="background-image:linear-gradient(to right, #2193b0, #6dd5ed);">
                     <h1 class="text-white"><span class="text-4xl text-white font-bold">kshs 20/=</span>
                     </h1>
+                    <p class="text-white">Daily</p>
                     <ul class="mb-5 text-left ml-4 mt-4 leading-7">
                         <li class="text-white">Unlimited movies</li>
                         <li class="text-white">HD Quality</li>
@@ -29,6 +30,7 @@
                     style="background-image:linear-gradient(to right, #11998e, #38ef7d);">
                     <h1 class="text-white"><span class="text-4xl font-bold">kshs 120/=</span>
                     </h1>
+                    <p class="text-white">Weekly</p>
                     <ul class="mb-5 text-left ml-4 mt-4 leading-7">
                         <li class="text-white">Unlimited movies</li>
                         <li class="text-white">HD Quality</li>
@@ -36,7 +38,7 @@
                         <li class="text-white">Fast Mobile Payments</li>
                     </ul>
                     <div class="mx-auto">
-                        @livewire('subscribe-movie', ['package'=>2, 'freq'=>'daily'])
+                        @livewire('subscribe-movie', ['package'=>2, 'freq'=>'weekly'])
                     </div>
                 </div>
 
@@ -45,6 +47,7 @@
                     style="background-image: linear-gradient(to right, #4e54c8, #8f94fb);">
                     <h1 class="text-white"><span class="text-4xl font-bold">kshs 450/=</span>
                     </h1>
+                    <p class="text-white">Monthly</p>
                     <ul class="mb-5 text-left ml-4 mt-4 leading-7">
                         <li class="text-white">Unlimited movies</li>
                         <li class="text-white">HD Quality</li>
@@ -52,7 +55,7 @@
                         <li class="text-white">Fast Mobile Payments</li>
                     </ul>
                     <div class="mx-auto">
-                        @livewire('subscribe-movie', ['package'=>3, 'freq'=>'daily'])
+                        @livewire('subscribe-movie', ['package'=>3, 'freq'=>'monthly'])
                     </div>
                 </div>
             </div>

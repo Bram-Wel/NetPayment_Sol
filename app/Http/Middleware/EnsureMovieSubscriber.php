@@ -19,7 +19,7 @@ class EnsureMovieSubscriber
      */
     public function handle(Request $request, Closure $next)
     {
-        $name = Auth::user()->name;
+        $name = Auth::user();
         dd($name);
         $count = DB::table('movie_subscriptions')
             ->where('name', $name)

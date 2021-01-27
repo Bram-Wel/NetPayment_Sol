@@ -64,7 +64,7 @@ class CheckMoviePayment extends Command
 
                 if ($amount == 20) {
                     $movieSubscription = new MovieSubscription();
-                    $movieSubscription->name = Auth::user()->name;
+                    $movieSubscription->name = $name;
                     $date = Carbon::createFromFormat('Y-m-d H:i:s', now())->addDay();
                     $movieSubscription->package = 1;
                     $movieSubscription->expiry = $date;

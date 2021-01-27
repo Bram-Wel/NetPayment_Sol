@@ -3,6 +3,7 @@
 namespace App\Console\Commands;
 
 use App\Models\MovieSubscription;
+use Carbon\Carbon;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\DB;
 
@@ -42,6 +43,7 @@ class UnsubscribeMoviePackage extends Command
         $subscribers = MovieSubscription::get();
         foreach ($subscribers as $subscriber) {
             $expiry = $subscriber->expiry;
+            $expiry = Carbon::parse($expiry);
             if ($expiry->isPast()) {
                 $id = $subscriber->id;
                 MovieSubscription::delete($id);

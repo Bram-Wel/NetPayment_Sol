@@ -21,7 +21,7 @@
                 @php
                     $url = \Illuminate\Support\Facades\Storage::disk('movies')->url($movie->name . '/poster.jpg');
                 @endphp
-                <a href="{{ route('player', ['movie' => $movie->id]) }}" class="ml-6 mb-6 mt-2">
+                <a href="{{ route('player', ['movie' => $movie->id]) }}" class="md:ml-6 mb-6 mt-2">
                     <div
                         style="background: url('{{ $url }}'); background-size: cover; width: 180px; height: 250px; background-position: center; background-repeat: no-repeat"
                         class="rounded-lg shadow-xl">
@@ -32,7 +32,7 @@
     </div>
 
     <div>
-        <h1 class="text-gray-600 text-xl pl-6 text-center md:text-left">Coming this week</h1>
+        <h1 class="text-gray-600 text-xl md:pl-6 text-center md:text-left">Coming this week</h1>
         <div class="flex flex-col md:flex-row justify-center content-center md:justify-start">
             <?php
             $movies = \App\Models\Movie::where('converted', 0)->latest()->limit(6)->get();
@@ -44,7 +44,7 @@
                 {{--                <a href="{{ route('player', ['movie' => $movie->id]) }}" class="">--}}
                 <div
                     style="background: url('{{ $url }}'); background-size: cover; width: 180px; height: 250px; background-position: center; background-repeat: no-repeat"
-                    class="rounded-lg shadow-xl ml-6 mb-6 mt-2">
+                    class="rounded-lg shadow-xl md:ml-6 mb-6 mt-2">
                 </div>
                 {{--                </a>--}}
             @endforeach

@@ -33,7 +33,7 @@
 
     <div>
         <h1 class="text-gray-600 text-xl pl-6">Coming this week</h1>
-        <div class="flex flex-row justify-start">
+        <div class="flex flex-col md:flex-row justify-start">
             <?php
             $movies = \App\Models\Movie::where('converted', 0)->latest()->limit(6)->get();
             ?>

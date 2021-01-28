@@ -1,4 +1,18 @@
 @include('movies.layouts.default')
+<style>
+    .poster {
+        width: 180px;
+        height: 250px;
+    }
+
+    @media screen and (max-width: 720px) {
+        .poster {
+            width: 150px;
+            height: 200px;
+            margin: 10px;
+        }
+    }
+</style>
 <div class="py-5">
     {{--    <div class="genres flex flex-row">--}}
     {{--        @php--}}
@@ -23,8 +37,8 @@
                 @endphp
                 <a href="{{ route('player', ['movie' => $movie->id]) }}" class="md:ml-6 mb-6 mt-2">
                     <div
-                        style="background: url('{{ $url }}'); background-size: cover; width: 180px; height: 250px; background-position: center; background-repeat: no-repeat"
-                        class="rounded-lg shadow-xl">
+                        style="background: url('{{ $url }}'); background-size: cover; background-position: center; background-repeat: no-repeat"
+                        class="rounded-lg shadow-xl poster">
                     </div>
                 </a>
             @endforeach
@@ -43,8 +57,8 @@
                 ?>
                 {{--                <a href="{{ route('player', ['movie' => $movie->id]) }}" class="">--}}
                 <div
-                    style="background: url('{{ $url }}'); background-size: cover; width: 180px; height: 250px; background-position: center; background-repeat: no-repeat"
-                    class="rounded-lg shadow-xl md:ml-6 mb-6 mt-2">
+                    style="background: url('{{ $url }}'); background-size: cover; background-position: center; background-repeat: no-repeat"
+                    class="rounded-lg shadow-xl md:ml-6 mb-6 mt-2 poster">
                 </div>
                 {{--                </a>--}}
             @endforeach

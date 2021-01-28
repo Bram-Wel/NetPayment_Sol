@@ -24,6 +24,7 @@ use RouterOS\Query;
 |
 */
 
+// TODO: UNCOMMENT THESE LINES
 Route::match(['get', 'post'], '/', function (Request $request) {
     if ($request->ip) {
         $ip = $request->ip;
@@ -46,7 +47,7 @@ Route::match('get', '/login', function (Request $request) {
     return view('auth.login');
 })->name('login');
 
-Route::middleware(['auth:sanctum', 'verified', 'movie'])->get('/movie/play', [\App\Http\Controllers\MovieController::class, 'playMovie'])
+Route::middleware(['auth:sanctum', 'verified'])->get('/movie/play', [\App\Http\Controllers\MovieController::class, 'playMovie'])
     ->name('player');
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', [\App\Http\Controllers\Admin::class, 'index'])

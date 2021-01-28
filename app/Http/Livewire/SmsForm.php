@@ -56,7 +56,6 @@ class SmsForm extends Component
             $message = new Message();
             $message->username = $this->user;
             $message->phone = $phone;
-            $message->email = User::where('phone', $phone)->value('email');
             $message->message = $this->message;
             $message->type = 'sms';
             $message->save();

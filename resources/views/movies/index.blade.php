@@ -14,19 +14,38 @@
     }
 </style>
 <div class="py-5">
-    {{--    <div class="genres flex flex-row">--}}
-    {{--        @php--}}
-    {{--            $genres = \App\Models\Genre::distinct('genre')->get();--}}
-    {{--        @endphp--}}
-    {{--        @foreach($genres as $genre)--}}
-    {{--            @php--}}
-    {{--                $converted = \App\Models\Movie::where('name', $genre->name)->value('converted');--}}
-    {{--            @endphp--}}
-    {{--            @if($converted == 1)--}}
-    {{--                <span class="rounded-2xl bg-gray-100">{{ $genre->genre }}</span>--}}
-    {{--            @endif--}}
-    {{--        @endforeach--}}
-    {{--    </div>--}}
+    @php
+        $featured = \App\Models\Movie::inRandomOrder()->limit(4)->get();
+    @endphp
+    <div class="hidden md:inline-block">
+        <div class="flex flex-row flex-wrap justify-center md:justify-start">
+            @foreach($featured as $index=>$movie)
+                @php
+                    $url = \Illuminate\Support\Facades\Storage::disk('movies')->url($movie->name . '/poster.jpg');
+                    $banner = \Illuminate\Support\Facades\Storage::disk('movies')->url($movie->name . '/fanart.jpg')
+                @endphp
+                <a href="{{ route('player', ['movie' => $movie->id]) }}" class="md:ml-6 mb-6 mt-2">
+                    @if($index==0 || $index ==1)
+                        <div
+                            style="background: url('{{ $url }}'); background-size: cover; background-position: center; background-repeat: no-repeat; width: 220px; height: 350px"
+                            class="shadow-xl rounded-xl">
+                        </div>
+                    @elseif($index==2)
+                        <div
+                            style="background: url('{{ $banner }}'); background-size: cover; background-position: center; background-repeat: no-repeat; width: 500px; height: 350px"
+                            class="shadow-xl rounded-xl">
+                        </div>
+                    @else
+                        <div
+                            style="background: url('{{ $url }}'); background-size: cover; background-position: center; background-repeat: no-repeat; width: 220px; height: 350px"
+                            class="shadow-xl rounded-xl">
+                        </div>
+                    @endif
+                </a>
+            @endforeach
+        </div>
+    </div>
+
     <div>
         <h1 class="text-gray-600 text-xl pl-6 text-center md:text-left
 ">Latest movies</h1>

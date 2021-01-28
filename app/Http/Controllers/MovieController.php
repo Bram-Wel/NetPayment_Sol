@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Movie;
+use App\Models\Watchers;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 
 class MovieController extends Controller
@@ -22,6 +24,12 @@ class MovieController extends Controller
         $name = $movie->name;
         $url = Storage::disk('movies')->url($name . "/playlist.m3u8");
         $poster = Storage::disk('movies')->url($name . "/fanart.jpg");
+
+        $watcher = new Watchers();
+        $watcher->name = Auth::user()->username;
+        $watcher->movie = $name;
+        $watcher->save();
+
         return view('movies.player', ['movie' => $name, 'url' => $url, 'poster' => $poster]);
     }
 

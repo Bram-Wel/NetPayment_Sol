@@ -14,6 +14,7 @@
     {{--        @endforeach--}}
     {{--    </div>--}}
     <div>
+        <h1 class="text-gray-600 text-xl pl-6">Latest movies</h1>
         <div class="flex flex-row flex-wrap justify-start">
             @foreach($movies as $movie)
                 @php

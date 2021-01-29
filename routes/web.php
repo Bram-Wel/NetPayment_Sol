@@ -26,12 +26,12 @@ use RouterOS\Query;
 
 // TODO: UNCOMMENT THESE LINES
 Route::match(['get', 'post'], '/', function (Request $request) {
-//    if ($request->ip) {
-//        $ip = $request->ip;
-//        session(['ip' => $ip]);
-//    } else {
-//        return redirect('http://auth.thetechglitch.net');
-//    }
+    if ($request->ip) {
+        $ip = $request->ip;
+        session(['ip' => $ip]);
+    } else {
+        return redirect('http://auth.thetechglitch.net');
+    }
 
     return view('auth.login');
 });

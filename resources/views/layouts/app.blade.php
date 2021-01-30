@@ -22,17 +22,13 @@
 
     @livewireStyles
 @stack("styles")
-
 <!-- Scripts -->
     <script src="{{ mix('js/app.js') }}" defer></script>
     <script src="{{ asset('js/assets/chart.js') }}"></script>
     <script src="{{ asset('js/assets/jquery-3.5.1.min.js') }}"></script>
-
     <link rel="stylesheet" type="text/css"
           href="{{ asset('css/assets/toastr.min.css') }}">
-
     <script src="{{ asset('js/assets/toastr.min.js') }}"></script>
-
 </head>
 <body class="font-sans antialiased">
 <div class="min-h-screen bg-gray-100">
@@ -76,7 +72,6 @@
         }
     toastr.success("{{ session('message') }}");
     @endif
-
         @if(session()->has('error'))
         toastr.options =
         {
@@ -85,7 +80,6 @@
         }
     toastr.error("{{ session('error') }}");
     @endif
-
         @if(session()->has('info'))
         toastr.options =
         {
@@ -94,7 +88,6 @@
         }
     toastr.info("{{ session('info') }}");
     @endif
-
         @if(session()->has('warning'))
         toastr.options =
         {

@@ -99,6 +99,14 @@
         </div>
     </div>
 
+    {{--    @php--}}
+    {{--    $genres = \App\Models\Genre::distinct()->latest()->get();--}}
+    {{--    @endphp--}}
+    {{--    @foreach($genres as $genre)--}}
+    {{--        @php--}}
+    {{--        $genre = $genre->genre;--}}
+    {{--        $movie = \App\Models\Genre::where('genre', $genre)->value('movie');--}}
+    {{--        @endphp--}}
     {{--    <div class="pl-8">--}}
     {{--        <h1 class="text-gray-600 text-xl md:pl-6 text-center md:text-left">Most Watched</h1>--}}
     {{--        @php--}}

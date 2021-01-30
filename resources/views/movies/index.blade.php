@@ -27,7 +27,7 @@
                 <a href="{{ route('player', ['movie' => $movie->id]) }}" class="md:ml-6 mb-6 mt-2">
                     @if($index==0 || $index ==1)
                         <div
-                            style="background: url('{{ urlencode($url) }}'); background-size: cover; background-position: center; background-repeat: no-repeat; width: 220px; height: 350px"
+                            style="background: url('{{ addslashes($url) }}'); background-size: cover; background-position: center; background-repeat: no-repeat; width: 220px; height: 350px"
                             class="shadow-xl rounded-xl">
                         </div>
                     @elseif($index==2)
@@ -57,7 +57,7 @@
                 <a href="{{ route('player', ['movie' => $movie->id]) }}" class="md:ml-6 mb-6 mt-2">
                     <div
                         style="
-                            background: url('{{ urlencode($url) }}'); background-size: cover; background-position: center; background-repeat: no-repeat"
+                            background: url('{{ addslashes($url) }}'); background-size: cover; background-position: center; background-repeat: no-repeat"
                         class="rounded-lg shadow-xl poster">
                     </div>
                 </a>

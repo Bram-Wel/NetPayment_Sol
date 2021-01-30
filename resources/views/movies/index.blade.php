@@ -99,35 +99,35 @@
         </div>
     </div>
 
-    <div class="pl-8">
-        <h1 class="text-gray-600 text-xl md:pl-6 text-center md:text-left">Most Watched</h1>
-        @php
-            $watchers = \App\Models\Watchers::select('movie')
-            ->groupBy('movie')
-            ->orderByRaw('COUNT(*) DESC')
-            ->take(7)
-            ->get();
-        @endphp
-        <div class="flex flex-row flex-wrap md:flex-row justify-center content-center md:justify-start">
-            @foreach($watchers as $movie)
-                @php
-                    $name = $movie->movie;
-                    $video = \App\Models\Movie::where('name', $name)->get();
-                @endphp
-                @foreach($video as $movie)
-                    @php
-                        $url = \Illuminate\Support\Facades\Storage::disk('movies')->url($movie->name . '/poster.jpg');
-                    @endphp
-                    <a href="{{ route('player', ['movie' => $movie->id]) }}" class="">
-                        <div
-                            style="background: url('{{ $url }}'); background-size: cover; background-position: center; background-repeat: no-repeat"
-                            class="rounded-lg shadow-xl md:ml-6 mb-6 mt-2 poster">
-                        </div>
-                    </a>
-                @endforeach
-            @endforeach
-        </div>
-    </div>
+    {{--    <div class="pl-8">--}}
+    {{--        <h1 class="text-gray-600 text-xl md:pl-6 text-center md:text-left">Most Watched</h1>--}}
+    {{--        @php--}}
+    {{--            $watchers = \App\Models\Watchers::select('movie')--}}
+    {{--            ->groupBy('movie')--}}
+    {{--            ->orderByRaw('COUNT(*) DESC')--}}
+    {{--            ->take(7)--}}
+    {{--            ->get();--}}
+    {{--        @endphp--}}
+    {{--        <div class="flex flex-row flex-wrap md:flex-row justify-center content-center md:justify-start">--}}
+    {{--            @foreach($watchers as $movie)--}}
+    {{--                @php--}}
+    {{--                    $name = $movie->movie;--}}
+    {{--                    $video = \App\Models\Movie::where('name', $name)->get();--}}
+    {{--                @endphp--}}
+    {{--                @foreach($video as $movie)--}}
+    {{--                    @php--}}
+    {{--                        $url = \Illuminate\Support\Facades\Storage::disk('movies')->url($movie->name . '/poster.jpg');--}}
+    {{--                    @endphp--}}
+    {{--                    <a href="{{ route('player', ['movie' => $movie->id]) }}" class="">--}}
+    {{--                        <div--}}
+    {{--                            style="background: url('{{ $url }}'); background-size: cover; background-position: center; background-repeat: no-repeat"--}}
+    {{--                            class="rounded-lg shadow-xl md:ml-6 mb-6 mt-2 poster">--}}
+    {{--                        </div>--}}
+    {{--                    </a>--}}
+    {{--                @endforeach--}}
+    {{--            @endforeach--}}
+    {{--        </div>--}}
+    {{--    </div>--}}
 
 </div>
 @include('movies.layouts.footer')

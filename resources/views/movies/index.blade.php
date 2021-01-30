@@ -3,6 +3,11 @@
     .poster {
         width: 180px;
         height: 250px;
+        transition: transform .2s; /* Animation */
+    }
+
+    .poster:hover {
+        transform: scale(1.1); /* (150% zoom - Note: if the zoom is too large, it will go outside of the viewport) */
     }
 
     @media screen and (max-width: 720px) {
@@ -54,11 +59,11 @@
                 @php
                     $url = \Illuminate\Support\Facades\Storage::disk('movies')->url($movie->name . '/poster.jpg');
                 @endphp
-                <a href="{{ route('player', ['movie' => $movie->id]) }}" class="md:ml-6 mb-6 mt-2">
+                <a href="{{ route('player', ['movie' => $movie->id]) }}" class="md:ml-5 mb-6 mt-2">
                     <div
                         style="
                             background: url('{{ addslashes($url) }}'); background-size: cover; background-position: center; background-repeat: no-repeat"
-                        class="rounded-lg shadow-xl poster">
+                        class="rounded-xl shadow-2xl poster thumbnail">
                     </div>
                 </a>
             @endforeach

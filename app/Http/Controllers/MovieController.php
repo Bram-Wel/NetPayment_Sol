@@ -12,7 +12,7 @@ class MovieController extends Controller
 {
     public function index()
     {
-        $movies = Movie::where('converted', 1)->latest()->get();
+        $movies = Movie::where('converted', 1)->orderBy('year', 'desc')->latest()->get();
 
         return view('movies.index', ['movies' => $movies]);
     }
@@ -29,6 +29,8 @@ class MovieController extends Controller
         $watcher->name = Auth::user()->username;
         $watcher->movie = $name;
         $watcher->save();
+
+        $request->headers->set('Accept-Ranges', 'bytes | 5000');
 
         return view('movies.player', ['movie' => $name, 'url' => $url, 'poster' => $poster]);
     }

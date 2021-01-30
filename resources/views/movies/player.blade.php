@@ -1,71 +1,98 @@
-<link href="https://unpkg.com/video.js/dist/video-js.css" rel="stylesheet">
-<!-- Fantasy -->
-<link href="https://unpkg.com/@videojs/themes@1/dist/fantasy/index.css"
-      rel="stylesheet">
-
 <link rel="stylesheet" href="{{ mix('css/app.css') }}">
 <link rel="stylesheet" href="{{ mix('js/app.js') }}">
 
-
 <style>
-    .vjs-theme-fantasy .vjs-big-play-button {
-        color: #ED3237;
-    }
-
-    .video-js .vjs-control-bar {
-        background: transparent;
-    }
-
-    .vjs-theme-fantasy .vjs-play-progress, .vjs-theme-fantasy .vjs-play-progress:before {
-        background-color: #ED3237;
-    }
-
-    .video-js .vjs-progress-holder {
-        height: 0.2em;
-    }
-
     body {
         padding: 0;
-
-    }
-
-    .vjs-poster {
-        background-size: 100% !important;
+        margin: 0;
+        background: black;
     }
 </style>
 
 <div>
-    <video-js id="my_video_1" class="vjs-theme-fantasy w-full" style="height: 100vh!important" controls preload="auto">
-        <source src="{{ $url }}"
-                type="application/x-mpegURL">
-    </video-js>
-
-    <script src="https://unpkg.com/video.js/dist/video.js"></script>
-    <script src="https://unpkg.com/@videojs/http-streaming/dist/videojs-http-streaming.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/videojs-contextmenu-ui@5.2.0/dist/videojs-contextmenu-ui.min.js"></script>
-
-
+    <video class="w-full" id="video" style="height: 100vh!important" controls preload="auto">
+    </video>
+    <script src="//cdn.jsdelivr.net/npm/hls.js@latest"></script>
     <script>
-        var player = videojs('my_video_1', {
-            poster: "{{ $poster }}",
-            autoplay: true,
-            preload: 'auto',
-            notSupportedMessage: 'Could not play the video',
-            responsive: true,
+        var config = {
+            autoStartLoad: true,
+            startPosition: -1,
+            debug: false,
+            capLevelOnFPSDrop: false,
+            capLevelToPlayerSize: false,
+            initialLiveManifestSize: 1,
+            maxBufferLength: 3000,
+            maxMaxBufferLength: 3600,
+            maxBufferSize: 60 * 1000 * 1000,
+            maxBufferHole: 0.5,
+            highBufferWatchdogPeriod: 2,
+            nudgeOffset: 0.1,
+            nudgeMaxRetry: 3,
+            maxFragLookUpTolerance: 0.25,
+            liveSyncDurationCount: 3,
+            liveMaxLatencyDurationCount: Infinity,
+            liveDurationInfinity: false,
+            liveBackBufferLength: Infinity,
+            enableWorker: true,
+            enableSoftwareAES: true,
+            manifestLoadingTimeOut: 10000,
+            manifestLoadingMaxRetry: 1,
+            manifestLoadingRetryDelay: 1000,
+            manifestLoadingMaxRetryTimeout: 64000,
+            startLevel: undefined,
+            levelLoadingTimeOut: 10000,
+            levelLoadingMaxRetry: 4,
+            levelLoadingRetryDelay: 1000,
+            levelLoadingMaxRetryTimeout: 64000,
+            fragLoadingTimeOut: 20000,
+            fragLoadingMaxRetry: 6,
+            fragLoadingRetryDelay: 1000,
+            fragLoadingMaxRetryTimeout: 64000,
+            startFragPrefetch: false,
+            testBandwidth: true,
+            progressive: false,
+            lowLatencyMode: true,
+            fpsDroppedMonitoringPeriod: 5000,
+            fpsDroppedMonitoringThreshold: 0.2,
+            appendErrorMaxRetry: 3,
+            enableWebVTT: true,
+            enableIMSC1: true,
+            enableCEA708Captions: true,
+            stretchShortVideoTrack: false,
+            maxAudioFramesDrift: 1,
+            forceKeyFrameOnDiscontinuity: true,
+            abrEwmaFastLive: 3.0,
+            abrEwmaSlowLive: 9.0,
+            abrEwmaFastVoD: 3.0,
+            abrEwmaSlowVoD: 9.0,
+            abrEwmaDefaultEstimate: 500000,
+            abrBandWidthFactor: 0.95,
+            abrBandWidthUpFactor: 0.7,
+            abrMaxWithRealBitrate: false,
+            maxStarvationDelay: 4,
+            maxLoadingDelay: 4,
+            minAutoBitrate: 0,
+            emeEnabled: false,
+            widevineLicenseUrl: undefined,
+            drmSystemOptions: {},
+        };
 
-            userActions: {
-                hotkeys: function (event) {
-                    if (event.which === 32) {
-                        if (!this.paused) {
-                            this.pause();
-                        } else {
-                            this.play();
-                        }
-                    }
-                }
-            }
-
-        })
+        if (Hls.isSupported()) {
+            var video = document.getElementById('video');
+            var hls = new Hls(config);
+            // bind them together
+            hls.attachMedia(video);
+            // MEDIA_ATTACHED event is fired by hls object once MediaSource is ready
+            hls.on(Hls.Events.MEDIA_ATTACHED, function () {
+                hls.loadSource('{{ $url }}');
+                hls.on(Hls.Events.MANIFEST_PARSED, function (event, data) {
+                    console.log(
+                        'manifest loaded, found ' + data.levels.length + ' quality level'
+                    );
+                });
+            });
+        }
+        video.play();
     </script>
 </div>
 

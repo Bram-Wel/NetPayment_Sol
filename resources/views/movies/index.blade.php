@@ -62,7 +62,7 @@
 
     <div>
         <h1 class="text-gray-600 text-xl pl-15 text-center md:text-left">Latest movies</h1>
-        <div class="flex flex-row flex-wrap justify-center md:justify-start pl-8">
+        <div class="pl-8 grab">
             @foreach($movies as $movie)
                 @php
                     $url = \Illuminate\Support\Facades\Storage::disk($movie->disk)->url($movie->name . '/poster.jpg');
@@ -82,7 +82,7 @@
             ->orderByRaw('COUNT(*) DESC')
             ->get();
         @endphp
-        <div class="flex flex-row flex-wrap md:flex-row justify-center content-center md:justify-start grab">
+        <div class="grab">
             @foreach($watchers as $movie)
                 @php
                     $name = $movie->movie;

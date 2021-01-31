@@ -12,7 +12,7 @@ class MovieController extends Controller
 {
     public function index()
     {
-        $movies = Movie::where('converted', 1)->orderBy('year', 'desc')->latest()->get();
+        $movies = Movie::where('converted', 1)->orderBy('year', 'desc')->limit(20)->latest()->get();
 
         return view('movies.index', ['movies' => $movies]);
     }

@@ -6,6 +6,7 @@ use App\Http\Controllers\Users\addProfile;
 use App\Http\Controllers\Users\editUser;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Storage;
 use RouterOS\Client;
 use RouterOS\Config;
 use RouterOS\Exceptions\ClientException;
@@ -34,6 +35,10 @@ Route::match(['get', 'post'], '/', function (Request $request) {
     }
 
     return view('auth.login');
+});
+
+Route::get('test', function () {
+    dd(Storage::disk('movies2'));
 });
 
 Route::match('get', '/login', function (Request $request) {

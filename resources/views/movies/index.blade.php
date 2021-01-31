@@ -3,11 +3,11 @@
     .poster {
         width: 160px;
         height: 230px;
-        transition: transform .2s; /* Animation */
+        transition: transform 1s; /* Animation */
     }
 
     .poster:hover {
-        transform: scale(1.1); /* (150% zoom - Note: if the zoom is too large, it will go outside of the viewport) */
+        transform: scale(1.2); /* (150% zoom - Note: if the zoom is too large, it will go outside of the viewport) */
     }
 
     @media screen and (max-width: 720px) {

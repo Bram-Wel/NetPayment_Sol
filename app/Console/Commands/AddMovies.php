@@ -130,17 +130,16 @@ class AddMovies extends Command
         }
 
         $movies = Storage::disk('movies2')->allDirectories();
-        print_r($movies);
         foreach ($movies as $name) {
             $count = Movie::where('name', $name)->count('id');
             if ($count == 0) {
                 $movie = new Movie();
                 $movie->name = $name;
-                $files = Storage::disk('movies')->allFiles($name);
+                $files = Storage::disk('movies2')->allFiles($name);
                 foreach ($files as $file) {
                     $file_parts = pathinfo($file);
                     if ($file_parts['extension'] == 'nfo') {
-                        $file = file_get_contents(Storage::disk('movies')->path($file));
+                        $file = file_get_contents(Storage::disk('movies2')->path($file));
 
                         $xml = simplexml_load_string($file);
 

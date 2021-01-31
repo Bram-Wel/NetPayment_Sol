@@ -22,8 +22,8 @@ class MovieController extends Controller
         $movie = Movie::find($request->movie);
 
         $name = $movie->name;
-        $url = Storage::disk('movies')->url($name . "/playlist.m3u8");
-        $poster = Storage::disk('movies')->url($name . "/fanart.jpg");
+        $url = Storage::disk($movie->disk)->url($name . "/playlist.m3u8");
+        $poster = Storage::disk($movie->disk)->url($name . "/fanart.jpg");
 
         $watcher = new Watchers();
         $watcher->name = Auth::user()->username;

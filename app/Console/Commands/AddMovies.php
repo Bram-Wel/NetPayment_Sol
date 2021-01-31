@@ -128,5 +128,94 @@ class AddMovies extends Command
                 }
             }
         }
+
+        $movies = Storage::disk('movies2')->allDirectories();
+        foreach ($movies as $name) {
+            $count = Movie::where('name', $name)->count('id');
+            if ($count == 0) {
+                $movie = new Movie();
+                $movie->name = $name;
+                $files = Storage::disk('movies')->allFiles($name);
+                foreach ($files as $file) {
+                    $file_parts = pathinfo($file);
+                    if ($file_parts['extension'] == 'nfo') {
+                        $file = file_get_contents(Storage::disk('movies')->path($file));
+
+                        $xml = simplexml_load_string($file);
+
+                        $json = json_encode($xml);
+
+                        $info = json_decode($json, TRUE);
+
+                        $description = $info['plot'];
+                        $movie->description = $description;
+                        $movie->year = $info['year'];
+                        $movie->runtime = $info['runtime'];
+                        $movie->rating = $info['rating'];
+                        print_r($info);
+                        if (array_key_exists('mpaa', $info)) {
+                            $movie->mpaa = $info['mpaa'];
+                        }
+                        if (array_key_exists('director', $info)) {
+                            if (!is_array($info['director'])) {
+                                $movie->director = $info['director'];
+                            }
+                        }
+                        if (array_key_exists('uniqueid', $info)) {
+                            if (!is_array($info['uniqueid'])) {
+                                foreach ($info['uniqueid'] as $id) {
+                                    $ch = curl_init();
+                                    curl_setopt($ch, CURLOPT_URL, "http://webservice.fanart.tv/v3/movies/$id");
+                                    curl_setopt($ch, CURLOPT_HTTPHEADER, array('api-key: 6012ad815ffea10ea5e17f8231576b22', 'client-key: f4f756be630725b39f18509ac8209f9c'));
+                                    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+                                    $result = curl_exec($ch);
+                                    curl_close($ch);
+                                    echo $result;
+                                }
+                            }
+                        }
+                        if (array_key_exists('studio', $info)) {
+                            if (!is_array($info['studio'])) {
+                                $movie->studio = $info['studio'];
+                            }
+                        }
+                        $movie->trailer = $info['trailer'];
+                        $movie->disk = 'movies2';
+                        $movie->save();
+
+                        $genre = $info['genre'];
+
+                        if (is_array($genre)) {
+                            foreach ($genre as $res) {
+                                $genreM = new Genre();
+
+                                $genreM->name = $name;
+                                $genreM->genre = $res;
+
+                                $genreM->save();
+                            }
+                        }
+
+                        $actors = $info['actor'];
+                        $i = 0;
+                        foreach ($actors as $res) {
+                            $actor = new Actor();
+
+                            $actor->name = $name;
+                            $actor->actor = $res['name'];
+                            $actor->thumb = $res['thumb'];
+                            $actor->role = $res['role'];
+                            $actor->save();
+
+                            if (!array_key_exists('thumb', $actors)) {
+                                break;
+                            }
+
+                            $i++;
+                        }
+                    }
+                }
+            }
+        }
     }
 }

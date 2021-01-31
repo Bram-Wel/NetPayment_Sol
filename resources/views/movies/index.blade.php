@@ -112,7 +112,7 @@
                 @endphp
                 @foreach($movies as $movie)
                     @php
-                        $video = \App\Models\Movie::where('name', $movie->name)->get();
+                        $video = \App\Models\Movie::where('name', $movie->name)->where('converted', 1)->get();
                     @endphp
                     @foreach($video as $info)
                         @php

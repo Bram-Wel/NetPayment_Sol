@@ -62,6 +62,13 @@ return [
             'visibility' => 'public'
         ],
 
+        'movies2' => [
+            'driver' => 'local',
+            'root' => '/run/media/thetechglitch/MOVIES',
+            'url' => env('APP_URL') . '/movies/',
+            'visibility' => 'public'
+        ],
+
         's3' => [
             'driver' => 's3',
             'key' => env('AWS_ACCESS_KEY_ID'),

@@ -130,11 +130,11 @@
         </div>
     @endforeach
 
-    <div>
+    <div class="overflow-x-scroll">
         <h1 class="text-gray-600 text-xl pl-15 text-center md:text-left">Coming this week</h1>
-        <div class="flex flex-row flex-wrap justify-center md:justify-start pl-8">
+        <div class="flex flex-row justify-center md:justify-start pl-8">
             @php
-                $movies = \App\Models\Movie::where('converted', 0)->orderBy('year', 'desc')->limit(7)->get();
+                $movies = \App\Models\Movie::where('converted', 0)->orderBy('year', 'desc')->get();
             @endphp
             @foreach($movies as $movie)
                 @php

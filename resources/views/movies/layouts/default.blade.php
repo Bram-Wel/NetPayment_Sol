@@ -34,7 +34,7 @@
     <script src="{{ asset('js/assets/toastr.min.js') }}"></script>
 
 </head>
-<body class="font-sans antialiased">
+<body class="font-sans antialiased overflow-x-hidden">
 <div class="min-h-screen">
     @livewire('navigation-dropdown')
 

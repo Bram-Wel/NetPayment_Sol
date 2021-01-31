@@ -133,7 +133,7 @@
 
     <div class="overflow-x-scroll">
         <h1 class="text-gray-600 text-xl pl-15 text-center md:text-left">Coming this week</h1>
-        <div class="flex flex-row justify-center md:justify-start pl-8">
+        <div class="pl-8 grab">
             @php
                 $movies = \App\Models\Movie::where('converted', 0)->orderBy('year', 'desc')->get();
             @endphp

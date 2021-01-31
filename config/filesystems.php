@@ -65,7 +65,7 @@ return [
         'movies2' => [
             'driver' => 'local',
             'root' => '/run/media/thetechglitch/MOVIES',
-            'url' => env('APP_URL') . '/movies/',
+            'url' => env('APP_URL') . '/storage/movies2/',
             'visibility' => 'public'
         ],
 

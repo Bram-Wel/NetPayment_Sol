@@ -26,8 +26,8 @@
         <div class="flex flex-row flex-wrap justify-center md:justify-start pl-10">
             @foreach($featured as $index=>$movie)
                 @php
-                    $url = \Illuminate\Support\Facades\Storage::disk('movies')->url($movie->name . '/poster.jpg');
-                    $banner = \Illuminate\Support\Facades\Storage::disk('movies')->url($movie->name . '/fanart.jpg')
+                    $url = \Illuminate\Support\Facades\Storage::disk($movie->disk)->url($movie->name . '/poster.jpg');
+                    $banner = \Illuminate\Support\Facades\Storage::disk($movie->disk)->url($movie->name . '/fanart.jpg')
                 @endphp
                 <a href="{{ route('player', ['movie' => $movie->id]) }}" class="md:ml-6 mb-6 mt-2">
                     @if($index==0 || $index ==1)
@@ -56,7 +56,7 @@
         <div class="flex flex-row flex-wrap justify-center md:justify-start pl-8">
             @foreach($movies as $movie)
                 @php
-                    $url = \Illuminate\Support\Facades\Storage::disk('movies')->url($movie->name . '/poster.jpg');
+                    $url = \Illuminate\Support\Facades\Storage::disk($movie->disk)->url($movie->name . '/poster.jpg');
                 @endphp
                 <a href="{{ route('player', ['movie' => $movie->id]) }}" class="md:ml-5 mb-6 mt-2">
                     <div
@@ -86,7 +86,7 @@
                 @endphp
                 @foreach($video as $movie)
                     @php
-                        $url = \Illuminate\Support\Facades\Storage::disk('movies')->url($movie->name . '/poster.jpg');
+                        $url = \Illuminate\Support\Facades\Storage::disk($movie->disk)->url($movie->name . '/poster.jpg');
                     @endphp
                     <a href="{{ route('player', ['movie' => $movie->id]) }}" class="">
                         <div
@@ -116,7 +116,7 @@
                     @endphp
                     @foreach($video as $info)
                         @php
-                            $url = \Illuminate\Support\Facades\Storage::disk('movies')->url($info->name . '/poster.jpg');
+                            $url = \Illuminate\Support\Facades\Storage::disk($info->disk)->url($info->name . '/poster.jpg');
                         @endphp
                         <a href="{{ route('player', ['movie' => $info->id]) }}" class="">
                             <div
@@ -129,5 +129,26 @@
             </div>
         </div>
     @endforeach
+
+    <div>
+        <h1 class="text-gray-600 text-xl pl-15 text-center md:text-left">Coming this week</h1>
+        <div class="flex flex-row flex-wrap justify-center md:justify-start pl-8">
+            @php
+                $movies = \App\Models\Movie::where('converted', 0)->orderBy('year', 'desc')->limit(7)->get();
+            @endphp
+            @foreach($movies as $movie)
+                @php
+                    $url = \Illuminate\Support\Facades\Storage::disk($movie->disk)->url($movie->name . '/poster.jpg');
+                @endphp
+                <a href="{{ route('player', ['movie' => $movie->id]) }}" class="md:ml-5 mb-6 mt-2">
+                    <div
+                        style="
+                            background: url('{{ addslashes($url) }}'); background-size: cover; background-position: center; background-repeat: no-repeat"
+                        class="rounded-xl shadow-2xl poster thumbnail">
+                    </div>
+                </a>
+            @endforeach
+        </div>
+    </div>
 </div>
 @include('movies.layouts.footer')

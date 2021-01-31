@@ -132,7 +132,7 @@
     @endforeach
 
     <div>
-        <h1 class="text-gray-600 text-xl pl-15 text-center md:text-left">Coming this week</h1>
+        <h1 class="text-gray-600 text-xl pl-15 text-center md:text-left">Coming today</h1>
         <div class="pl-8 grab">
             @php
                 $movies = \App\Models\Movie::where('converted', 0)->orderBy('year', 'desc')->get();

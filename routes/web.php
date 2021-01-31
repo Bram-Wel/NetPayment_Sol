@@ -37,10 +37,6 @@ Route::match(['get', 'post'], '/', function (Request $request) {
     return view('auth.login');
 });
 
-Route::get('test', function () {
-    dd(Storage::disk('movies2'));
-});
-
 Route::match('get', '/login', function (Request $request) {
     if ($request->ip) {
         $ip = $request->ip;

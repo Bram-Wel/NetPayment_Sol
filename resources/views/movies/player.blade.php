@@ -7,6 +7,10 @@
         margin: 0;
         background: black;
     }
+
+    video {
+        object-fit: contain;
+    }
 </style>
 
 <div>

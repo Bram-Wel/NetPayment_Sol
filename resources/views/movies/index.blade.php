@@ -155,7 +155,7 @@
 <script>
     $('.grab').slick({
         slidesToShow: 7,
-        slidesToScroll: 1
+        slidesToScroll: 3
     });
 </script>
 @include('movies.layouts.footer')

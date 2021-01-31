@@ -199,6 +199,9 @@ class AddMovies extends Command
                         $actors = $info['actor'];
                         $i = 0;
                         foreach ($actors as $res) {
+                            if (!array_key_exists('thumb', $actors)) {
+                                break;
+                            }
                             $actor = new Actor();
 
                             $actor->name = $name;
@@ -206,10 +209,6 @@ class AddMovies extends Command
                             $actor->thumb = $res['thumb'];
                             $actor->role = $res['role'];
                             $actor->save();
-
-                            if (!array_key_exists('thumb', $actors)) {
-                                break;
-                            }
 
                             $i++;
                         }

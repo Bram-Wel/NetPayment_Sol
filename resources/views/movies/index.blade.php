@@ -132,21 +132,23 @@
     @endforeach
 
     <div>
-        <h1 class="text-gray-600 text-xl pl-15 text-center md:text-left">Coming today</h1>
-        <div class="pl-8 grab">
-            @php
-                $movies = \App\Models\Movie::where('converted', 0)->orderBy('year', 'desc')->get();
-            @endphp
-            @foreach($movies as $movie)
-                @php
-                    $url = \Illuminate\Support\Facades\Storage::disk($movie->disk)->url($movie->name . '/poster.jpg');
-                @endphp
-                <a href="{{ route('player', ['movie' => $movie->id]) }}" class="md:ml-5 mb-6 mt-2">
-                    <img src="{{ $url }}"
-                         class="rounded-xl shadow-2xl poster thumbnail lazy">
-                </a>
-            @endforeach
-        </div>
+        @php
+            $movies = \App\Models\Movie::where('converted', 0)->orderBy('year', 'desc')->get();
+        @endphp
+        @if(count($movies) > 0)
+            <h1 class="text-gray-600 text-xl pl-15 text-center md:text-left">Coming today</h1>
+            <div class="pl-8 grab">
+                @foreach($movies as $movie)
+                    @php
+                        $url = \Illuminate\Support\Facades\Storage::disk($movie->disk)->url($movie->name . '/poster.jpg');
+                    @endphp
+                    <a href="{{ route('player', ['movie' => $movie->id]) }}" class="md:ml-5 mb-6 mt-2">
+                        <img src="{{ $url }}"
+                             class="rounded-xl shadow-2xl poster thumbnail lazy">
+                    </a>
+                @endforeach
+            </div>
+        @endif
     </div>
 </div>
 <script>var lazyLoadInstance = new LazyLoad({

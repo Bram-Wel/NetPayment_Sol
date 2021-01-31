@@ -20,7 +20,7 @@
 </style>
 
 <div>
-    <video class="w-full" id="video" style="height: 100vh!important" controls preload="auto">
+    <video class="w-full" id="video" style="height: 100vh!important" controls preload="auto" poster="{{ $poster }}">
     </video>
     <script src="//cdn.jsdelivr.net/npm/hls.js@latest"></script>
     <script>

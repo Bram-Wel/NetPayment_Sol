@@ -96,7 +96,7 @@
 
     @php
         $genres = \Illuminate\Support\Facades\DB::table('genres')->select('genre')
-    ->groupBy('genre')->get();
+    ->groupBy('genre')->inRandomOrder()->limit(5)->get();
     @endphp
     @foreach($genres as $g)
         <div class="pl-8">

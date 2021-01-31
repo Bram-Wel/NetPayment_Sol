@@ -19,9 +19,9 @@
                     {{--                    <x-jet-nav-link href="{{ route('movie-packages') }}" :active="request()->routeIs('movie-packages')">--}}
                     {{--                        {{ __('Movie Packages') }}--}}
                     {{--                    </x-jet-nav-link>--}}
-                    <x-jet-nav-link href="{{ route('movies') }}" :active="request()->routeIs('movies')">
-                        {{ __('Movies') }}
-                    </x-jet-nav-link>
+                    {{--                    <x-jet-nav-link href="{{ route('movies') }}" :active="request()->routeIs('movies')">--}}
+                    {{--                        {{ __('Movies') }}--}}
+                    {{--                    </x-jet-nav-link>--}}
 
                     @if(\Illuminate\Support\Facades\Auth::user()->admin == 1)
                         <x-jet-nav-link href="{{ route('dashboard') }}" :active="request()->routeIs('dashboard')">
@@ -161,9 +161,9 @@
             <x-jet-responsive-nav-link href="{{ route('dashboard') }}" :active="request()->routeIs('dashboard')">
                 {{ __('Packages') }}
             </x-jet-responsive-nav-link>
-            <x-jet-responsive-nav-link href="{{ route('movies') }}" :active="request()->routeIs('movies')">
-                {{ __('Movies') }}
-            </x-jet-responsive-nav-link>
+            {{--            <x-jet-responsive-nav-link href="{{ route('movies') }}" :active="request()->routeIs('movies')">--}}
+            {{--                {{ __('Movies') }}--}}
+            {{--            </x-jet-responsive-nav-link>--}}
 
         </div>
 

@@ -131,7 +131,7 @@
         </div>
     @endforeach
 
-    <div class="overflow-x-scroll">
+    <div>
         <h1 class="text-gray-600 text-xl pl-15 text-center md:text-left">Coming this week</h1>
         <div class="pl-8 grab">
             @php

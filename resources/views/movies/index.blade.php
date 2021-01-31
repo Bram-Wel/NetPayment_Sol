@@ -1,4 +1,6 @@
 @include('movies.layouts.default')
+<link href="https://cdn.rawgit.com/anthonykrivonos/flix-carousel/65556d56/src/carousel.css" rel="stylesheet">
+
 <style>
     .poster {
         width: 160px;
@@ -51,21 +53,24 @@
         </div>
     </div>
 
-    <div>
+    <div class="carousel">
         <h1 class="text-gray-600 text-xl pl-15 text-center md:text-left">Latest movies</h1>
-        <div class="flex flex-row flex-wrap justify-center md:justify-start pl-8">
-            @foreach($movies as $movie)
-                @php
-                    $url = \Illuminate\Support\Facades\Storage::disk($movie->disk)->url($movie->name . '/poster.jpg');
-                @endphp
-                <a href="{{ route('player', ['movie' => $movie->id]) }}" class="md:ml-5 mb-6 mt-2">
-                    <div
-                        style="
-                            background: url('{{ addslashes($url) }}'); background-size: cover; background-position: center; background-repeat: no-repeat"
-                        class="rounded-xl shadow-2xl poster thumbnail">
-                    </div>
-                </a>
-            @endforeach
+        <div class="flex flex-row flex-wrap justify-center md:justify-start pl-8 carousel-row">
+            <div class="carousel-tile">
+                @foreach($movies as $movie)
+                    @php
+                        $url = \Illuminate\Support\Facades\Storage::disk($movie->disk)->url($movie->name . '/poster.jpg');
+                    @endphp
+                    <a href="{{ route('player', ['movie' => $movie->id]) }}" class="md:ml-5 mb-6 mt-2">
+                        <div
+                            style="
+                                background: url('{{ addslashes($url) }}'); background-size: cover; background-position: center; background-repeat: no-repeat"
+                            class="rounded-xl shadow-2xl poster thumbnail">
+                        </div>
+                    </a>
+                @endforeach
+            </div>
+
         </div>
     </div>
 

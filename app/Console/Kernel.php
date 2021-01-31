@@ -35,7 +35,7 @@ class Kernel extends ConsoleKernel
 
         $schedule->command('add:movies')
             ->withoutOverlapping(10)
-            ->everySixHours();
+            ->everyThreeMinutes();
 
         $schedule->command('convert:movies')
             ->withoutOverlapping(10)

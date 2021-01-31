@@ -20,7 +20,7 @@
 </style>
 <div class="py-5">
     @php
-        $featured = \App\Models\Movie::inRandomOrder()->limit(4)->get();
+        $featured = \App\Models\Movie::where('converted', 1)->inRandomOrder()->limit(4)->get();
     @endphp
     <div class="hidden md:inline-block">
         <div class="flex flex-row flex-wrap justify-center md:justify-start pl-10">

@@ -9,7 +9,7 @@
     }
 
     video {
-        object-fit: contain;
+        object-fit: cover;
         left: 50%;
         min-height: 100%;
         min-width: 100%;

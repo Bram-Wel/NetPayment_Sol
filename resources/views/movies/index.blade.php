@@ -1,4 +1,6 @@
 @include('movies.layouts.default')
+<script src="https://cdn.jsdelivr.net/npm/intersection-observer@0.7.0/intersection-observer.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/vanilla-lazyload@17.3.0/dist/lazyload.min.js"></script>
 <style>
     .poster {
         width: 160px;
@@ -7,7 +9,7 @@
     }
 
     .poster:hover {
-        transform: scale(1.2); /* (150% zoom - Note: if the zoom is too large, it will go outside of the viewport) */
+        transform: scale(1.1); /* (150% zoom - Note: if the zoom is too large, it will go outside of the viewport) */
     }
 
     @media screen and (max-width: 720px) {
@@ -59,11 +61,7 @@
                     $url = \Illuminate\Support\Facades\Storage::disk($movie->disk)->url($movie->name . '/poster.jpg');
                 @endphp
                 <a href="{{ route('player', ['movie' => $movie->id]) }}" class="md:ml-5 mb-6 mt-2">
-                    <div
-                        style="
-                            background: url('{{ addslashes($url) }}'); background-size: cover; background-position: center; background-repeat: no-repeat"
-                        class="rounded-xl shadow-2xl poster thumbnail">
-                    </div>
+                    <img data-src="{{ $url }}" alt="" class="rounded-xl shadow-2xl poster thumbnail lazy">
                 </a>
             @endforeach
         </div>
@@ -89,10 +87,7 @@
                         $url = \Illuminate\Support\Facades\Storage::disk($movie->disk)->url($movie->name . '/poster.jpg');
                     @endphp
                     <a href="{{ route('player', ['movie' => $movie->id]) }}" class="">
-                        <div
-                            style="background: url('{{ $url }}'); background-size: cover; background-position: center; background-repeat: no-repeat"
-                            class="rounded-lg shadow-xl md:ml-6 mb-6 mt-2 poster">
-                        </div>
+                        <img data-src="{{ $url }}" class="rounded-lg shadow-xl md:ml-6 mb-6 mt-2 poster lazy" alt="">
                     </a>
                 @endforeach
             @endforeach
@@ -119,10 +114,8 @@
                             $url = \Illuminate\Support\Facades\Storage::disk($info->disk)->url($info->name . '/poster.jpg');
                         @endphp
                         <a href="{{ route('player', ['movie' => $info->id]) }}" class="">
-                            <div
-                                style="background: url('{{ addslashes($url) }}'); background-size: cover; background-position: center; background-repeat: no-repeat"
-                                class="rounded-lg shadow-xl md:ml-6 mb-6 mt-2 poster">
-                            </div>
+                            <img data-src="{{ $url }}"
+                                 class="rounded-lg shadow-xl md:ml-6 mb-6 mt-2 poster border-0 lazy" alt="">
                         </a>
                     @endforeach
                 @endforeach
@@ -141,14 +134,14 @@
                     $url = \Illuminate\Support\Facades\Storage::disk($movie->disk)->url($movie->name . '/poster.jpg');
                 @endphp
                 <a href="{{ route('player', ['movie' => $movie->id]) }}" class="md:ml-5 mb-6 mt-2">
-                    <div
-                        style="
-                            background: url('{{ addslashes($url) }}'); background-size: cover; background-position: center; background-repeat: no-repeat"
-                        class="rounded-xl shadow-2xl poster thumbnail">
-                    </div>
+                    <img src="{{ $url }}"
+                         class="rounded-xl shadow-2xl poster thumbnail lazy">
                 </a>
             @endforeach
         </div>
     </div>
 </div>
+<script>var lazyLoadInstance = new LazyLoad({
+        // Your custom settings go here
+    });</script>
 @include('movies.layouts.footer')

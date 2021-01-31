@@ -1,11 +1,18 @@
 @include('movies.layouts.default')
 <script src="https://cdn.jsdelivr.net/npm/intersection-observer@0.7.0/intersection-observer.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/vanilla-lazyload@17.3.0/dist/lazyload.min.js"></script>
+<link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
+<script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+
 <style>
     .poster {
         width: 160px;
         height: 230px;
         transition: transform 1s; /* Animation */
+    }
+
+    .slick-arrow {
+        display: none !important;
     }
 
     .poster:hover {
@@ -99,25 +106,27 @@
     ->groupBy('genre')->inRandomOrder()->limit(5)->get();
     @endphp
     @foreach($genres as $g)
-        <div class="pl-8">
+        <div class="pl-8 w-screen">
             <h1 class="text-gray-600 text-xl md:pl-6 text-center md:text-left">{{ $g->genre }}</h1>
-            <div class="flex flex-row flex-wrap md:flex-row justify-center content-center md:justify-start">
+            <div id="container" class="mr-4 grab">
                 @php
-                    $movies = \App\Models\Genre::where('genre', $g->genre)->select('name')->groupBy('name')->limit(7)->get();
+                    $movies = \App\Models\Genre::where('genre', $g->genre)->select('name')->groupBy('name')->get();
                 @endphp
                 @foreach($movies as $movie)
-                    @php
-                        $video = \App\Models\Movie::where('name', $movie->name)->where('converted', 1)->get();
-                    @endphp
-                    @foreach($video as $info)
+                    <div class>
                         @php
-                            $url = \Illuminate\Support\Facades\Storage::disk($info->disk)->url($info->name . '/poster.jpg');
+                            $video = \App\Models\Movie::where('name', $movie->name)->get();
                         @endphp
-                        <a href="{{ route('player', ['movie' => $info->id]) }}" class="">
-                            <img data-src="{{ $url }}"
-                                 class="rounded-lg shadow-xl md:ml-6 mb-6 mt-2 poster border-0 lazy" alt="">
-                        </a>
-                    @endforeach
+                        @foreach($video as $info)
+                            @php
+                                $url = \Illuminate\Support\Facades\Storage::disk($info->disk)->url($info->name . '/poster.jpg');
+                            @endphp
+                            <a href="{{ route('player', ['movie' => $info->id]) }}" class="w-48">
+                                <img src="{{ $url }}"
+                                     class="rounded-lg shadow-xl md:ml-6 mb-6 mt-2 poster border-0 lazy" alt="">
+                            </a>
+                        @endforeach
+                    </div>
                 @endforeach
             </div>
         </div>
@@ -144,4 +153,10 @@
 <script>var lazyLoadInstance = new LazyLoad({
         // Your custom settings go here
     });</script>
+<script>
+    $('.grab').slick({
+        slidesToShow: 7,
+        slidesToScroll: 14
+    });
+</script>
 @include('movies.layouts.footer')

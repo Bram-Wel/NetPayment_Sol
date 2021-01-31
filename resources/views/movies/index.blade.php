@@ -143,7 +143,7 @@
                         $url = \Illuminate\Support\Facades\Storage::disk($movie->disk)->url($movie->name . '/poster.jpg');
                     @endphp
                     <a href="{{ route('player', ['movie' => $movie->id]) }}" class="md:ml-5 mb-6 mt-2">
-                        <img src="{{ urlencode($url) }}"
+                        <img src="{{ urlrawencode($url) }}"
                              class="rounded-xl shadow-2xl poster thumbnail lazy">
                     </a>
                 @endforeach

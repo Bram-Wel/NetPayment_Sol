@@ -130,6 +130,7 @@ class AddMovies extends Command
         }
 
         $movies = Storage::disk('movies2')->allDirectories();
+        print_r($movies);
         foreach ($movies as $name) {
             $count = Movie::where('name', $name)->count('id');
             if ($count == 0) {

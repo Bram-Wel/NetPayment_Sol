@@ -140,7 +140,7 @@ class AddMovies extends Command
                     FFMpeg::fromDisk('movies2')
                         ->open($file)
                         ->export()
-                        ->save('playlist.m3u8');
+                        ->save($name . '/playlist.m3u8');
                 }
             }
 

@@ -138,12 +138,9 @@ class AddMovies extends Command
             foreach ($files as $file) {
                 $file_parts = pathinfo($file);
                 if ($file_parts['extension'] == 'mp4') {
-                    print_r("Converting $name");
-
-                    FFMpeg::fromDisk('movies2')
-                        ->open($file)
-                        ->export()
-                        ->save($file_parts['dirname'] . '/playlist.m3u8');
+                    $directory = $file_parts['dirname'];
+                    chdir("/run/media/thetechglitch/MOVIES/$directory");
+                    shell_exec("ffmpeg -i $file -codec: copy -b:v 2800k -maxrate 2996k -bufsize 4200k -b:a 128k  -start_number 0 -hls_time 4 -hls_list_size 0 -f hls -hls_playlist_type vod -hls_segment_filename playlist_%03d.ts playlist.m3u8");
                 }
             }
 

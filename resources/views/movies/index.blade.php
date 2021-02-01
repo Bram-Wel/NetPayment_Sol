@@ -62,7 +62,7 @@
 
     <div>
         <h1 class="font-bold text-xl pl-15 text-center md:text-left">Latest movies</h1>
-        <div class="pl-8 grab">
+        <div class="pl-8 grab flex">
             @foreach($movies as $movie)
                 @php
                     $url = \Illuminate\Support\Facades\Storage::disk($movie->disk)->url($movie->name . '/poster.jpg');
@@ -82,7 +82,7 @@
             ->orderByRaw('COUNT(*) DESC')
             ->get();
         @endphp
-        <div class="grab">
+        <div class="grab flex">
             @foreach($watchers as $movie)
                 @php
                     $name = $movie->movie;
@@ -107,7 +107,7 @@
     @foreach($genres as $g)
         <div class="pl-8 w-screen">
             <h1 class="font-bold text-xl md:pl-6 text-center md:text-left">{{ $g->genre }}</h1>
-            <div id="container" class="mr-4 grab">
+            <div id="container" class="mr-4 grab" style="display: flex!important;">
                 @php
                     $movies = \App\Models\Genre::where('genre', $g->genre)->select('name')->groupBy('name')->get();
                 @endphp

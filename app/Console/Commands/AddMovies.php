@@ -139,18 +139,10 @@ class AddMovies extends Command
                 $file_parts = pathinfo($file);
                 if ($file_parts['extension'] == 'mp4') {
                     print_r("Converting $name");
-                    $lowBitrate = (new X264)->setKiloBitrate(250);
-                    $midBitrate = (new X264)->setKiloBitrate(500);
-                    $highBitrate = (new X264)->setKiloBitrate(1000);
 
                     FFMpeg::fromDisk('movies2')
                         ->open($file)
-                        ->exportForHLS()
-                        ->setSegmentLength(10) // optional
-                        ->setKeyFrameInterval(48) // optional
-                        ->addFormat($lowBitrate)
-                        ->addFormat($midBitrate)
-                        ->addFormat($highBitrate)
+                        ->export()
                         ->save($file_parts['dirname'] . '/playlist.m3u8');
                 }
             }

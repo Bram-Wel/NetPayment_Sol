@@ -135,16 +135,21 @@ class AddMovies extends Command
         foreach ($movies as $name) {
             // convert movies
             $files = Storage::disk('movies2')->allFiles($name);
-            $highBitrate = (new X264)->setKiloBitrate(1000);
             foreach ($files as $file) {
                 $file_parts = pathinfo($file);
                 if ($file_parts['extension'] == 'mp4') {
                     print_r("Converting $name");
-                    FFMpeg::fromDisk('movies2')
+                    $lowBitrate = (new X264)->setKiloBitrate(250);
+                    $midBitrate = (new X264)->setKiloBitrate(500);
+                    $highBitrate = (new X264)->setKiloBitrate(1000);
+
+                    FFMpeg::fromDisk('videos')
                         ->open($file)
                         ->exportForHLS()
                         ->setSegmentLength(10) // optional
                         ->setKeyFrameInterval(48) // optional
+                        ->addFormat($lowBitrate)
+                        ->addFormat($midBitrate)
                         ->addFormat($highBitrate)
                         ->save($file_parts['dirname'] . '/playlist.m3u8');
                 }

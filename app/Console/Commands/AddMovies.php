@@ -66,7 +66,6 @@ class AddMovies extends Command
                         $movie->year = $info['year'];
                         $movie->runtime = $info['runtime'];
                         $movie->rating = $info['rating'];
-                        print_r($info);
                         if (array_key_exists('mpaa', $info)) {
                             $movie->mpaa = $info['mpaa'];
                         }
@@ -139,6 +138,7 @@ class AddMovies extends Command
                 $file_parts = pathinfo($file);
                 if ($file_parts['extension'] == 'mp4') {
                     $directory = $file_parts['dirname'];
+                    print_r($file);
                     chdir("/run/media/thetechglitch/MOVIES/$directory");
                     shell_exec("ffmpeg -i $file -codec: copy -b:v 2800k -maxrate 2996k -bufsize 4200k -b:a 128k  -start_number 0 -hls_time 4 -hls_list_size 0 -f hls -hls_playlist_type vod -hls_segment_filename playlist_%03d.ts playlist.m3u8");
                 }
@@ -165,7 +165,6 @@ class AddMovies extends Command
                         $movie->year = $info['year'];
                         $movie->runtime = $info['runtime'];
                         $movie->rating = $info['rating'];
-                        print_r($info);
                         if (array_key_exists('mpaa', $info)) {
                             $movie->mpaa = $info['mpaa'];
                         }

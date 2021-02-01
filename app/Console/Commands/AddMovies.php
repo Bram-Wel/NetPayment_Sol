@@ -137,10 +137,11 @@ class AddMovies extends Command
             foreach ($files as $file) {
                 $file_parts = pathinfo($file);
                 if ($file_parts['extension'] == 'mp4') {
-                    FFMpeg::fromDisk('movies2')
-                        ->open($file)
-                        ->export()
-                        ->save($name . '/playlist.m3u8');
+                    print_r($file);
+//                    FFMpeg::fromDisk('movies2')
+//                        ->open($file)
+//                        ->export()
+//                        ->save($name . '/playlist.m3u8');
                 }
             }
 

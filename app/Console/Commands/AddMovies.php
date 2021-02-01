@@ -139,9 +139,7 @@ class AddMovies extends Command
                 if ($file_parts['extension'] == 'mp4') {
                     FFMpeg::fromDisk('movies2')
                         ->open($file)
-                        ->exportForHLS()
-                        ->setSegmentLength(4) // optional
-                        ->setKeyFrameInterval(48) // optional
+                        ->export()
                         ->save('playlist.m3u8');
                 }
             }

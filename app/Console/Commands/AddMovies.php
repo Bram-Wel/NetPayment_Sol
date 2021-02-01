@@ -136,6 +136,7 @@ class AddMovies extends Command
             $files = Storage::disk('movies2')->allFiles($name);
             foreach ($files as $file) {
                 $file_parts = pathinfo($file);
+                print_r($file_parts);
                 if ($file_parts['extension'] == 'mp4') {
                     print_r($file);
 //                    FFMpeg::fromDisk('movies2')

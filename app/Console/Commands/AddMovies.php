@@ -7,6 +7,7 @@ use App\Models\Genre;
 use App\Models\Movie;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Storage;
+use ProtoneMedia\LaravelFFMpeg\Support\FFMpeg;
 
 class AddMovies extends Command
 {
@@ -131,6 +132,20 @@ class AddMovies extends Command
 
         $movies = Storage::disk('movies2')->allDirectories();
         foreach ($movies as $name) {
+            // convert movies
+            $files = Storage::disk('movies2')->allFiles($name);
+            foreach ($files as $file) {
+                $file_parts = pathinfo($file);
+                if ($file_parts['extension'] == 'mp4') {
+                    FFMpeg::fromDisk('videos')
+                        ->open($file)
+                        ->exportForHLS()
+                        ->setSegmentLength(4) // optional
+                        ->setKeyFrameInterval(48) // optional
+                        ->save('playlist.m3u8');
+                }
+            }
+
             $count = Movie::where('name', $name)->count('id');
             if ($count == 0) {
                 $movie = new Movie();

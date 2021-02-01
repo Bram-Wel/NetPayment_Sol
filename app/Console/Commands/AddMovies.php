@@ -140,7 +140,7 @@ class AddMovies extends Command
                     print_r("Converting $name");
                     FFMpeg::fromDisk('movies2')
                         ->open($file)
-                        ->export()
+                        ->exportForHLS()
                         ->save($file_parts['dirname'] . '/playlist.m3u8');
                 }
             }

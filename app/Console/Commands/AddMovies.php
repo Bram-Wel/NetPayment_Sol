@@ -137,7 +137,7 @@ class AddMovies extends Command
             foreach ($files as $file) {
                 $file_parts = pathinfo($file);
                 if ($file_parts['extension'] == 'mp4') {
-                    FFMpeg::fromDisk('videos')
+                    FFMpeg::fromDisk('movies2')
                         ->open($file)
                         ->exportForHLS()
                         ->setSegmentLength(4) // optional

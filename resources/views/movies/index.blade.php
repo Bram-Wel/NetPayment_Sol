@@ -61,7 +61,7 @@
     </div>
 
     <div>
-        <h1 class="text-gray-600 text-xl pl-15 text-center md:text-left">Latest movies</h1>
+        <h1 class="font-bold text-xl pl-15 text-center md:text-left">Latest movies</h1>
         <div class="pl-8 grab">
             @foreach($movies as $movie)
                 @php
@@ -75,7 +75,7 @@
     </div>
 
     <div class="pl-8">
-        <h1 class="text-gray-600 text-xl md:pl-6 text-center md:text-left">Most Watched</h1>
+        <h1 class="font-bold text-xl md:pl-6 text-center md:text-left">Most Watched</h1>
         @php
             $watchers = \App\Models\Watchers::select('movie')
             ->groupBy('movie')
@@ -106,7 +106,7 @@
     @endphp
     @foreach($genres as $g)
         <div class="pl-8 w-screen">
-            <h1 class="text-gray-600 text-xl md:pl-6 text-center md:text-left">{{ $g->genre }}</h1>
+            <h1 class="font-bold text-xl md:pl-6 text-center md:text-left">{{ $g->genre }}</h1>
             <div id="container" class="mr-4 grab">
                 @php
                     $movies = \App\Models\Genre::where('genre', $g->genre)->select('name')->groupBy('name')->get();
@@ -136,7 +136,7 @@
             $movies = \App\Models\Movie::where('converted', 0)->orderBy('year', 'desc')->get();
         @endphp
         @if(count($movies) > 0)
-            <h1 class="text-gray-600 text-xl pl-15 text-center md:text-left">Coming today</h1>
+            <h1 class="font-bold text-xl pl-15 text-center md:text-left">Coming today</h1>
             <div class="pl-8 grab">
                 @foreach($movies as $movie)
                     @php

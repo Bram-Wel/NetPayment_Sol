@@ -26,13 +26,17 @@
             transform: translate(-50%, -50%);
         }
     </style>
-    <title>Document</title>
 </head>
 <body>
 <div>
     <video class="w-full" autoplay id="video" style="height: 100vh!important" controls preload="auto"
            poster="{{ $poster }}">
     </video>
+    <div class="controls" id="video-controls" data-state="hidden">
+        <div class="video-title">
+            <h4>{{ $movie }}</h4>
+        </div>
+    </div>
     <script src="//cdn.jsdelivr.net/npm/hls.js@latest"></script>
     <script>
         var config = {

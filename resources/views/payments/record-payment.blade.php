@@ -6,4 +6,7 @@
             </div>
         </div>
     </x-slot>
+    <div class="py-12 flex justify-center">
+        @livewire('forms.payments.record')
+    </div>
 </x-app-layout>

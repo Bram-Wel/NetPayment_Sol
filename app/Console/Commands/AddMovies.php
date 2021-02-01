@@ -143,7 +143,7 @@ class AddMovies extends Command
                     $midBitrate = (new X264)->setKiloBitrate(500);
                     $highBitrate = (new X264)->setKiloBitrate(1000);
 
-                    FFMpeg::fromDisk('videos')
+                    FFMpeg::fromDisk('movies2')
                         ->open($file)
                         ->exportForHLS()
                         ->setSegmentLength(10) // optional

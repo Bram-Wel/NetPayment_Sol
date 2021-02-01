@@ -5,6 +5,7 @@ namespace App\Console\Commands;
 use App\Models\Actor;
 use App\Models\Genre;
 use App\Models\Movie;
+use FFMpeg\Format\Video\X264;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Storage;
 use ProtoneMedia\LaravelFFMpeg\Support\FFMpeg;
@@ -134,6 +135,7 @@ class AddMovies extends Command
         foreach ($movies as $name) {
             // convert movies
             $files = Storage::disk('movies2')->allFiles($name);
+            $highBitrate = (new X264)->setKiloBitrate(1000);
             foreach ($files as $file) {
                 $file_parts = pathinfo($file);
                 if ($file_parts['extension'] == 'mp4') {
@@ -141,6 +143,9 @@ class AddMovies extends Command
                     FFMpeg::fromDisk('movies2')
                         ->open($file)
                         ->exportForHLS()
+                        ->setSegmentLength(10) // optional
+                        ->setKeyFrameInterval(48) // optional
+                        ->addFormat($highBitrate)
                         ->save($file_parts['dirname'] . '/playlist.m3u8');
                 }
             }

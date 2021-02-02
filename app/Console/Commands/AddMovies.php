@@ -166,7 +166,9 @@ class AddMovies extends Command
                         $movie->description = $description;
                         $movie->year = $info['year'];
                         $movie->runtime = $info['runtime'];
-                        $movie->rating = $info['rating'];
+                        if (array_key_exists('rating', $info)) {
+                            $movie->rating = $info['rating'];
+                        }
                         if (array_key_exists('mpaa', $info)) {
                             $movie->mpaa = $info['mpaa'];
                         }

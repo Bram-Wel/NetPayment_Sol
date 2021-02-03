@@ -23,12 +23,12 @@
     @livewireStyles
 @stack("styles")
 <!-- Scripts -->
-    <script defer src="{{ mix('js/app.js') }}" defer></script>
+    <script src="{{ mix('js/app.js') }}" defer></script>
     <script defer src="{{ asset('js/assets/chart.js') }}"></script>
     <script defer src="{{ asset('js/assets/jquery-3.5.1.min.js') }}"></script>
     <link rel="stylesheet" type="text/css"
           href="{{ asset('css/assets/toastr.min.css') }}">
-    <script src="{{ asset('js/assets/toastr.min.js') }}"></script>
+    <script defer src="{{ asset('js/assets/toastr.min.js') }}"></script>
 </head>
 <body class="font-sans antialiased">
 <div class="min-h-screen bg-gray-100">
@@ -47,21 +47,7 @@
 
 @livewireScripts
 @stack("scripts")
-<script src="{{ asset('js/assets/sweetalert.min.js') }}"></script>
-<script type="module" src="{{ asset('js/assets/ionicons.esm.js') }}"></script>
 <script nomodule="" src="{{ asset('js/assets/ionicons.min.js') }}"></script>
-
-<script>
-    window.addEventListener('alert', event => {
-        Swal.fire({
-            position: 'center',
-            icon: event.detail.type,
-            title: event.detail.title,
-            message: event.detail.message,
-            showConfirmButton: true,
-        });
-    })
-</script>
 
 <script>
     @if(session()->has('message'))

@@ -43,12 +43,23 @@ Route::match(['get', 'post'], '/', function (Request $request) {
 
             $client = new Client($config);
 
-            $query = (new Query('/ip/hotspot/active/login'))
-                ->equal('user', \Illuminate\Support\Facades\Auth::user()->username)
-                ->equal('pass', $password)
-                ->equal('ip', $request->ip);
+            $query = (new Query('/ip/hotspot/user/print'))
+                ->where('name', \Illuminate\Support\Facades\Auth::user()->username);
 
-            $client->query($query)->read();
+            $response = $client->q($query)->read();
+
+            foreach ($response as $res) {
+                $profile = $res['profile'];
+
+                if ($profile != '0MBPS') {
+                    $query = (new Query('/ip/hotspot/active/login'))
+                        ->equal('user', \Illuminate\Support\Facades\Auth::user()->username)
+                        ->equal('pass', $password)
+                        ->equal('ip', $request->ip);
+
+                    $client->query($query)->read();
+                }
+            }
 
             return redirect(route('dashboard'));
         } else {

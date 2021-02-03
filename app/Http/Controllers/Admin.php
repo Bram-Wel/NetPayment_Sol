@@ -27,7 +27,7 @@ class Admin extends Controller
             ]);
 
             $client = new Client($config);
-            $name = Auth::user()->name;
+            $name = Auth::user()->username;
 
             $query = (new Query('/ip/hotspot/user/print'))
                 ->where('name', $name);

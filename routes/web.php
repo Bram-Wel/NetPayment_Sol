@@ -31,6 +31,25 @@ Route::match(['get', 'post'], '/', function (Request $request) {
         $ip = $request->ip;
         session(['ip' => $ip]);
         if (\Illuminate\Support\Facades\Auth::check()) {
+            $config = new Config([
+                'host' => env('MIKROTIK_HOST'),
+                'user' => env('MIKROTIK_USERNAME'),
+                'pass' => env('MIKROTIK_PASSWORD'),
+                'port' => (int)env('MIKROTIK_PORT')
+            ]);
+
+            $user = \App\Models\User::find(\Illuminate\Support\Facades\Auth::user()->id);
+            $password = $user->password;
+
+            $client = new Client($config);
+
+            $query = (new Query('/ip/hotspot/active/login'))
+                ->equal('user', \Illuminate\Support\Facades\Auth::user()->username)
+                ->equal('pass', $password)
+                ->equal('ip', $request->ip);
+
+            $client->query($query)->read();
+
             return redirect(route('dashboard'));
         } else {
             return view('auth.login');

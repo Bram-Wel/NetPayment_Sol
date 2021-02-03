@@ -47,7 +47,7 @@
 
 @livewireScripts
 @stack("scripts")
-<script nomodule="" src="{{ asset('js/assets/ionicons.min.js') }}"></script>
+<script defer nomodule="" src="{{ asset('js/assets/ionicons.min.js') }}"></script>
 
 <script>
     @if(session()->has('message'))

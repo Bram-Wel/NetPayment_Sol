@@ -30,11 +30,14 @@ Route::match(['get', 'post'], '/', function (Request $request) {
     if ($request->ip) {
         $ip = $request->ip;
         session(['ip' => $ip]);
+        if (\Illuminate\Support\Facades\Auth::check()) {
+            return redirect(route('dashboard'));
+        } else {
+            return view('auth.login');
+        }
     } else {
         return redirect('http://auth.thetechglitch.net');
     }
-
-    return view('auth.login');
 });
 
 Route::match('get', '/login', function (Request $request) {

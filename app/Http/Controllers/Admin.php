@@ -48,3 +48,5 @@ class Admin extends Controller
         }
     }
 }
+
+?>

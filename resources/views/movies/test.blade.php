@@ -28,38 +28,16 @@
     }
 </style>
 <div class="py-5">
-    @php
-        $featured = \App\Models\Movie::where('converted', 1)->inRandomOrder()->limit(4)->get();
-    @endphp
-    <div class="hidden md:inline-block">
-        <div class="flex flex-row flex-wrap justify-center md:justify-start pl-10">
-            @foreach($featured as $index=>$movie)
-                @php
-                    $url = \Illuminate\Support\Facades\Storage::disk($movie->disk)->url($movie->name . '/poster.jpg');
-                    $banner = \Illuminate\Support\Facades\Storage::disk($movie->disk)->url($movie->name . '/fanart.jpg')
-                @endphp
-                <a href="{{ route('player', ['movie' => $movie->id]) }}" class="md:ml-6 mb-6 mt-2">
-                    @if($index==0 || $index ==1)
-                        <div
-                            style="background: url('{{ addslashes($url) }}'); background-size: cover; background-position: center; background-repeat: no-repeat; width: 220px; height: 350px"
-                            class="shadow-xl rounded-xl">
-                        </div>
-                    @elseif($index==2)
-                        <div
-                            style="background: url('{{ $banner }}'); background-size: cover; background-position: center; background-repeat: no-repeat; width: 500px; height: 350px"
-                            class="shadow-xl rounded-xl">
-                        </div>
-                    @else
-                        <div
-                            style="background: url('{{ $url }}'); background-size: cover; background-position: center; background-repeat: no-repeat; width: 220px; height: 350px"
-                            class="shadow-xl rounded-xl">
-                        </div>
-                    @endif
-                </a>
-            @endforeach
-        </div>
-    </div>
 
+    @php
+        $featured = \App\Models\Movie::inRandomOrder()->limit(1);
+        $url = \Illuminate\Support\Facades\Storage::disk($featured->disk)->url($featured->name . '/fanart.jpg');
+
+    @endphp
+    <div
+        style="background: url('{{ $url }}'); background-size: cover; background-position: center; width: 100%; height: 80vh">
+
+    </div>
     <div>
         <h1 class="font-bold text-xl pl-15 text-center md:text-left">Latest movies</h1>
         <div class="pl-8 grab">
@@ -67,7 +45,7 @@
                 @php
                     $url = \Illuminate\Support\Facades\Storage::disk($movie->disk)->url($movie->name . '/poster.jpg');
                 @endphp
-                <a href="{{ route('player', ['movie' => $movie->id]) }}" class="md:ml-5 mb-6 mt-2">
+                <a href="{{ route('player', ['movie' => $movie->name]) }}" class="md:ml-5 mb-6 mt-2">
                     <img src="{{ $url }}" alt="" class="rounded-xl shadow-2xl poster thumbnail lazy">
                 </a>
             @endforeach
@@ -92,7 +70,7 @@
                     @php
                         $url = \Illuminate\Support\Facades\Storage::disk($movie->disk)->url($movie->name . '/poster.jpg');
                     @endphp
-                    <a href="{{ route('player', ['movie' => $movie->id]) }}" class="">
+                    <a href="{{ route('player', ['movie' => $movie->name]) }}" class="">
                         <img data-src="{{ $url }}" class="rounded-lg shadow-xl md:ml-6 mb-6 mt-2 poster lazy" alt="">
                     </a>
                 @endforeach
@@ -120,7 +98,7 @@
                             @php
                                 $url = \Illuminate\Support\Facades\Storage::disk($info->disk)->url($info->name . '/poster.jpg');
                             @endphp
-                            <a href="{{ route('player', ['movie' => $info->id]) }}" class="w-48">
+                            <a href="{{ route('player', ['movie' => $info->name]) }}" class="w-48">
                                 <img src="{{ $url }}"
                                      class="rounded-lg shadow-xl md:ml-6 mb-6 mt-2 poster border-0 lazy" alt="">
                             </a>
@@ -142,7 +120,7 @@
                     @php
                         $url = \Illuminate\Support\Facades\Storage::disk($movie->disk)->url($movie->name . '/poster.jpg');
                     @endphp
-                    <a href="{{ route('player', ['movie' => $movie->id]) }}" class="md:ml-5 mb-6 mt-2">
+                    <a href="{{ route('player', ['movie' => $movie->name]) }}" class="md:ml-5 mb-6 mt-2">
                         <img src="{{ $url }}"
                              class="rounded-xl shadow-2xl poster thumbnail lazy">
                     </a>

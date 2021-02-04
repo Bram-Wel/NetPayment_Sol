@@ -133,7 +133,7 @@ Route::middleware(['auth:sanctum', 'verified', 'admin'])->get('/payments/clicks'
 Route::middleware(['auth:sanctum', 'verified'])->get('/movies', [\App\Http\Controllers\MovieController::class, 'index'])
     ->name('movies');
 
-Route::middleware(['auth:sanctum', 'verified'])->get('/test', [\App\Http\Controllers\MovieController::class, 'index'])
+Route::middleware(['auth:sanctum', 'verified'])->get('/test', [\App\Http\Controllers\MovieController::class, 'test'])
     ->name('test');
 
 Route::middleware(['auth:sanctum', 'verified', 'admin'])->get('/hotspot/users', [\App\Http\Controllers\Users::class, 'HotspotUsers'])

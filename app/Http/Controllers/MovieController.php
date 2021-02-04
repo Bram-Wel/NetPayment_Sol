@@ -17,6 +17,13 @@ class MovieController extends Controller
         return view('movies.index', ['movies' => $movies]);
     }
 
+    public function test()
+    {
+        $movies = Movie::where('converted', 1)->orderBy('year', 'desc')->limit(20)->latest()->get();
+
+        return view('movies.test', ['movies' => $movies]);
+    }
+
     public function playMovie(Request $request)
     {
         $movie = Movie::find($request->movie);

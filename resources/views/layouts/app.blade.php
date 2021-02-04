@@ -24,7 +24,7 @@
 @stack("styles")
 <!-- Scripts -->
     <script src="{{ mix('js/app.js') }}" defer></script>
-    <script defer src="{{ asset('js/assets/chart.js') }}"></script>
+    <script src="{{ asset('js/assets/chart.js') }}"></script>
     <script defer src="{{ asset('js/assets/jquery-3.5.1.min.js') }}"></script>
     <link rel="stylesheet" type="text/css"
           href="{{ asset('css/assets/toastr.min.css') }}">

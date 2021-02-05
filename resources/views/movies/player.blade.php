@@ -23,7 +23,7 @@
             width: 80%;
             position: absolute;
             top: 50%;
-            transform: translate(-50%, -50%);
+            transform: translate(-25%, -25%);
         }
     </style>
 </head>

@@ -141,7 +141,7 @@
 {{--@include('movies.layouts.footer')--}}
 <style>
     video {
-        object-fit: contain;
+        object-fit: ;
         left: 50%;
         min-height: 100%;
         width: 100%;

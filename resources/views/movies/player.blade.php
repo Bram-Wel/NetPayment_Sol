@@ -17,10 +17,10 @@
         }
 
         video {
-            object-fit: contain;
+            object-fit: cover;
             left: 50%;
             min-height: 100%;
-            width: 100%;
+            width: 90%;
             position: absolute;
             top: 50%;
             transform: translate(-50%, -50%);

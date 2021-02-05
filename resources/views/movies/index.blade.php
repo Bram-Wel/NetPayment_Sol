@@ -61,9 +61,26 @@
     </div>
 
     <div>
-        <h1 class="font-bold text-xl pl-15 text-center md:text-left">Latest movies</h1>
+        <h1 class="font-bold text-xl pl-15 text-center md:text-left">Latest releases</h1>
         <div class="pl-8 grab">
             @foreach($movies as $movie)
+                @php
+                    $url = \Illuminate\Support\Facades\Storage::disk($movie->disk)->url($movie->name . '/poster.jpg');
+                @endphp
+                <a href="{{ route('player', ['movie' => $movie->id]) }}" class="md:ml-5 mb-6 mt-2">
+                    <img src="{{ $url }}" alt="" class="rounded-xl shadow-2xl poster thumbnail lazy">
+                </a>
+            @endforeach
+        </div>
+    </div>
+
+    <div>
+        <h1 class="font-bold text-xl pl-15 text-center md:text-left">Recently Added</h1>
+        <div class="pl-8 grab">
+            @php
+                $latest = \App\Models\Movie::orderBy('created_at', 'desc')->limit(15)->get();
+            @endphp
+            @foreach($latest as $movie)
                 @php
                     $url = \Illuminate\Support\Facades\Storage::disk($movie->disk)->url($movie->name . '/poster.jpg');
                 @endphp

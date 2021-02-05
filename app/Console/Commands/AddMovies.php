@@ -165,7 +165,10 @@ class AddMovies extends Command
                         $description = $info['plot'];
                         $movie->description = $description;
                         $movie->year = $info['year'];
-                        $movie->runtime = $info['runtime'];
+                        if (array_key_exists('runtime', $info)) {
+                            $movie->runtime = $info['runtime'];
+
+                        }
                         if (array_key_exists('rating', $info)) {
                             $movie->rating = $info['rating'];
                         }
@@ -195,7 +198,10 @@ class AddMovies extends Command
                                 $movie->studio = $info['studio'];
                             }
                         }
-                        $movie->trailer = $info['trailer'];
+                        if (array_key_exists('trailer', $info)) {
+                            $movie->trailer = $info['trailer'];
+                        }
+
                         $movie->disk = 'movies2';
                         $movie->converted = 1;
                         $movie->save();

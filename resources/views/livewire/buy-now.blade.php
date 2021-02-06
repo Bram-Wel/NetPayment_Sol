@@ -1,4 +1,5 @@
 <div>
+    {{-- Nothing in the world is as soft and yielding as water. --}}
     @if($package==1)
         <button wire:click="buy"
                 class="transition duration-300 p-2 px-5 rounded-2xl text-white font-bold px-5 shadow-xl"

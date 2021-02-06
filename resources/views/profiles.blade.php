@@ -54,8 +54,7 @@
                                 {{ $profile['name'] }}
                             </td>
                             <td class="px-5 py-2 border-b border-gray-200 bg-white text-sm">
-
-                            {{ $profile['local-address'] }}
+                                {{ $profile['local-address'] }}
                             </td>
                             <td class="px-5 py-2 border-b border-gray-200 bg-white text-sm">
                                 {{ $profile['remote-address'] }}

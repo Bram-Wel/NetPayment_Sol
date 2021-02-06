@@ -21248,7 +21248,7 @@ module.exports = function(module) {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-// removed by extract-text-webpack-plugin
+throw new Error("Module build failed (from ./node_modules/css-loader/index.js):\nModuleBuildError: Module build failed (from ./node_modules/postcss-loader/src/index.js):\nError: PostCSS plugin tailwindcss requires PostCSS 8.\nMigration guide for end-users:\nhttps://github.com/postcss/postcss/wiki/PostCSS-8-for-end-users\n    at Processor.normalize (/srv/http/thetechglitch_internet/node_modules/postcss-loader/node_modules/postcss/lib/processor.js:153:15)\n    at new Processor (/srv/http/thetechglitch_internet/node_modules/postcss-loader/node_modules/postcss/lib/processor.js:56:25)\n    at postcss (/srv/http/thetechglitch_internet/node_modules/postcss-loader/node_modules/postcss/lib/postcss.js:55:10)\n    at /srv/http/thetechglitch_internet/node_modules/postcss-loader/src/index.js:140:12\n    at processTicksAndRejections (node:internal/process/task_queues:94:5)\n    at /srv/http/thetechglitch_internet/node_modules/webpack/lib/NormalModule.js:316:20\n    at /srv/http/thetechglitch_internet/node_modules/loader-runner/lib/LoaderRunner.js:367:11\n    at /srv/http/thetechglitch_internet/node_modules/loader-runner/lib/LoaderRunner.js:233:18\n    at context.callback (/srv/http/thetechglitch_internet/node_modules/loader-runner/lib/LoaderRunner.js:111:13)\n    at /srv/http/thetechglitch_internet/node_modules/postcss-loader/src/index.js:208:9\n    at processTicksAndRejections (node:internal/process/task_queues:94:5)");
 
 /***/ }),
 
@@ -21298,17 +21298,16 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 /***/ }),
 
 /***/ 0:
-        /*!***********************************************************!*\
-          !*** multi ./resources/js/app.js ./resources/css/app.css ***!
-          \***********************************************************/
-        /*! no static exports found */
-        /***/ (function (module, exports, __webpack_require__) {
+/*!***********************************************************!*\
+  !*** multi ./resources/js/app.js ./resources/css/app.css ***!
+  \***********************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
 
-            __webpack_require__(/*! /srv/http/thetechglitch_internet/resources/js/app.js */"./resources/js/app.js");
-            module.exports = __webpack_require__(/*! /srv/http/thetechglitch_internet/resources/css/app.css */"./resources/css/app.css");
+__webpack_require__(/*! /srv/http/thetechglitch_internet/resources/js/app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! /srv/http/thetechglitch_internet/resources/css/app.css */"./resources/css/app.css");
 
 
-            /***/
-        })
+/***/ })
 
 /******/ });

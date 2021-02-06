@@ -139,7 +139,7 @@
                             @endphp
                             <a href="{{ route('player', ['movie' => $info->id]) }}" class="w-48">
                                 <img src="{{ $url }}"
-                                     class="rounded-lg shadow-xl md:ml-6 mb-6 mt-2 poster border-0 lazy" alt="">
+                                     class="rounded-lg shadow-xl md:ml-6 mb-6 mt-2 poster border-0 lazy w-full" alt="">
                             </a>
                         @endforeach
                     </div>

@@ -129,7 +129,7 @@
                     $movies = \App\Models\Genre::where('genre', $g->genre)->select('name')->inRandomOrder()->groupBy('name')->get();
                 @endphp
                 @foreach($movies as $movie)
-                    <div class>
+                    <div>
                         @php
                             $video = \App\Models\Movie::where('name', $movie->name)->get();
                         @endphp

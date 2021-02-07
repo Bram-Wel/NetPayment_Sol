@@ -112,8 +112,9 @@
                 hls.on(Hls.Events.MANIFEST_PARSED, function (event, data) {
                 });
             });
+            video.volume = 0.5;
+            video.play();
         }
-        video.play();
     </script>
 </div>
 </body>

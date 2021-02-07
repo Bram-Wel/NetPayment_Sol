@@ -11,6 +11,7 @@
 
     video {
         filter: brightness(50%);
+        object-fit: cover;
     }
 
     .slick-arrow {

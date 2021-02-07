@@ -184,10 +184,9 @@
 <script>
     $(document).ready(function () {
         $("video").on("mouseover", function (event) {
-            this.play();
             this.volume = 0.5;
             this.muted = false;
-
+            this.play();
         }).on('mouseout', function (event) {
             this.pause();
         });

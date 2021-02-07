@@ -122,8 +122,8 @@
                     type: 'POST',
                     url: '/api/user/volume/save',
                     data: {'user': {{ \Illuminate\Support\Facades\Auth::user()->id }}, 'volume': video.volume},
-                    success: function () {
-                        console.log('data sent successfully!')
+                    success: function (response) {
+                        console.log(response)
                     }
                 })
                 console.log('Volume changed');

@@ -1,7 +1,7 @@
 @include('movies.layouts.default')
 <link rel="stylesheet" type="text/css" href="{{ asset('/css/assets/slick.css') }}"/>
 <script type="text/javascript" src="{{ asset('js/assets/slick.js') }}"></script>
-
+<script src="https://unpkg.com/micromodal/dist/micromodal.min.js"></script>
 <style>
     .poster {
         width: 160px;

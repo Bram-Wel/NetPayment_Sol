@@ -33,7 +33,7 @@
 <body>
 <div>
     <video class="w-full" autoplay id="video" style="height: 100vh!important" controls preload="auto"
-           poster="{{ $poster }}">
+           disablePictureInPicture poster="{{ $poster }}">
     </video>
     <div class="controls" id="video-controls" data-state="hidden">
         <div class="video-title">
@@ -108,6 +108,8 @@
         if (Hls.isSupported()) {
             var video = document.getElementById('video');
             var hls = new Hls(config);
+
+            video.disablePictureInPicture = true;
             // bind them together
             hls.attachMedia(video);
             // MEDIA_ATTACHED event is fired by hls object once MediaSource is ready

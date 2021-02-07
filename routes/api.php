@@ -18,4 +18,4 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::post('/user/volume/save', [\App\Http\Controllers\VolumeController::class, 'onVolumeChange']);
+Route::middleware('auth:sanctum')->post('/user/volume/save', [\App\Http\Controllers\VolumeController::class, 'onVolumeChange']);

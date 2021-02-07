@@ -41,7 +41,8 @@ class VolumeController extends Controller
             $volume->volume = $volume;
             $volume->save();
         } else {
-            $volume = VolumeController::find($user);
+            $id = Volume::where('user_id', $user)->value('id');
+            $volume = Volume::find($id);
             $volume->volume = $volume;
             $volume->update();
         }

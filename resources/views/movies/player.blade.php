@@ -116,6 +116,7 @@
                 hls.on(Hls.Events.MANIFEST_PARSED, function (event, data) {
                 });
             });
+            video.play();
             video.volume = {{ \App\Models\Volume::where('user_id', \Illuminate\Support\Facades\Auth::user()->id)->value('volume') }}
                 video.onvolumechange = function () {
                 $.ajax({
@@ -128,7 +129,6 @@
                 })
                 console.log('Volume changed');
             }
-            video.play();
         }
     </script>
 </div>

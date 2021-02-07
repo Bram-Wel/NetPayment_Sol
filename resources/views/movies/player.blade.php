@@ -139,7 +139,8 @@
                     data: {
                         'user': '{{ \Illuminate\Support\Facades\Auth::user()->username}}',
                         'duration': duration,
-                        'movie': {{ $movie }} },
+                        'movie': '{{ $movie }}'
+                    },
                     success: function (response) {
                         console.log(response);
                     }

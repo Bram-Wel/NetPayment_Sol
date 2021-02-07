@@ -63,7 +63,7 @@
 
     <div class="pt-1/3">
         <h1 class="font-bold text-xl pl-15 text-center md:text-left mt-8 relative z-20 text-white">Latest releases</h1>
-        <div class="pl-8 grab">
+        <div class="pl-8 grab flex flex-row">
             @foreach($movies as $movie)
                 @php
                     $url = \Illuminate\Support\Facades\Storage::disk($movie->disk)->url($movie->name . '/poster.jpg');
@@ -77,7 +77,7 @@
 
     <div>
         <h1 class="font-bold text-xl pl-15 text-center md:text-left">Recently Added</h1>
-        <div class="pl-8 grab">
+        <div class="pl-8 grab flex">
             @php
                 $latest = \App\Models\Movie::orderBy('created_at', 'desc')->limit(15)->get();
             @endphp

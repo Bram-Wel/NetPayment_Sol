@@ -45,6 +45,7 @@ class DownloadTrailers extends Command
             $file_parts = pathinfo($file);
             $directory = $file_parts['basename'];
             $directory = escapeshellarg("/run/media/thetechglitch/MOVIES/$directory");
+            dd($directory);
             chdir($directory);
             $movie = $file_parts['basename'];
             $trailer = Movie::where('name', $movie)->value('trailer');

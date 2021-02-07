@@ -185,7 +185,7 @@
     $(document).ready(function () {
         $(document).on('scroll', function () {
             let video = $('video');
-            video.play;
+            video.play();
         })
     })
 </script>

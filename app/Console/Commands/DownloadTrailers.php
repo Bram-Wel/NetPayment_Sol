@@ -48,9 +48,12 @@ class DownloadTrailers extends Command
             chdir($directory);
             $movie = $file_parts['basename'];
             $trailer = Movie::where('name', $movie)->value('trailer');
-            print_r("Downloading trailer for $movie ...");
-            echo "";
-            shell_exec("youtube-dl -f best $trailer --output 'trailer.%(ext)s'");
+            $count = Trailers::where('movie', $movie)->count('id');
+            if ($count == 0) {
+                print_r("Downloading trailer for $movie ...");
+                echo "";
+                shell_exec("youtube-dl -f best $trailer --output 'trailer.%(ext)s'");
+            }
         }
     }
 }

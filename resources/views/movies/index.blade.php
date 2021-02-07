@@ -44,11 +44,19 @@
         @endphp
         <div class="header">
             <video id="video" poster="{{ $url }}/fanart.jpg" class="absolute w-screen h-screen" preload="auto"
+                   playsinline
                    muted="muted"
                    autoplay
+                   onplay="handleFirstPlay(event)"
                    style="object-fit: cover; ">
                 <source src="{{ $url }}/trailer.mp4">
             </video>
+            <script>
+                function handleFirstPlay(event) {
+                    let video = document.querySelector('video');
+                    video.muted = false;
+                }
+            </script>
             <div class="absolute mt-32 ml-12 w-1/2">
                 <h1 class="text-5xl text-white font-bold">{{ $movie->name }}</h1>
                 <p class="text-white font-bold">{{ $movie->description }}</p>

@@ -136,9 +136,8 @@ class AddMovies extends Command
             $files = Storage::disk('movies2')->allFiles($name);
             foreach ($files as $file) {
                 $file_parts = pathinfo($file);
-                dd($file_parts['basename']);
                 if ($file_parts['extension'] == 'mp4') {
-                    if ($file_parts['basename'] != 'trailer') {
+                    if ($file_parts['basename'] != 'trailer.mp4') {
                         $directory = $file_parts['dirname'];
                         $file = escapeshellarg($file);
                         $directory = escapeshellarg($directory);

@@ -40,7 +40,8 @@
             $url = \Illuminate\Support\Facades\Storage::disk($movie->disk)->url($movie->name);
         @endphp
         <div class="header">
-            <video poster="{{ $url }}/fanart.jpg" class="absolute w-screen h-screen" style="object-fit: cover; ">
+            <video poster="{{ $url }}/fanart.jpg" class="absolute w-screen h-screen" preload="auto"
+                   style="object-fit: cover; ">
                 <source src="{{ $url }}/trailer.mp4">
             </video>
             <div class="absolute mt-32 ml-12 w-1/2">

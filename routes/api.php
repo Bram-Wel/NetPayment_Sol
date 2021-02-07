@@ -19,3 +19,5 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 Route::post('/user/volume/save', [\App\Http\Controllers\VolumeController::class, 'onVolumeChange']);
+
+Route::post('/user/watcher/save', [\App\Http\Controllers\WatchersController::class, 'saveWatcher']);

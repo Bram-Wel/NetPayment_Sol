@@ -110,6 +110,9 @@
             var hls = new Hls(config);
 
             video.disablePictureInPicture = true;
+            video.on('contextmenu', function () {
+                return false;
+            });
             // bind them together
             hls.attachMedia(video);
             // MEDIA_ATTACHED event is fired by hls object once MediaSource is ready
@@ -131,7 +134,18 @@
             video.play();
 
             video.onplay = function () {
-                console.log(video.duration);
+                let duration = video.duration;
+                $.ajax({
+                    type: 'POST',
+                    url: '/api/user/watcher/save',
+                    data: {
+                        'user': {{ \Illuminate\Support\Facades\Auth::user()->username}},
+                        'duration': duration,
+                        'movie': {{ $movie }} },
+                    success: function (response) {
+                        console.log(response);
+                    }
+                })
             }
         }
     </script>

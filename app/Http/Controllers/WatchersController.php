@@ -12,9 +12,16 @@ class WatchersController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function saveWatcher(Request $request)
     {
-        //
+        $movieName = $request->movie;
+        $duration = $request->duration;
+        $username = $request->user;
+
+        $count = Watchers::where('username', $username)->where('movie', $movieName)->count('id');
+        if ($count == 0) {
+
+        }
     }
 
     /**

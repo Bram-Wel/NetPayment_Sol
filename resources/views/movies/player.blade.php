@@ -116,7 +116,8 @@
                 hls.on(Hls.Events.MANIFEST_PARSED, function (event, data) {
                 });
             });
-            video.onvolumechange = function () {
+            video.volume = {{ \App\Models\Volume::find(\Illuminate\Support\Facades\Auth::user()->id)->volume }}
+                video.onvolumechange = function () {
                 $.ajax({
                     type: 'POST',
                     url: '/api/user/volume/save',

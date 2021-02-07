@@ -5,7 +5,7 @@
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>{{ $movie }}</title>
+    <title>The Tech Glitch</title>
     <link rel="stylesheet" href="{{ mix('css/app.css') }}">
     <link rel="stylesheet" href="{{ mix('js/app.js') }}">
     <script
@@ -119,6 +119,7 @@
                 hls.on(Hls.Events.MANIFEST_PARSED, function (event, data) {
                 });
             });
+
             video.volume = {{ \App\Models\Volume::where('user_id', \Illuminate\Support\Facades\Auth::user()->id)->value('volume') }}
                 video.onvolumechange = function () {
                 $.ajax({
@@ -133,7 +134,6 @@
 
             $(document).keydown(function (e) {
                 let keycode = e.which;
-
                 if (keycode === 39) { // right arrow
                     video.currentTime += 5;
                 } else if (keycode === 37) { // left arrow

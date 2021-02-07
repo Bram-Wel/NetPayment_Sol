@@ -44,7 +44,7 @@ class DownloadTrailers extends Command
         foreach ($files as $file) {
             $file_parts = pathinfo($file);
             $directory = $file_parts['basename'];
-            $directory = "/srv/http/thetechglitch/storage/app/public/movies/$directory";
+            $directory = "/srv/http/thetechglitch_internet/storage/app/public/movies/$directory";
             chdir($directory);
             $movie = $file_parts['basename'];
             $trailer = Movie::where('name', $movie)->value('trailer');

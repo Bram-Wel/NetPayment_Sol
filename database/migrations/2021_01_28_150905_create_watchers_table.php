@@ -17,6 +17,8 @@ class CreateWatchersTable extends Migration
             $table->id();
             $table->string('name');
             $table->string('movie');
+            $table->string('progress')->default(0);
+            $table->string('length')->default(0);
             $table->timestamps();
         });
     }

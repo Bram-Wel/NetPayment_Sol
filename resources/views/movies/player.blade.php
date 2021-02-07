@@ -116,7 +116,6 @@
                 hls.on(Hls.Events.MANIFEST_PARSED, function (event, data) {
                 });
             });
-            video.volume = 0.5;
             video.onvolumechange = function () {
                 $.ajax({
                     type: 'POST',

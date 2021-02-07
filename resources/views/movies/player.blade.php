@@ -129,6 +129,10 @@
                 })
             }
             video.play();
+
+            video.onplay = function () {
+                console.log(video.duration);
+            }
         }
     </script>
 </div>

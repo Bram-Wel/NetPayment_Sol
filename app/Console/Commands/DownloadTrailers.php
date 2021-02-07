@@ -43,6 +43,7 @@ class DownloadTrailers extends Command
         $files = Storage::disk('movies2')->directories();
         foreach ($files as $file) {
             $file_parts = pathinfo($file);
+            dd($file_parts);
             $directory = $file_parts['dirname'];
             $directory = escapeshellarg("/run/media/thetechglitch/MOVIES/$directory");
 

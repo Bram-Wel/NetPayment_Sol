@@ -27,15 +27,26 @@ class VolumeController extends Controller
         //
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param \Illuminate\Http\Request $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
+
+    public function onVolumeChange(Request $request): string
     {
-        //
+        $user = $request->user;
+        $volume = $request->volume;
+
+        $count = \App\Models\Volume::where('user_id', $user)->count('id');
+        if ($count == 0) {
+            $volume = new \App\Models\Volume();
+
+            $volume->user_id = $user;
+            $volume->volume = $volume;
+            $volume->save();
+        } else {
+            $volume = VolumeController::find($user);
+            $volume->volume = $volume;
+            $volume->update();
+        }
+
+        return 'Success';
     }
 
     /**

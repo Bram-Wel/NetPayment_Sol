@@ -32,11 +32,6 @@ class MovieController extends Controller
         $url = Storage::disk($movie->disk)->url($name . "/playlist.m3u8");
         $poster = Storage::disk($movie->disk)->url($name . "/fanart.jpg");
 
-        $watcher = new Watchers();
-        $watcher->name = Auth::user()->username;
-        $watcher->movie = $name;
-        $watcher->save();
-
         $request->headers->set('Accept-Ranges', 'bytes | 5000');
 
         return view('movies.player', ['movie' => $name, 'url' => $url, 'poster' => $poster]);

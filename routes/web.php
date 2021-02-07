@@ -114,6 +114,9 @@ Route::match('get', '/login', function (Request $request) {
     }
 })->name('login');
 
+Route::middleware(['auth:sanctum'])->get('/movie/info', [\App\Http\Controllers\MovieController::class, 'movieInfo'])
+    ->name('movie.info');
+
 Route::middleware(['auth:sanctum', 'verified'])->get('/movie/play', [\App\Http\Controllers\MovieController::class, 'playMovie'])
     ->name('player');
 

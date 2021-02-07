@@ -46,4 +46,13 @@ class MovieController extends Controller
     {
         return view('movie-packages');
     }
+
+    public function movieInfo(Request $request)
+    {
+        $movie = $request->movie;
+
+        $movie = Movie::find($movie);
+
+        return view('movies.info', ['movie' => $movie]);
+    }
 }

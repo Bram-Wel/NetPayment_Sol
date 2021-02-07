@@ -110,9 +110,7 @@
             var hls = new Hls(config);
 
             video.disablePictureInPicture = true;
-            video.on('contextmenu', function () {
-                return false;
-            });
+
             // bind them together
             hls.attachMedia(video);
             // MEDIA_ATTACHED event is fired by hls object once MediaSource is ready
@@ -148,6 +146,13 @@
                 })
             }
         }
+
+        // ux
+        $(document).ready(function () {
+            $('#video').on('contextmenu', function () {
+                return false;
+            });
+        })
     </script>
 </div>
 </body>

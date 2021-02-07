@@ -44,6 +44,7 @@
         @endphp
         <div class="header">
             <video poster="{{ $url }}/fanart.jpg" class="absolute w-screen h-screen" preload="auto" muted="muted"
+                   autoplay
                    style="object-fit: cover; ">
                 <source src="{{ $url }}/trailer.mp4">
             </video>
@@ -179,15 +180,5 @@
         slidesToShow: 7,
         slidesToScroll: 3
     });
-</script>
-<script>
-    $(document).ready(function () {
-        $("video").on("mouseover", function (event) {
-            this.play();
-            this.muted = false;
-        }).on('mouseout', function (event) {
-            this.pause();
-        });
-    })
 </script>
 @include('movies.layouts.footer')

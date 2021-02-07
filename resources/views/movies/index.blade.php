@@ -181,12 +181,4 @@
         slidesToScroll: 3
     });
 </script>
-<script>
-    $(document).ready(function () {
-        $(document).on('scroll', function () {
-            let video = $('video');
-            video.play();
-        })
-    })
-</script>
 @include('movies.layouts.footer')

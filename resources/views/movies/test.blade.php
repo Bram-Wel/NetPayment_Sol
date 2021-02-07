@@ -9,8 +9,13 @@
         transition: transform 1s; /* Animation */
     }
 
+    body {
+        background: #1a202c;
+    }
+
     video {
         filter: brightness(50%);
+        object-fit: cover;
     }
 
     .slick-arrow {

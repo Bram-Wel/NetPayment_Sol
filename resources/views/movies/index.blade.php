@@ -3,6 +3,10 @@
 <script type="text/javascript" src="{{ asset('js/assets/slick.js') }}"></script>
 
 <style>
+    .body {
+
+    }
+
     .poster {
         width: 160px;
         height: 230px;

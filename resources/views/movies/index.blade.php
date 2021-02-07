@@ -1,25 +1,20 @@
 @include('movies.layouts.default')
 <link rel="stylesheet" type="text/css" href="{{ asset('/css/assets/slick.css') }}"/>
 <script type="text/javascript" src="{{ asset('js/assets/slick.js') }}"></script>
-
+<script src="https://unpkg.com/micromodal/dist/micromodal.min.js"></script>
 <style>
-    .body {
-
-    }
-
     .poster {
         width: 160px;
         height: 230px;
         transition: transform 1s; /* Animation */
     }
 
+    body {
+        background: #1a202c;
+    }
+
     video {
-        position: absolute;
-        top: 0;
-        left: 0;
-        display: block;
-        width: 100%;
-        height: 100%;
+        filter: brightness(50%);
         object-fit: cover;
     }
 
@@ -50,11 +45,11 @@
             $url = \Illuminate\Support\Facades\Storage::disk($movie->disk)->url($movie->name);
         @endphp
         <div class="header">
-            <video poster="{{ $url }}/fanart.jpg" class="absolute w-screen h-screen" style="object-fit: cover; "
-                   muted="muted">
+            <video poster="{{ $url }}/fanart.jpg" class="absolute w-screen h-screen" preload="auto" muted="muted"
+                   style="object-fit: cover; ">
                 <source src="{{ $url }}/trailer.mp4">
             </video>
-            <div class="absolute mt-40 ml-12 w-1/2">
+            <div class="absolute mt-32 ml-12 w-1/2">
                 <h1 class="text-5xl text-white font-bold">{{ $movie->name }}</h1>
                 <p class="text-white font-bold">{{ $movie->description }}</p>
                 <div class="buttons flex flex-row mt-4">
@@ -62,13 +57,19 @@
                        class="mr-4 bg-white rounded-xl shadow-xl hover:shadow-2xl font-bold p-2 px-8 transition duration-200 hover:opacity-9 flex">
                         <ion-icon name="play-outline" class="pr-2 text-xl flex whitespace-no-wrap flex-col"></ion-icon>
                         Play</a>
+                    <a href="{{ route('movie.info', ['movie' => $movie->id]) }}"
+                       class="mr-4 bg-white rounded-xl shadow-xl hover:shadow-2xl font-bold p-2 px-8 transition duration-200 hover:opacity-9 flex">
+                        <ion-icon name="information-outline"
+                                  class="pr-2 text-xl flex whitespace-no-wrap flex-col"></ion-icon>
+                        More info
+                    </a>
                 </div>
             </div>
         </div>
     @endforeach
 
     <div class="pt-1/3">
-        <h1 class="font-bold text-xl pl-15 text-center md:text-left">Latest releases</h1>
+        <h1 class="font-bold text-xl pl-15 text-center md:text-left mt-8 relative z-20 text-white">Latest releases</h1>
         <div class="pl-8 grab">
             @foreach($movies as $movie)
                 @php
@@ -184,9 +185,8 @@
 <script>
     $(document).ready(function () {
         $("video").on("mouseover", function (event) {
-            this.volume = 0.5;
-            this.muted = false;
             this.play();
+            this.muted = false;
         }).on('mouseout', function (event) {
             this.pause();
         });

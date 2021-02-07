@@ -45,7 +45,6 @@ class DownloadTrailers extends Command
             $trailerExists = Trailers::where('movie', $movie->name)->count('id', 'desc');
             if ($trailerExists == 0) {
                 $files = Storage::disk($movie->disk)->directories();
-                dd($files);
                 foreach ($files as $file) {
                     $file_parts = pathinfo($file);
                     $directory = $file_parts['dirname'];

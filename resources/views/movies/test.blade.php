@@ -1,8 +1,6 @@
 @include('movies.layouts.default')
-<script src="https://cdn.jsdelivr.net/npm/intersection-observer@0.7.0/intersection-observer.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/vanilla-lazyload@17.3.0/dist/lazyload.min.js"></script>
-<link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
-<script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+<link rel="stylesheet" type="text/css" href="{{ asset('/css/assets/slick.css') }}"/>
+<script type="text/javascript" src="{{ asset('js/assets/slick.js') }}"></script>
 
 <style>
     .poster {
@@ -27,24 +25,58 @@
         }
     }
 </style>
-<div class="py-5">
-
+<div>
     @php
-        $featured = \App\Models\Movie::inRandomOrder()->limit(1);
-        $url = \Illuminate\Support\Facades\Storage::disk($featured->disk)->url($featured->name . '/fanart.jpg');
+        $featured = \Illuminate\Support\Facades\DB::table('movies')->select('*')->whereNotIn('name', function ($query) {
+    $query->select('movie')->from('watchers');
+    })->inRandomOrder()->limit(1)->get();
     @endphp
-    <div
-        style="background: url('{{ $url }}'); background-size: cover; background-position: center; width: 100%; height: 80vh">
+    @foreach($featured as $movie)
+        @php
+            $url = \Illuminate\Support\Facades\Storage::disk($movie->disk)->url($movie->name);
+        @endphp
+        <div class="header">
+            <video poster="{{ $url }}/fanart.jpg" class="absolute w-screen h-screen" style="object-fit: cover; ">
+                <source src="{{ $url }}/trailer.mp4">
+            </video>
+            <div class="absolute mt-40 ml-12 w-1/2">
+                <h1 class="text-5xl text-white font-bold">{{ $movie->name }}</h1>
+                <p class="text-white font-bold">{{ $movie->description }}</p>
+                <div class="buttons flex flex-row mt-4">
+                    <a href=""
+                       class="mr-4 bg-white rounded-xl shadow-xl hover:shadow-2xl font-bold p-2 px-8 transition duration-200 hover:opacity-9 flex">
+                        <ion-icon name="play-outline" class="pr-2 text-xl flex whitespace-no-wrap flex-col"></ion-icon>
+                        Play</a>
+                </div>
+            </div>
+        </div>
+    @endforeach
 
-    </div>
-    <div>
-        <h1 class="font-bold text-xl pl-15 text-center md:text-left">Latest movies</h1>
+    <div class="pt-1/3">
+        <h1 class="font-bold text-xl pl-15 text-center md:text-left">Latest releases</h1>
         <div class="pl-8 grab">
             @foreach($movies as $movie)
                 @php
                     $url = \Illuminate\Support\Facades\Storage::disk($movie->disk)->url($movie->name . '/poster.jpg');
                 @endphp
-                <a href="{{ route('player', ['movie' => $movie->name]) }}" class="md:ml-5 mb-6 mt-2">
+                <a href="{{ route('player', ['movie' => $movie->id]) }}" class="md:ml-5 mb-6 mt-2">
+                    <img src="{{ $url }}" alt="" class="rounded-xl shadow-2xl poster thumbnail lazy">
+                </a>
+            @endforeach
+        </div>
+    </div>
+
+    <div>
+        <h1 class="font-bold text-xl pl-15 text-center md:text-left">Recently Added</h1>
+        <div class="pl-8 grab">
+            @php
+                $latest = \App\Models\Movie::orderBy('created_at', 'desc')->limit(15)->get();
+            @endphp
+            @foreach($latest as $movie)
+                @php
+                    $url = \Illuminate\Support\Facades\Storage::disk($movie->disk)->url($movie->name . '/poster.jpg');
+                @endphp
+                <a href="{{ route('player', ['movie' => $movie->id]) }}" class="md:ml-5 mb-6 mt-2">
                     <img src="{{ $url }}" alt="" class="rounded-xl shadow-2xl poster thumbnail lazy">
                 </a>
             @endforeach
@@ -59,7 +91,7 @@
             ->orderByRaw('COUNT(*) DESC')
             ->get();
         @endphp
-        <div class="grab">
+        <div class="grab flex">
             @foreach($watchers as $movie)
                 @php
                     $name = $movie->movie;
@@ -69,8 +101,8 @@
                     @php
                         $url = \Illuminate\Support\Facades\Storage::disk($movie->disk)->url($movie->name . '/poster.jpg');
                     @endphp
-                    <a href="{{ route('player', ['movie' => $movie->name]) }}" class="">
-                        <img data-src="{{ $url }}" class="rounded-lg shadow-xl md:ml-6 mb-6 mt-2 poster lazy" alt="">
+                    <a href="{{ route('player', ['movie' => $movie->id]) }}" class="">
+                        <img src="{{ $url }}" class="rounded-lg shadow-xl md:ml-6 mb-6 mt-2 poster lazy" alt="">
                     </a>
                 @endforeach
             @endforeach
@@ -84,12 +116,12 @@
     @foreach($genres as $g)
         <div class="pl-8 w-screen">
             <h1 class="font-bold text-xl md:pl-6 text-center md:text-left">{{ $g->genre }}</h1>
-            <div id="container" class="mr-4 grab">
+            <div id="container" class="mr-4 grab flex justify-center">
                 @php
                     $movies = \App\Models\Genre::where('genre', $g->genre)->select('name')->inRandomOrder()->groupBy('name')->get();
                 @endphp
                 @foreach($movies as $movie)
-                    <div class>
+                    <div>
                         @php
                             $video = \App\Models\Movie::where('name', $movie->name)->get();
                         @endphp
@@ -97,9 +129,9 @@
                             @php
                                 $url = \Illuminate\Support\Facades\Storage::disk($info->disk)->url($info->name . '/poster.jpg');
                             @endphp
-                            <a href="{{ route('player', ['movie' => $info->name]) }}" class="w-48">
+                            <a href="{{ route('player', ['movie' => $info->id]) }}" class="w-48">
                                 <img src="{{ $url }}"
-                                     class="rounded-lg shadow-xl md:ml-6 mb-6 mt-2 poster border-0 lazy" alt="">
+                                     class="rounded-lg shadow-xl md:ml-6 mb-6 mt-2 poster border-0 lazy w-full" alt="">
                             </a>
                         @endforeach
                     </div>
@@ -119,7 +151,7 @@
                     @php
                         $url = \Illuminate\Support\Facades\Storage::disk($movie->disk)->url($movie->name . '/poster.jpg');
                     @endphp
-                    <a href="{{ route('player', ['movie' => $movie->name]) }}" class="md:ml-5 mb-6 mt-2">
+                    <a href="{{ route('player', ['movie' => $movie->id]) }}" class="md:ml-5 mb-6 mt-2">
                         <img src="{{ $url }}"
                              class="rounded-xl shadow-2xl poster thumbnail lazy">
                     </a>
@@ -128,14 +160,20 @@
         @endif
     </div>
 </div>
-<script>var lazyLoadInstance = new LazyLoad({
-        // Your custom settings go here
-    });</script>
 <script>
     $('.grab').slick({
         slidesToShow: 7,
         slidesToScroll: 3
     });
 </script>
-@include('movies.layouts.footer')
+<script>
+    $(document).ready(function () {
+        $("video").on("mouseover", function (event) {
+            this.play();
 
+        }).on('mouseout', function (event) {
+            this.pause();
+        });
+    })
+</script>
+@include('movies.layouts.footer')

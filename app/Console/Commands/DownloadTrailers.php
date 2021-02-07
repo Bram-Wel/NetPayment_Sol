@@ -40,7 +40,7 @@ class DownloadTrailers extends Command
      */
     public function handle()
     {
-        $files = Storage::disk($movie->disk)->directories();
+        $files = Storage::disk('movies2')->directories();
         foreach ($files as $file) {
             $file_parts = pathinfo($file);
             $directory = $file_parts['dirname'];

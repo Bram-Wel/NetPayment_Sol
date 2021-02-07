@@ -183,6 +183,9 @@
 </script>
 <script>
     var video = document.querySelector('video');
+    setTimeout(function () {
+        document.getElementById("video").muted = false;
+    }, 5000);
     video.addEventListener('ended', function () {
         video.load();
     });

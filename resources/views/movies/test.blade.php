@@ -43,7 +43,7 @@
             <video poster="{{ $url }}/fanart.jpg" class="absolute w-screen h-screen" style="object-fit: cover; ">
                 <source src="{{ $url }}/trailer.mp4">
             </video>
-            <div class="absolute mt-40 ml-12 w-1/2">
+            <div class="absolute mt-32 ml-12 w-1/2">
                 <h1 class="text-5xl text-white font-bold">{{ $movie->name }}</h1>
                 <p class="text-white font-bold">{{ $movie->description }}</p>
                 <div class="buttons flex flex-row mt-4">

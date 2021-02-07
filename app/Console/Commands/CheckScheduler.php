@@ -26,7 +26,7 @@ class CheckScheduler extends Command
      *
      * @var string
      */
-    protected $description = 'Check scheduler and remind user if less than a day left.';
+    protected $description = 'Check scheduler and remind user if less than 5 hours left.';
 
     /**
      * Create a new command instance.
@@ -85,13 +85,13 @@ class CheckScheduler extends Command
 
                 $sms->send([
                     'to' => '+254' . ltrim($phone, '0'),
-                    'message' => "Your internet subscription expires today at $endTime. Kindly login to our new web portal, http://thetechglitch.net, and click the package you would like to renew.  Username: $username, Password: $password"
+                    'message' => "Your internet subscription expires today at $endTime."
                 ]);
 
                 $message = new Message();
                 $message->username = ltrim($res['name'], 'deactivate-');
                 $message->phone = $phone;
-                $message->message = "Your internet subscription expires today at $endTime. Kindly login to our new web portal, http://thetechglitch.net, and click the package you would like to renew. Username: $username, Password: $password";
+                $message->message = "Your internet subscription expires today at $endTime.";
                 $message->type = 'sms';
                 $message->save();
             }

@@ -32,7 +32,6 @@
     @php
         $featured = \App\Models\Movie::inRandomOrder()->limit(1);
         $url = \Illuminate\Support\Facades\Storage::disk($featured->disk)->url($featured->name . '/fanart.jpg');
-
     @endphp
     <div
         style="background: url('{{ $url }}'); background-size: cover; background-position: center; width: 100%; height: 80vh">

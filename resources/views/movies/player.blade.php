@@ -137,7 +137,7 @@
                     type: 'POST',
                     url: '/api/user/watcher/save',
                     data: {
-                        'user': {{ \Illuminate\Support\Facades\Auth::user()->username}},
+                        'user': '{{ \Illuminate\Support\Facades\Auth::user()->username}}',
                         'duration': duration,
                         'movie': {{ $movie }} },
                     success: function (response) {

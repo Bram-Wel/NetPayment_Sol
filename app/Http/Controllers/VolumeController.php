@@ -31,19 +31,19 @@ class VolumeController extends Controller
     public function onVolumeChange(Request $request): string
     {
         $user = $request->user;
-        $volume = $request->volume;
+        $vol = $request->volume;
 
         $count = \App\Models\Volume::where('user_id', $user)->count('id');
         if ($count == 0) {
             $volume = new \App\Models\Volume();
 
             $volume->user_id = $user;
-            $volume->volume = $volume;
+            $volume->volume = $vol;
             $volume->save();
         } else {
             $id = Volume::where('user_id', $user)->value('id');
             $volume = Volume::find($id);
-            $volume->volume = $volume;
+            $volume->volume = $vol;
             $volume->update();
         }
 

@@ -41,7 +41,7 @@ class Kernel extends ConsoleKernel
             ->withoutOverlapping(10)
             ->everyFourMinutes();
 
-        $schedule->command('unsubscribe:movie')
+        $schedule->command('download:trailers')
             ->withoutOverlapping(10)
             ->everyFourMinutes();
     }

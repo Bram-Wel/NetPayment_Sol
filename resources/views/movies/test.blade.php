@@ -77,7 +77,7 @@
 
     <div>
         <h1 class="font-bold text-xl pl-15 text-center md:text-left">Recently Added</h1>
-        <div class="pl-8 grab" style="display: flex">
+        <div class="pl-4 grab" style="display: flex">
             @php
                 $latest = \App\Models\Movie::orderBy('created_at', 'desc')->limit(15)->get();
             @endphp

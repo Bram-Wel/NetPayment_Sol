@@ -43,12 +43,12 @@ class DownloadTrailers extends Command
         $files = Storage::disk('movies2')->directories();
         foreach ($files as $file) {
             $file_parts = pathinfo($file);
-            dd($file_parts);
-            $directory = $file_parts['dirname'];
+            $directory = $file_parts['basename'];
             $directory = escapeshellarg("/run/media/thetechglitch/MOVIES/$directory");
-
-            print_r($directory);
             chdir($directory);
+            $movie = $file_parts['basename'];
+            $trailer = Movie::where('name', $movie)->value('trailer');
+            dd($trailer);
             shell_exec("youtube-dl -f best $movie->trailer --output 'trailer.%(ext)s'");
         }
     }

@@ -41,9 +41,7 @@ class DownloadTrailers extends Command
     public function handle()
     {
         $files = Storage::disk('movies2')->directories();
-        dd($files);
         foreach ($files as $file) {
-
             $file_parts = pathinfo($file);
             $directory = $file_parts['dirname'];
             $directory = escapeshellarg("/run/media/thetechglitch/MOVIES/$directory");
@@ -52,9 +50,5 @@ class DownloadTrailers extends Command
             chdir($directory);
             shell_exec("youtube-dl -f best $movie->trailer --output 'trailer.%(ext)s'");
         }
-//        $trailer = new Trailers();
-//        $trailer->movie = $movie->name;
-//        $trailer->downloaded = true;
-
     }
 }

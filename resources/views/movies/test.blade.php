@@ -9,6 +9,10 @@
         transition: transform 1s; /* Animation */
     }
 
+    video {
+        filter: brightness(50%);
+    }
+
     .slick-arrow {
         display: none !important;
     }

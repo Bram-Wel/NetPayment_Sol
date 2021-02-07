@@ -9,13 +9,11 @@
         transition: transform 1s; /* Animation */
     }
 
-    body {
-        background: #1a202c;
-    }
-
     video {
         filter: brightness(50%);
         object-fit: cover;
+        height: 100vh;
+        width: 100%;
     }
 
     .slick-arrow {
@@ -45,8 +43,7 @@
             $url = \Illuminate\Support\Facades\Storage::disk($movie->disk)->url($movie->name);
         @endphp
         <div class="header">
-            <video poster="{{ $url }}/fanart.jpg" class="absolute w-screen h-screen" preload="auto" muted="muted"
-                   style="object-fit: cover; ">
+            <video poster="{{ $url }}/fanart.jpg" class="absolute w-screen h-screen" style="object-fit: cover; ">
                 <source src="{{ $url }}/trailer.mp4">
             </video>
             <div class="absolute mt-32 ml-12 w-1/2">
@@ -57,12 +54,12 @@
                        class="mr-4 bg-white rounded-xl shadow-xl hover:shadow-2xl font-bold p-2 px-8 transition duration-200 hover:opacity-9 flex">
                         <ion-icon name="play-outline" class="pr-2 text-xl flex whitespace-no-wrap flex-col"></ion-icon>
                         Play</a>
-                    <a href="{{ route('movie.info', ['movie' => $movie->id]) }}"
-                       class="mr-4 bg-white rounded-xl shadow-xl hover:shadow-2xl font-bold p-2 px-8 transition duration-200 hover:opacity-9 flex">
-                        <ion-icon name="information-outline"
-                                  class="pr-2 text-xl flex whitespace-no-wrap flex-col"></ion-icon>
-                        More info
-                    </a>
+                    {{--                    <a href="{{ route('movie.info', ['movie' => $movie->id]) }}"--}}
+                    {{--                       class="mr-4 bg-white rounded-xl shadow-xl hover:shadow-2xl font-bold p-2 px-8 transition duration-200 hover:opacity-9 flex">--}}
+                    {{--                        <ion-icon name="information-outline"--}}
+                    {{--                                  class="pr-2 text-xl flex whitespace-no-wrap flex-col"></ion-icon>--}}
+                    {{--                        More info--}}
+                    {{--                    </a>--}}
                 </div>
             </div>
         </div>
@@ -181,15 +178,5 @@
         slidesToShow: 7,
         slidesToScroll: 3
     });
-</script>
-<script>
-    $(document).ready(function () {
-        $("video").on("mouseover", function (event) {
-            this.play();
-            this.muted = false;
-        }).on('mouseout', function (event) {
-            this.pause();
-        });
-    })
 </script>
 @include('movies.layouts.footer')

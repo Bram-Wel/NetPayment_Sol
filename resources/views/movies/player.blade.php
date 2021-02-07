@@ -17,13 +17,12 @@
         }
 
         video {
+            left: 50%;
+            min-height: 100%;
+            min-width: 100%;
             position: absolute;
-            top: 0;
-            left: 0;
-            display: block;
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
+            top: 50%;
+            transform: translate(-50%, -50%);
         }
     </style>
 </head>

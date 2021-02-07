@@ -184,8 +184,8 @@
 <script>
     $(document).ready(function () {
         $(document).on('scroll', function () {
-            let video = $('#video');
-            video.play();
+            let video = $('video');
+
         })
     })
 </script>

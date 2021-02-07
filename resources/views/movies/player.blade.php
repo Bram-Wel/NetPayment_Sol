@@ -114,6 +114,14 @@
             });
             video.volume = 0.5;
             video.onvolumechange = function () {
+                $.ajax({
+                    type: 'POST',
+                    url: '/user/volume/save',
+                    data: {'user': {{ \Illuminate\Support\Facades\Auth::user()->id }}, 'volume': video.volume},
+                    success: function () {
+                        console.log('data sent successfully!')
+                    }
+                })
                 console.log('Volume changed');
             }
             video.play();

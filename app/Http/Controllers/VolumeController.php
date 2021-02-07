@@ -35,16 +35,16 @@ class VolumeController extends Controller
 
         $count = \App\Models\Volume::where('user_id', $user)->count('id');
         if ($count == 0) {
-            $volume = new \App\Models\Volume();
+            $userVol = new \App\Models\Volume();
 
-            $volume->user_id = $user;
-            $volume->volume = $vol;
-            $volume->save();
+            $userVol->user_id = $user;
+            $userVol->volume = $vol;
+            $userVol->save();
         } else {
             $id = Volume::where('user_id', $user)->value('id');
-            $volume = Volume::find($id);
-            $volume->volume = $vol;
-            $volume->update();
+            $userVol = Volume::find($id);
+            $userVol->volume = $vol;
+            $userVol->update();
         }
 
         return 'Success';

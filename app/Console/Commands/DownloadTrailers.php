@@ -53,6 +53,10 @@ class DownloadTrailers extends Command
                 print_r("Downloading trailer for $movie ...");
                 echo "";
                 shell_exec("youtube-dl -f best $trailer --output 'trailer.%(ext)s'");
+                $trailer = new Trailers();
+                $trailer->movie = $movie;
+                $trailer->downloaded = 1;
+                $trailer->save();
             }
         }
     }

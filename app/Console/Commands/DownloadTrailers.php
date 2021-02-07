@@ -40,11 +40,11 @@ class DownloadTrailers extends Command
      */
     public function handle()
     {
-        $files = Storage::disk('movies')->directories();
+        $files = Storage::disk('movies2')->directories();
         foreach ($files as $file) {
             $file_parts = pathinfo($file);
             $directory = $file_parts['basename'];
-            $directory = "/srv/http/thetechglitch_internet/storage/app/public/movies/$directory";
+            $directory = "/run/media/thetechglitch/MOVIES/$directory";
             chdir($directory);
             $movie = $file_parts['basename'];
             $trailer = Movie::where('name', $movie)->value('trailer');

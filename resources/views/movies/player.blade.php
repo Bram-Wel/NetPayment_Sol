@@ -32,7 +32,7 @@
 </head>
 <body>
 <div>
-    <video class="w-full" autoplay id="video" style="height: 100vh!important" controls preload="auto"
+    <video class="w-full" autoplay muted id="video" style="height: 100vh!important" controls preload="auto"
            poster="{{ $poster }}">
     </video>
     <div class="controls" id="video-controls" data-state="hidden">

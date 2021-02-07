@@ -131,6 +131,22 @@
             }
             video.play();
 
+            $(document).keydown(function (e) {
+                let keycode = e.which;
+
+                if (keycode === 39) { // right arrow
+                    video.currentTime += 5;
+                } else if (keycode === 37) { // left arrow
+                    video.currentTime -= 5;
+                } else if (keycode === 32) { // spacebar
+                    if (video.paused) {
+                        video.play();
+                    } else {
+                        video.pause()
+                    }
+                }
+            });
+
             video.onplay = function () {
                 let duration = video.duration;
                 $.ajax({

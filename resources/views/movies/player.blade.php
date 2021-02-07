@@ -113,6 +113,9 @@
                 });
             });
             video.volume = 0.5;
+            video.onvolumechange = function () {
+                console.log('Volume changed');
+            }
             video.play();
         }
     </script>

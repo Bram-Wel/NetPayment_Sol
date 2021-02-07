@@ -59,5 +59,25 @@ class DownloadTrailers extends Command
                 $trailer->save();
             }
         }
+
+        $files = Storage::disk('movies')->directories();
+        foreach ($files as $file) {
+            $file_parts = pathinfo($file);
+            $directory = $file_parts['basename'];
+            $directory = "/srv/http/thetechglitch_internet/storage/app/public/movies/$directory";
+            chdir($directory);
+            $movie = $file_parts['basename'];
+            $trailer = Movie::where('name', $movie)->value('trailer');
+            $count = Trailers::where('movie', $movie)->count('id');
+            if ($count == 0) {
+                print_r("Downloading trailer for $movie ...");
+                echo "";
+                shell_exec("youtube-dl -f best $trailer --output 'trailer.%(ext)s'");
+                $trailer = new Trailers();
+                $trailer->movie = $movie;
+                $trailer->downloaded = 1;
+                $trailer->save();
+            }
+        }
     }
 }

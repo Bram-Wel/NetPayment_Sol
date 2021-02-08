@@ -21,7 +21,7 @@
                     {{--                        {{ __('Movie Packages') }}--}}
                     {{--                    </x-jet-nav-link>--}}
                     <x-jet-nav-link href="{{ route('movies') }}" :active="request()->routeIs('movies')"
-                                    class="@if(request()->routeIs('test')) text-white @endif">
+                                    @if(request()->routeIs('test')) class="text-white" @endif>
                         {{ __('Movies') }}
                     </x-jet-nav-link>
 

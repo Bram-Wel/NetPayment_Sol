@@ -106,7 +106,7 @@
         </div>
     @endforeach
 
-    <div class="wrapper pt-1/2">
+    <div class="wrapper pt-96">
         <section id="section1">
             <a href="#section3" class="arrow__btn">‹</a>
             @php

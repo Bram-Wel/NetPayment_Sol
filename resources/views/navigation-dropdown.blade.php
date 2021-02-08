@@ -1,5 +1,5 @@
 <nav x-data="{ open: false }"
-     class="@if(!request()->routeIs('movies') or !request()->routeIs('info') or !request()->routeIs('test')) border-b border-gray-100 shadow-xl bg-white @endif @if(request()->routeIs('movies') or request()->routeIs('info') or request()->routeIs('test')) absolute z-10 @endif">
+     class="@if(!request()->routeIs('movies') or !request()->routeIs('info') or !request()->routeIs('test')) border-b border-gray-100 shadow-xl bg-white @endif @if(request()->routeIs('movies') or request()->routeIs('info') or request()->routeIs('test')) absolute z-10 bg-transparent @endif">
     <!-- Primary Navigation Menu -->
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex justify-between h-16">
@@ -63,7 +63,7 @@
                                 class="flex items-center text-sm font-medium hover:border-gray-300 focus:outline-none focus:border-gray-300 transition duration-150 ease-in-out">
                                 <div>
                                     <span
-                                        class="@if(request()->routeIs('movies') or !request()->routeIs('info') or !request()->routeIs('test')) text-white font-bold @endif">{{ Auth::user()->username }}</span>
+                                        class="@if(request()->routeIs('movies') or request()->routeIs('info') or request()->routeIs('test')) text-white font-bold @endif">{{ Auth::user()->username }}</span>
                                 </div>
 
                                 <div class="ml-1">

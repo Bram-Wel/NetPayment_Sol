@@ -13,23 +13,26 @@
 
                 <!-- Navigation Links -->
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                    <x-jet-nav-link href="{{ route('dashboard') }}" :active="request()->routeIs('dashboard')">
+                    <x-jet-nav-link href="{{ route('dashboard') }}" :active="request()->routeIs('dashboard')"
+                                    class="@if(request()->routeIs('test')) text-white @endif">
                         {{ __('Internet Packages') }}
                     </x-jet-nav-link>
                     {{--                    <x-jet-nav-link href="{{ route('movie-packages') }}" :active="request()->routeIs('movie-packages')">--}}
                     {{--                        {{ __('Movie Packages') }}--}}
                     {{--                    </x-jet-nav-link>--}}
-                    <x-jet-nav-link href="{{ route('movies') }}" :active="request()->routeIs('movies')">
+                    <x-jet-nav-link href="{{ route('movies') }}" :active="request()->routeIs('movies')"
+                                    class="@if(request()->routeIs('test')) text-white @endif>
                         {{ __('Movies') }}
-                    </x-jet-nav-link>
+                                        </x-jet-nav-link>
 
-                    @if(\Illuminate\Support\Facades\Auth::user()->admin == 1)
-                        <x-jet-nav-link href="{{ route('dashboard') }}" :active="request()->routeIs('dashboard')">
-                            {{ __('Dashboard') }}
-                        </x-jet-nav-link>
-                        <x-jet-nav-link href="{{ route('Users') }}" :active="request()->routeIs('Users')">
-                            {{ __('Users') }}
-                        </x-jet-nav-link>
+@if(\Illuminate\Support\Facades\Auth::user()->admin == 1)
+                                        <x-jet-nav-link href="{{ route('dashboard') }}"
+                    :active="request()->routeIs('dashboard')">
+                    {{ __('Dashboard') }}
+                    </x-jet-nav-link>
+                    <x-jet-nav-link href="{{ route('Users') }}" :active="request()->routeIs('Users')">
+                        {{ __('Users') }}
+                    </x-jet-nav-link>
                         <x-jet-nav-link href="{{ route('active') }}" :active="request()->routeIs('active')">
                             {{ __('Active Users') }}
                         </x-jet-nav-link>

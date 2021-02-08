@@ -21,7 +21,7 @@
 
     button {
         position: absolute;
-
+        top: 50%;
     }
 
     @media screen and (max-width: 720px) {

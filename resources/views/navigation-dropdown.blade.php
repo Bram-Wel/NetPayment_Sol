@@ -14,10 +14,12 @@
                 <!-- Navigation Links -->
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                     <x-jet-nav-link href="{{ route('dashboard') }}" :active="request()->routeIs('dashboard')">
-                        <span class="@if(request()->routeIs('test')) text-white @endif>{{ __('Internet Packages') }}</span>
+                        <span
+                            class="@if(request()->routeIs('test')) text-white font-bold @endif">{{ __('Internet Packages') }}</span>
                     </x-jet-nav-link>
                     <x-jet-nav-link href="{{ route('movies') }}" :active="request()->routeIs('movies')">
-                        {{ __('Movies') }}
+                        <span
+                            class="@if(request()->routeIs('test')) text-white font-bold @endif">{{ __('Movies') }}</span>
                     </x-jet-nav-link>
 
                     @if(\Illuminate\Support\Facades\Auth::user()->admin == 1)

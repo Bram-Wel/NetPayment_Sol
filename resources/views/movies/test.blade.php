@@ -144,7 +144,7 @@
         <section id="section3">
             <a href="#section2" class="arrow__btn">‹</a>
             @php
-                $latest = \App\Models\Movie::orderBy('created_at', 'desc')->limit(7)->get();
+                $latest = \App\Models\Movie::orderBy('created_at', 'desc')->limit(7)->offset(14)->get();
             @endphp
             @foreach($latest as $movie)
                 @php

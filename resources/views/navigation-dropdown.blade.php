@@ -21,17 +21,17 @@
                     {{--                        {{ __('Movie Packages') }}--}}
                     {{--                    </x-jet-nav-link>--}}
                     <x-jet-nav-link href="{{ route('movies') }}" :active="request()->routeIs('movies')"
-                                    class="@if(request()->routeIs('test')) text-white @endif>
+                                    class="@if(request()->routeIs('test')) text-white @endif">
                         {{ __('Movies') }}
-                                        </x-jet-nav-link>
-
-@if(\Illuminate\Support\Facades\Auth::user()->admin == 1)
-                                        <x-jet-nav-link href="{{ route('dashboard') }}"
-                    :active="request()->routeIs('dashboard')">
-                    {{ __('Dashboard') }}
                     </x-jet-nav-link>
-                    <x-jet-nav-link href="{{ route('Users') }}" :active="request()->routeIs('Users')">
-                        {{ __('Users') }}
+
+                    @if(\Illuminate\Support\Facades\Auth::user()->admin == 1)
+                        <x-jet-nav-link href="{{ route('dashboard') }}"
+                                        :active="request()->routeIs('dashboard')">
+                            {{ __('Dashboard') }}
+                        </x-jet-nav-link>
+                        <x-jet-nav-link href="{{ route('Users') }}" :active="request()->routeIs('Users')">
+                            {{ __('Users') }}
                     </x-jet-nav-link>
                         <x-jet-nav-link href="{{ route('active') }}" :active="request()->routeIs('active')">
                             {{ __('Active Users') }}

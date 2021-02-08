@@ -61,7 +61,10 @@
                         @else
                             <button
                                 class="flex items-center text-sm font-medium hover:border-gray-300 focus:outline-none focus:border-gray-300 transition duration-150 ease-in-out">
-                                <div>{{ Auth::user()->username }}</div>
+                                <div>
+                                    <span
+                                        class="@if(request()->routeIs('test')) text-white font-bold @endif">{{ Auth::user()->username }}</span>
+                                </div>
 
                                 <div class="ml-1">
                                     <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg"

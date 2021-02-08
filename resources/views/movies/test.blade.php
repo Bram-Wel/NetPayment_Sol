@@ -115,7 +115,7 @@
             <h1 class="font-bold text-xl md:pl-6 text-center md:text-left">{{ $g->genre }}</h1>
             <div id="container" class="mr-4 grab flex justify-center">
                 @php
-                    $movies = \App\Models\Genre::where('genre', $g->genre)->select('name')->inRandomOrder()->groupBy('name')->get();
+                    $movies = \App\Models\Genre::where('genre', $g->genre)->select('name')->inRandomOrder()->limit(10)->groupBy('name')->get();
                 @endphp
                 @foreach($movies as $movie)
                     <div>

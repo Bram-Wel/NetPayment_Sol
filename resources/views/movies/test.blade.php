@@ -1,5 +1,14 @@
 @include('movies.layouts.default')
+<link rel="stylesheet" type="text/css" href="{{ asset('/css/assets/slick.css') }}"/>
+<script type="text/javascript" src="{{ asset('js/assets/slick.js') }}"></script>
+<script src="https://unpkg.com/micromodal/dist/micromodal.min.js"></script>
 <style>
+    .poster {
+        width: 160px;
+        height: 230px;
+        transition: transform 1s; /* Animation */
+    }
+
     video {
         filter: brightness(50%);
         object-fit: cover;
@@ -7,69 +16,19 @@
         width: 100%;
     }
 
+    .slick-arrow {
+        display: none !important;
+    }
+
+    .poster:hover {
+        transform: scale(1.1); /* (150% zoom - Note: if the zoom is too large, it will go outside of the viewport) */
+    }
+
     @media screen and (max-width: 720px) {
         .poster {
             width: 150px;
             height: 200px;
             margin: 10px;
-        }
-    }
-
-
-    .wrapper {
-        display: grid;
-        grid-template-columns: repeat(3, 100%);
-        overflow: hidden;
-        scroll-behavior: smooth;
-    }
-
-    .wrapper section {
-        width: 100%;
-        position: relative;
-        display: grid;
-        grid-template-columns: repeat(7, auto);
-        margin: 20px 0;
-    }
-
-    .wrapper section .item {
-        padding: 0 2px;
-        transition: 250ms all;
-    }
-
-    .wrapper section .item:hover {
-        margin: 0 40px;
-        transform: scale(1.2);
-    }
-
-    .wrapper section a {
-        position: absolute;
-        color: #fff;
-        text-decoration: none;
-        font-size: 6em;
-        background: black;
-        width: 80px;
-        padding: 20px;
-        text-align: center;
-        z-index: 1;
-    }
-
-    .wrapper section a:nth-of-type(1) {
-        top: 0;
-        bottom: 0;
-        left: 0;
-        background: linear-gradient(-90deg, rgba(0, 0, 0, 0) 0%, black 100%);
-    }
-
-    .wrapper section a:nth-of-type(2) {
-        top: 0;
-        bottom: 0;
-        right: 0;
-        background: linear-gradient(90deg, rgba(0, 0, 0, 0) 0%, black 100%);
-    }
-
-    @media only screen and (max-width: 600px) {
-        a.arrow__btn {
-            display: none;
         }
     }
 </style>
@@ -106,63 +65,9 @@
         </div>
     @endforeach
 
-    <div class="wrapper pt-5/12" x-data="{ active=">
-        <section id="section1">
-            <a href="#section3" class="arrow__btn">‹</a>
-            @php
-                $latest = \App\Models\Movie::orderBy('created_at', 'desc')->limit(7)->get();
-            @endphp
-            @foreach($latest as $movie)
-                @php
-                    $url = \Illuminate\Support\Facades\Storage::disk($movie->disk)->url($movie->name . '/poster.jpg');
-                @endphp
-                <div class="item">
-                    <img
-                        src="{{ $url }}"
-                        alt="Describe Image">
-                </div>
-            @endforeach
-            <a href="#section2" class="arrow__btn">›</a>
-        </section>
-        <section id="section2">
-            <a href="#section1" class="arrow__btn">‹</a>
-            @php
-                $latest = \App\Models\Movie::orderBy('created_at', 'desc')->limit(7)->offset(7)->get();
-            @endphp
-            @foreach($latest as $movie)
-                @php
-                    $url = \Illuminate\Support\Facades\Storage::disk($movie->disk)->url($movie->name . '/poster.jpg');
-                @endphp
-                <div class="item">
-                    <img
-                        src="{{ $url }}"
-                        alt="Describe Image">
-                </div>
-            @endforeach
-            <a href="#section3" class="arrow__btn">›</a>
-        </section>
-        <section id="section3">
-            <a href="#section2" class="arrow__btn">‹</a>
-            @php
-                $latest = \App\Models\Movie::orderBy('created_at', 'desc')->limit(7)->offset(14)->get();
-            @endphp
-            @foreach($latest as $movie)
-                @php
-                    $url = \Illuminate\Support\Facades\Storage::disk($movie->disk)->url($movie->name . '/poster.jpg');
-                @endphp
-                <div class="item">
-                    <img
-                        src="{{ $url }}"
-                        alt="Describe Image">
-                </div>
-            @endforeach
-            <a href="#section1" class="arrow__btn">›</a>
-        </section>
-    </div>
-
     <div class="pt-1/3">
         <h1 class="font-bold text-xl pl-15 text-center md:text-left mt-8 relative z-20 text-white">Latest releases</h1>
-        <div class="pl-8 grab flex flex-row">
+        <div class="pl-8 grab">
             @foreach($movies as $movie)
                 @php
                     $url = \Illuminate\Support\Facades\Storage::disk($movie->disk)->url($movie->name . '/poster.jpg');
@@ -176,7 +81,7 @@
 
     <div>
         <h1 class="font-bold text-xl pl-15 text-center md:text-left">Recently Added</h1>
-        <div class="pl-4 grab" style="display: flex">
+        <div class="pl-8 grab">
             @php
                 $latest = \App\Models\Movie::orderBy('created_at', 'desc')->limit(15)->get();
             @endphp
@@ -227,7 +132,7 @@
             <h1 class="font-bold text-xl md:pl-6 text-center md:text-left">{{ $g->genre }}</h1>
             <div id="container" class="mr-4 grab flex justify-center">
                 @php
-                    $movies = \App\Models\Genre::where('genre', $g->genre)->select('name')->inRandomOrder()->limit(10)->groupBy('name')->get();
+                    $movies = \App\Models\Genre::where('genre', $g->genre)->select('name')->inRandomOrder()->groupBy('name')->get();
                 @endphp
                 @foreach($movies as $movie)
                     <div>
@@ -271,5 +176,10 @@
         @endif
     </div>
 </div>
-
+<script>
+    $('.grab').slick({
+        slidesToShow: 7,
+        slidesToScroll: 3
+    });
+</script>
 @include('movies.layouts.footer')

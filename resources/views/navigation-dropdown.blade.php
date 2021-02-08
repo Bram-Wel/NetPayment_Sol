@@ -1,5 +1,5 @@
 <nav x-data="{ open: false }"
-     class="@if(!request()->routeIs('movies')) border-b border-gray-100 shadow-xl bg-white @endif @if(request()->routeIs('movies')) absolute z-10 @endif">
+     class="@if(!request()->routeIs('movies') or !request()->routeIs('info') or !request()->routeIs('test')) border-b border-gray-100 shadow-xl bg-white @endif @if(request()->routeIs('movies') or !request()->routeIs('info') or !request()->routeIs('test')) absolute z-10 @endif">
     <!-- Primary Navigation Menu -->
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex justify-between h-16">
@@ -15,11 +15,11 @@
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                     <x-jet-nav-link href="{{ route('dashboard') }}" :active="request()->routeIs('dashboard')">
                         <span
-                            class="@if(request()->routeIs('movies')) text-white font-bold @endif">{{ __('Internet Packages') }}</span>
+                            class="@if(request()->routeIs('movies') or !request()->routeIs('info') or !request()->routeIs('test')) text-white font-bold @endif">{{ __('Internet Packages') }}</span>
                     </x-jet-nav-link>
                     <x-jet-nav-link href="{{ route('movies') }}" :active="request()->routeIs('movies')">
                         <span
-                            class="@if(request()->routeIs('movies')) text-white font-bold @endif">{{ __('Movies') }}</span>
+                            class="@if(request()->routeIs('movies') or !request()->routeIs('info') or !request()->routeIs('test')) text-white font-bold @endif">{{ __('Movies') }}</span>
                     </x-jet-nav-link>
 
                     @if(\Illuminate\Support\Facades\Auth::user()->admin == 1)
@@ -63,7 +63,7 @@
                                 class="flex items-center text-sm font-medium hover:border-gray-300 focus:outline-none focus:border-gray-300 transition duration-150 ease-in-out">
                                 <div>
                                     <span
-                                        class="@if(request()->routeIs('movies')) text-white font-bold @endif">{{ Auth::user()->username }}</span>
+                                        class="@if(request()->routeIs('movies') or !request()->routeIs('info') or !request()->routeIs('test')) text-white font-bold @endif">{{ Auth::user()->username }}</span>
                                 </div>
 
                                 <div class="ml-1">

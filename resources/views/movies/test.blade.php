@@ -7,10 +7,6 @@
         width: 100%;
     }
 
-    .poster:hover {
-        transform: scale(1.1); /* (150% zoom - Note: if the zoom is too large, it will go outside of the viewport) */
-    }
-
     @media screen and (max-width: 720px) {
         .poster {
             width: 150px;

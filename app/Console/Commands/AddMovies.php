@@ -145,16 +145,6 @@ class AddMovies extends Command
                         shell_exec("ffmpeg -i $file -codec: copy -b:v 2800k -maxrate 2996k -bufsize 4200k -b:a 128k  -start_number 0 -hls_time 4 -hls_list_size 0 -f hls -hls_playlist_type vod -hls_segment_filename $directory/playlist_%03d.ts $directory/playlist.m3u8");
                         shell_exec("rm $file");
                     }
-                } elseif ($file_parts['extension'] == 'mkv') {
-                    $directory = $file_parts['dirname'];
-                    $folder = $directory;
-                    $file = escapeshellarg($file);
-                    $directory = escapeshellarg($directory);
-                    chdir("/run/media/thetechglitch/MOVIES/");
-                    shell_exec("ffmpeg -i $file -codec: copy $folder.mp4");
-                    shell_exec("rm $file");
-                    shell_exec("ffmpeg -i $file -codec: copy -b:v 2800k -maxrate 2996k -bufsize 4200k -b:a 128k  -start_number 0 -hls_time 4 -hls_list_size 0 -f hls -hls_playlist_type vod -hls_segment_filename $directory/playlist_%03d.ts $directory/playlist.m3u8");
-                    shell_exec("rm $file");
                 }
             }
 

@@ -27,7 +27,7 @@
         width: 100%;
         position: relative;
         display: grid;
-        grid-template-columns: repeat(5, auto);
+        grid-template-columns: repeat(7, auto);
         margin: 20px 0;
     }
 

@@ -106,7 +106,7 @@
         </div>
     @endforeach
 
-    <div class="wrapper pt-5/12">
+    <div class="wrapper pt-6/12" x-data="{ active=">
         <section id="section1">
             <a href="#section3" class="arrow__btn">‹</a>
             @php

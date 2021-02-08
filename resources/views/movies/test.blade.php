@@ -108,40 +108,6 @@
 
     <div class="wrapper">
         <section id="section1">
-            <a href="#section1" class="arrow__btn">‹</a>
-            @php
-                $latest = \App\Models\Movie::orderBy('created_at', 'desc')->limit(7)->get();
-            @endphp
-            @foreach($latest as $movie)
-                @php
-                    $url = \Illuminate\Support\Facades\Storage::disk($movie->disk)->url($movie->name . '/poster.jpg');
-                @endphp
-                <div class="item">
-                    <img
-                        src="{{ $url }}"
-                        alt="Describe Image">
-                </div>
-            @endforeach
-            <a href="#section1" class="arrow__btn">›</a>
-        </section>
-        <section id="section2">
-            <a href="#section2" class="arrow__btn">‹</a>
-            @php
-                $latest = \App\Models\Movie::orderBy('created_at', 'desc')->limit(7)->offset(7)->get();
-            @endphp
-            @foreach($latest as $movie)
-                @php
-                    $url = \Illuminate\Support\Facades\Storage::disk($movie->disk)->url($movie->name . '/poster.jpg');
-                @endphp
-                <div class="item">
-                    <img
-                        src="{{ $url }}"
-                        alt="Describe Image">
-                </div>
-            @endforeach
-            <a href="#section2" class="arrow__btn">›</a>
-        </section>
-        <section id="section3">
             <a href="#section3" class="arrow__btn">‹</a>
             @php
                 $latest = \App\Models\Movie::orderBy('created_at', 'desc')->limit(7)->get();
@@ -156,7 +122,41 @@
                         alt="Describe Image">
                 </div>
             @endforeach
+            <a href="#section2" class="arrow__btn">›</a>
+        </section>
+        <section id="section2">
+            <a href="#section1" class="arrow__btn">‹</a>
+            @php
+                $latest = \App\Models\Movie::orderBy('created_at', 'desc')->limit(7)->offset(7)->get();
+            @endphp
+            @foreach($latest as $movie)
+                @php
+                    $url = \Illuminate\Support\Facades\Storage::disk($movie->disk)->url($movie->name . '/poster.jpg');
+                @endphp
+                <div class="item">
+                    <img
+                        src="{{ $url }}"
+                        alt="Describe Image">
+                </div>
+            @endforeach
             <a href="#section3" class="arrow__btn">›</a>
+        </section>
+        <section id="section3">
+            <a href="#section2" class="arrow__btn">‹</a>
+            @php
+                $latest = \App\Models\Movie::orderBy('created_at', 'desc')->limit(7)->get();
+            @endphp
+            @foreach($latest as $movie)
+                @php
+                    $url = \Illuminate\Support\Facades\Storage::disk($movie->disk)->url($movie->name . '/poster.jpg');
+                @endphp
+                <div class="item">
+                    <img
+                        src="{{ $url }}"
+                        alt="Describe Image">
+                </div>
+            @endforeach
+            <a href="#section1" class="arrow__btn">›</a>
         </section>
     </div>
 

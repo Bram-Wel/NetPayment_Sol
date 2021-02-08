@@ -156,27 +156,9 @@
                         alt="Describe Image">
                 </div>
             @endforeach
-            <a href="#section2" class="arrow__btn">›</a>
-        </section>
-        <section id="section3">
-            <a href="#section3" class="arrow__btn">‹</a>
-            @php
-                $latest = \App\Models\Movie::orderBy('created_at', 'desc')->limit(7)->get();
-            @endphp
-            @foreach($latest as $movie)
-                @php
-                    $url = \Illuminate\Support\Facades\Storage::disk($movie->disk)->url($movie->name . '/poster.jpg');
-                @endphp
-                <div class="item">
-                    <img
-                        src="{{ $url }}"
-                        alt="Describe Image">
-                </div>
-            @endforeach
             <a href="#section3" class="arrow__btn">›</a>
         </section>
     </div>
-
 
     <div class="pt-1/3">
         <h1 class="font-bold text-xl pl-15 text-center md:text-left mt-8 relative z-20 text-white">Latest releases</h1>

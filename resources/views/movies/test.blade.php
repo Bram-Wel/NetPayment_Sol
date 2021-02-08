@@ -107,7 +107,7 @@
     @endforeach
 
     <div class="wrapper pt-96">
-        <section id="section1">
+        <section class="pt-32" id="section1">
             <a href="#section3" class="arrow__btn">‹</a>
             @php
                 $latest = \App\Models\Movie::orderBy('created_at', 'desc')->limit(7)->get();

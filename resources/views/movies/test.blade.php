@@ -1,11 +1,5 @@
 @include('movies.layouts.default')
-<style>s
-    .poster {
-        width: 160px;
-        height: 230px;
-        transition: transform 1s; /* Animation */
-    }
-
+<style>
     video {
         filter: brightness(50%);
         object-fit: cover;

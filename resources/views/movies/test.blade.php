@@ -1,7 +1,5 @@
 @include('movies.layouts.default')
-<link rel="stylesheet" type="text/css" href="{{ asset('/css/assets/slick.css') }}"/>
-<script type="text/javascript" src="{{ asset('js/assets/slick.js') }}"></script>
-<style>
+<style>s
     .poster {
         width: 160px;
         height: 230px;
@@ -17,11 +15,6 @@
 
     .poster:hover {
         transform: scale(1.1); /* (150% zoom - Note: if the zoom is too large, it will go outside of the viewport) */
-    }
-
-    button {
-        position: absolute;
-        top: 50%;
     }
 
     @media screen and (max-width: 720px) {
@@ -176,10 +169,5 @@
         @endif
     </div>
 </div>
-<script>
-    $('.grab').slick({
-        slidesToShow: 7,
-        slidesToScroll: 3
-    });
-</script>
+
 @include('movies.layouts.footer')

@@ -1,5 +1,5 @@
 <nav x-data="{ open: false }"
-     class="@if(!request()->routeIs('test')) bg-white @endif @if(request()->routeIs('test')) absolute z-10 @endif border-b border-gray-100 shadow-xl">
+     class="@if(!request()->routeIs('test')) border-b border-gray-100 shadow-xl bg-white @endif @if(request()->routeIs('test')) absolute z-10 @endif">
     <!-- Primary Navigation Menu -->
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex justify-between h-16">

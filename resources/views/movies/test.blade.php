@@ -68,7 +68,7 @@
                 @else
                     <h1 class="text-white font-bold text-5xl">{{ $movie->name }}</h1>
                 @endif
-                <div class="details mt-4 mb-4">
+                <div class="details mt-2 mb-2">
                     @php
                         $value = $movie->runtime;
                         $dt = \Carbon\Carbon::now();
@@ -76,7 +76,7 @@
                         $hours = $dt->diffInHours($dt->copy()->addSeconds($value)->subDays($days));
                         $minutes = $dt->diffInMinutes($dt->copy()->addSeconds($value)->subDays($days)->subHours($hours));
                     @endphp
-                    <div class="pl-16 text-gray-500 mb-8"> PG-13 · {{ $movie->year }}
+                    <div class="pl-16 text-gray-500 mb-1"> PG-13 · {{ $movie->year }}
                         · {{ $hours . 'h' . $minutes . 'm' }} · Action,
                         Adventure,
                         Science Fiction

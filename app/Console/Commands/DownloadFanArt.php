@@ -51,6 +51,8 @@ class DownloadFanArt extends Command
                     $json = json_encode($xml);
 
                     $info = json_decode($json, TRUE);
+                    dd($info);
+
                     if (array_key_exists('uniqueid', $info)) {
                         if (!is_array($info['uniqueid'])) {
                             foreach ($info['uniqueid'] as $id) {

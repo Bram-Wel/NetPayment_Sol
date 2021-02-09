@@ -212,16 +212,14 @@ class AddMovies extends Command
                             $actors = $info['actor'];
                             $i = 0;
                             foreach ($actors as $res) {
-                                $actor = new Actor();
-
-                                $actor->name = $name;
-                                $actor->actor = $res['name'];
-                                $actor->thumb = $res['thumb'];
-                                $actor->role = $res['role'];
-                                $actor->save();
-
                                 if (!array_key_exists('thumb', $actors)) {
-                                    break;
+                                    $actor = new Actor();
+
+                                    $actor->name = $name;
+                                    $actor->actor = $res['name'];
+                                    $actor->thumb = $res['thumb'];
+                                    $actor->role = $res['role'];
+                                    $actor->save();
                                 }
 
                                 $i++;

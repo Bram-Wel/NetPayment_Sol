@@ -39,6 +39,7 @@ class DownloadFanArt extends Command
     public function handle()
     {
         $movies = Storage::disk('movies2')->allDirectories();
+        dd($movies);
         foreach ($movies as $name) {
             $files = Storage::disk('movies2')->allFiles($name);
             foreach ($files as $file) {

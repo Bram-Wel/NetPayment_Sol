@@ -70,7 +70,7 @@
                 @endif
                 <div class="details mt-2 mb-2">
                     @php
-                        \Carbon\CarbonInterval::seconds(90060)->cascade()->forHumans();
+                        \Carbon\CarbonInterval::seconds($movie->runtime)->cascade()->forHumans();
                     @endphp
                     <div class="
                     text-gray-200 mb-1"> PG-13 · {{ $movie->year }}

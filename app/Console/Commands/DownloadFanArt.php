@@ -49,7 +49,7 @@ class DownloadFanArt extends Command
                     $json = json_encode($xml);
                     $info = json_decode($json, TRUE);
                     if (array_key_exists('uniqueid', $info)) {
-                        if (!is_array($info['uniqueid'])) {
+                        if (is_array($info['uniqueid'])) {
                             foreach ($info['uniqueid'] as $id) {
                                 $ch = curl_init();
                                 curl_setopt($ch, CURLOPT_URL, "http://webservice.fanart.tv/v3/movies/$id");

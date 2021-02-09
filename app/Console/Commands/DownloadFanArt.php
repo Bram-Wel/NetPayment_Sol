@@ -40,7 +40,6 @@ class DownloadFanArt extends Command
     {
         $movies = Storage::disk('movies2')->allDirectories();
         foreach ($movies as $name) {
-
             $files = Storage::disk('movies2')->allFiles($name);
             foreach ($files as $file) {
                 $file_parts = pathinfo($file);
@@ -53,7 +52,6 @@ class DownloadFanArt extends Command
                                 curl_setopt($ch, CURLOPT_HTTPHEADER, array('api-key: 6012ad815ffea10ea5e17f8231576b22', 'client-key: f4f756be630725b39f18509ac8209f9c'));
                                 curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
                                 $result = curl_exec($ch);
-                                dd($result);
                                 curl_close($ch);
                                 echo $result;
                             }

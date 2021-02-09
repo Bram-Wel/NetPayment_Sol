@@ -66,7 +66,7 @@
 <script>
     function playTrailer() {
         $('#video').get(0).play();
-        $('#video').onplay = function () {
+        $('#video').playing = function () {
             $('#description').hide();
         }
     }

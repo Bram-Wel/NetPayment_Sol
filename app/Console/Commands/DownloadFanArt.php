@@ -61,15 +61,17 @@ class DownloadFanArt extends Command
                                 if (array_key_exists('hdmovielogo', $json)) {
                                     if (is_array($json['hdmovielogo'])) {
                                         foreach ($json['hdmovielogo'] as $logo) {
-                                            $url = $logo['url'];
-                                            $ch = curl_init($url);
-                                            $fp = fopen(Storage::disk('movies2')->path($name) . '/logo.jpg', 'wb');
-                                            curl_setopt($ch, CURLOPT_FILE, $fp);
-                                            curl_setopt($ch, CURLOPT_HEADER, 0);
-                                            curl_exec($ch);
-                                            curl_close($ch);
-                                            fclose($fp);
-                                            break;
+                                            if ($logo['en'] == 'eng') {
+                                                $url = $logo['url'];
+                                                $ch = curl_init($url);
+                                                $fp = fopen(Storage::disk('movies2')->path($name) . '/logo.jpg', 'wb');
+                                                curl_setopt($ch, CURLOPT_FILE, $fp);
+                                                curl_setopt($ch, CURLOPT_HEADER, 0);
+                                                curl_exec($ch);
+                                                curl_close($ch);
+                                                fclose($fp);
+                                                break;
+                                            }
                                         }
                                     } else {
                                         $url = $json['hdmovielogo'];
@@ -84,16 +86,19 @@ class DownloadFanArt extends Command
                                 }
                                 if (array_key_exists('moviethumb', $json)) {
                                     if (is_array($json['moviethumb'])) {
-                                        foreach ($json['moviethumb'] as $logo) {
-                                            $url = $logo['url'];
-                                            $ch = curl_init($url);
-                                            $fp = fopen(Storage::disk('movies2')->path($name) . '/thumb.jpg', 'wb');
-                                            curl_setopt($ch, CURLOPT_FILE, $fp);
-                                            curl_setopt($ch, CURLOPT_HEADER, 0);
-                                            curl_exec($ch);
-                                            curl_close($ch);
-                                            fclose($fp);
-                                            break;
+                                        if ($logo['en'] == 'eng') {
+
+                                            foreach ($json['moviethumb'] as $logo) {
+                                                $url = $logo['url'];
+                                                $ch = curl_init($url);
+                                                $fp = fopen(Storage::disk('movies2')->path($name) . '/thumb.jpg', 'wb');
+                                                curl_setopt($ch, CURLOPT_FILE, $fp);
+                                                curl_setopt($ch, CURLOPT_HEADER, 0);
+                                                curl_exec($ch);
+                                                curl_close($ch);
+                                                fclose($fp);
+                                                break;
+                                            }
                                         }
                                     } else {
                                         $url = $json['moviethumb'];
@@ -119,15 +124,18 @@ class DownloadFanArt extends Command
                             if (array_key_exists('hdmovielogo', $json)) {
                                 if (is_array($json['hdmovielogo'])) {
                                     foreach ($json['hdmovielogo'] as $logo) {
-                                        $url = $logo['url'];
-                                        $ch = curl_init($url);
-                                        $fp = fopen(Storage::disk('movies2')->path($name) . '/logo.jpg', 'wb');
-                                        curl_setopt($ch, CURLOPT_FILE, $fp);
-                                        curl_setopt($ch, CURLOPT_HEADER, 0);
-                                        curl_exec($ch);
-                                        curl_close($ch);
-                                        fclose($fp);
-                                        break;
+                                        if ($logo['en'] == 'eng') {
+
+                                            $url = $logo['url'];
+                                            $ch = curl_init($url);
+                                            $fp = fopen(Storage::disk('movies2')->path($name) . '/logo.jpg', 'wb');
+                                            curl_setopt($ch, CURLOPT_FILE, $fp);
+                                            curl_setopt($ch, CURLOPT_HEADER, 0);
+                                            curl_exec($ch);
+                                            curl_close($ch);
+                                            fclose($fp);
+                                            break;
+                                        }
                                     }
                                 } else {
                                     $url = $json['hdmovielogo'];

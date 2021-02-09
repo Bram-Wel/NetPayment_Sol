@@ -88,7 +88,6 @@
         $('#play').innerHTML = 'Pause';
     }
 
-    $(document).hover(function () {
-        playTrailer();
-    })
+    $(document).bind("click keydown keyup mousemove", playTrailer);
+
 </script>

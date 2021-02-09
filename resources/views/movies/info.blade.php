@@ -67,7 +67,7 @@
                 <button onclick="playTrailer()"
                         class="mr-4 bg-white rounded-xl shadow-xl hover:shadow-2xl focus:outline-none font-bold p-2 px-8 transition duration-200 hover:opacity-9 flex">
                     <ion-icon name="videocam-outline" class="pr-2 text-xl flex whitespace-no-wrap flex-col"></ion-icon>
-                    Play trailer
+                    <span id="play">Play</span> trailer
                 </button>
             @endif
         </div>
@@ -85,6 +85,17 @@
         video.onprogress = function () {
             $('#description').hide();
         }
+        $('#play').innerHTML = 'Pause';
+    }
+
+    function pauseTrailer() {
+        let video = $('#video');
+        video.get(0).pause();
+        video.onprogress = function () {
+            $('#description').show();
+        }
+        $('#play').innerHTML = 'Play';
+
     }
 
     $(document).on('hover', function () {

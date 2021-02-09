@@ -64,5 +64,7 @@
 </div>
 
 <script>
-
+    $(document).ready(function () {
+        let video = $('#video');
+    })
 </script>

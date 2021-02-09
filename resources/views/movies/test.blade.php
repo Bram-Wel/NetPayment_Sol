@@ -70,11 +70,11 @@
                 @endif
                 <div class="details mt-2 mb-2">
                     @php
-                        \Carbon\CarbonInterval::seconds($movie->runtime)->cascade()->forHumans();
-                    @endphp
+
+                        @endphp
                     <div class="
                     text-gray-200 mb-1"> PG-13 · {{ $movie->year }}
-                        · {{ $hours . 'h' . $minutes . 'm' }} · Action,
+                        · {{  \Carbon\CarbonInterval::seconds($movie->runtime)->cascade()->forHumans() }} · Action,
                         Adventure,
                         Science Fiction
                     </div>

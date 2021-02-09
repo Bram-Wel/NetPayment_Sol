@@ -67,8 +67,8 @@
             @foreach($casts as $cast)
                 <img src="{{ $cast->thumb }}" alt="" style="width: 50px; height: 50px">
             @endforeach
-            <div class="about-wrapper">
-                <div class="about-header"><p id="" class="previewModal--section-header" data-uia="">About
+            <div class="mt-4">
+                <div class="about-header"><p id="" class="text-white" data-uia="">About
                         <strong>{{ $movie->name }}</strong></p></div>
                 <div class="about-container" data-uia="about-container">
                     <div class="previewModal--tags" data-uia="previewModal--tags-person"><span

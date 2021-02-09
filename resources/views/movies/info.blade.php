@@ -85,7 +85,7 @@
         video.onplay = function () {
             $('#description').hide();
         }
-        $('#play').innerHTML = 'Pause';
+        $('#play').text = 'Pause';
     }
 
     $(document).bind("click keydown keyup", playTrailer);

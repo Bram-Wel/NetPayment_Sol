@@ -90,4 +90,9 @@
 
     $(document).bind("click keydown keyup mousemove", playTrailer);
 
+    let video = $('#video');
+    video.ended = function () {
+        video.load();
+    }
+
 </script>

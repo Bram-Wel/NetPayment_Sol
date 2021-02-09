@@ -88,17 +88,7 @@
         $('#play').innerHTML = 'Pause';
     }
 
-    function pauseTrailer() {
-        let video = $('#video');
-        video.get(0).pause();
-        video.onprogress = function () {
-            $('#description').show();
-        }
-        $('#play').innerHTML = 'Play';
-
-    }
-
-    $(document).on('hover', function () {
+    $(document).hover(function () {
         playTrailer();
     })
 </script>

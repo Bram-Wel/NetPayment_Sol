@@ -1,7 +1,6 @@
 @include('movies.layouts.default')
 <link rel="stylesheet" type="text/css" href="{{ asset('/css/assets/slick.css') }}"/>
 <script type="text/javascript" src="{{ asset('js/assets/slick.js') }}"></script>
-<script src="https://unpkg.com/micromodal/dist/micromodal.min.js"></script>
 <style>
     .poster {
         width: 160px;
@@ -64,12 +63,23 @@
             }
                 @endphp
                 @if(does_url_exists($url.'/logo.jpg'))
-                    <img src="{!! $url !!}/logo.jpg" alt="" style="width: 350px; height: 150">
+                    <img src="{!! $url !!}/logo.jpg" alt="" style="width: 350px; height: 100px" class="mb-4">
                 @else
                     <h1 class="text-white font-bold text-5xl">{{ $movie->name }}</h1>
                 @endif
-                <p class="text-white font-bold">{{ $movie->description }}</p>
-                <div class="buttons flex flex-row mt-4">
+                <div class="details mt-2 mb-2">
+                    @php
+                        $genres = \Illuminate\Support\Facades\DB::table('genres')
+                    ->where('name', $movie->name)
+                    ->get();
+                    @endphp
+                    <div class="text-gray-200 mb-1"> {{ $movie->mpaa }} · {{ $movie->year }}
+                        · {{  \Carbon\CarbonInterval::minutes((int)$movie->runtime)->cascade()->forHumans() }}
+                        · @foreach($genres as $g) {{ $g->genre . ',' }} @endforeach
+                    </div>
+                </div>
+                <p class="text-white font-bold pt-4 pb-4">{{ $movie->description }}</p>
+                <div class="buttons flex flex-row mt-4 mb-8">
                     <a href="{{ route('player', ['movie' => $movie->id]) }}"
                        class="mr-4 bg-white rounded-xl shadow-xl hover:shadow-2xl font-bold p-2 px-8 transition duration-200 hover:opacity-9 flex">
                         <ion-icon name="play-outline" class="pr-2 text-xl flex whitespace-no-wrap flex-col"></ion-icon>
@@ -86,14 +96,18 @@
     @endforeach
 
     <div class="pt-1/3">
-        <h1 class="font-bold text-xl pl-15 text-center md:text-left mt-8 relative z-20 text-white">Latest releases</h1>
+        <p class="mt-8
+"></p>
+        <h1 class="font-bold text-xl pl-15 text-center md:text-left mt-12 relative z-20 text-white">Latest releases</h1>
         <div class="pl-8 grab">
             @foreach($movies as $movie)
                 @php
                     $url = \Illuminate\Support\Facades\Storage::disk($movie->disk)->url($movie->name . '/poster.jpg');
                 @endphp
-                <a href="{{ route('player', ['movie' => $movie->id]) }}" class="md:ml-5 mb-6 mt-2 focus:outline-none">
-                    <img src="{{ $url }}" alt="" class="rounded-xl shadow-2xl poster thumbnail lazy focus:outline-none">
+                <a href="{{ route('movie.info', ['movie' => $movie->id]) }}"
+                   class="md:ml-5 mb-6 mt-2 focus:outline-none">
+                    <img src="{{ $url }}" alt=""
+                         class="rounded-xl shadow-2xl poster thumbnail lazy focus:outline-none">
                 </a>
             @endforeach
         </div>
@@ -109,7 +123,8 @@
                 @php
                     $url = \Illuminate\Support\Facades\Storage::disk($movie->disk)->url($movie->name . '/poster.jpg');
                 @endphp
-                <a href="{{ route('player', ['movie' => $movie->id]) }}" class="md:ml-5 mb-6 mt-2 focus:outline-none">
+                <a href="{{ route('movie.info', ['movie' => $movie->id]) }}"
+                   class="md:ml-5 mb-6 mt-2 focus:outline-none">
                     <img src="{{ $url }}" alt="" class="rounded-xl shadow-2xl poster thumbnail lazy focus:outline-none">
                 </a>
             @endforeach
@@ -133,7 +148,7 @@
                     @php
                         $url = \Illuminate\Support\Facades\Storage::disk($movie->disk)->url($movie->name . '/poster.jpg');
                     @endphp
-                    <a href="{{ route('player', ['movie' => $movie->id]) }}" class="focus:outline-none">
+                    <a href="{{ route('movie.info', ['movie' => $movie->id]) }}" class="focus:outline-none">
                         <img src="{{ $url }}"
                              class="rounded-lg shadow-xl md:ml-6 mb-6 mt-2 poster lazy focus:outline-none" alt="">
                     </a>
@@ -162,7 +177,7 @@
                             @php
                                 $url = \Illuminate\Support\Facades\Storage::disk($info->disk)->url($info->name . '/poster.jpg');
                             @endphp
-                            <a href="{{ route('player', ['movie' => $info->id]) }}" class="w-48 focus:outline-none">
+                            <a href="{{ route('movie.info', ['movie' => $info->id]) }}" class="w-48 focus:outline-none">
                                 <img src="{{ $url }}"
                                      class="rounded-lg shadow-xl md:ml-6 mb-6 mt-2 poster border-0 lazy w-full focus:outline-none"
                                      alt="">
@@ -185,7 +200,7 @@
                     @php
                         $url = \Illuminate\Support\Facades\Storage::disk($movie->disk)->url($movie->name . '/poster.jpg');
                     @endphp
-                    <a href="{{ route('player', ['movie' => $movie->id]) }}"
+                    <a href="{{ route('movie.info', ['movie' => $movie->id]) }}"
                        class="md:ml-5 mb-6 mt-2 focus:outline-none">
                         <img src="{{ $url }}"
                              class="rounded-xl shadow-2xl poster thumbnail lazy focus:outline-none">

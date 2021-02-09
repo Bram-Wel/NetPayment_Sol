@@ -66,7 +66,7 @@
 <script>
     function playTrailer() {
         let video = $('#video');
-        video.play();
+        video.play;
     }
 
     playTrailer();

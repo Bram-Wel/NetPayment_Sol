@@ -61,7 +61,7 @@
                 <ion-icon name="play-outline" class="pr-2 text-xl flex whitespace-no-wrap flex-col"></ion-icon>
                 Play</a>
             @php
-                $trailerPresent = \App\Models\Trailers::where('name', $movie->name)->count();
+                $trailerPresent = \App\Models\Trailers::where('movie', $movie->name)->count();
             @endphp
             @if($trailerPresent)
                 <button onclick="playTrailer()"

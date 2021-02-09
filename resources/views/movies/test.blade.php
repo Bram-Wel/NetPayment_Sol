@@ -73,7 +73,7 @@
 
                         @endphp
                     <div class="
-                    text-gray-200 mb-1"> {{ $movie->rating }} · {{ $movie->year }}
+                    text-gray-200 mb-1"> {{ $movie->mpaa }} · {{ $movie->year }}
                         · {{  \Carbon\CarbonInterval::seconds($movie->runtime)->cascade()->forHumans() }} · Action,
                         Adventure,
                         Science Fiction

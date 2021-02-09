@@ -67,6 +67,39 @@
             @foreach($casts as $cast)
                 <img src="{{ $cast->thumb }}" alt="" style="width: 50px; height: 50px">
             @endforeach
+            <div class="about-wrapper">
+                <div class="about-header"><p id="" class="previewModal--section-header" data-uia="">About <strong>Malcolm
+                            &amp; Marie</strong></p></div>
+                <div class="about-container" data-uia="about-container">
+                    <div class="previewModal--tags" data-uia="previewModal--tags-person"><span
+                            class="previewModal--tags-label">Director:</span><span class="tag-item text-gray-500"
+                                                                                   data-uia="tag-item">Sam Levinson</span>
+                    </div>
+                    <div class="previewModal--tags" data-uia="previewModal--tags-person"><span
+                            class="previewModal--tags-label">Cast:</span><span class="tag-item" data-uia="tag-item"><a
+                                href="/browse/person/30155912"> Zendaya, </a></span><span class="tag-item"
+                                                                                          data-uia="tag-item"><a
+                                href="/browse/person/40012705">John David Washington</a></span></div>
+                    <div class="previewModal--tags" data-uia="previewModal--tags-person"><span
+                            class="previewModal--tags-label">Writer:</span><span class="tag-item" data-uia="tag-item"><a
+                                href="/browse/person/30137313"> Sam Levinson</a></span></div>
+                    <div class="previewModal--tags" data-uia="previewModal--tags-genre"><span
+                            class="previewModal--tags-label">Genres:</span><span class="tag-item" data-uia="tag-item"><a
+                                href="/browse/genre/5763"> Dramas, </a></span><span class="tag-item"
+                                                                                    data-uia="tag-item"><a
+                                href="/browse/genre/7077">Independent Movies</a></span></div>
+                    <div class="previewModal--tags" data-uia="previewModal--tags-genre"><span
+                            class="previewModal--tags-label">This movie is:</span><span class="tag-item"
+                                                                                        data-uia="tag-item"><a
+                                href="/browse/genre/3066432"> Intimate, </a></span><span class="tag-item"
+                                                                                         data-uia="tag-item"><a
+                                href="/browse/genre/100039">Emotional</a></span></div>
+                    <div class="maturity-rating-wrapper"><span class="title">Maturity rating:</span><span
+                            class="maturity-rating "><a href="https://help.netflix.com/support/2064"
+                                                        class="maturity-number">18+</a><p class="specificRatingReason">sex, language</p><p
+                                class="maturityDescription">Recommended for ages 18 and up</p></span></div>
+                </div>
+            </div>
         </div>
     </div>
 </div>

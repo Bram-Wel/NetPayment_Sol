@@ -4,7 +4,7 @@
 @endphp
 <style>
     video {
-        object-fit: contain;
+        object-fit: fill;
         width: 100%;
         height: 100vh;
         filter: brightness(50%);

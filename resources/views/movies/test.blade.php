@@ -69,7 +69,7 @@
                     <h1 class="text-white font-bold text-5xl">{{ $movie->name }}</h1>
                 @endif
                 <p class="text-white font-bold pt-4 pb-4">{{ $movie->description }}</p>
-                <div class="buttons flex flex-row mt-4">
+                <div class="buttons flex flex-row mt-4 mb-4">
                     <a href="{{ route('player', ['movie' => $movie->id]) }}"
                        class="mr-4 bg-white rounded-xl shadow-xl hover:shadow-2xl font-bold p-2 px-8 transition duration-200 hover:opacity-9 flex">
                         <ion-icon name="play-outline" class="pr-2 text-xl flex whitespace-no-wrap flex-col"></ion-icon>

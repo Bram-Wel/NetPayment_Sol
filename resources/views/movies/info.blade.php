@@ -64,9 +64,14 @@
 </div>
 
 <script>
+    @php
+        $volume = \App\Models\Volume::find(\Illuminate\Support\Facades\Auth::user()->id);
+    @endphp
     function playTrailer() {
-        $('#video').get(0).play();
-        $('#video').playing = function () {
+        let video = $('#video');
+        video.volume = {{ $volume->volume }}
+        video.get(0).play();
+        video.playing = function () {
             $('#description').hide();
         }
     }

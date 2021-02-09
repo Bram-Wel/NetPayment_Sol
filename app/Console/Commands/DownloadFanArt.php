@@ -48,7 +48,7 @@ class DownloadFanArt extends Command
                     $xml = simplexml_load_string($file);
                     $json = json_encode($xml);
                     $info = json_decode($json, TRUE);
-                    dd(info);
+                    dd($info);
                     if (array_key_exists('uniqueid', $info)) {
                         dd($info);
                         if (!is_array($info['uniqueid'])) {

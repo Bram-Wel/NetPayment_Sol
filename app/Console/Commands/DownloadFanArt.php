@@ -62,7 +62,7 @@ class DownloadFanArt extends Command
                                 if (array_key_exists('hdmovielogo', $json)) {
                                     if (is_array($json['hdmovielogo'])) {
                                         foreach ($json['hdmovielogo'] as $logo) {
-                                            if ($logo['en'] == 'eng') {
+                                            if ($logo['lang'] == 'en') {
                                                 $url = $logo['url'];
                                                 $ch = curl_init($url);
                                                 $fp = fopen(Storage::disk('movies2')->path($name) . '/logo.jpg', 'wb');
@@ -87,7 +87,7 @@ class DownloadFanArt extends Command
                                 }
                                 if (array_key_exists('moviethumb', $json)) {
                                     if (is_array($json['moviethumb'])) {
-                                        if ($logo['en'] == 'eng') {
+                                        if ($logo['lang'] == 'en') {
 
                                             foreach ($json['moviethumb'] as $logo) {
                                                 $url = $logo['url'];
@@ -125,7 +125,7 @@ class DownloadFanArt extends Command
                             if (array_key_exists('hdmovielogo', $json)) {
                                 if (is_array($json['hdmovielogo'])) {
                                     foreach ($json['hdmovielogo'] as $logo) {
-                                        if ($logo['en'] == 'eng') {
+                                        if ($logo['lang'] == 'en') {
 
                                             $url = $logo['url'];
                                             $ch = curl_init($url);
@@ -151,7 +151,7 @@ class DownloadFanArt extends Command
                                 if (array_key_exists('moviethumb', $json)) {
                                     if (is_array($json['moviethumb'])) {
                                         foreach ($json['moviethumb'] as $logo) {
-                                            if ($logo['en'] == 'eng') {
+                                            if ($logo['lang'] == 'en') {
 
                                                 $url = $logo['url'];
                                                 $ch = curl_init($url);

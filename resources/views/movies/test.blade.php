@@ -71,7 +71,7 @@
                 <div class="details mt-4 mb-4">
                     @php
                         $value = $movie->runtime;
-                        $dt = Carbon::now();
+                        $dt = \Carbon\Carbon::now();
                         $days = $dt->diffInDays($dt->copy()->addSeconds($value));
                         $hours = $dt->diffInHours($dt->copy()->addSeconds($value)->subDays($days));
                         $minutes = $dt->diffInMinutes($dt->copy()->addSeconds($value)->subDays($days)->subHours($hours));

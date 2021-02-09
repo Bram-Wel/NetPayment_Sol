@@ -56,7 +56,7 @@ class DownloadFanArt extends Command
                                 curl_setopt($ch, CURLOPT_HTTPHEADER, array('api-key: 6012ad815ffea10ea5e17f8231576b22', 'client-key: f4f756be630725b39f18509ac8209f9c'));
                                 curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
                                 $result = curl_exec($ch);
-                                $json = json_decode($result);
+                                $json = json_decode($result, TRUE);
                                 curl_close($ch);
                                 if (array_key_exists('hdmovielogo', $json)) {
                                     if (is_array($json['hdmovielogo'])) {
@@ -75,7 +75,7 @@ class DownloadFanArt extends Command
                             curl_setopt($ch, CURLOPT_HTTPHEADER, array('api-key: 6012ad815ffea10ea5e17f8231576b22', 'client-key: f4f756be630725b39f18509ac8209f9c'));
                             curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
                             $result = curl_exec($ch);
-                            $json = json_decode($result);
+                            $json = json_decode($result, TRUE);
                             curl_close($ch);
                             if (array_key_exists('hdmovielogo', $json)) {
                                 if (is_array($json['hdmovielogo'])) {

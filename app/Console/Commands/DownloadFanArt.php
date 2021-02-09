@@ -44,6 +44,13 @@ class DownloadFanArt extends Command
             foreach ($files as $file) {
                 $file_parts = pathinfo($file);
                 if ($file_parts['extension'] == 'nfo') {
+                    $file = file_get_contents(Storage::disk('movies2')->path($file));
+
+                    $xml = simplexml_load_string($file);
+
+                    $json = json_encode($xml);
+
+                    $info = json_decode($json, TRUE);
                     if (array_key_exists('uniqueid', $info)) {
                         if (!is_array($info['uniqueid'])) {
                             foreach ($info['uniqueid'] as $id) {

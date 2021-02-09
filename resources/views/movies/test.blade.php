@@ -71,7 +71,7 @@
                 <div class="details mt-2 mb-2">
                     @php
                         $genres = \Illuminate\Support\Facades\DB::table('genres')
-                    ->where('movie', $movie->name)
+                    ->where('name', $movie->name)
                     ->get();
                     @endphp
                     <div class="

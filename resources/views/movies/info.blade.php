@@ -36,5 +36,8 @@
             <h1 class="text-white font-bold text-5xl">{{ $movie->name }}</h1>
         @endif
         <p class="text-white font-bold">{{ $movie->description }}</p>
+        <div class="flex">
+            <a href="{{ route('player', ['movie' => $movie->id]) }}" class="text-black bg-white rounded-xl">Play</a>
+        </div>
     </div>
 </div>

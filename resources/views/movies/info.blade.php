@@ -48,7 +48,7 @@
                 · @foreach($genres as $g) {{ $g->genre . ',' }} @endforeach
             </div>
         </div>
-        <p class="text-white font-bold">{{ $movie->description }}</p>
+        <p class="text-white font-bold" id="description">{{ $movie->description }}</p>
         <div class="flex mt-4">
             <a href="{{ route('player', ['movie' => $movie->id]) }}"
                class="mr-4 bg-white rounded-xl shadow-xl hover:shadow-2xl font-bold p-2 px-8 transition duration-200 hover:opacity-9 flex">
@@ -65,7 +65,10 @@
 
 <script>
     function playTrailer() {
-        $('#video').get(0).play()
+        $('#video').get(0).play();
+        $('#video').onplay = function () {
+            $('#description').hide();
+        }
     }
 
     playTrailer();

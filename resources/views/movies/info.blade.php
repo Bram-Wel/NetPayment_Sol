@@ -88,7 +88,7 @@
         $('#play').innerHTML = 'Pause';
     }
 
-    $(document).bind("click keydown keyup mousemove", playTrailer);
+    $(document).bind("click keydown keyup", playTrailer);
 
     let video = $('#video');
     video.ended = function () {

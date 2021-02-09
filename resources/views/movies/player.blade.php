@@ -34,6 +34,7 @@
 <div>
     <video class="w-full" autoplay id="video" style="height: 100vh!important" controls preload="auto"
            disablePictureInPicture poster="{{ $poster }}">
+        <source src="{{ $url }}">
     </video>
     <div class="controls" id="video-controls" data-state="hidden">
         <div class="video-title">

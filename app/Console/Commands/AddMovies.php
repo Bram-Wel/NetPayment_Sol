@@ -108,22 +108,25 @@ class AddMovies extends Command
                             }
                         }
 
-                        $actors = $info['actor'];
-                        $i = 0;
-                        foreach ($actors as $res) {
-                            $actor = new Actor();
+                        if (array_key_exists('actors', $info)) {
 
-                            $actor->name = $name;
-                            $actor->actor = $res['name'];
-                            $actor->thumb = $res['thumb'];
-                            $actor->role = $res['role'];
-                            $actor->save();
+                            $actors = $info['actor'];
+                            $i = 0;
+                            foreach ($actors as $res) {
+                                $actor = new Actor();
 
-                            if (!array_key_exists('thumb', $actors)) {
-                                break;
+                                $actor->name = $name;
+                                $actor->actor = $res['name'];
+                                $actor->thumb = $res['thumb'];
+                                $actor->role = $res['role'];
+                                $actor->save();
+
+                                if (!array_key_exists('thumb', $actors)) {
+                                    break;
+                                }
+
+                                $i++;
                             }
-
-                            $i++;
                         }
                     }
                 }

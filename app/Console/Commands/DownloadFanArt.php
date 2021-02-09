@@ -58,7 +58,15 @@ class DownloadFanArt extends Command
                                 $result = curl_exec($ch);
                                 $json = json_decode($result);
                                 curl_close($ch);
-                                dd($json);
+                                if (array_key_exists('hdmovielogo', $json)) {
+                                    if (is_array($json['hdmovielogo'])) {
+                                        foreach ($json['hdmovielogo'] as $logo) {
+                                            dd($logo);
+                                        }
+                                    } else {
+                                        dd($json['hdmovielogo']);
+                                    }
+                                }
                             }
                         } else {
                             $id = $info['uniqueid'];
@@ -69,7 +77,15 @@ class DownloadFanArt extends Command
                             $result = curl_exec($ch);
                             $json = json_decode($result);
                             curl_close($ch);
-                            dd($json);
+                            if (array_key_exists('hdmovielogo', $json)) {
+                                if (is_array($json['hdmovielogo'])) {
+                                    foreach ($json['hdmovielogo'] as $logo) {
+                                        dd($logo);
+                                    }
+                                } else {
+                                    dd($json['hdmovielogo']);
+                                }
+                            }
                         }
                     }
                 }

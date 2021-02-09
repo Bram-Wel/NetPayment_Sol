@@ -58,6 +58,7 @@ class DownloadFanArt extends Command
                                 $result = curl_exec($ch);
                                 $json = json_decode($result, TRUE);
                                 curl_close($ch);
+                                dd($json);
                                 if (array_key_exists('hdmovielogo', $json)) {
                                     if (is_array($json['hdmovielogo'])) {
                                         foreach ($json['hdmovielogo'] as $logo) {
@@ -69,6 +70,31 @@ class DownloadFanArt extends Command
                                             curl_exec($ch);
                                             curl_close($ch);
                                             fclose($fp);
+                                            break;
+                                        }
+                                    } else {
+                                        $url = $json['hdmovielogo'];
+                                        $ch = curl_init($url);
+                                        $fp = fopen(Storage::disk('movies2')->path($name) . '/logo.jpg', 'wb');
+                                        curl_setopt($ch, CURLOPT_FILE, $fp);
+                                        curl_setopt($ch, CURLOPT_HEADER, 0);
+                                        curl_exec($ch);
+                                        curl_close($ch);
+                                        fclose($fp);
+                                    }
+                                }
+                                if (array_key_exists('hdmovielogo', $json)) {
+                                    if (is_array($json['hdmovielogo'])) {
+                                        foreach ($json['hdmovielogo'] as $logo) {
+                                            $url = $logo['url'];
+                                            $ch = curl_init($url);
+                                            $fp = fopen(Storage::disk('movies2')->path($name) . '/logo.jpg', 'wb');
+                                            curl_setopt($ch, CURLOPT_FILE, $fp);
+                                            curl_setopt($ch, CURLOPT_HEADER, 0);
+                                            curl_exec($ch);
+                                            curl_close($ch);
+                                            fclose($fp);
+                                            break;
                                         }
                                     } else {
                                         $url = $json['hdmovielogo'];
@@ -102,6 +128,7 @@ class DownloadFanArt extends Command
                                         curl_exec($ch);
                                         curl_close($ch);
                                         fclose($fp);
+                                        break;
                                     }
                                 } else {
                                     $url = $json['hdmovielogo'];

@@ -40,6 +40,10 @@ class Kernel extends ConsoleKernel
         $schedule->command('download:trailers')
             ->withoutOverlapping(10)
             ->everyThreeHours();
+
+        $schedule->command('download:fanart')
+            ->withoutOverlapping(10)
+            ->everySixHours();
     }
 
     /**

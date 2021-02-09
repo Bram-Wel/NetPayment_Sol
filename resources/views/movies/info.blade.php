@@ -17,7 +17,8 @@
     </video>
     <div class="absolute top-16 left-20 w-1/3">
         <div class="mb-24">
-            <a href="{{ \Illuminate\Support\Facades\URL::previous() }}" class="text-white font-bold text-xl flex">
+            <a href="{{ \Illuminate\Support\Facades\URL::previous() }}"
+               class="text-white absolute top-50 font-bold text-xl flex">
                 <ion-icon name="arrow-back-circle-outline"></ion-icon>
                 Back</a>
         </div>

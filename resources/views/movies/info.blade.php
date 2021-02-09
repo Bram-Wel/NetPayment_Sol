@@ -15,7 +15,7 @@
     <video poster="{!! $url !!}/fanart.jpg" autoplay muted>
         <source src="{{ $url }}/trailer.mp4">
     </video>
-    <div class="absolute top-32 left-20 w-1/3">
+    <div class="absolute top-16 left-20 w-1/3">
         @php
             function does_url_exists($url) {
         $ch = curl_init($url);

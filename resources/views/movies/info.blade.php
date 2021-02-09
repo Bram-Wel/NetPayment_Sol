@@ -10,5 +10,7 @@
 <div
     style="width: 100%; height: 100vh; background-size: cover; background-position: center"
     class="overflow-none main">
-    {{  $movie->name }}
+    <div>
+        <h1>{{ $movie->name }}</h1>
+    </div>
 </div>

@@ -3,15 +3,17 @@
     $url = \Illuminate\Support\Facades\Storage::disk($movie->disk)->url($movie->name);
 @endphp
 <style>
-    .main {
+    video {
         background: linear-gradient(
             rgba(0, 0, 0, 0.5),
             rgba(0, 0, 0, 0.5)
         ), url("{!! $url !!}/fanart.jpg");
+        object-fit: cover;
+        width: 100%;
+        height: 100vh;
     }
 </style>
 <div
-    style="width: 100%; height: 100vh; background-size: cover; background-position: center"
     class="overflow-none main">
     <video poster="{!! $url !!}/fanart.jpg">
         <source src="{{ $url }}/trailer.mp4">

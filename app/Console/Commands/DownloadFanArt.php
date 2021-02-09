@@ -39,7 +39,6 @@ class DownloadFanArt extends Command
     public function handle()
     {
         $movies = Storage::disk('movies2')->allDirectories();
-        dd($movies);
         foreach ($movies as $name) {
             $files = Storage::disk('movies2')->allFiles($name);
             foreach ($files as $file) {
@@ -49,9 +48,7 @@ class DownloadFanArt extends Command
                     $xml = simplexml_load_string($file);
                     $json = json_encode($xml);
                     $info = json_decode($json, TRUE);
-                    dd($info);
                     if (array_key_exists('uniqueid', $info)) {
-                        dd($info);
                         if (!is_array($info['uniqueid'])) {
                             foreach ($info['uniqueid'] as $id) {
                                 $ch = curl_init();

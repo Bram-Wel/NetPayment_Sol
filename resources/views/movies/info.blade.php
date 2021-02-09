@@ -64,7 +64,10 @@
 </div>
 
 <script>
-    $(document).ready(function () {
+    function playTrailer() {
         let video = $('#video');
-    })
+        video.play();
+    }
+
+    playTrailer();
 </script>

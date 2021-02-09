@@ -108,7 +108,7 @@ class AddMovies extends Command
                             }
                         }
 
-                        if (array_key_exists('actors', $info)) {
+                        if (array_key_exists('actor', $info)) {
 
                             $actors = $info['actor'];
                             $i = 0;
@@ -212,8 +212,8 @@ class AddMovies extends Command
                             }
                         }
 
-                        if (array_key_exists('actors', $info)) {
-                            $actors = $info['actors'];
+                        if (array_key_exists('actor', $info)) {
+                            $actors = $info['actor'];
                             $i = 0;
                             foreach ($actors as $res) {
                                 if (array_key_exists('thumb', $actors)) {
@@ -230,7 +230,7 @@ class AddMovies extends Command
                             }
                         }
 
-                        if (array_key_exists('actors', $info)) {
+                        if (array_key_exists('actor', $info)) {
 
                             $actors = $info['actor'];
                             $i = 0;

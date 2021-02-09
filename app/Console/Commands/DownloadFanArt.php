@@ -61,10 +61,13 @@ class DownloadFanArt extends Command
                                 if (array_key_exists('hdmovielogo', $json)) {
                                     if (is_array($json['hdmovielogo'])) {
                                         foreach ($json['hdmovielogo'] as $logo) {
-                                            dd($logo);
+                                            $url = $logo['url'];
+                                            dd($url);
                                         }
                                     } else {
-                                        dd($json['hdmovielogo']);
+                                        $url = $json['hdmovielogo'];
+                                        dd($url);
+
                                     }
                                 }
                             }
@@ -80,10 +83,14 @@ class DownloadFanArt extends Command
                             if (array_key_exists('hdmovielogo', $json)) {
                                 if (is_array($json['hdmovielogo'])) {
                                     foreach ($json['hdmovielogo'] as $logo) {
-                                        dd($logo);
+                                        $url = $logo['url'];
+                                        dd($url);
+
                                     }
                                 } else {
-                                    dd($json['hdmovielogo']);
+                                    $url = $json['hdmovielogo'];
+                                    dd($url);
+
                                 }
                             }
                         }

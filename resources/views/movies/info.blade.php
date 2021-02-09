@@ -87,5 +87,7 @@
         }
     }
 
-    playTrailer();
+    $(document).on('mouseenter', function () {
+        playTrailer();
+    })
 </script>

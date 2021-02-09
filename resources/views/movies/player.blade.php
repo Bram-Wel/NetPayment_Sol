@@ -115,7 +115,7 @@
             hls.attachMedia(video);
             // MEDIA_ATTACHED event is fired by hls object once MediaSource is ready
             hls.on(Hls.Events.MEDIA_ATTACHED, function () {
-                hls.loadSource('{{ htmlspecialchars($url) }}');
+                hls.loadSource('{{ $url }}');
                 hls.on(Hls.Events.MANIFEST_PARSED, function (event, data) {
                 });
             });

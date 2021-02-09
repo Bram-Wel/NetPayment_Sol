@@ -65,11 +65,11 @@
 
 <script>
     @php
-        $volume = \App\Models\Volume::find(\Illuminate\Support\Facades\Auth::user()->id);
+        $volume = \App\Models\Volume::where('user_id',\Illuminate\Support\Facades\Auth::user()->id)->value('volume');
     @endphp
     function playTrailer() {
         let video = $('#video');
-        video.volume = {{ $volume->volume }}
+        video.volume = {{ $volume }}
         video.get(0).play();
         video.playing = function () {
             $('#description').hide();

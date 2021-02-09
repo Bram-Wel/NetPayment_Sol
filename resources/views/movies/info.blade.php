@@ -15,7 +15,7 @@
     <video id="video" poster="{!! $url !!}/fanart.jpg">
         <source src="{{ $url }}/trailer.mp4">
     </video>
-    <div class="absolute top-16 left-20 w-1/3">
+    <div class="absolute top-16 left-20 w-1/2">
         <div class="mb-24">
             <a href="{{ \Illuminate\Support\Facades\URL::previous() }}"
                class="text-white font-bold text-xl flex">

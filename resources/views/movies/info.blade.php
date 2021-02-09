@@ -82,21 +82,11 @@
         let video = $('#video');
         video.volume = {{ $volume }}
         video.get(0).play();
-    }
-
-    $(document).read(function () {
-        let video = $('#video');
-        video.playing = function () {
+        video.play = function () {
             $('#description').hide();
         }
-        $('#play').text = 'Pause'
-    })
+    }
 
     $(document).bind("click keydown keyup", playTrailer);
-
-    let video = $('#video');
-    video.ended = function () {
-        video.load();
-    }
 
 </script>

@@ -19,7 +19,7 @@
         <div class="mb-24">
             <a href="{{ \Illuminate\Support\Facades\URL::previous() }}"
                class="text-white font-bold text-xl flex">
-                <ion-icon name="arrow-back-circle-outline" class="text-xl relative mt-1"></ion-icon>
+                <ion-icon name="arrow-back-circle-outline" class="text-xl relative mt-1 mr-4"></ion-icon>
                 Back</a>
         </div>
         @php

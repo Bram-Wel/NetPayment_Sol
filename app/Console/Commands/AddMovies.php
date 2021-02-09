@@ -208,7 +208,7 @@ class AddMovies extends Command
                             }
                         }
 
-                        if (!array_key_exists('actor', $info)) {
+                        if (array_key_exists('actor', $info)) {
                             $actors = $info['actor'];
                             $i = 0;
                             foreach ($actors as $res) {

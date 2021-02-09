@@ -69,7 +69,8 @@
                     <h1 class="text-white font-bold text-5xl">{{ $movie->name }}</h1>
                 @endif
                 <div class="details mt-4 mb-4">
-                    <span class="text-white">{{ $movie->year }}</span>
+                    <span class="text-white">{{ $movie->year }}</span><span class="text-xl text-gray-300">.</span> <span
+                        class="text-white">{{ $movie->runtime }}</span>
                 </div>
                 <p class="text-white font-bold pt-4 pb-4">{{ $movie->description }}</p>
                 <div class="buttons flex flex-row mt-4 mb-8">

@@ -82,7 +82,7 @@
         let video = $('#video');
         video.volume = {{ $volume }}
         video.get(0).play();
-        video.onprogress = function () {
+        video.onplay = function () {
             $('#description').hide();
         }
         $('#play').innerHTML = 'Pause';

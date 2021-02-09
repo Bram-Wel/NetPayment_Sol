@@ -12,7 +12,7 @@
 </style>
 <div
     class="overflow-none main">
-    <video poster="{!! $url !!}/fanart.jpg" autoplay muted>
+    <video poster="{!! $url !!}/fanart.jpg">
         <source src="{{ $url }}/trailer.mp4">
     </video>
     <div class="absolute top-16 left-20 w-1/3">

@@ -65,7 +65,7 @@
                 $casts = \App\Models\Actor::where('name', $movie->name)->get();
             @endphp
             @foreach($casts as $cast)
-                <img src="{{ $cast->thumb }}" alt="">
+                <img src="{{ $cast->thumb }}" alt="" style="width: 50px; height: 50px">
             @endforeach
         </div>
     </div>

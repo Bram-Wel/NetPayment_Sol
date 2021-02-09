@@ -67,7 +67,7 @@
                 <button onclick="playTrailer()"
                         class="mr-4 bg-white rounded-xl shadow-xl hover:shadow-2xl focus:outline-none font-bold p-2 px-8 transition duration-200 hover:opacity-9 flex">
                     <ion-icon name="videocam-outline" class="pr-2 text-xl flex whitespace-no-wrap flex-col"></ion-icon>
-                    <span id="play">Play </span> trailer
+                    <span id="play" class="mr-2">Play</span> trailer
                 </button>
             @endif
         </div>

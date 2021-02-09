@@ -47,7 +47,27 @@
                 <source src="{{ $url }}/trailer.mp4">
             </video>
             <div class="absolute mt-32 ml-12 w-1/2">
-                <h1 class="text-5xl text-white font-bold">{{ $movie->name }}</h1>
+                @php
+                    function does_url_exists($url) {
+                $ch = curl_init($url);
+                curl_setopt($ch, CURLOPT_NOBODY, true);
+                curl_exec($ch);
+                $code = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+
+                if ($code == 200) {
+                    $status = true;
+                } else {
+                    $status = false;
+                }
+                curl_close($ch);
+                return $status;
+            }
+                @endphp
+                @if(does_url_exists($url.'/logo.jpg'))
+                    <img src="{!! $url !!}/logo.jpg" alt="" style="width: 500px;">
+                @else
+                    <h1 class="text-white font-bold text-5xl">{{ $movie->name }}</h1>
+                @endif
                 <p class="text-white font-bold">{{ $movie->description }}</p>
                 <div class="buttons flex flex-row mt-4">
                     <a href="{{ route('player', ['movie' => $movie->id]) }}"

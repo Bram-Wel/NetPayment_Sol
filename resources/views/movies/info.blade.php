@@ -35,6 +35,9 @@
         @else
             <h1 class="text-white font-bold text-5xl">{{ $movie->name }}</h1>
         @endif
+        <div class="">
+
+        </div>
         <p class="text-white font-bold">{{ $movie->description }}</p>
         <div class="flex mt-4">
             <a href="{{ route('player', ['movie' => $movie->id]) }}"

@@ -47,19 +47,39 @@
                 <source src="{{ $url }}/trailer.mp4">
             </video>
             <div class="absolute mt-32 ml-12 w-1/2">
-                <h1 class="text-5xl text-white font-bold">{{ $movie->name }}</h1>
+                @php
+                    function does_url_exists($url) {
+                $ch = curl_init($url);
+                curl_setopt($ch, CURLOPT_NOBODY, true);
+                curl_exec($ch);
+                $code = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+
+                if ($code == 200) {
+                    $status = true;
+                } else {
+                    $status = false;
+                }
+                curl_close($ch);
+                return $status;
+            }
+                @endphp
+                @if(does_url_exists($url.'/logo.jpg'))
+                    <img src="{!! $url !!}/logo.jpg" alt="" style="width: 350px; height: 150">
+                @else
+                    <h1 class="text-white font-bold text-5xl">{{ $movie->name }}</h1>
+                @endif
                 <p class="text-white font-bold">{{ $movie->description }}</p>
                 <div class="buttons flex flex-row mt-4">
                     <a href="{{ route('player', ['movie' => $movie->id]) }}"
                        class="mr-4 bg-white rounded-xl shadow-xl hover:shadow-2xl font-bold p-2 px-8 transition duration-200 hover:opacity-9 flex">
                         <ion-icon name="play-outline" class="pr-2 text-xl flex whitespace-no-wrap flex-col"></ion-icon>
                         Play</a>
-                    {{--                    <a href="{{ route('movie.info', ['movie' => $movie->id]) }}"--}}
-                    {{--                       class="mr-4 bg-white rounded-xl shadow-xl hover:shadow-2xl font-bold p-2 px-8 transition duration-200 hover:opacity-9 flex">--}}
-                    {{--                        <ion-icon name="information-outline"--}}
-                    {{--                                  class="pr-2 text-xl flex whitespace-no-wrap flex-col"></ion-icon>--}}
-                    {{--                        More info--}}
-                    {{--                    </a>--}}
+                    <a href="{{ route('movie.info', ['movie' => $movie->id]) }}"
+                       class="mr-4 bg-white rounded-xl shadow-xl hover:shadow-2xl font-bold p-2 px-8 transition duration-200 hover:opacity-9 flex">
+                        <ion-icon name="information-outline"
+                                  class="pr-2 text-xl flex whitespace-no-wrap flex-col"></ion-icon>
+                        More info
+                    </a>
                 </div>
             </div>
         </div>
@@ -97,7 +117,6 @@
     </div>
 
     <div class="pl-8">
-{{--        <h1 class="font-bold text-xl md:pl-6 text-center md:text-left">Most Watched</h1>--}}
         @php
             $watchers = \App\Models\Watchers::select('movie')
             ->groupBy('movie')

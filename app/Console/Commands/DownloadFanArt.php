@@ -48,7 +48,7 @@ class DownloadFanArt extends Command
                     $xml = simplexml_load_string($file);
                     $json = json_encode($xml);
                     $info = json_decode($json, TRUE);
-                    if (property_exists('uniqueid', $info)) {
+                    if (property_exists($info, 'uniqueid')) {
                         if (is_array($info['uniqueid'])) {
                             foreach ($info['uniqueid'] as $id) {
                                 $ch = curl_init();
@@ -58,7 +58,7 @@ class DownloadFanArt extends Command
                                 $result = curl_exec($ch);
                                 $json = json_decode($result);
                                 curl_close($ch);
-                                if (property_exists('hdmovielogo', $json)) {
+                                if (property_exists($json, 'hdmovielogo')) {
                                     if (is_array($json['hdmovielogo'])) {
                                         foreach ($json['hdmovielogo'] as $logo) {
                                             dd($logo);
@@ -77,7 +77,7 @@ class DownloadFanArt extends Command
                             $result = curl_exec($ch);
                             $json = json_decode($result);
                             curl_close($ch);
-                            if (property_exists('hdmovielogo', $json)) {
+                            if (property_exists($json, 'hdmovielogo')) {
                                 if (is_array($json['hdmovielogo'])) {
                                     foreach ($json['hdmovielogo'] as $logo) {
                                         dd($logo);

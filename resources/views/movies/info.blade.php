@@ -10,7 +10,7 @@
 <div
     style="width: 100%; height: 100vh; background-size: cover; background-position: center"
     class="overflow-none main">
-    <div class="absolute top-50 left-20">
+    <div class="absolute top-40 left-20">
         <h1 class="text-white font-bold text-5xl">{{ $movie->name }}</h1>
     </div>
 </div>

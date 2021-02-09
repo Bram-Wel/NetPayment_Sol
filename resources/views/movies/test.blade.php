@@ -3,8 +3,8 @@
 <script type="text/javascript" src="{{ asset('js/assets/slick.js') }}"></script>
 <style>
     .poster {
-        width: 170px;
-        height: 240px;
+        width: 180px;
+        height: 230px;
         transition: transform 1s; /* Animation */
     }
 
@@ -107,7 +107,7 @@
                 <a href="{{ route('movie.info', ['movie' => $movie->id]) }}"
                    class="md:ml-5 mb-6 mt-2 focus:outline-none">
                     <img src="{{ $url }}" alt=""
-                         class="rounded-xl shadow-2xl poster thumbnail lazy focus:outline-none">
+                         class="shadow-2xl poster thumbnail lazy focus:outline-none">
                 </a>
             @endforeach
         </div>

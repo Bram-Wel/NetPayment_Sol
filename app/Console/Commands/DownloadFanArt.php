@@ -69,7 +69,6 @@ class DownloadFanArt extends Command
                                             curl_exec($ch);
                                             curl_close($ch);
                                             fclose($fp);
-                                            dd($name);
                                         }
                                     } else {
                                         $url = $json['hdmovielogo'];
@@ -80,7 +79,6 @@ class DownloadFanArt extends Command
                                         curl_exec($ch);
                                         curl_close($ch);
                                         fclose($fp);
-                                        dd($name);
                                     }
                                 }
                             }
@@ -104,7 +102,6 @@ class DownloadFanArt extends Command
                                         curl_exec($ch);
                                         curl_close($ch);
                                         fclose($fp);
-                                        dd($name);
                                     }
                                 } else {
                                     $url = $json['hdmovielogo'];
@@ -115,7 +112,6 @@ class DownloadFanArt extends Command
                                     curl_exec($ch);
                                     curl_close($ch);
                                     fclose($fp);
-                                    dd($name);
                                 }
                             }
                         }

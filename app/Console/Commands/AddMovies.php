@@ -151,6 +151,7 @@ class AddMovies extends Command
                 }
             }
 
+
             $count = Movie::where('name', $name)->count('id');
             if ($count == 0) {
                 $movie = new Movie();
@@ -215,25 +216,6 @@ class AddMovies extends Command
                             $actors = $info['actor'];
                             $i = 0;
                             foreach ($actors as $res) {
-                                if (array_key_exists('thumb', $actors)) {
-                                    $actor = new Actor();
-
-                                    $actor->name = $name;
-                                    $actor->actor = $res['name'];
-                                    $actor->thumb = $res['thumb'];
-                                    $actor->role = $res['role'];
-                                    $actor->save();
-                                }
-
-                                $i++;
-                            }
-                        }
-
-                        if (array_key_exists('actor', $info)) {
-
-                            $actors = $info['actor'];
-                            $i = 0;
-                            foreach ($actors as $res) {
                                 if (!array_key_exists('thumb', $actors)) {
                                     break;
                                 }
@@ -250,6 +232,7 @@ class AddMovies extends Command
                         }
                     }
                 }
+
             }
         }
     }

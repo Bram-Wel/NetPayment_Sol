@@ -70,11 +70,7 @@
                 @endif
                 <div class="details mt-2 mb-2">
                     @php
-                        $value = $movie->runtime;
-                        $dt = \Carbon\Carbon::now();
-                        $days = $dt->diffInDays($dt->copy()->addSeconds($value));
-                        $hours = $dt->diffInHours($dt->copy()->addSeconds($value)->subDays($days));
-                        $minutes = $dt->diffInMinutes($dt->copy()->addSeconds($value)->subDays($days)->subHours($hours));
+                        \Carbon\CarbonInterval::seconds(90060)->cascade()->forHumans();
                     @endphp
                     <div class="
                     text-gray-200 mb-1"> PG-13 · {{ $movie->year }}

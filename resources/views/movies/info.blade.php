@@ -87,7 +87,7 @@
         }
     }
 
-    $(document).on('mouseenter', function () {
+    $(document).on('mouseover', function () {
         playTrailer();
     })
 </script>

@@ -68,6 +68,9 @@
                 @else
                     <h1 class="text-white font-bold text-5xl">{{ $movie->name }}</h1>
                 @endif
+                <div class="details mt-4 mb-4">
+                    <span>{{ $movie->year }}</span>
+                </div>
                 <p class="text-white font-bold pt-4 pb-4">{{ $movie->description }}</p>
                 <div class="buttons flex flex-row mt-4 mb-8">
                     <a href="{{ route('player', ['movie' => $movie->id]) }}"

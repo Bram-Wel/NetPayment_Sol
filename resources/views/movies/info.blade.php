@@ -35,5 +35,6 @@
         @else
             <h1 class="text-white font-bold text-5xl">{{ $movie->name }}</h1>
         @endif
+        <p class="text-white font-bold">{{ $movie->description }}</p>
     </div>
 </div>

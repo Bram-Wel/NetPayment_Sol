@@ -57,7 +57,6 @@ class DownloadFanArt extends Command
                                 curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
                                 $result = curl_exec($ch);
                                 $json = json_decode($result, TRUE);
-                                dd($json);
                                 curl_close($ch);
                                 if (array_key_exists('hdmovielogo', $json)) {
                                     if (is_array($json['hdmovielogo'])) {

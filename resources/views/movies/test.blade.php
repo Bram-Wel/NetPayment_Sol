@@ -3,8 +3,8 @@
 <script type="text/javascript" src="{{ asset('js/assets/slick.js') }}"></script>
 <style>
     .poster {
-        width: 180px;
-        height: 220px;
+        width: 190px;
+        height: 240px;
         transition: transform 1s; /* Animation */
     }
 

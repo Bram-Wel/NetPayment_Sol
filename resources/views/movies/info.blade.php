@@ -30,8 +30,8 @@
         return $status;
     }
         @endphp
-        @if(does_url_exists($url.'/logo.jpg'));
-        <img src="{!! $url !!}/logo.jpg" alt="">
+        @if(does_url_exists($url.'/logo.jpg'))
+            <img src="{!! $url !!}/logo.jpg" alt="">
         @else
             <h1 class="text-white font-bold text-5xl">{{ $movie->name }}</h1>
         @endif

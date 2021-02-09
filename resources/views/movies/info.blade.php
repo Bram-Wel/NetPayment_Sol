@@ -13,6 +13,9 @@
 <div
     style="width: 100%; height: 100vh; background-size: cover; background-position: center"
     class="overflow-none main">
+    <video poster="{!! $url !!}/fanart.jpg">
+        <source src="{{ $url }}/trailer.mp4">
+    </video>
     <div class="absolute top-32 left-20 w-1/3">
         @php
             function does_url_exists($url) {

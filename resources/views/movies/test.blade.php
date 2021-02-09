@@ -74,7 +74,7 @@
                         @endphp
                     <div class="
                     text-gray-200 mb-1"> {{ $movie->mpaa }} · {{ $movie->year }}
-                        · {{  \Carbon\CarbonInterval::seconds($movie->runtime)->cascade()->forHumans() }} · Action,
+                        · {{  \Carbon\CarbonInterval::seconds((int)$movie->runtime)->cascade()->forHumans() }} · Action,
                         Adventure,
                         Science Fiction
                     </div>

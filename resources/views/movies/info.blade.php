@@ -11,6 +11,6 @@
     style="width: 100%; height: 100vh; background-size: cover; background-position: center"
     class="overflow-none main">
     <div>
-        <h1>{{ $movie->name }}</h1>
+        <h1 class="text-white font-bold text-5xl">{{ $movie->name }}</h1>
     </div>
 </div>

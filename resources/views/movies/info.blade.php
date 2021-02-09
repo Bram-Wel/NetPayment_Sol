@@ -71,10 +71,12 @@
                 <div class="about-header"><p id="" class="text-white" data-uia="">About
                         <strong>{{ $movie->name }}</strong></p></div>
                 <div class="about-container" data-uia="about-container">
+                    @if(!empty($movie->director))
                     <div class="previewModal--tags" data-uia="previewModal--tags-person"><span
                             class="text-white">Director:</span><span class="tag-item text-gray-500"
                                                                      data-uia="tag-item">{{ $movie->director }}</span>
                     </div>
+                    @endif
                     <div class="previewModal--tags" data-uia="previewModal--tags-person"><span
                             class="previewModal--tags-label">Cast:</span><span class="tag-item" data-uia="tag-item"><a
                                 href="/browse/person/30155912"> Zendaya, </a></span><span class="tag-item"

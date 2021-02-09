@@ -34,7 +34,6 @@
 <div>
     <video class="w-full" autoplay id="video" style="height: 100vh!important" controls preload="auto"
            disablePictureInPicture poster="{{ $poster }}">
-        <source src="{{ $url }}">
     </video>
     <div class="controls" id="video-controls" data-state="hidden">
         <div class="video-title">
@@ -116,7 +115,7 @@
             hls.attachMedia(video);
             // MEDIA_ATTACHED event is fired by hls object once MediaSource is ready
             hls.on(Hls.Events.MEDIA_ATTACHED, function () {
-                hls.loadSource("{{ htmlspecialchars($url) }}");
+                hls.loadSource("{{ addslashes($url) }}");
                 hls.on(Hls.Events.MANIFEST_PARSED, function (event, data) {
                 });
             });

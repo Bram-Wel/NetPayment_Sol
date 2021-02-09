@@ -15,7 +15,7 @@
     class="overflow-none main">
     <div class="absolute top-40 left-20">
         @php
-            $file = file_get_contents($url . "/logo.jpg");
+            $file = file_exists($url . "/logo.jpg");
 
         @endphp
         @if(strlen($file) > 0)

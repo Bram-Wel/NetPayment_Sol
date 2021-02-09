@@ -1,5 +1,5 @@
 <nav x-data="{ open: false }"
-     class="@if(!request()->routeIs('movies') and !request()->routeIs('test') and !request()->routeIs('movie.info')) border-b border-gray-100 shadow-xl bg-white @endif @if(request()->routeIs('movies') or request()->routeIs('test') or request()->routeIs('movie.info')) absolute z-10 bg-transparent @endif">
+     class="@if(!request()->routeIs('movies') and !request()->routeIs('test') and !request()->routeIs('movie.info')) border-b border-gray-100 shadow-xl bg-white @endif @if(request()->routeIs('movies') or request()->routeIs('test') or request()->routeIs('movie.info')) absolute z-10 bg-transparent @endif  @if(request()->routeIs('movie.info')) hidden @endif">
     <!-- Primary Navigation Menu -->
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex justify-between h-16">

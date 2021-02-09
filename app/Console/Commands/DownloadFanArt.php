@@ -51,7 +51,6 @@ class DownloadFanArt extends Command
                     $json = json_encode($xml);
 
                     $info = json_decode($json, TRUE);
-                    dd($info);
 
                     if (array_key_exists('uniqueid', $info)) {
                         if (!is_array($info['uniqueid'])) {
@@ -62,8 +61,16 @@ class DownloadFanArt extends Command
                                 curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
                                 $result = curl_exec($ch);
                                 curl_close($ch);
-                                echo $result;
+                                dd($result);
                             }
+                        } else {
+                            $ch = curl_init();
+                            curl_setopt($ch, CURLOPT_URL, "http://webservice.fanart.tv/v3/movies/$id");
+                            curl_setopt($ch, CURLOPT_HTTPHEADER, array('api-key: 6012ad815ffea10ea5e17f8231576b22', 'client-key: f4f756be630725b39f18509ac8209f9c'));
+                            curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+                            $result = curl_exec($ch);
+                            curl_close($ch);
+                            dd($result);
                         }
                     }
                 }

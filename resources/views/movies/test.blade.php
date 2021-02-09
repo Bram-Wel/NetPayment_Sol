@@ -72,12 +72,11 @@
                     @php
                         $genres = \Illuminate\Support\Facades\DB::table('genres')
                     ->where('name', $movie->name)
-                    ->value('genre');
+                    ->get();
                     @endphp
-                    <div class="
-                    text-gray-200 mb-1"> {{ $movie->mpaa }} · {{ $movie->year }}
+                    <div class="text-gray-200 mb-1"> {{ $movie->mpaa }} · {{ $movie->year }}
                         · {{  \Carbon\CarbonInterval::minutes((int)$movie->runtime)->cascade()->forHumans() }}
-                        · {{ $genres }}
+                        · @foreach($genre as $g) {{ $g->genre . ',' }} @endforeach
                     </div>
                 </div>
                 <p class="text-white font-bold pt-4 pb-4">{{ $movie->description }}</p>

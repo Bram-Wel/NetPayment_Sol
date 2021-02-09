@@ -76,7 +76,7 @@
                         $hours = $dt->diffInHours($dt->copy()->addSeconds($value)->subDays($days));
                         $minutes = $dt->diffInMinutes($dt->copy()->addSeconds($value)->subDays($days)->subHours($hours));
                     @endphp
-                    <div class="pl-16 text-gray-500 mb-1"> PG-13 · {{ $movie->year }}
+                    <div class="text-gray-500 mb-1"> PG-13 · {{ $movie->year }}
                         · {{ $hours . 'h' . $minutes . 'm' }} · Action,
                         Adventure,
                         Science Fiction

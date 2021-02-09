@@ -13,7 +13,7 @@
 <div
     style="width: 100%; height: 100vh; background-size: cover; background-position: center"
     class="overflow-none main">
-    <div class="absolute top-40 left-20">
+    <div class="absolute top-32 left-20">
         @php
             function does_url_exists($url) {
         $ch = curl_init($url);

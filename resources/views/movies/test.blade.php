@@ -105,7 +105,8 @@
                     $url = \Illuminate\Support\Facades\Storage::disk($movie->disk)->url($movie->name . '/poster.jpg');
                 @endphp
                 <a href="{{ route('player', ['movie' => $movie->id]) }}" class="md:ml-5 mb-6 mt-2 focus:outline-none">
-                    <img src="{{ $url }}" alt="" class="rounded-xl shadow-2xl poster thumbnail lazy focus:outline-none">
+                    <img src="{{ route('movie.info', ['movie'=>$movie->id]) }}" alt=""
+                         class="rounded-xl shadow-2xl poster thumbnail lazy focus:outline-none">
                 </a>
             @endforeach
         </div>
@@ -121,7 +122,8 @@
                 @php
                     $url = \Illuminate\Support\Facades\Storage::disk($movie->disk)->url($movie->name . '/poster.jpg');
                 @endphp
-                <a href="{{ route('player', ['movie' => $movie->id]) }}" class="md:ml-5 mb-6 mt-2 focus:outline-none">
+                <a href="{{ route('movie.info', ['movie' => $movie->id]) }}"
+                   class="md:ml-5 mb-6 mt-2 focus:outline-none">
                     <img src="{{ $url }}" alt="" class="rounded-xl shadow-2xl poster thumbnail lazy focus:outline-none">
                 </a>
             @endforeach
@@ -145,7 +147,7 @@
                     @php
                         $url = \Illuminate\Support\Facades\Storage::disk($movie->disk)->url($movie->name . '/poster.jpg');
                     @endphp
-                    <a href="{{ route('player', ['movie' => $movie->id]) }}" class="focus:outline-none">
+                    <a href="{{ route('movie.info', ['movie' => $movie->id]) }}" class="focus:outline-none">
                         <img src="{{ $url }}"
                              class="rounded-lg shadow-xl md:ml-6 mb-6 mt-2 poster lazy focus:outline-none" alt="">
                     </a>
@@ -174,7 +176,7 @@
                             @php
                                 $url = \Illuminate\Support\Facades\Storage::disk($info->disk)->url($info->name . '/poster.jpg');
                             @endphp
-                            <a href="{{ route('player', ['movie' => $info->id]) }}" class="w-48 focus:outline-none">
+                            <a href="{{ route('movie.info', ['movie' => $info->id]) }}" class="w-48 focus:outline-none">
                                 <img src="{{ $url }}"
                                      class="rounded-lg shadow-xl md:ml-6 mb-6 mt-2 poster border-0 lazy w-full focus:outline-none"
                                      alt="">
@@ -197,7 +199,7 @@
                     @php
                         $url = \Illuminate\Support\Facades\Storage::disk($movie->disk)->url($movie->name . '/poster.jpg');
                     @endphp
-                    <a href="{{ route('player', ['movie' => $movie->id]) }}"
+                    <a href="{{ route('movie.info', ['movie' => $movie->id]) }}"
                        class="md:ml-5 mb-6 mt-2 focus:outline-none">
                         <img src="{{ $url }}"
                              class="rounded-xl shadow-2xl poster thumbnail lazy focus:outline-none">

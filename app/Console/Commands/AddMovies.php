@@ -168,7 +168,6 @@ class AddMovies extends Command
                         $info = json_decode($json, TRUE);
 
                         $description = $info['plot'];
-                        dd($info);
                         $movie->description = $description;
                         $movie->year = $info['year'];
                         if (array_key_exists('runtime', $info)) {

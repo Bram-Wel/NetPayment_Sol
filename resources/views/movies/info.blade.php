@@ -35,8 +35,16 @@
         @else
             <h1 class="text-white font-bold text-5xl">{{ $movie->name }}</h1>
         @endif
-        <div class="">
-
+        <div class="details mt-2 mb-2">
+            @php
+                $genres = \Illuminate\Support\Facades\DB::table('genres')
+            ->where('name', $movie->name)
+            ->get();
+            @endphp
+            <div class="text-gray-200 mb-1"> {{ $movie->mpaa }} · {{ $movie->year }}
+                · {{  \Carbon\CarbonInterval::minutes((int)$movie->runtime)->cascade()->forHumans() }}
+                · @foreach($genres as $g) {{ $g->genre . ',' }} @endforeach
+            </div>
         </div>
         <p class="text-white font-bold">{{ $movie->description }}</p>
         <div class="flex mt-4">

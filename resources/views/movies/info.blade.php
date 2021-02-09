@@ -60,6 +60,14 @@
                 Play trailer
             </button>
         </div>
+        <div class="cast flex">
+            @php
+                $casts = \App\Models\Actor::where('name', $movie->name)->get();
+            @endphp
+            @foreach($casts as $cast)
+                <img src="{{ $cast->thumb }}" alt="">
+            @endforeach
+        </div>
     </div>
 </div>
 

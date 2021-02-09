@@ -4,7 +4,10 @@
 @endphp
 <style>
     .main {
-        background: url("{!! $url !!}/fanart.jpg");
+        background: linear-gradient(
+            rgba(0, 0, 0, 0.7),
+            rgba(0, 0, 0, 0.7)
+        ), url("{!! $url !!}/fanart.jpg");
     }
 </style>
 <div

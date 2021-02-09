@@ -64,6 +64,7 @@ class DownloadFanArt extends Command
                                 dd($result);
                             }
                         } else {
+                            $id = $info['uniqueid'];
                             $ch = curl_init();
                             curl_setopt($ch, CURLOPT_URL, "http://webservice.fanart.tv/v3/movies/$id");
                             curl_setopt($ch, CURLOPT_HTTPHEADER, array('api-key: 6012ad815ffea10ea5e17f8231576b22', 'client-key: f4f756be630725b39f18509ac8209f9c'));

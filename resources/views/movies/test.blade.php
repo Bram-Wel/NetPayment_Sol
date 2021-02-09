@@ -102,7 +102,7 @@
         <div class="pl-8 grab">
             @foreach($movies as $movie)
                 @php
-                    $url = \Illuminate\Support\Facades\Storage::disk($movie->disk)->url($movie->name . '/poster.jpg');
+                    $url = \Illuminate\Support\Facades\Storage::disk($movie->disk)->url($movie->name . '/thumb.jpg');
                 @endphp
                 <a href="{{ route('movie.info', ['movie' => $movie->id]) }}"
                    class="md:ml-5 mb-6 mt-2 focus:outline-none">

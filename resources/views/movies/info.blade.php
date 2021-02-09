@@ -16,6 +16,9 @@
         <source src="{{ $url }}/trailer.mp4">
     </video>
     <div class="absolute top-16 left-20 w-1/3">
+        <div class="mb-12">
+            <a href="{{ \Illuminate\Support\Facades\URL::previous() }}">Back</a>
+        </div>
         @php
             function does_url_exists($url) {
         $ch = curl_init($url);
@@ -75,6 +78,5 @@
             $('#description').hide();
         }
     }
-
     playTrailer();
 </script>

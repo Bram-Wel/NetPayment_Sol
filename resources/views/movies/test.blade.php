@@ -3,7 +3,7 @@
 <script type="text/javascript" src="{{ asset('js/assets/slick.js') }}"></script>
 <style>
     .poster {
-        width: 160px;
+        width: 170px;
         height: 230px;
         transition: transform 1s; /* Animation */
     }
@@ -107,7 +107,7 @@
                 <a href="{{ route('movie.info', ['movie' => $movie->id]) }}"
                    class="md:ml-5 mb-6 mt-2 focus:outline-none">
                     <img src="{{ $url }}" alt=""
-                         class="rounded-xl shadow-2xl poster thumbnail lazy focus:outline-none">
+                         class="shadow-2xl poster thumbnail lazy focus:outline-none">
                 </a>
             @endforeach
         </div>
@@ -125,7 +125,7 @@
                 @endphp
                 <a href="{{ route('movie.info', ['movie' => $movie->id]) }}"
                    class="md:ml-5 mb-6 mt-2 focus:outline-none">
-                    <img src="{{ $url }}" alt="" class="rounded-xl shadow-2xl poster thumbnail lazy focus:outline-none">
+                    <img src="{{ $url }}" alt="" class="shadow-2xl poster thumbnail lazy focus:outline-none">
                 </a>
             @endforeach
         </div>
@@ -150,7 +150,7 @@
                     @endphp
                     <a href="{{ route('movie.info', ['movie' => $movie->id]) }}" class="focus:outline-none">
                         <img src="{{ $url }}"
-                             class="rounded-lg shadow-xl md:ml-6 mb-6 mt-2 poster lazy focus:outline-none" alt="">
+                             class="shadow-xl md:ml-6 mb-6 mt-2 poster lazy focus:outline-none" alt="">
                     </a>
                 @endforeach
             @endforeach
@@ -179,7 +179,7 @@
                             @endphp
                             <a href="{{ route('movie.info', ['movie' => $info->id]) }}" class="w-48 focus:outline-none">
                                 <img src="{{ $url }}"
-                                     class="rounded-lg shadow-xl md:ml-6 mb-6 mt-2 poster border-0 lazy w-full focus:outline-none"
+                                     class="shadow-xl md:ml-6 mb-6 mt-2 poster border-0 lazy w-full focus:outline-none"
                                      alt="">
                             </a>
                         @endforeach
@@ -203,7 +203,7 @@
                     <a href="{{ route('movie.info', ['movie' => $movie->id]) }}"
                        class="md:ml-5 mb-6 mt-2 focus:outline-none">
                         <img src="{{ $url }}"
-                             class="rounded-xl shadow-2xl poster thumbnail lazy focus:outline-none">
+                             class="shadow-2xl poster thumbnail lazy focus:outline-none">
                     </a>
                 @endforeach
             </div>

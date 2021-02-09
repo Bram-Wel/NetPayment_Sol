@@ -62,12 +62,25 @@ class DownloadFanArt extends Command
                                     if (is_array($json['hdmovielogo'])) {
                                         foreach ($json['hdmovielogo'] as $logo) {
                                             $url = $logo['url'];
-                                            dd($url);
+                                            $ch = curl_init($url);
+                                            $fp = fopen(Storage::disk('movies2')->path($name) . '/logo.jpg', 'wb');
+                                            curl_setopt($ch, CURLOPT_FILE, $fp);
+                                            curl_setopt($ch, CURLOPT_HEADER, 0);
+                                            curl_exec($ch);
+                                            curl_close($ch);
+                                            fclose($fp);
+                                            dd($name);
                                         }
                                     } else {
                                         $url = $json['hdmovielogo'];
-                                        dd($url);
-
+                                        $ch = curl_init($url);
+                                        $fp = fopen(Storage::disk('movies2')->path($name) . '/logo.jpg', 'wb');
+                                        curl_setopt($ch, CURLOPT_FILE, $fp);
+                                        curl_setopt($ch, CURLOPT_HEADER, 0);
+                                        curl_exec($ch);
+                                        curl_close($ch);
+                                        fclose($fp);
+                                        dd($name);
                                     }
                                 }
                             }
@@ -84,13 +97,25 @@ class DownloadFanArt extends Command
                                 if (is_array($json['hdmovielogo'])) {
                                     foreach ($json['hdmovielogo'] as $logo) {
                                         $url = $logo['url'];
-                                        dd($url);
-
+                                        $ch = curl_init($url);
+                                        $fp = fopen(Storage::disk('movies2')->path($name) . '/logo.jpg', 'wb');
+                                        curl_setopt($ch, CURLOPT_FILE, $fp);
+                                        curl_setopt($ch, CURLOPT_HEADER, 0);
+                                        curl_exec($ch);
+                                        curl_close($ch);
+                                        fclose($fp);
+                                        dd($name);
                                     }
                                 } else {
                                     $url = $json['hdmovielogo'];
-                                    dd($url);
-
+                                    $ch = curl_init($url);
+                                    $fp = fopen(Storage::disk('movies2')->path($name) . '/logo.jpg', 'wb');
+                                    curl_setopt($ch, CURLOPT_FILE, $fp);
+                                    curl_setopt($ch, CURLOPT_HEADER, 0);
+                                    curl_exec($ch);
+                                    curl_close($ch);
+                                    fclose($fp);
+                                    dd($name);
                                 }
                             }
                         }

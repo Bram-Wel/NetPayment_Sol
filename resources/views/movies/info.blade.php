@@ -1,4 +1,6 @@
 @include('movies.layouts.default')
-<div class="">
-
-</div>
+@foreach($movie as $mov)
+    <div class="">
+        {{ dd($mov) }}
+    </div>
+@endforeach

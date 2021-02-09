@@ -69,9 +69,18 @@
                     <h1 class="text-white font-bold text-5xl">{{ $movie->name }}</h1>
                 @endif
                 <div class="details mt-4 mb-4">
-                    <span class="text-white">{{ $movie->year }}</span><span
-                        style="background: lightgray; width: 10px; height: 10px; border-radius: 50%;"></span> <span
-                        class="text-white">{{ $movie->runtime }}</span>
+                    @php
+                        $value = $movie->runtime;
+                        $dt = Carbon::now();
+                        $days = $dt->diffInDays($dt->copy()->addSeconds($value));
+                        $hours = $dt->diffInHours($dt->copy()->addSeconds($value)->subDays($days));
+                        $minutes = $dt->diffInMinutes($dt->copy()->addSeconds($value)->subDays($days)->subHours($hours));
+                    @endphp
+                    <div class="pl-16 text-gray-500 mb-8"> PG-13 · {{ $movie->year }}
+                        · {{ CarbonInterval::days($days)->hours($hours)->minutes($minutes)->forHumans() }} · Action,
+                        Adventure,
+                        Science Fiction
+                    </div>
                 </div>
                 <p class="text-white font-bold pt-4 pb-4">{{ $movie->description }}</p>
                 <div class="buttons flex flex-row mt-4 mb-8">

@@ -3,6 +3,7 @@
 namespace App\Console\Commands;
 
 use Illuminate\Console\Command;
+use Illuminate\Support\Facades\Storage;
 
 class DownloadFanArt extends Command
 {
@@ -37,6 +38,28 @@ class DownloadFanArt extends Command
      */
     public function handle()
     {
+        $movies = Storage::disk('movies2')->allDirectories();
+        foreach ($movies as $name) {
 
+            $files = Storage::disk('movies2')->allFiles($name);
+            foreach ($files as $file) {
+                $file_parts = pathinfo($file);
+                if ($file_parts['extension'] == 'nfo') {
+                    if (array_key_exists('uniqueid', $info)) {
+                        if (!is_array($info['uniqueid'])) {
+                            foreach ($info['uniqueid'] as $id) {
+                                $ch = curl_init();
+                                curl_setopt($ch, CURLOPT_URL, "http://webservice.fanart.tv/v3/movies/$id");
+                                curl_setopt($ch, CURLOPT_HTTPHEADER, array('api-key: 6012ad815ffea10ea5e17f8231576b22', 'client-key: f4f756be630725b39f18509ac8209f9c'));
+                                curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+                                $result = curl_exec($ch);
+                                curl_close($ch);
+                                echo $result;
+                            }
+                        }
+                    }
+                }
+            }
+        }
     }
 }

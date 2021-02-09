@@ -35,15 +35,11 @@ class Kernel extends ConsoleKernel
 
         $schedule->command('add:movies')
             ->withoutOverlapping(10)
-            ->everyThreeMinutes();
-
-        $schedule->command('movie:payment')
-            ->withoutOverlapping(10)
-            ->everyFourMinutes();
+            ->everyThreeHours();
 
         $schedule->command('download:trailers')
             ->withoutOverlapping(10)
-            ->everyFourMinutes();
+            ->everyThreeHours();
     }
 
     /**

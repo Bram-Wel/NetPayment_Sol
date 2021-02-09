@@ -71,7 +71,7 @@
                 <div class="about-header"><p id="" class="text-white" data-uia="">About
                         <strong>{{ $movie->name }}</strong></p></div>
                 <div class="about-container" data-uia="about-container">
-                    @if(!empty($movie->director))
+                    @if($movie->director)
                     <div class="previewModal--tags" data-uia="previewModal--tags-person"><span
                             class="text-white">Director:</span><span class="tag-item text-gray-500"
                                                                      data-uia="tag-item">{{ $movie->director }}</span>

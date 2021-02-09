@@ -58,7 +58,7 @@ class DownloadFanArt extends Command
                                 $result = curl_exec($ch);
                                 $json = json_decode($result);
                                 curl_close($ch);
-                                dd($result);
+                                dd($json);
                             }
                         } else {
                             $id = $info['uniqueid'];
@@ -69,7 +69,7 @@ class DownloadFanArt extends Command
                             $result = curl_exec($ch);
                             $json = json_decode($result);
                             curl_close($ch);
-                            dd($result);
+                            dd($json);
                         }
                     }
                 }

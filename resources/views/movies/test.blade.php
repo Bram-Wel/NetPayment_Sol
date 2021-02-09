@@ -72,7 +72,7 @@
                     @php
                         $genres = \Illuminate\Support\Facades\DB::table('genres')
                     ->where('name', $movie->name)
-                    ->value();
+                    ->value('genre');
                     @endphp
                     <div class="
                     text-gray-200 mb-1"> {{ $movie->mpaa }} · {{ $movie->year }}

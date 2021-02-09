@@ -76,7 +76,7 @@
                     @endphp
                     <div class="text-gray-200 mb-1"> {{ $movie->mpaa }} · {{ $movie->year }}
                         · {{  \Carbon\CarbonInterval::minutes((int)$movie->runtime)->cascade()->forHumans() }}
-                        · @foreach($genre as $g) {{ $g->genre . ',' }} @endforeach
+                        · @foreach($genres as $g) {{ $g->genre . ',' }} @endforeach
                     </div>
                 </div>
                 <p class="text-white font-bold pt-4 pb-4">{{ $movie->description }}</p>

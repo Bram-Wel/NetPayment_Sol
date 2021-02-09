@@ -72,11 +72,12 @@
                     @php
                         $value = $movie->runtime;
                         $dt = \Carbon\Carbon::now();
+                        $days = $dt->diffInDays($dt->copy()->addSeconds($value));
                         $hours = $dt->diffInHours($dt->copy()->addSeconds($value)->subDays($days));
                         $minutes = $dt->diffInMinutes($dt->copy()->addSeconds($value)->subDays($days)->subHours($hours));
                     @endphp
                     <div class="pl-16 text-gray-500 mb-8"> PG-13 · {{ $movie->year }}
-                        · {{ $hours . "h" . $minutes . "m" }} · Action,
+                        · {{ $hours . 'h' . $minutes . 'm' }} · Action,
                         Adventure,
                         Science Fiction
                     </div>

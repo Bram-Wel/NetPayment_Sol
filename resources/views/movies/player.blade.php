@@ -35,7 +35,7 @@
     <video class="w-full" autoplay id="video" style="height: 100vh!important" controls preload="auto"
            disablePictureInPicture poster="{{ $poster }}">
     </video>
-    <div class="mb-14 absolute">
+    <div class="top-20 left-10 absolute">
         <a href="{{ \Illuminate\Support\Facades\URL::previous() }}"
            class="text-white font-bold text-xl flex">
             <ion-icon name="arrow-back-circle-outline" title="Back" class="text-xl relative mt-1 mr-4"></ion-icon>

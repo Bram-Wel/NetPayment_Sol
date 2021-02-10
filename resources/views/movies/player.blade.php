@@ -139,6 +139,10 @@
             }
             video.play();
 
+            video.on('hover', function () {
+                $('#back').show(500);
+            })
+
             $(document).keydown(function (e) {
                 let keycode = e.which;
                 if (keycode === 39) { // right arrow
@@ -169,10 +173,6 @@
                         console.log(response);
                     }
                 })
-            }
-
-            video.onpause = function () {
-                $('#back').show(100);
             }
         }
 

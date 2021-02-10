@@ -22,13 +22,6 @@
 
     @livewireStyles
 @stack("styles")
-<!-- Scripts -->
-    <script src="{{ mix('js/app.js') }}" defer></script>
-    <script src="{{ asset('js/assets/chart.js') }}"></script>
-    <script defer src="{{ asset('js/assets/jquery-3.5.1.min.js') }}"></script>
-    <link rel="stylesheet" type="text/css"
-          href="{{ asset('css/assets/toastr.min.css') }}">
-    <script defer src="{{ asset('js/assets/toastr.min.js') }}"></script>
 </head>
 <body class="font-sans antialiased">
 <div class="min-h-screen bg-gray-100">
@@ -44,10 +37,6 @@
 </div>
 
 @stack('modals')
-
-@livewireScripts
-@stack("scripts")
-<script defer nomodule="" src="{{ asset('js/assets/ionicons.min.js') }}"></script>
 
 <script>
     @if(session()->has('message'))
@@ -83,5 +72,17 @@
     toastr.warning("{{ session('warning') }}");
     @endif
 </script>
+<!-- Scripts -->
+<script src="{{ mix('js/app.js') }}" defer></script>
+<script src="{{ asset('js/assets/chart.js') }}"></script>
+<script defer src="{{ asset('js/assets/jquery-3.5.1.min.js') }}"></script>
+
+@livewireScripts
+@stack("scripts")
+<script nomodule="" src="{{ asset('js/assets/ionicons.min.js') }}"></script>
+
+<link rel="stylesheet" type="text/css"
+      href="{{ asset('css/assets/toastr.min.css') }}">
+<script defer src="{{ asset('js/assets/toastr.min.js') }}"></script>
 </body>
 </html>

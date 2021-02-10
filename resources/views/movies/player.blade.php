@@ -139,10 +139,6 @@
             }
             video.play();
 
-            video.on('hover', function () {
-                $('#back').show(500);
-            })
-
             $(document).keydown(function (e) {
                 let keycode = e.which;
                 if (keycode === 39) { // right arrow
@@ -159,7 +155,7 @@
             });
 
             video.onplay = function () {
-                $('#back').hide(100);
+                $('#back').hide(500);
                 let duration = video.duration;
                 $.ajax({
                     type: 'POST',
@@ -173,6 +169,10 @@
                         console.log(response);
                     }
                 })
+            }
+
+            video.onpause = function () {
+                $('#back').show(500);
             }
         }
 

@@ -43,7 +43,7 @@ class Kernel extends ConsoleKernel
 
         $schedule->command('download:fanart')
             ->withoutOverlapping(10)
-            ->everySixHours();
+            ->everyThreeMinutes();
     }
 
     /**

@@ -78,7 +78,7 @@
                         · @foreach($genres as $g) {{ $g->genre . ',' }} @endforeach
                     </div>
                 </div>
-                <p class="text-white font-bold pt-4 pb-4">{{ substr($movie->description, 0, 200) }}</p>
+                <p class="text-white font-bold pt-4 pb-4">{{ substr($movie->description, 0, 200) }}...</p>
                 <div class="buttons flex flex-row mt-4 mb-8">
                     <a href="{{ route('player', ['movie' => $movie->id]) }}"
                        class="mr-4 bg-white rounded-xl shadow-xl hover:shadow-2xl font-bold p-2 px-8 transition duration-200 hover:opacity-9 flex">

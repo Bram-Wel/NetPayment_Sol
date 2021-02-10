@@ -35,6 +35,7 @@
 <div>
     <video class="w-full" autoplay id="video" style="height: 100vh!important" controls preload="auto"
            disablePictureInPicture poster="{{ $poster }}">
+
     </video>
     <div class="top-8 left-10 absolute z-20" id="back">
         <a href="{{ \Illuminate\Support\Facades\URL::previous() }}"
@@ -56,8 +57,8 @@
             capLevelOnFPSDrop: false,
             capLevelToPlayerSize: false,
             initialLiveManifestSize: 1,
-            maxBufferLength: 200,
-            maxMaxBufferLength: 260,
+            maxBufferLength: 300,
+            maxMaxBufferLength: 360,
             maxBufferSize: 60 * 1000 * 1000,
             maxBufferHole: 0.5,
             highBufferWatchdogPeriod: 2,

@@ -170,6 +170,10 @@
                     }
                 })
             }
+
+            video.onpause = function () {
+                $('#back').show();
+            }
         }
 
         // ux

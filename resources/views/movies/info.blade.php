@@ -82,7 +82,6 @@
         let video = $('#video');
         video.volume = {{ $volume }}
         video.get(0).play();
-        $('#description').hide();
     }
 
     $(document).bind("click keydown keyup", playTrailer);

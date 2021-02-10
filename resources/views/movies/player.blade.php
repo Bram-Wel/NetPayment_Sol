@@ -155,7 +155,7 @@
             });
 
             video.onplay = function () {
-                $('#back').hide();
+                $('#back').hide(100);
                 let duration = video.duration;
                 $.ajax({
                     type: 'POST',
@@ -172,7 +172,7 @@
             }
 
             video.onpause = function () {
-                $('#back').show();
+                $('#back').show(100);
             }
         }
 

@@ -140,7 +140,7 @@
             }
             video.play();
 
-            $(document).keyup(function (e) {
+            $(document).keypress(function (e) {
                 let keycode = e.which;
                 if (keycode == 39) { // right arrow
                     video.currentTime += 5;

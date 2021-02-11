@@ -84,6 +84,6 @@
         video.get(0).play();
     }
 
-    $(document).bind("click keydown keyup", playTrailer);
+    $('#play').bind("click keydown keyup", playTrailer);
 
 </script>

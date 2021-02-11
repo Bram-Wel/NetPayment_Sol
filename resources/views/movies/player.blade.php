@@ -146,12 +146,6 @@
                     video.currentTime += 5;
                 } else if (keycode === 37) { // left arrow
                     video.currentTime -= 5;
-                } else if (keycode === 32) { // spacebar
-                    if (video.paused) {
-                        video.play();
-                    } else {
-                        video.pause()
-                    }
                 }
             });
 

@@ -142,10 +142,15 @@
 
             $(document).keydown(function (e) {
                 let keycode = e.which;
-                if (keycode === 39) { // right arrow
+                if (keycode == 39) { // right arrow
                     video.currentTime += 5;
-                } else if (keycode === 37) { // left arrow
+                } else if (keycode == 37) { // left arrow
                     video.currentTime -= 5;
+                } else if (keycode == 32) {
+                    if (video.paused)
+                        video.play();
+                    else
+                        video.pause();
                 }
             });
 

@@ -147,12 +147,7 @@
                 } else if (keycode == 37) { // left arrow
                     video.currentTime -= 5;
                 } else if (keycode == 32) {
-                    e.preventDefault();
-                    if (video.paused) {
-                        video.play();
-                    } else {
-                        video.pause();
-                    }
+                    video.paused ? video.play() : video.pause();
                 }
             });
 

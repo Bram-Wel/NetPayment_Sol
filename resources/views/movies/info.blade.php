@@ -79,10 +79,10 @@
 
 <script>
     $(document).ready(function () {
-
         @php
             $volume = \App\Models\Volume::where('user_id',\Illuminate\Support\Facades\Auth::user()->id)->value('volume');
         @endphp
+
         function playTrailer() {
             let video = $('#video');
             video.volume = {{ $volume }}
@@ -106,14 +106,14 @@
                     playState = false;
                     video.onpause = function () {
                         $('#description').show(500);
-                        video.css('filter', 'brightness(100%)')
+                        video.get(0).css('filter', 'brightness(100%)')
                     }
                 } else {
                     video.play();
                     playState = true;
                     video.onplay = function () {
                         $('#description').hide(500);
-                        video.css('filter', 'brightness(100%)')
+                        video.get(0).css('filter', 'brightness(100%)')
                     }
                 }
             });
@@ -126,13 +126,13 @@
                 video.pause();
                 video.onpause = function () {
                     $('#description').show(500);
-                    video.css('filter', 'brightness(100%)')
+                    video.get(0).css('filter', 'brightness(100%)')
                 }
             } else {
                 video.play();
                 video.onplay = function () {
                     $('#description').hide(500);
-                    video.css('filter', 'brightness(100%)')
+                    video.get(0).css('filter', 'brightness(100%)')
                 }
             }
         };
@@ -141,9 +141,9 @@
 
 
         // ux
-            $('#video').on('contextmenu', function () {
-                return false;
-            });
+        $('#video').on('contextmenu', function () {
+            return false;
+        });
 
     });
 

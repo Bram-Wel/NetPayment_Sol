@@ -43,18 +43,21 @@
         @else
             <h1 class="text-white font-bold text-5xl">{{ $movie->name }}</h1>
         @endif
-        <div class="details mt-2 mb-2">
-            @php
-                $genres = \Illuminate\Support\Facades\DB::table('genres')
-            ->where('name', $movie->name)
-            ->get();
-            @endphp
-            <div class="text-gray-200 mb-1"> {{ $movie->mpaa }} · {{ $movie->year }}
-                · {{  \Carbon\CarbonInterval::minutes((int)$movie->runtime)->cascade()->forHumans() }}
-                · @foreach($genres as $g) {{ $g->genre . ',' }} @endforeach
+        <div id="description">
+            <div class="details mt-2 mb-2">
+                @php
+                    $genres = \Illuminate\Support\Facades\DB::table('genres')
+                ->where('name', $movie->name)
+                ->get();
+                @endphp
+                <div class="text-gray-200 mb-1"> {{ $movie->mpaa }} · {{ $movie->year }}
+                    · {{  \Carbon\CarbonInterval::minutes((int)$movie->runtime)->cascade()->forHumans() }}
+                    · @foreach($genres as $g) {{ $g->genre . ',' }} @endforeach
+                </div>
             </div>
+            <p class="text-white font-bold">{{ $movie->description }}</p>
         </div>
-        <p class="text-white font-bold" id="description">{{ $movie->description }}</p>
+
         <div class="flex mt-4">
             <a href="{{ route('player', ['movie' => $movie->id]) }}"
                class="mr-4 bg-white rounded-xl shadow-xl hover:shadow-2xl font-bold p-2 px-8 transition duration-200 hover:opacity-9 flex">

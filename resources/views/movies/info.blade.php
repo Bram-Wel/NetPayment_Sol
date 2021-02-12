@@ -78,73 +78,71 @@
 </div>
 
 <script>
-    $(document).ready(function () {
-        @php
-            $volume = \App\Models\Volume::where('user_id',\Illuminate\Support\Facades\Auth::user()->id)->value('volume');
-        @endphp
+    @php
+        $volume = \App\Models\Volume::where('user_id',\Illuminate\Support\Facades\Auth::user()->id)->value('volume');
+    @endphp
+    function playTrailer() {
+        let video = $('#video');
+        video.volume = {{ $volume }}
+        video.get(0).play();
 
-        function playTrailer() {
-            let video = $('#video');
-            video.volume = {{ $volume }}
-            video.get(0).play();
-
-            video.onplay = function () {
-                $('#description').hide(500);
-                $('#video').css('filter', 'brightness(100%)')
-            }
+        video.onplay = function () {
+            $('#description').hide(500);
+            video.css('filter', 'brightness(100%)')
         }
+    }
 
-        $('#play').bind("click keydown keyup", playTrailer);
+    $('#play').bind("click keydown keyup", playTrailer);
 
-        const video = document.querySelector("#video");
-        let playState = null;
+    const video = document.querySelector("#video");
+    let playState = null;
 
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach((entry) => {
-                if (!entry.isIntersecting) {
-                    video.pause();
-                    playState = false;
-                    video.onpause = function () {
-                        $('#description').show(500);
-                        $('#video').get(0).css('filter', 'brightness(100%)')
-                    }
-                } else {
-                    video.play();
-                    playState = true;
-                    video.onplay = function () {
-                        $('#description').hide(500);
-                        $('#video').get(0).css('filter', 'brightness(100%)')
-                    }
-                }
-            });
-        }, {});
-
-        observer.observe(video);
-
-        const onVisibilityChange = () => {
-            if (document.hidden || !playState) {
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+            if (!entry.isIntersecting) {
                 video.pause();
+                playState = false;
                 video.onpause = function () {
                     $('#description').show(500);
-                    $('#video').get(0).css('filter', 'brightness(100%)')
+                    video.css('filter', 'brightness(100%)')
                 }
             } else {
                 video.play();
+                playState = true;
                 video.onplay = function () {
                     $('#description').hide(500);
-                    $('#video').get(0).css('filter', 'brightness(100%)')
+                    video.css('filter', 'brightness(100%)')
                 }
             }
-        };
+        });
+    }, {});
 
-        document.addEventListener("visibilitychange", onVisibilityChange);
+    observer.observe(video);
+
+    const onVisibilityChange = () => {
+        if (document.hidden || !playState) {
+            video.pause();
+            video.onpause = function () {
+                $('#description').show(500);
+                video.css('filter', 'brightness(100%)')
+            }
+        } else {
+            video.play();
+            video.onplay = function () {
+                $('#description').hide(500);
+                video.css('filter', 'brightness(100%)')
+            }
+        }
+    };
+
+    document.addEventListener("visibilitychange", onVisibilityChange);
 
 
-        // ux
+    // ux
+    $(document).ready(function () {
         $('#video').on('contextmenu', function () {
             return false;
         });
-
-    });
+    })
 
 </script>

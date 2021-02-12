@@ -90,7 +90,7 @@
 
             video.onplay = function () {
                 $('#description').hide(500);
-                video.css('filter', 'brightness(100%)')
+                $('#video').css('filter', 'brightness(100%)')
             }
         }
 
@@ -106,14 +106,14 @@
                     playState = false;
                     video.onpause = function () {
                         $('#description').show(500);
-                        video.get(0).css('filter', 'brightness(100%)')
+                        $('#video').get(0).css('filter', 'brightness(100%)')
                     }
                 } else {
                     video.play();
                     playState = true;
                     video.onplay = function () {
                         $('#description').hide(500);
-                        video.get(0).css('filter', 'brightness(100%)')
+                        $('#video').get(0).css('filter', 'brightness(100%)')
                     }
                 }
             });
@@ -126,13 +126,13 @@
                 video.pause();
                 video.onpause = function () {
                     $('#description').show(500);
-                    video.get(0).css('filter', 'brightness(100%)')
+                    $('#video').get(0).css('filter', 'brightness(100%)')
                 }
             } else {
                 video.play();
                 video.onplay = function () {
                     $('#description').hide(500);
-                    video.get(0).css('filter', 'brightness(100%)')
+                    $('#video').get(0).css('filter', 'brightness(100%)')
                 }
             }
         };

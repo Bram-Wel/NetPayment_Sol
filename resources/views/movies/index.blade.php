@@ -229,22 +229,22 @@
         let video = $('#video');
         video.volume = {{ $volume }}
         video.get(0).play();
+
+        let playState = null;
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach((entry) => {
+                if (!entry.isIntersecting) {
+                    video.pause();
+                    playState = false;
+                } else {
+                    video.play();
+                    playState = true;
+                }
+            });
+        }, {});
     }
 
     $(document).bind("hover, mouseover, mouseenter, click", playTrailer);
-
-    let playState = null;
-
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach((entry) => {
-            if (!entry.isIntersecting) {
-                video.pause();
-                playState = false;
-            } else {
-                video.play();
-                playState = true;
-            }
-        });
-    }, {});
 </script>
 @include('movies.layouts.footer')

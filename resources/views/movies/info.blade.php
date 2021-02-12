@@ -122,7 +122,7 @@
     const onVisibilityChange = () => {
         if (document.hidden || !playState) {
             video.pause();
-            video.onpaue = function () {
+            video.onpause = function () {
                 $('#description').show(500);
                 video.css('filter', 'brightness(100%)')
             }

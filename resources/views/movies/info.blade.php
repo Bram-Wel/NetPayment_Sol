@@ -88,7 +88,7 @@
 
         video.onplay = function () {
             $('#description').hide(500);
-            video.css('filter', 'brightness(100%)')
+            $('video').css('filter', 'brightness(100%)')
         }
     }
 

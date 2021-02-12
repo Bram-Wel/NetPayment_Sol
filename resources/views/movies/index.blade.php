@@ -243,6 +243,18 @@
                 }
             });
         }, {});
+
+        observer.observe(video);
+
+        const onVisibilityChange = () => {
+            if (document.hidden || !playState) {
+                video.pause();
+            } else {
+                video.play();
+            }
+        };
+
+        document.addEventListener("visibilitychange", onVisibilityChange);
     }
 
     $(document).bind("hover, mouseover, mouseenter, click", playTrailer);

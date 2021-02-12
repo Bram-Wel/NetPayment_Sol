@@ -73,10 +73,17 @@
                         $genres = \Illuminate\Support\Facades\DB::table('genres')
                     ->where('name', $movie->name)
                     ->get();
+                        $count = count($genres);
+                        $i = 0;
                     @endphp
                     <div class="text-gray-200 mb-1"> {{ $movie->mpaa }} · {{ $movie->year }}
                         · {{  \Carbon\CarbonInterval::minutes((int)$movie->runtime)->cascade()->forHumans() }}
-                        · @foreach($genres as $g) {{ $g->genre . ',' }} @endforeach
+                        · @foreach($genres as $g)
+                            {{ $g->genre }}
+                            @if(++$i === $count)
+                                {{ ',' }}
+                            @endif
+                        @endforeach
                     </div>
                 </div>
                 <p class="text-white font-bold pt-4 pb-4">{{ substr($movie->description, 0, 350) }}...</p>

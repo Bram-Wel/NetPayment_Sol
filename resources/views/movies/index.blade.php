@@ -221,6 +221,10 @@
     @php
         $volume = \App\Models\Volume::where('user_id',\Illuminate\Support\Facades\Auth::user()->id)->value('volume');
     @endphp
+    $(document).ready(function () {
+        playTrailer();
+    });
+
     function playTrailer() {
         let video = $('#video');
         video.volume = {{ $volume }}
@@ -229,7 +233,6 @@
 
     $(document).bind("hover, mouseover, mouseenter, click", playTrailer);
 
-    const video = document.querySelector("#video");
     let playState = null;
 
     const observer = new IntersectionObserver((entries) => {

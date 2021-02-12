@@ -82,6 +82,8 @@
         let video = $('#video');
         video.volume = {{ $volume }}
         video.get(0).play();
+
+        $('#description').hide(500);
     }
 
     $('#play').bind("click keydown keyup", playTrailer);
@@ -94,9 +96,12 @@
             if (!entry.isIntersecting) {
                 video.pause();
                 playState = false;
+                $('#description').show(500);
             } else {
                 video.play();
                 playState = true;
+                $('#description').hide(500);
+
             }
         });
     }, {});
@@ -106,8 +111,9 @@
     const onVisibilityChange = () => {
         if (document.hidden || !playState) {
             video.pause();
+            $('#description').show(500);
         } else {
-            video.play();
+            video.hide();
         }
     };
 

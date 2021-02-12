@@ -80,7 +80,7 @@
                         · {{  \Carbon\CarbonInterval::minutes((int)$movie->runtime)->cascade()->forHumans() }}
                         · @foreach($genres as $g)
                             {{ $g->genre }}
-                            @if(++$i === $count)
+                            @if(++$i != $count)
                                 {{ ',' }}
                             @endif
                         @endforeach

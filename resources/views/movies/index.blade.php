@@ -221,42 +221,40 @@
     @php
         $volume = \App\Models\Volume::where('user_id',\Illuminate\Support\Facades\Auth::user()->id)->value('volume');
     @endphp
-    $(document).ready(function () {
-        playTrailer();
-    });
-
     function playTrailer() {
         let video = $('#video');
         video.volume = {{ $volume }}
         video.get(0).play();
-
-        let playState = null;
-
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach((entry) => {
-                if (!entry.isIntersecting) {
-                    video.pause();
-                    playState = false;
-                } else {
-                    video.play();
-                    playState = true;
-                }
-            });
-        }, {});
-
-        observer.observe(video);
-
-        const onVisibilityChange = () => {
-            if (document.hidden || !playState) {
-                video.pause();
-            } else {
-                video.play();
-            }
-        };
-
-        document.addEventListener("visibilitychange", onVisibilityChange);
     }
 
-    $(document).bind("hover, mouseover, mouseenter, click", playTrailer);
+    $(document).bind("click keydown keyup mouseenter mouseover hover", playTrailer);
+
+    const video = document.querySelector("#video");
+    let playState = null;
+
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+            if (!entry.isIntersecting) {
+                video.pause();
+                playState = false;
+            } else {
+                video.play();
+                playState = true;
+            }
+        });
+    }, {});
+
+    observer.observe(video);
+
+    const onVisibilityChange = () => {
+        if (document.hidden || !playState) {
+            video.pause();
+        } else {
+            video.play();
+        }
+    };
+
+    document.addEventListener("visibilitychange", onVisibilityChange);
+
 </script>
 @include('movies.layouts.footer')

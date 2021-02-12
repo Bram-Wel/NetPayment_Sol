@@ -227,7 +227,7 @@
         video.get(0).play();
     }
 
-    $(document).bind("click keydown keyup mouseenter mouseover hover", playTrailer);
+    $('.header').bind("click keydown keyup mouseenter mouseover hover", playTrailer);
 
     const video = document.querySelector("#video");
     let playState = null;

@@ -68,25 +68,28 @@
                 @else
                     <h1 class="text-white font-bold text-5xl">{{ $movie->name }}</h1>
                 @endif
-                <div class="details mt-2 mb-2">
-                    @php
-                        $genres = \Illuminate\Support\Facades\DB::table('genres')
-                    ->where('name', $movie->name)
-                    ->get();
-                        $count = count($genres);
-                        $i = 0;
-                    @endphp
-                    <div class="text-gray-200 mb-1"> {{ $movie->mpaa }} · {{ $movie->year }}
-                        · {{  \Carbon\CarbonInterval::minutes((int)$movie->runtime)->cascade()->forHumans() }}
-                        · @foreach($genres as $g)
-                            {{ $g->genre }}
-                            @if(++$i != $count)
-                                {{ ',' }}
-                            @endif
-                        @endforeach
+                <div id="description">
+                    <div class="details mt-2 mb-2">
+                        @php
+                            $genres = \Illuminate\Support\Facades\DB::table('genres')
+                        ->where('name', $movie->name)
+                        ->get();
+                            $count = count($genres);
+                            $i = 0;
+                        @endphp
+                        <div class="text-gray-200 mb-1"> {{ $movie->mpaa }} · {{ $movie->year }}
+                            · {{  \Carbon\CarbonInterval::minutes((int)$movie->runtime)->cascade()->forHumans() }}
+                            · @foreach($genres as $g)
+                                {{ $g->genre }}
+                                @if(++$i != $count)
+                                    {{ ',' }}
+                                @endif
+                            @endforeach
+                        </div>
                     </div>
+                    <p class="text-white font-bold pt-4 pb-4">{{ substr($movie->description, 0, 350) }}...</p>
                 </div>
-                <p class="text-white font-bold pt-4 pb-4">{{ substr($movie->description, 0, 350) }}...</p>
+
                 <div class="buttons flex flex-row mt-4 mb-8">
                     <a href="{{ route('player', ['movie' => $movie->id]) }}"
                        class="mr-4 bg-white rounded-xl shadow-xl hover:shadow-2xl font-bold p-2 px-8 transition duration-200 hover:opacity-9 flex">
@@ -232,9 +235,14 @@
         let video = $('#video');
         video.volume = {{ $volume }}
         video.get(0).play();
+
+        video.onplay = function () {
+            $('#description').hide(500);
+            document.querySelector('video').css('filter', 'brightness(100%)')
+        }
     }
 
-    $('.header').bind("click keydown keyup mouseenter mouseover hover", playTrailer);
+    $('#play').bind("click keydown keyup", playTrailer);
 
     const video = document.querySelector("#video");
     let playState = null;
@@ -244,9 +252,17 @@
             if (!entry.isIntersecting) {
                 video.pause();
                 playState = false;
+                video.onpause = function () {
+                    $('#description').show(500);
+                    video.css('filter', 'brightness(100%)')
+                }
             } else {
                 video.play();
                 playState = true;
+                video.onplay = function () {
+                    $('#description').hide(500);
+                    video.css('filter', 'brightness(100%)')
+                }
             }
         });
     }, {});
@@ -256,12 +272,28 @@
     const onVisibilityChange = () => {
         if (document.hidden || !playState) {
             video.pause();
+            video.onpause = function () {
+                $('#description').show(500);
+                video.css('filter', 'brightness(100%)')
+            }
         } else {
             video.play();
+            video.onplay = function () {
+                $('#description').hide(500);
+                video.css('filter', 'brightness(100%)')
+            }
         }
     };
 
     document.addEventListener("visibilitychange", onVisibilityChange);
+
+
+    // ux
+    $(document).ready(function () {
+        $('#video').on('contextmenu', function () {
+            return false;
+        });
+    })
 
 </script>
 @include('movies.layouts.footer')

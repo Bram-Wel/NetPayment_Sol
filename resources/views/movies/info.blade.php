@@ -17,7 +17,7 @@
     </video>
     <div class="absolute top-16 left-20 w-1/2">
         <div class="mb-14">
-            <a href="{{ \Illuminate\Support\Facades\URL::previous() }}"
+            <a href="{{ route('dashboard') }}"
                class="text-white font-bold text-xl flex">
                 <ion-icon name="arrow-back-circle-outline" title="Back" class="text-xl relative mt-1 mr-4"></ion-icon>
                 Back</a>

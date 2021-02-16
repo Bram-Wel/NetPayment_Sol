@@ -87,7 +87,6 @@
         video.get(0).play();
         setTimeout(function () {
             video.onplay = function () {
-
                 $('#description').hide(5000);
                 document.querySelector('video').css('filter', 'brightness(100%)')
             }

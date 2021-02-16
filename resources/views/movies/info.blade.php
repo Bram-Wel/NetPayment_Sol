@@ -85,13 +85,14 @@
         let video = $('#video');
         video.volume = {{ $volume }}
         video.get(0).play();
+        setTimeout(function () {
+            video.onplay = function () {
 
-        video.onplay = function () {
-            setTimeout(function () {
                 $('#description').hide(500);
-            }, 5000);
-            document.querySelector('video').css('filter', 'brightness(100%)')
-        }
+                document.querySelector('video').css('filter', 'brightness(100%)')
+            }
+        }, 5000);
+
     }
 
     $('#play').bind("click keydown keyup", playTrailer);

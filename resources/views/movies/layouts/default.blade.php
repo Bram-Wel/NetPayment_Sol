@@ -20,6 +20,7 @@
     <!-- Styles -->
     <link rel="stylesheet" href="{{ mix('css/app.css') }}">
     @livewireStyles
+    <script src="{{ asset('/js/assets/lazysizes.js') }}" async></script>
 @stack("styles")
 
 <!-- Scripts -->

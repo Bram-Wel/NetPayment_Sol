@@ -94,7 +94,10 @@
             $('#play').html('Play');
             $('#logo').css({
                 'position': 'absolute',
-                'bottom': 0
+                'bottom': 0,
+                'left': 0,
+                'top': '90%',
+                'width': '50px'
             })
         } else {
             video.get(0).play();

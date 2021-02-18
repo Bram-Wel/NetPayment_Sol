@@ -157,6 +157,8 @@
             }
 
             video.ondurationchange = function () {
+                let duration = video.duration;
+
                 $.ajax({
                     type: 'POST',
                     url: '/api/user/watcher/save',

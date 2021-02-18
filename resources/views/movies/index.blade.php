@@ -118,7 +118,8 @@
                 <a href="{{ route('movie.info', ['movie' => $movie->id]) }}"
                    class="md:ml-5 mb-6 mt-2 focus:outline-none">
                     <img src="{{ $url }}" alt="" loading="lazy"
-                         class="rounded-xl shadow-2xl poster thumbnail lazy focus:outline-none">
+                         class="rounded-xl shadow-2xl poster thumbnail lazy focus:outline-none" width="160"
+                         height="230">
                 </a>
             @endforeach
         </div>

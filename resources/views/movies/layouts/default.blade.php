@@ -18,7 +18,7 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap">
 
     <!-- Styles -->
-    <link rel="stylesheet" href="{{ mix('css/app.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/app.css') }}">
     @livewireStyles
     <script src="{{ asset('/js/assets/lazysizes.js') }}" async></script>
     <script src="{{ asset('js/assets/jquery-3.5.1.min.js') }}"></script>

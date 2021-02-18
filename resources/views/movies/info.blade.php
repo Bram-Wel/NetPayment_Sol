@@ -86,12 +86,14 @@
         video.volume = {{ $volume }}
         if (!playState) {
             video.get(0).pause();
+            playState = false;
             video.onpause = function () {
                 $('#description').show(1000);
                 $('#play').html('Play');
             }
         } else {
             video.get(0).play();
+            playState = true;
             video.onplay = function () {
                 $('#description').hide(1000);
                 $('#play').html('Pause');
@@ -129,12 +131,14 @@
     const onVisibilityChange = () => {
         if (document.hidden || !playState) {
             video.pause();
+            playState = false;
             video.onpause = function () {
                 $('#description').show(1000);
                 $('#play').html('Play');
             }
         } else {
             video.play();
+            playState = true;
             video.onplay = function () {
                 $('#description').hide(1000);
                 $('#play').html('Pause');

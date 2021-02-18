@@ -11,6 +11,7 @@
     <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
     <meta name="msapplication-TileColor" content="#00aba9">
     <meta name="theme-color" content="#ffffff">
+    <script src="{{ asset('js/assets/chart.js') }}"></script>
 
     <title>{{ config('app.name', 'Laravel') }}</title>
 
@@ -74,7 +75,6 @@
 </script>
 <!-- Scripts -->
 <script src="{{ mix('js/app.js') }}" defer></script>
-<script src="{{ asset('js/assets/chart.js') }}"></script>
 <script src="{{ asset('js/assets/jquery-3.5.1.min.js') }}"></script>
 
 @livewireScripts

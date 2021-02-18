@@ -153,9 +153,6 @@
 
             video.onplay = function () {
                 $('#back').hide(500);
-            }
-
-            video.onplaying = function () {
                 let duration = video.duration;
                 setInterval(function () {
                     $.ajax({
@@ -171,7 +168,7 @@
                             console.log(response);
                         }
                     })
-                }, 1000);
+                }, 10000);
             }
 
             video.onpause = function () {

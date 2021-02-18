@@ -156,7 +156,7 @@
                 let duration = video.duration;
             }
 
-            video.onprogress = function () {
+            video.ondurationchange = function () {
                 $.ajax({
                     type: 'POST',
                     url: '/api/user/watcher/save',

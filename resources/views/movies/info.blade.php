@@ -139,7 +139,7 @@
             return false;
         });
 
-        $('#play').onclick(function () {
+        $('#play').on('click', function () {
             $('#play').text('Pause');
         });
     })

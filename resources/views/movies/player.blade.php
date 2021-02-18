@@ -161,7 +161,8 @@
                     type: 'POST',
                     url: '/api/user/watcher/save',
                     data: {
-                        'user': '{{ \Illuminate\Support\Facades\Auth::user()->username}}',
+                        'user': '{{ \Illuminate
+                        \Support\Facades\Auth::user()->username}}',
                         'duration': duration,
                         'movie': '{{ $movie }}',
                         'progress': video.currentTime,
@@ -170,7 +171,7 @@
                         console.log(response);
                     }
                 })
-            }, 1000)
+            }, 100)
 
             video.onpause = function () {
                 $('#back').show(500);

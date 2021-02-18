@@ -125,12 +125,12 @@
         if (document.hidden || !playState) {
             video.pause();
             video.onpause = function () {
-                setTimeout($('#description').show(500), 5000);
+                setTimeout($('#description').show(500), 100);
             }
         } else {
             video.play();
             video.onplay = function () {
-                setTimeout($('#description').show(500), 5000);
+                setTimeout($('#description').show(500), 100);
             }
         }
     };

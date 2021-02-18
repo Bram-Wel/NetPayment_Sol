@@ -105,13 +105,13 @@
                 video.pause();
                 playState = false;
                 video.onpause = function () {
-                    setTimeout($('#description').show(500), 100);
+                    setTimeout($('#description').show(), 100);
                 }
             } else {
                 video.play();
                 playState = true;
                 video.onplay = function () {
-                    setTimeout($('#description').show(500), 100);
+                    setTimeout($('#description').show(), 100);
                 }
             }
         });
@@ -123,12 +123,12 @@
         if (document.hidden || !playState) {
             video.pause();
             video.onpause = function () {
-                setTimeout($('#description').show(500), 100);
+                setTimeout($('#description').show(), 100);
             }
         } else {
             video.play();
             video.onplay = function () {
-                setTimeout($('#description').show(500), 100);
+                setTimeout($('#description').show(), 100);
             }
         }
     };

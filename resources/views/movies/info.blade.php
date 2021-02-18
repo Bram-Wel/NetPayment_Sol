@@ -96,7 +96,7 @@
                 'position': 'absolute',
                 'bottom': 0,
                 'left': 0,
-                'top': '350px',
+                'top': '400px',
                 'width': '200px'
             })
         } else {

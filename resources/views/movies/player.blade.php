@@ -154,20 +154,22 @@
             video.onplay = function () {
                 $('#back').hide(500);
                 let duration = video.duration;
-                setTimeout(
-                    $.ajax({
-                        type: 'POST',
-                        url: '/api/user/watcher/save',
-                        data: {
-                            'user': '{{ \Illuminate\Support\Facades\Auth::user()->username}}',
-                            'duration': duration,
-                            'movie': '{{ $movie }}',
-                            'progress': video.currentTime,
-                        },
-                        success: function (response) {
-                            console.log(response);
-                        }
-                    }), 10);
+            }
+
+            video.onprogress = function () {
+                $.ajax({
+                    type: 'POST',
+                    url: '/api/user/watcher/save',
+                    data: {
+                        'user': '{{ \Illuminate\Support\Facades\Auth::user()->username}}',
+                        'duration': duration,
+                        'movie': '{{ $movie }}',
+                        'progress': video.currentTime,
+                    },
+                    success: function (response) {
+                        console.log(response);
+                    }
+                })
             }
 
             video.onpause = function () {

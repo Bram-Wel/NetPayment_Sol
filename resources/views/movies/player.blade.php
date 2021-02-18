@@ -158,8 +158,7 @@
             video.ontimeupdate = function () {
                 let duration = video.duration;
 
-                clearTimeout($(this).data('timer');
-            )
+                clearTimeout($(this).data('timer'))
 
                 var timer = setTimeout(function () {
                     $.ajax({

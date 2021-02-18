@@ -153,7 +153,6 @@
 
             video.onplay = function () {
                 $('#back').hide(500);
-                let duration = video.duration;
             }
 
             video.ondurationchange = function () {

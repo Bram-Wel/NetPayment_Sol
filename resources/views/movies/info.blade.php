@@ -85,14 +85,14 @@
         let video = $('#video');
         video.volume = {{ $volume }}
         video.get(0).play();
-        if (!playState) {
-            video.pause();
+        if (playState) {
+            video.get(0).pause();
             video.onpause = function () {
                 $('#description').show(1000);
                 $('#play').html('Play');
             }
         } else {
-            video.play();
+            video.get(0).play();
             video.onplay = function () {
                 $('#description').hide(1000);
                 $('#play').html('Pause');

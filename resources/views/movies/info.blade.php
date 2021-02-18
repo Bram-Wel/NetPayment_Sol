@@ -104,8 +104,6 @@
         }
     }
 
-    $('#play').bind("click keydown keyup", playTrailer);
-
     const video = document.querySelector("#video");
 
     const observer = new IntersectionObserver((entries) => {

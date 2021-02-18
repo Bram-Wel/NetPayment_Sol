@@ -117,7 +117,7 @@
                 @endphp
                 <a href="{{ route('movie.info', ['movie' => $movie->id]) }}"
                    class="md:ml-5 mb-6 mt-2 focus:outline-none">
-                    <img src="{{ $url }}" alt=""
+                    <img src="{{ $url }}" alt="" loading="lazy"
                          class="rounded-xl shadow-2xl poster thumbnail lazy focus:outline-none">
                 </a>
             @endforeach
@@ -189,7 +189,7 @@
                                 $url = \Illuminate\Support\Facades\Storage::disk($info->disk)->url($info->name . '/poster.jpg');
                             @endphp
                             <a href="{{ route('movie.info', ['movie' => $info->id]) }}" class="w-48 focus:outline-none">
-                                <img src="{{ $url }}"
+                                <img src="{{ $url }}" loading="lazy"
                                      class="rounded-lg shadow-xl md:ml-6 mb-6 mt-2 poster border-0 lazy w-full focus:outline-none"
                                      alt="">
                             </a>

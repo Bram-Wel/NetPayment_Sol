@@ -20,7 +20,12 @@ class WatchersController extends Controller
 
         $count = Watchers::where('username', $username)->where('movie', $movieName)->count('id');
         if ($count == 0) {
+            $watcher = new Watchers();
+            $watcher->name = $username;
+            $watcher->movie = $movieName;
+            $watcher->length = $duration;
 
+            $watcher->save();
         }
     }
 

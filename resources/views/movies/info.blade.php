@@ -39,7 +39,7 @@
     }
         @endphp
         @if(does_url_exists($url.'/logo.jpg'))
-            <img src="{!! $url !!}/logo.jpg" alt="" style="width: 500px;">
+            <img src="{!! $url !!}/logo.jpg" alt="" style="width: 500px;" id="logo">
         @else
             <h1 class="text-white font-bold text-5xl">{{ $movie->name }}</h1>
         @endif
@@ -92,6 +92,10 @@
             playState = false;
             $('#description').show(1000);
             $('#play').html('Play');
+            $('#logo').css({
+                'position': 'absolute',
+                'bottom': 0
+            })
         } else {
             video.get(0).play();
             playState = true;

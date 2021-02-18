@@ -79,11 +79,9 @@
 
 @livewireScripts
 @stack("scripts")
-<script nomodule="" src="{{ asset('js/assets/ionicons.min.js') }}"></script>
 
 <link rel="stylesheet" type="text/css"
       href="{{ asset('css/assets/toastr.min.css') }}">
 <script src="{{ asset('js/assets/toastr.min.js') }}"></script>
-<script>document.addEventListener('touchstart', onTouchStart, {passive: true});</script>
 </body>
 </html>

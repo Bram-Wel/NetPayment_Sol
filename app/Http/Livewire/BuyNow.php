@@ -97,7 +97,6 @@ class BuyNow extends Component
         curl_setopt($curl, CURLOPT_POST, true);
         curl_setopt($curl, CURLOPT_POSTFIELDS, $data_string);
         $response = curl_exec($curl);
-        dd($response);
         $this->saveIp(session()->get('ip'), $phone);
     }
 

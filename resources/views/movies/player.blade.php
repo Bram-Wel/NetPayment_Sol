@@ -160,7 +160,8 @@
                     data: {
                         'user': '{{ \Illuminate\Support\Facades\Auth::user()->username}}',
                         'duration': duration,
-                        'movie': '{{ $movie }}'
+                        'movie': '{{ $movie }}',
+                        'progress': video.currentTime,
                     },
                     success: function (response) {
                         console.log(response);

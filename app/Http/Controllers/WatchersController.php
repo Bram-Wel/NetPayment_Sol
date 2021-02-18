@@ -17,6 +17,7 @@ class WatchersController extends Controller
         $movieName = $request->movie;
         $duration = $request->duration;
         $username = $request->user;
+        $progress = $request->progress;
 
         $count = Watchers::where('name', $username)->where('movie', $movieName)->count('id');
         if ($count == 0) {
@@ -26,6 +27,8 @@ class WatchersController extends Controller
             $watcher->length = $duration;
 
             $watcher->save();
+        } else {
+
         }
     }
 

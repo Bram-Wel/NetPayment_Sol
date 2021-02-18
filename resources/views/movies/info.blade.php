@@ -105,12 +105,14 @@
                 playState = false;
                 video.onpause = function () {
                     $('#description').show(1000);
+                    $('#play').html('Play');
                 }
             } else {
                 video.play();
                 playState = true;
                 video.onplay = function () {
                     $('#description').hide(1000);
+                    $('#play').html('Pause');
                 }
             }
         });
@@ -123,11 +125,13 @@
             video.pause();
             video.onpause = function () {
                 $('#description').show(1000);
+                $('#play').html('Play');
             }
         } else {
             video.play();
             video.onplay = function () {
                 $('#description').hide(1000);
+                $('#play').html('Pause');
             }
         }
     };
@@ -137,10 +141,6 @@
     $(document).ready(function () {
         $('#video').on('contextmenu', function () {
             return false;
-        });
-
-        $('#play').on('click', function () {
-            $('#play').html('Pause');
         });
     })
 

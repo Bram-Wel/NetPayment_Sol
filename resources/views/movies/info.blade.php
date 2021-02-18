@@ -105,15 +105,13 @@
                 video.pause();
                 playState = false;
                 video.onpause = function () {
-                    $('#description').show(500);
-                    video.css('filter', 'brightness(100%)')
+                    $('#description').show(1000);
                 }
             } else {
                 video.play();
                 playState = true;
                 video.onplay = function () {
-                    $('#description').hide(500);
-                    video.css('filter', 'brightness(100%)')
+                    $('#description').hide(1000);
                 }
             }
         });
@@ -125,14 +123,12 @@
         if (document.hidden || !playState) {
             video.pause();
             video.onpause = function () {
-                $('#description').show(500);
-                video.css('filter', 'brightness(100%)')
+                $('#description').show(1000);
             }
         } else {
             video.play();
             video.onplay = function () {
-                $('#description').hide(500);
-                video.css('filter', 'brightness(100%)')
+                $('#description').hide(1000);
             }
         }
     };

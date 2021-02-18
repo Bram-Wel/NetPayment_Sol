@@ -130,8 +130,7 @@
         } else {
             video.play();
             video.onplay = function () {
-                $('#description').hide(500);
-                video.css('filter', 'brightness(100%)')
+                setTimeout($('#description').show(500), 5000);
             }
         }
     };

@@ -153,7 +153,11 @@
 
             video.onplay = function () {
                 $('#back').hide(500);
-                setTimeout($.ajax({
+            }
+
+            video.ontimeupdate = setTimeout(function () {
+                let duration = video.duration;
+                $.ajax({
                     type: 'POST',
                     url: '/api/user/watcher/save',
                     data: {
@@ -165,8 +169,8 @@
                     success: function (response) {
                         console.log(response);
                     }
-                }), 100)
-            }
+                })
+            }, 1000)
 
             video.onpause = function () {
                 $('#back').show(500);

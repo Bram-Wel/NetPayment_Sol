@@ -19,7 +19,6 @@
 
     <!-- Styles -->
     <link rel="stylesheet" href="{{ mix('css/app.css') }}">
-    <script src="{{ asset('js/assets/jquery-3.5.1.min.js') }}"></script>
     @livewireStyles
 @stack("styles")
 

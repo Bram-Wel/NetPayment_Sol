@@ -110,7 +110,7 @@
         <p class="mt-8
 "></p>
         <h1 class="font-bold text-xl pl-15 text-center md:text-left mt-12 relative z-20 text-white">Latest releases</h1>
-        <div class="pl-8 grab">
+        <div class="pl-8 grab flex">
             @foreach($movies as $movie)
                 @php
                     $url = \Illuminate\Support\Facades\Storage::disk($movie->disk)->url($movie->name . '/poster.jpg');
@@ -221,12 +221,6 @@
         @endif
     </div>
 </div>
-<script>
-    $('.grab').slick({
-        slidesToShow: 7,
-        slidesToScroll: 3
-    });
-</script>
 <script>
     @php
         $volume = \App\Models\Volume::where('user_id',\Illuminate\Support\Facades\Auth::user()->id)->value('volume');

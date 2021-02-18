@@ -128,16 +128,16 @@
                 });
             });
 
-            video.volume = {{ \App\Models\Volume::where('user_id', \Illuminate\Support\Facades\Auth::user()->id)->value('volume') }}
+            video.volume = {{ \App\Models\Volume::where('user_id', \Illuminate\Support\Facades\Auth::user()->id)->value('volume') }},
                 video.onvolumechange = function () {
-                $.ajax({
-                    type: 'POST',
-                    url: '/api/user/volume/save',
-                    data: {'user': {{ \Illuminate\Support\Facades\Auth::user()->id }}, 'volume': video.volume},
-                    success: function (response) {
-                    }
-                })
-            }
+                    $.ajax({
+                        type: 'POST',
+                        url: '/api/user/volume/save',
+                        data: {'user': {{ \Illuminate\Support\Facades\Auth::user()->id }}, 'volume': video.volume},
+                        success: function (response) {
+                        }
+                    })
+                }
             video.play();
 
             $(document).keypress(function (e) {
@@ -157,7 +157,7 @@
 
             video.onplaying = function () {
                 let duration = video.duration;
-                setTimeout(function () {
+                setInterval(function () {
                     $.ajax({
                         type: 'POST',
                         url: '/api/user/watcher/save',

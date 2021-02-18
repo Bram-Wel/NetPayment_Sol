@@ -123,15 +123,6 @@
       <path value="$PROJECT_DIR$/vendor/divineomega/php-ssh-connection" />
       <path value="$PROJECT_DIR$/vendor/predis/predis" />
       <path value="$PROJECT_DIR$/vendor/laravel/sail" />
-      <path value="$PROJECT_DIR$/vendor/myclabs/php-enum" />
-      <path value="$PROJECT_DIR$/vendor/maennchen/zipstream-php" />
-      <path value="$PROJECT_DIR$/vendor/markbaker/matrix" />
-      <path value="$PROJECT_DIR$/vendor/markbaker/complex" />
-      <path value="$PROJECT_DIR$/vendor/maatwebsite/excel" />
-      <path value="$PROJECT_DIR$/vendor/mediconesystems/livewire-datatables" />
-      <path value="$PROJECT_DIR$/vendor/phpoffice/phpspreadsheet" />
-      <path value="$PROJECT_DIR$/vendor/ezyang/htmlpurifier" />
-      <path value="$PROJECT_DIR$/vendor/psr/http-factory" />
       <path value="$PROJECT_DIR$/vendor/africastalking/africastalking" />
       <path value="$PROJECT_DIR$/vendor/tanthammar/tall-forms" />
       <path value="$PROJECT_DIR$/vendor/pbmedia/laravel-ffmpeg" />
@@ -150,7 +141,6 @@
       <path value="$PROJECT_DIR$/vendor/seld/jsonlint" />
       <path value="$PROJECT_DIR$/vendor/seld/phar-utils" />
       <path value="$PROJECT_DIR$/vendor/react/promise" />
-      <path value="$PROJECT_DIR$/vendor/buglinjo/laravel-webp" />
     </include_path>
   </component>
   <component name="PhpProjectSharedConfiguration" php_language_level="7" />

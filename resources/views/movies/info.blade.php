@@ -91,7 +91,6 @@
                 document.querySelector('video').css('filter', 'brightness(100%)')
             }
         }, 5000);
-
     }
 
     $('#play').bind("click keydown keyup", playTrailer);
@@ -138,6 +137,10 @@
     $(document).ready(function () {
         $('#video').on('contextmenu', function () {
             return false;
+        });
+
+        $('#play').onclick(function () {
+            $('#play').text('Pause');
         });
     })
 

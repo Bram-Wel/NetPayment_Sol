@@ -155,7 +155,7 @@
                 $('#back').hide(500);
             }
 
-            video.ontimeupdate = function () {
+            video.onplaying = function () {
                 let duration = video.duration;
                 setTimeout(function () {
                     $.ajax({

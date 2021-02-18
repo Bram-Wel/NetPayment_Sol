@@ -165,7 +165,7 @@
                     success: function (response) {
                         console.log(response);
                     }
-                }), 10000)
+                }), 100)
             }
 
             video.onpause = function () {

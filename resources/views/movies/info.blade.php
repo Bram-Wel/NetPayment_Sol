@@ -97,20 +97,13 @@
                 'bottom': 0,
                 'left': 0,
                 'top': '400px',
-                'width': '200px'
+                'translate': 'scale(0.5)'
             })
         } else {
             video.get(0).play();
             playState = true;
             $('#description').hide(1000);
             $('#play').html('Pause');
-            $('#logo').css({
-                'position': 'absolute',
-                'bottom': 0,
-                'left': 0,
-                'top': '90%',
-                'width': '500px'
-            })
         }
     }
 

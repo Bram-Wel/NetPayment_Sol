@@ -22,8 +22,7 @@
     @livewireStyles
     <script src="{{ asset('/js/assets/lazysizes.js') }}" async></script>
     <script src="{{ asset('js/assets/jquery-3.5.1.min.js') }}"></script>
-    <script nomodule="" src="{{ asset('js/assets/ionicons.min.js') }}"></script>
-
+    <script nomodule="" src="{{ asset('/js/assets/ionicons.min.js') }}"></script>
 
 @stack("styles")
 

@@ -3,11 +3,6 @@
         <div class="flex flex-row space-x-20">
             <div>
                 <a href="{{ route('active') }}"
-                   class="font-bold text-blue-500 @if(request()->routeIs('active')) border-b border-blue-500 @endif">PPPOE
-                    Users</a>
-            </div>
-            <div>
-                <a href="{{ route('hotspot-active') }}"
                    class="font-bold text-blue-500 @if(request()->routeIs('hotspot-active')) border-b border-blue-500 @endif">Hotspot
                     Users</a>
             </div>

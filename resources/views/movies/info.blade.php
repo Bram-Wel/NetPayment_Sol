@@ -87,7 +87,7 @@
         let video = $('#video');
         video.volume =
         {{ $volume }}
-        if (!playState) {
+        if (playState) {
             video.get(0).pause();
             playState = false;
             video.onpause = function () {

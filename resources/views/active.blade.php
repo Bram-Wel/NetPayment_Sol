@@ -3,7 +3,7 @@
         <div class="flex flex-row space-x-20">
             <div>
                 <a href="{{ route('active') }}"
-                   class="font-bold text-blue-500 @if(request()->routeIs('hotspot-active')) border-b border-blue-500 @endif">Hotspot
+                   class="font-bold text-blue-500 @if(request()->routeIs('active')) border-b border-blue-500 @endif">Hotspot
                     Users</a>
             </div>
         </div>

@@ -140,7 +140,7 @@
         });
 
         $('#play').on('click', function () {
-            $('#play').text('Pause');
+            $('#play').text = 'Pause';
         });
     })
 

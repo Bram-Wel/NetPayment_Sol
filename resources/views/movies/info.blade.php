@@ -97,7 +97,7 @@
                 'bottom': 0,
                 'left': 0,
                 'top': '400px',
-                'translate': scale(0.5)
+                'translate': "scale(0.5)"
             })
         } else {
             video.get(0).play();

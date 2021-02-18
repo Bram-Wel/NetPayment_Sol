@@ -154,7 +154,7 @@ Route::middleware(['auth:sanctum', 'verified', 'admin'])->get('/hotspot/user/act
 Route::middleware(['auth:sanctum', 'verified', 'admin'])->get('/hotspot/user/deactivate/{username}', [\App\Http\Controllers\Users::class, 'DeactivateHotspotUser'])
     ->name('hotspot-user-deactivate');
 
-Route::middleware(['auth:sanctum', 'verified', 'admin'])->get('/hotspot/user/active', [\App\Http\Controllers\Users::class, 'HotspotActive'])
+Route::middleware(['auth:sanctum', 'verified', 'admin'])->get('/active', [\App\Http\Controllers\Users::class, 'HotspotActive'])
     ->name('active');
 
 Route::middleware(['auth:sanctum', 'verified', 'admin'])->get('/hotspot/user/active/remove/{id}', [\App\Http\Controllers\Controller::class, 'RemoveActive'])

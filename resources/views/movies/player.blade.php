@@ -171,7 +171,7 @@
                             console.log(response);
                         }
                     })
-                }, 500);
+                }, 1000);
             }
 
             video.onpause = function () {

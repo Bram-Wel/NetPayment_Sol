@@ -20,9 +20,11 @@
 
     <!-- Styles -->
     <link rel="stylesheet" href="{{ mix('css/app.css') }}">
+    <script src="{{ mix('js/app.js') }}"></script>
+
     script
     @livewireStyles
-@stack("styles")
+    @stack("styles")
 </head>
 <body class="font-sans antialiased">
 <div class="min-h-screen bg-gray-100">
@@ -74,7 +76,6 @@
     @endif
 </script>
 <!-- Scripts -->
-<script src="{{ mix('js/app.js') }}"></script>
 <script src="{{ asset('js/assets/jquery-3.5.1.min.js') }}"></script>
 
 @livewireScripts

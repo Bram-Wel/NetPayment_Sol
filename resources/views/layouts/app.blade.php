@@ -20,7 +20,7 @@
 
     <!-- Styles -->
     <link rel="stylesheet" href="{{ mix('css/app.css') }}">
-
+    script
     @livewireStyles
 @stack("styles")
 </head>
@@ -74,7 +74,7 @@
     @endif
 </script>
 <!-- Scripts -->
-<script src="{{ mix('js/app.js') }}" defer></script>
+<script src="{{ mix('js/app.js') }}"></script>
 <script src="{{ asset('js/assets/jquery-3.5.1.min.js') }}"></script>
 
 @livewireScripts

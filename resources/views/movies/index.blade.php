@@ -1,6 +1,4 @@
 @include('movies.layouts.default')
-<link rel="stylesheet" type="text/css" href="{{ asset('/css/assets/slick.css') }}"/>
-<script type="text/javascript" src="{{ asset('js/assets/slick.js') }}"></script>
 <style>
     .poster {
         width: 160px;
@@ -13,10 +11,6 @@
         object-fit: cover;
         height: 100vh;
         width: 100%;
-    }
-
-    .slick-arrow {
-        display: none !important;
     }
 
     .poster:hover {

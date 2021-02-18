@@ -75,9 +75,9 @@
 </script>
 <!-- Scripts -->
 <script src="{{ asset('js/assets/jquery-3.5.1.min.js') }}"></script>
+@livewireScripts
 
 @stack("scripts")
-@livewireScripts
 
 <link rel="stylesheet" type="text/css"
       href="{{ asset('css/assets/toastr.min.css') }}">

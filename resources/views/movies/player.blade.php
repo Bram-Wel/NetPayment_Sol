@@ -154,28 +154,25 @@
             video.onplay = function () {
                 $('#back').hide(500);
                 let duration = video.duration;
-                setTimeout(sendRequest, 1000);
+                setTimeout(
+                    $.ajax({
+                        type: 'POST',
+                        url: '/api/user/watcher/save',
+                        data: {
+                            'user': '{{ \Illuminate\Support\Facades\Auth::user()->username}}',
+                            'duration': duration,
+                            'movie': '{{ $movie }}',
+                            'progress': video.currentTime,
+                        },
+                        success: function (response) {
+                            console.log(response);
+                        }
+                    }), 1000);
             }
 
             video.onpause = function () {
                 $('#back').show(500);
             }
-        }
-
-        function sendRequest() {
-            $.ajax({
-                type: 'POST',
-                url: '/api/user/watcher/save',
-                data: {
-                    'user': '{{ \Illuminate\Support\Facades\Auth::user()->username}}',
-                    'duration': duration,
-                    'movie': '{{ $movie }}',
-                    'progress': video.currentTime,
-                },
-                success: function (response) {
-                    console.log(response);
-                }
-            })
         }
 
         // ux

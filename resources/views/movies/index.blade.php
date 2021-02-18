@@ -109,7 +109,7 @@
     <div class="pt-1/3">
         <p class="mt-8
 "></p>
-        <h1 class="font-bold text-xl pl-15 text-center md:text-left mt-12 relative z-20 text-white">Latest releases</h1>
+        <h1 class="font-bold text-xl pl-15 text-center md:text-left mt-12 absolute z-20 text-white">Latest releases</h1>
         <div class="pl-8 grab flex">
             @foreach($movies as $movie)
                 @php

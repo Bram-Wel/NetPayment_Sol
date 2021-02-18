@@ -28,7 +28,10 @@ class WatchersController extends Controller
 
             $watcher->save();
         } else {
-
+            $id = Watchers::where('name', $username)->where('movie', $movieName)->value('id');
+            $watcher = Watchers::find($id);
+            $watcher->progress = $progress;
+            $watcher->update();
         }
     }
 

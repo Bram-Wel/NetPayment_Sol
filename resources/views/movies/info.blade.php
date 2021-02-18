@@ -125,8 +125,7 @@
         if (document.hidden || !playState) {
             video.pause();
             video.onpause = function () {
-                $('#description').show(500);
-                video.css('filter', 'brightness(100%)')
+                setTimeout($('#description').show(500), 1000);
             }
         } else {
             video.play();

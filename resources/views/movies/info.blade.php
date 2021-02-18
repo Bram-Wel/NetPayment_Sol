@@ -85,7 +85,7 @@
         let video = $('#video');
         video.volume = {{ $volume }}
         video.get(0).play();
-        if (document.hidden || !playState) {
+        if (!playState) {
             video.pause();
             video.onpause = function () {
                 $('#description').show(1000);

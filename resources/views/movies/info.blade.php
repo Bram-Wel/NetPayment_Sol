@@ -84,7 +84,6 @@
     function playTrailer() {
         let video = $('#video');
         video.volume = {{ $volume }}
-        video.get(0).play();
         if (playState) {
             video.get(0).pause();
             video.onpause = function () {

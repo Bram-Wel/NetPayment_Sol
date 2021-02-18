@@ -134,8 +134,6 @@
     };
 
     document.addEventListener("visibilitychange", onVisibilityChange);
-
-
     // ux
     $(document).ready(function () {
         $('#video').on('contextmenu', function () {

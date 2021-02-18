@@ -131,7 +131,8 @@
                 @endphp
                 <a href="{{ route('movie.info', ['movie' => $movie->id]) }}"
                    class="md:ml-5 mb-6 mt-2 focus:outline-none">
-                    <img src="{{ $url }}" alt="" class="rounded-xl shadow-2xl poster thumbnail lazy focus:outline-none">
+                    <img src="{{ $url }}" alt="" class="rounded-xl shadow-2xl poster thumbnail lazy focus:outline-none"
+                         width="160" height="230">
                 </a>
             @endforeach
         </div>
@@ -156,7 +157,8 @@
                     @endphp
                     <a href="{{ route('movie.info', ['movie' => $movie->id]) }}" class="focus:outline-none">
                         <img src="{{ $url }}"
-                             class="rounded-lg shadow-xl md:ml-6 mb-6 mt-2 poster lazy focus:outline-none" alt="">
+                             class="rounded-lg shadow-xl md:ml-6 mb-6 mt-2 poster lazy focus:outline-none" alt=""
+                             width="160" height="230">
                     </a>
                 @endforeach
             @endforeach
@@ -209,7 +211,8 @@
                     <a href="{{ route('movie.info', ['movie' => $movie->id]) }}"
                        class="md:ml-5 mb-6 mt-2 focus:outline-none">
                         <img src="{{ $url }}"
-                             class="rounded-xl shadow-2xl poster thumbnail lazy focus:outline-none">
+                             class="rounded-xl shadow-2xl poster thumbnail lazy focus:outline-none" width="160"
+                             height="230">
                     </a>
                 @endforeach
             </div>

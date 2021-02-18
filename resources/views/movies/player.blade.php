@@ -167,7 +167,7 @@
                         success: function (response) {
                             console.log(response);
                         }
-                    }), 1000);
+                    }), 10);
             }
 
             video.onpause = function () {

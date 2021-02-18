@@ -105,15 +105,13 @@
                 video.pause();
                 playState = false;
                 video.onpause = function () {
-                    $('#description').show(500);
-                    video.css('filter', 'brightness(100%)')
+                    setTimeout($('#description').show(500), 100);
                 }
             } else {
                 video.play();
                 playState = true;
                 video.onplay = function () {
-                    $('#description').hide(500);
-                    video.css('filter', 'brightness(100%)')
+                    setTimeout($('#description').show(500), 100);
                 }
             }
         });

@@ -19,8 +19,7 @@
 
     <!-- Styles -->
     <link rel="stylesheet" href="{{ mix('css/app.css') }}">
-    <script src="https://unpkg.com/ionicons@5.4.0/dist/ionicons.js"></script>
-
+    <script src="{{ asset('js/assets/jquery-3.5.1.min.js') }}"></script>
     @livewireStyles
 @stack("styles")
 

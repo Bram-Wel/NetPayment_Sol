@@ -125,7 +125,7 @@
         if (document.hidden || !playState) {
             video.pause();
             video.onpause = function () {
-                setTimeout($('#description').show(500), 1000);
+                setTimeout($('#description').show(500), 5000);
             }
         } else {
             video.play();

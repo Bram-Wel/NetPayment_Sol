@@ -157,10 +157,7 @@
 
             video.ontimeupdate = function () {
                 let duration = video.duration;
-
-                clearTimeout($(this).data('timer'))
-
-                var timer = setTimeout(function () {
+                setTimeout(function () {
                     $.ajax({
                         type: 'POST',
                         url: '/api/user/watcher/save',
@@ -175,8 +172,6 @@
                         }
                     })
                 }, 500);
-
-                $(this).data('timer', timer);
             }
 
             video.onpause = function () {

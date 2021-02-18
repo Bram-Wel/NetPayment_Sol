@@ -81,9 +81,12 @@
     @php
         $volume = \App\Models\Volume::where('user_id',\Illuminate\Support\Facades\Auth::user()->id)->value('volume');
     @endphp
+    let playState = null;
+
     function playTrailer() {
         let video = $('#video');
-        video.volume = {{ $volume }}
+        video.volume =
+        {{ $volume }}
         if (!playState) {
             video.get(0).pause();
             playState = false;
@@ -104,7 +107,6 @@
     $('#play').bind("click keydown keyup", playTrailer);
 
     const video = document.querySelector("#video");
-    let playState = null;
 
     const observer = new IntersectionObserver((entries) => {
         entries.forEach((entry) => {

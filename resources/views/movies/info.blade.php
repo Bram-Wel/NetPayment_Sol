@@ -85,12 +85,19 @@
         let video = $('#video');
         video.volume = {{ $volume }}
         video.get(0).play();
-        setTimeout(function () {
-            video.onplay = function () {
-                $('#description').hide(5000);
-                document.querySelector('video').css('filter', 'brightness(100%)')
+        if (document.hidden || !playState) {
+            video.pause();
+            video.onpause = function () {
+                $('#description').show(1000);
+                $('#play').html('Play');
             }
-        }, 5000);
+        } else {
+            video.play();
+            video.onplay = function () {
+                $('#description').hide(1000);
+                $('#play').html('Pause');
+            }
+        }
     }
 
     $('#play').bind("click keydown keyup", playTrailer);

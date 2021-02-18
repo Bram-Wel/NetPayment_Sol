@@ -75,7 +75,7 @@
 <!-- Scripts -->
 <script src="{{ mix('js/app.js') }}" defer></script>
 <script src="{{ asset('js/assets/chart.js') }}"></script>
-<script defer src="{{ asset('js/assets/jquery-3.5.1.min.js') }}"></script>
+<script src="{{ asset('js/assets/jquery-3.5.1.min.js') }}"></script>
 
 @livewireScripts
 @stack("scripts")
@@ -83,6 +83,6 @@
 
 <link rel="stylesheet" type="text/css"
       href="{{ asset('css/assets/toastr.min.css') }}">
-<script defer src="{{ asset('js/assets/toastr.min.js') }}"></script>
+<script src="{{ asset('js/assets/toastr.min.js') }}"></script>
 </body>
 </html>

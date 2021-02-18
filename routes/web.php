@@ -155,7 +155,7 @@ Route::middleware(['auth:sanctum', 'verified', 'admin'])->get('/hotspot/user/dea
     ->name('hotspot-user-deactivate');
 
 Route::middleware(['auth:sanctum', 'verified', 'admin'])->get('/hotspot/user/active', [\App\Http\Controllers\Users::class, 'HotspotActive'])
-    ->name('hotspot-active');
+    ->name('active');
 
 Route::middleware(['auth:sanctum', 'verified', 'admin'])->get('/hotspot/user/active/remove/{id}', [\App\Http\Controllers\Controller::class, 'RemoveActive'])
     ->name('hotspot-remove-active');
@@ -168,9 +168,6 @@ Route::middleware(['auth:sanctum', 'verified', 'admin'])->get('/payments', [\App
 
 Route::middleware(['auth:sanctum', 'verified', 'admin'])->get('/marketing', [\App\Http\Controllers\Marketing::class, 'index'])
     ->name('marketing');
-
-Route::middleware(['auth:sanctum', 'verified', 'admin'])->get('/active', [\App\Http\Controllers\activeUsers::class, 'index'])
-    ->name('active');
 
 Route::middleware(['auth:sanctum', 'verified', 'admin'])->get('/payment/record', function () {
     return view('payments.record-payment');

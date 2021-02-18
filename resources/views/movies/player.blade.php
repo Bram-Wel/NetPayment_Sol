@@ -140,6 +140,11 @@
                 }
             video.play();
 
+            @php
+                $progress = \App\Models\Watchers::where('name', \Illuminate\Support\Facades\Auth::user()->username)->where('movie', $movie)->value('progress');
+            @endphp
+                video.currentTime = {{ $progress }}
+
             $(document).keypress(function (e) {
                 let keycode = e.which;
                 if (keycode == 39) { // right arrow

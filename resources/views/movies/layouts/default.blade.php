@@ -21,7 +21,7 @@
     <link rel="stylesheet" href="{{ mix('css/app.css') }}">
     @livewireStyles
     <script src="{{ asset('/js/assets/lazysizes.js') }}" async></script>
-    <script src="{{ asset('js/assets/jquery-3.5.1.min.js') }}" async></script>
+    <script src="{{ asset('js/assets/jquery-3.5.1.min.js') }}"></script>
 
 @stack("styles")
 

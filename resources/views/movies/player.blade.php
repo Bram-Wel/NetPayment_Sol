@@ -27,7 +27,7 @@
             min-width: 100%;
             position: absolute;
             top: 50%;
-            object-fit: cover;
+            object-fit: contain;
             transform: translate(-50%, -50%);
         }
     </style>

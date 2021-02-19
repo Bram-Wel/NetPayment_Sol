@@ -12,6 +12,7 @@
         "ext-curl": "*",
         "ext-simplexml": "*",
         "africastalking/africastalking": "^3.0",
+        "barryvdh/laravel-ide-helper": "^v2.9.0",
         "enlightn/enlightn": "^1.6",
         "evilfreelancer/routeros-api-php": "^1.3.1",
         "fideloper/proxy": "^4.4",
@@ -22,6 +23,7 @@
         "laravel/sanctum": "^2.6",
         "laravel/tinker": "^2.5",
         "livewire/livewire": "^2.3.6",
+        "mediconesystems/livewire-datatables": "dev-master",
         "pbmedia/laravel-ffmpeg": "^7.5",
         "predis/predis": "^1.1",
         "tanthammar/tall-forms": "^7.8"

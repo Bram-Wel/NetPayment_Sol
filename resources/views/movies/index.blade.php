@@ -140,16 +140,15 @@
         </div>
     </div>
 
-    <div class="pl-8">
+    <div>
         <h1 class="font-bold text-xl pl-15 text-center md:text-left">Most Watched</h1>
-
         @php
             $watchers = \App\Models\Watchers::select('movie')
             ->groupBy('movie')
             ->orderByRaw('COUNT(*) DESC')
             ->get();
         @endphp
-        <div class="grab flex">
+        <div class="grab flex pl-8">
             @foreach($watchers as $movie)
                 @php
                     $name = $movie->movie;

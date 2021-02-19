@@ -159,7 +159,7 @@
             video.onplay = function () {
                 $('#back').hide(500);
                 let duration = video.duration;
-                setInterval(function () {
+                setTimeout(function () {
                     $.ajax({
                         type: 'POST',
                         url: '/api/user/watcher/save',

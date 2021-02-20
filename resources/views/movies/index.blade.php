@@ -265,9 +265,12 @@
         let video = $('#video');
         video.volume = {{ $volume }}
         video.get(0).play();
-        setTimeout(function () {
-            $('#description').hide(500)
-        }, 6000)
+        const isVideoPlaying = video => !!(video.currentTime > 0 && !video.paused && !video.ended && video.readyState > 2);
+        if (isVideoPlaying()) {
+            setTimeout(function () {
+                $('#description').hide(500)
+            }, 6000)
+        }
     }
 
     $('#play').bind("click keydown keyup", playTrailer);
@@ -286,9 +289,12 @@
             } else {
                 video.play();
                 playState = true;
-                setTimeout(function () {
-                    $('#description').hide(500)
-                }, 6000)
+                const isVideoPlaying = video => !!(video.currentTime > 0 && !video.paused && !video.ended && video.readyState > 2);
+                if (isVideoPlaying()) {
+                    setTimeout(function () {
+                        $('#description').hide(500)
+                    }, 6000)
+                }
             }
         });
     }, {});
@@ -303,9 +309,12 @@
             }
         } else {
             video.play();
-            setTimeout(function () {
-                $('#description').hide(500)
-            }, 6000)
+            const isVideoPlaying = video => !!(video.currentTime > 0 && !video.paused && !video.ended && video.readyState > 2);
+            if (isVideoPlaying()) {
+                setTimeout(function () {
+                    $('#description').hide(500)
+                }, 6000)
+            }
         }
     };
 

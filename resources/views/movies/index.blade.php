@@ -31,6 +31,13 @@
         transform: translate(-50%, -50%);
     }
 
+    .small {
+        transform-origin: left bottom;
+        transform: scale(1) translate3d(0px, 0px, 0px);
+        transition-duration: 1300ms;
+        transition-delay: 0ms;
+    }
+
     video {
         filter: brightness(50%);
         object-fit: cover;

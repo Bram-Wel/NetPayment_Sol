@@ -39,7 +39,9 @@
     }
         @endphp
         @if(does_url_exists($url.'/logo.jpg'))
-            <img src="{!! $url !!}/logo.jpg" alt="" style="width: 500px;" id="logo">
+            <div
+                style="background: url('{!! $url !!}/logo.jpg'); width: 350px; height: 100px; background-size: cover; background-position: 0% 50%"
+                class="mb-4 lazyload"></div>
         @else
             <h1 class="text-white font-bold text-5xl">{{ $movie->name }}</h1>
         @endif

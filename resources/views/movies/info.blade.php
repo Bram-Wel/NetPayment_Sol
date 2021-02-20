@@ -121,7 +121,7 @@
                 video.onplay = function () {
                     setTimeout(function () {
                         $('#description').hide(500);
-                        $('#logo').addClass()
+                        $('#logo').addClass('small')
                     }, 6000)
                     $('#play').html('Pause');
                 }
@@ -137,11 +137,8 @@
             playState = false;
             video.onpause = function () {
                 setTimeout(function () {
-                    let playing = isVideoPlaying();
-                    if (playing) {
-                        $('#description').hide(500)
-                    }
-                }, 6000)
+                    $('#description').show(500);
+                });
                 $('#play').html('Play');
             }
         } else {
@@ -152,6 +149,8 @@
                     let playing = isVideoPlaying();
                     if (playing) {
                         $('#description').hide(500)
+                        $('#logo').addClass('small')
+
                     }
                 }, 6000)
                 $('#play').html('Pause');

@@ -265,13 +265,15 @@
         let video = $('#video');
         video.volume = {{ $volume }}
         video.get(0).play();
-        const isVideoPlaying = video => !!(video.currentTime > 0 && !video.paused && !video.ended && video.readyState > 2);
-        if (isVideoPlaying()) {
+        let playing = isVideoPlaying();
+        if (playing) {
             setTimeout(function () {
                 $('#description').hide(500)
             }, 6000)
         }
     }
+
+    const isVideoPlaying = video => !!(video.currentTime > 0 && !video.paused && !video.ended && video.readyState > 2);
 
     $('#play').bind("click keydown keyup", playTrailer);
 
@@ -289,8 +291,8 @@
             } else {
                 video.play();
                 playState = true;
-                const isVideoPlaying = video => !!(video.currentTime > 0 && !video.paused && !video.ended && video.readyState > 2);
-                if (isVideoPlaying()) {
+                let playing = isVideoPlaying();
+                if (playing) {
                     setTimeout(function () {
                         $('#description').hide(500)
                     }, 6000)
@@ -309,8 +311,8 @@
             }
         } else {
             video.play();
-            const isVideoPlaying = video => !!(video.currentTime > 0 && !video.paused && !video.ended && video.readyState > 2);
-            if (isVideoPlaying()) {
+            let playing = isVideoPlaying();
+            if (playing) {
                 setTimeout(function () {
                     $('#description').hide(500)
                 }, 6000)

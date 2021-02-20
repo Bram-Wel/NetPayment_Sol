@@ -231,7 +231,9 @@
         let video = $('#video');
         video.volume = {{ $volume }}
         video.get(0).play();
-        setTimeout($('#description').hide(500), 6000)
+        setTimeout(function () {
+            $('#description').hide(500)
+        }, 6000)
     }
 
     $('#play').bind("click keydown keyup", playTrailer);

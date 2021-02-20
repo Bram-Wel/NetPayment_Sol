@@ -233,8 +233,7 @@
         video.get(0).play();
 
         video.onplay = function () {
-            $('#description').hide(500);
-            document.querySelector('video').css('filter', 'brightness(100%)')
+            setTimeout($('#description').hide(500), 3000)
         }
     }
 
@@ -250,14 +249,12 @@
                 playState = false;
                 video.onpause = function () {
                     $('#description').show(500);
-                    video.css('filter', 'brightness(100%)')
                 }
             } else {
                 video.play();
                 playState = true;
                 video.onplay = function () {
-                    $('#description').hide(500);
-                    video.css('filter', 'brightness(100%)')
+                    setTimeout($('#description').hide(500), 3000)
                 }
             }
         });
@@ -270,13 +267,11 @@
             video.pause();
             video.onpause = function () {
                 $('#description').show(500);
-                video.css('filter', 'brightness(100%)')
             }
         } else {
             video.play();
             video.onplay = function () {
-                $('#description').hide(500);
-                video.css('filter', 'brightness(100%)')
+                setTimeout($('#description').hide(500), 3000)
             }
         }
     };

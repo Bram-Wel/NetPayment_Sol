@@ -116,7 +116,7 @@
                             @endforeach
                         </div>
                     </div>
-                    <p class="text-white font-bold pt-4 pb-4">{{ substr($movie->description, 0, 350) }}...</p>
+                    <p class="text-white font-bold pt-4 pb-4">{{ substr($movie->description, 0, 250) }}...</p>
                 </div>
 
                 <div class="buttons flex flex-row mt-4 mb-8">
@@ -272,7 +272,6 @@
         video.get(0).play();
         let playing = isVideoPlaying(video);
         if (playing) {
-            console.log('playing');
             setTimeout(function () {
                 $('#description').hide(500)
             }, 6000)

@@ -266,20 +266,6 @@
 
     const isVideoPlaying = video => !!(video.currentTime > 0 && !video.paused && !video.ended && video.readyState > 2);
 
-    function playTrailer() {
-        video.volume = {{ $volume }}
-        video.get(0).play();
-        let playing = isVideoPlaying(video);
-        console.log(playing);
-        if (playing) {
-            setTimeout(function () {
-                $('#description').hide(500)
-            }, 6000)
-        }
-    }
-
-    $('#play').bind("click keydown keyup", playTrailer);
-
     let playState = null;
 
     const observer = new IntersectionObserver((entries) => {

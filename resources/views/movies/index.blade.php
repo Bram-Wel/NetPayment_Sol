@@ -252,9 +252,9 @@
             } else {
                 video.play();
                 playState = true;
-                video.onplay = function () {
-                    setTimeout($('#description').hide(500), 6000)
-                }
+                setTimeout(function () {
+                    $('#description').hide(500)
+                }, 6000)
             }
         });
     }, {});
@@ -269,9 +269,9 @@
             }
         } else {
             video.play();
-            video.onplay = function () {
-                setTimeout($('#description').hide(500), 6000)
-            }
+            setTimeout(function () {
+                $('#description').hide(500)
+            }, 6000)
         }
     };
 

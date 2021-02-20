@@ -281,6 +281,7 @@
                 video.play();
                 playState = true;
                 let playing = isVideoPlaying();
+                console.log(playing)
                 if (playing) {
                     setTimeout(function () {
                         $('#description').hide(500)
@@ -301,6 +302,7 @@
         } else {
             video.play();
             let playing = isVideoPlaying();
+            console.log(playing)
             if (playing) {
                 setTimeout(function () {
                     $('#description').hide(500)

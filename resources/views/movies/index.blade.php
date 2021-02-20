@@ -267,6 +267,8 @@
         video.get(0).play();
         let playing = isVideoPlaying();
         if (playing) {
+            console.log('playing');
+
             setTimeout(function () {
                 $('#description').hide(500)
             }, 6000)
@@ -293,6 +295,8 @@
                 playState = true;
                 let playing = isVideoPlaying();
                 if (playing) {
+                    console.log('playing');
+
                     setTimeout(function () {
                         $('#description').hide(500)
                     }, 6000)
@@ -313,6 +317,7 @@
             video.play();
             let playing = isVideoPlaying();
             if (playing) {
+                console.log('playing');
                 setTimeout(function () {
                     $('#description').hide(500)
                 }, 6000)

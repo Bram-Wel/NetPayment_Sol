@@ -84,7 +84,7 @@
                 @endphp
                 @if(does_url_exists($url.'/logo.jpg'))
                     <div
-                        style="background: url('{!! $url !!}/logo.jpg'); width: 350px; height: 100px; background-size: cover; background-position: center"
+                        style="background: url('{!! $url !!}/logo.jpg'); width: 350px; height: 100px; background-size: cover; background-position: 0% 50%"
                         class="mb-4 lazyload">
                         @else
                             <h1 class="text-white font-bold text-5xl">{{ $movie->name }}</h1>

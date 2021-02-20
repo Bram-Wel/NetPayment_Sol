@@ -270,7 +270,7 @@
         let video = $('#video');
         video.volume = {{ $volume }}
         video.get(0).play();
-        let playing = isVideoPlaying();
+        let playing = isVideoPlaying(video);
         if (playing) {
             console.log('playing');
 
@@ -295,7 +295,7 @@
             } else {
                 video.play();
                 playState = true;
-                let playing = isVideoPlaying();
+                let playing = isVideoPlaying(video);
                 if (playing) {
                     console.log('playing');
 
@@ -317,7 +317,7 @@
             }
         } else {
             video.play();
-            let playing = isVideoPlaying();
+            let playing = isVideoPlaying(video);
             if (playing) {
                 console.log('playing');
                 setTimeout(function () {

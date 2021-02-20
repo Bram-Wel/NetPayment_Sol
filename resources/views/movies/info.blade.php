@@ -9,6 +9,13 @@
         height: 100vh;
         filter: brightness(50%);
     }
+
+    .small {
+        transform-origin: left bottom;
+        transform: scale(1) translate3d(0px, 0px, 0px);
+        transition-duration: 1300ms;
+        transition-delay: 0ms;
+    }
 </style>
 <div
     class="overflow-none main">
@@ -113,7 +120,8 @@
                 playState = true;
                 video.onplay = function () {
                     setTimeout(function () {
-                        $('#description').hide(500)
+                        $('#description').hide(500);
+                        $('#logo').addClass()
                     }, 6000)
                     $('#play').html('Pause');
                 }

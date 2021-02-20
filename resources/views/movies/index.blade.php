@@ -271,6 +271,7 @@
         video.volume = {{ $volume }}
         video.get(0).play();
         let playing = isVideoPlaying(video);
+        console.log(playing);
         if (playing) {
             setTimeout(function () {
                 $('#description').hide(500)

@@ -301,14 +301,18 @@
     };
 
     document.addEventListener("visibilitychange", onVisibilityChange);
-
-
     // ux
     $(document).ready(function () {
         $('#video').on('contextmenu', function () {
             return false;
         });
     })
+
+    //detect video end
+    video.addEventListener('ended', function () {
+        video.load();
+        $('#description').show(1000);
+    }, false);
 
 </script>
 @include('movies.layouts.footer')

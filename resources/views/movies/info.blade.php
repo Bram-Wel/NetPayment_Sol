@@ -168,6 +168,7 @@
     //detect video end
     video.addEventListener('ended', function () {
         video.load();
+        console.log('ended');
     }, false);
 
 </script>

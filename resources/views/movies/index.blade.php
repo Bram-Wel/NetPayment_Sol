@@ -267,7 +267,6 @@
     const isVideoPlaying = video => !!(video.currentTime > 0 && !video.paused && !video.ended && video.readyState > 2);
 
     function playTrailer() {
-        let video = $('#video').get(0);
         video.volume = {{ $volume }}
         video.get(0).play();
         let playing = isVideoPlaying(video);
@@ -316,7 +315,6 @@
             video.play();
             let playing = isVideoPlaying(video);
             if (playing) {
-                console.log('playing');
                 setTimeout(function () {
                     $('#description').hide(500)
                 }, 6000)

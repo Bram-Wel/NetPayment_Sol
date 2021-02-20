@@ -180,7 +180,7 @@
                         console.log(response);
                     }
                 })
-            }, 6000);
+            }, 10000);
 
             video.onpause = function () {
                 $('#back').show(500);

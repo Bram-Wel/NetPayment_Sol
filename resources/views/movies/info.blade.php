@@ -93,32 +93,11 @@
     @endphp
     let playState = null;
 
-    function playTrailer() {
-        let video = $('#video');
-        video.volume = {{ $volume }};
-        if (playState) {
-            video.get(0).pause();
-            playState = false;
-            $('#description').show(1000);
-            $('#play').html('Play');
-            $('#logo').css({
-                'position': 'absolute',
-                'bottom': 0,
-                'left': 0,
-                'top': '400px',
-                'transform': "scale(0.5)"
-            })
-        } else {
-            video.get(0).play();
-            playState = true;
-            setTimeout(function () {
-                $('#description').hide(500)
-            }, 6000)
-            $('#play').html('Pause');
-        }
-    }
+    const video = $('#video').get(0);
 
-    const video = document.querySelector("#video");
+    function isVideoPlaying() {
+        return !!(video.currentTime > 0 && !video.paused && !video.ended && video.readyState > 2);
+    }
 
     const observer = new IntersectionObserver((entries) => {
         entries.forEach((entry) => {
@@ -150,7 +129,10 @@
             playState = false;
             video.onpause = function () {
                 setTimeout(function () {
-                    $('#description').hide(500)
+                    let playing = isVideoPlaying();
+                    if (playing) {
+                        $('#description').hide(500)
+                    }
                 }, 6000)
                 $('#play').html('Play');
             }
@@ -159,7 +141,10 @@
             playState = true;
             video.onplay = function () {
                 setTimeout(function () {
-                    $('#description').hide(500)
+                    let playing = isVideoPlaying();
+                    if (playing) {
+                        $('#description').hide(500)
+                    }
                 }, 6000)
                 $('#play').html('Pause');
             }

@@ -68,8 +68,7 @@
             $url = \Illuminate\Support\Facades\Storage::disk($movie->disk)->url($movie->name);
         @endphp
         <div class="header">
-            <video id="video" poster="{{ $url }}/fanart.jpg" class="absolute w-screen h-screen"
-                   style="object-fit: cover; ">
+            <video id="video" poster="{{ $url }}/fanart.jpg" class="absolute w-screen h-screen">
                 <source src="{{ $url }}/trailer.mp4">
             </video>
             <div class="absolute mt-32 ml-12 w-1/2">
@@ -264,7 +263,9 @@
 
     const video = $('#video').get(0);
 
-    const isVideoPlaying = video => !!(video.currentTime > 0 && !video.paused && !video.ended && video.readyState > 2);
+    function isVideoPlaying() {
+        return !!(video.currentTime > 0 && !video.paused && !video.ended && video.readyState > 2);
+    }
 
     let playState = null;
 
@@ -279,7 +280,7 @@
             } else {
                 video.play();
                 playState = true;
-                let playing = isVideoPlaying(video);
+                let playing = isVideoPlaying();
                 if (playing) {
                     setTimeout(function () {
                         $('#description').hide(500)
@@ -299,7 +300,7 @@
             }
         } else {
             video.play();
-            let playing = isVideoPlaying(video);
+            let playing = isVideoPlaying();
             if (playing) {
                 setTimeout(function () {
                     $('#description').hide(500)

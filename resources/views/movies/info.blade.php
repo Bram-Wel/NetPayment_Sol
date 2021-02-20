@@ -150,7 +150,6 @@
                     if (playing) {
                         $('#description').hide(500)
                         $('#logo').addClass('small')
-
                     }
                 }, 6000)
                 $('#play').html('Pause');

@@ -165,4 +165,11 @@
         });
     })
 
+    //detect video end
+    document.getElementById('video').addEventListener('ended', myHandler, false);
+
+    function myHandler(e) {
+        video.get(0).load();
+    }
+
 </script>

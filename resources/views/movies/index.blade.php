@@ -262,9 +262,9 @@
         $volume = \App\Models\Volume::where('user_id',\Illuminate\Support\Facades\Auth::user()->id)->value('volume');
     @endphp
 
-    const video = document.querySelector("#video");
+    const video = document.querySelector("#video").get(0);
 
-    const isVideoPlaying = video => !!(!video.paused && !video.ended && video.readyState > 2);
+    const isVideoPlaying = video => !!(video.currentTime > 0 && !video.paused && !video.ended && video.readyState > 2);
 
     function playTrailer() {
         let video = $('#video');

@@ -280,13 +280,12 @@
             } else {
                 video.play();
                 playState = true;
-                let playing = isVideoPlaying();
-                console.log(playing)
-                if (playing) {
-                    setTimeout(function () {
+                setTimeout(function () {
+                    let playing = isVideoPlaying();
+                    if (playing) {
                         $('#description').hide(500)
-                    }, 6000)
-                }
+                    }
+                }, 6000)
             }
         });
     }, {});
@@ -301,13 +300,12 @@
             }
         } else {
             video.play();
-            let playing = isVideoPlaying();
-            console.log(playing)
-            if (playing) {
-                setTimeout(function () {
+            setTimeout(function () {
+                let playing = isVideoPlaying();
+                if (playing) {
                     $('#description').hide(500)
-                }, 6000)
-            }
+                }
+            }, 6000)
         }
     };
 

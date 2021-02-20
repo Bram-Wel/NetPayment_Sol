@@ -49,10 +49,17 @@
                     $genres = \Illuminate\Support\Facades\DB::table('genres')
                 ->where('name', $movie->name)
                 ->get();
+                    $count = count($genres);
+                    $i = 0;
                 @endphp
                 <div class="text-gray-200 mb-1"> {{ $movie->mpaa }} · {{ $movie->year }}
                     · {{  \Carbon\CarbonInterval::minutes((int)$movie->runtime)->cascade()->forHumans() }}
-                    · @foreach($genres as $g) {{ $g->genre . ',' }} @endforeach
+                    · @foreach($genres as $g)
+                        {{ $g->genre }}
+                        @if(++$i != $count)
+                            {{ ',' }}
+                        @endif
+                    @endforeach
                 </div>
             </div>
             <p class="text-white font-bold">{{ $movie->description }}</p>
@@ -168,7 +175,8 @@
     //detect video end
     video.addEventListener('ended', function () {
         video.load();
-        console.log('ended');
+        $('#description').show(1000);
+        $('#play').html('Play');
     }, false);
 
 </script>

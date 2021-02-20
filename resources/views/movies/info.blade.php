@@ -49,7 +49,7 @@
             <div
                 style="background: url('{!! $url !!}/logo.jpg'); width: 350px; height: 200px;
                     background-size: contain; background-repeat: no-repeat; background-position: 0% 50%"
-                class="mb-4 lazyload"></div>
+                class="mb-4 lazyload" id="logo"></div>
         @else
             <h1 class="text-white font-bold text-5xl">{{ $movie->name }}</h1>
         @endif

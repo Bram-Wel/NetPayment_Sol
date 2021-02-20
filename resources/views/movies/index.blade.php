@@ -207,7 +207,7 @@
     ->groupBy('genre')->inRandomOrder()->get();
     @endphp
     @foreach($genres as $g)
-        <div class="pl-8 w-screen">
+        <div class="w-screen">
             <h1 class="font-bold text-xl md:pl-6 text-center md:text-left">{{ $g->genre }}</h1>
             <div id="container" class="mr-4 grab flex justify-center">
                 @php

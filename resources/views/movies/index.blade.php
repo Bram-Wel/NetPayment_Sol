@@ -318,6 +318,7 @@
         } else {
             video.play();
             let playing = isVideoPlaying(video);
+            console.log(playing)
             if (playing) {
                 console.log('playing');
                 setTimeout(function () {

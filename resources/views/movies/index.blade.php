@@ -84,19 +84,20 @@
                 @endphp
                 @if(does_url_exists($url.'/logo.jpg'))
                     <div
-                        style="background: url('{!! $url !!}/logo.jpg'); width: 350px; height: 100px; background-size: cover; background-position: 0% 50%"
+                        style="background: url('{!! $url !!}/logo.jpg'); width: 350px; height: 100px;
+                            background-size: contain; background-repeat: no-repeat; background-position: 0% 50%"
                         class="mb-4 lazyload"></div>
                 @else
-                            <h1 class="text-white font-bold text-5xl">{{ $movie->name }}</h1>
-                        @endif
-                        <div id="description">
-                            <div class="details mt-2 mb-2">
-                                @php
-                                    $genres = \Illuminate\Support\Facades\DB::table('genres')
-                                ->where('name', $movie->name)
-                                ->get();
-                                    $count = count($genres);
-                                    $i = 0;
+                    <h1 class="text-white font-bold text-5xl">{{ $movie->name }}</h1>
+                @endif
+                <div id="description">
+                    <div class="details mt-2 mb-2">
+                        @php
+                            $genres = \Illuminate\Support\Facades\DB::table('genres')
+                        ->where('name', $movie->name)
+                        ->get();
+                            $count = count($genres);
+                            $i = 0;
                         @endphp
                         <div class="text-gray-200 mb-1"> {{ $movie->mpaa }} · {{ $movie->year }}
                             · {{  \Carbon\CarbonInterval::minutes((int)$movie->runtime)->cascade()->forHumans() }}

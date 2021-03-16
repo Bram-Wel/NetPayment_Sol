@@ -17,10 +17,6 @@
                         <span
                             class="@if(request()->routeIs('movies') or request()->routeIs('info') or request()->routeIs('test')) text-white font-bold @endif">{{ __('Internet Packages') }}</span>
                     </x-jet-nav-link>
-                    <x-jet-nav-link href="{{ route('movies') }}" :active="request()->routeIs('movies')">
-                        <span
-                            class="@if(request()->routeIs('movies') or request()->routeIs('info') or request()->routeIs('test')) text-white font-bold @endif">{{ __('Movies') }}</span>
-                    </x-jet-nav-link>
 
                     @if(\Illuminate\Support\Facades\Auth::user()->admin == 1)
                         <x-jet-nav-link href="{{ route('dashboard') }}" :active="request()->routeIs('dashboard')">

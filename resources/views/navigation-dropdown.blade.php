@@ -61,10 +61,6 @@
                         @else
                             <button
                                 class="flex items-center text-sm font-medium hover:border-gray-300 focus:outline-none focus:border-gray-300 transition duration-150 ease-in-out">
-                                <div>
-                                    <span
-                                        class="@if(request()->routeIs('movies') or request()->routeIs('info') or request()->routeIs('test')) text-white font-bold @endif">{{ Auth::user()->username }}</span>
-                                </div>
 
                                 <div class="ml-1">
                                     <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg"
@@ -162,10 +158,6 @@
             <x-jet-responsive-nav-link href="{{ route('dashboard') }}" :active="request()->routeIs('dashboard')">
                 {{ __('Packages') }}
             </x-jet-responsive-nav-link>
-            <x-jet-responsive-nav-link href="{{ route('movies') }}" :active="request()->routeIs('movies')">
-                {{ __('Movies') }}
-            </x-jet-responsive-nav-link>
-
         </div>
 
         <!-- Responsive Settings Options -->

@@ -4,7 +4,6 @@ namespace App\Console\Commands;
 
 use AfricasTalking\SDK\AfricasTalking;
 use App\Models\Message;
-use App\Models\MovieSubscription;
 use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Console\Command;
@@ -83,7 +82,7 @@ class CheckPayment extends Command
                 } elseif ($amount == 50) {
                     $date = Carbon::createFromFormat('Y-m-d H:i:s', now())->addDay();
                     $rate = '3MBPS';
-                } elseif ($amount == 65) {
+                } elseif ($amount == 75) {
                     $date = Carbon::createFromFormat('Y-m-d H:i:s', now())->addDay();
                     $rate = '4MBPS';
                 } elseif ($amount == 85) {

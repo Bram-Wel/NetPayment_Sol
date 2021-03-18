@@ -42,7 +42,7 @@ class BuyNow extends Component
         } elseif ($this->package == 3 && $this->freq == 'daily') {
             $this->amount = 50;
         } elseif ($this->package == 4 && $this->freq == 'daily') {
-            $this->amount = 65;
+            $this->amount = 75;
         } elseif ($this->package == 5 && $this->freq == 'daily') {
             $this->amount = 85;
         } elseif ($this->package == 1 && $this->freq == 'weekly') {

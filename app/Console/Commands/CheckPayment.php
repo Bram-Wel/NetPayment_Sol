@@ -91,7 +91,7 @@ class CheckPayment extends Command
                 } elseif ($amount == 180) {
                     $date = Carbon::createFromFormat('Y-m-d H:i:s', now())->addWeek();
                     $rate = '1MBPS';
-                } elseif ($amount == 300) {
+                } elseif ($amount == 250) {
                     $date = Carbon::createFromFormat('Y-m-d H:i:s', now())->addWeek();
                     $rate = '2MBPS';
                 } elseif ($amount == 340) {

@@ -219,7 +219,7 @@
                     class="package bg-white rounded-lg shadow-2xl p-6 text-center mb-4 md:mb-0 w-4/5 md:w-1/6 hover:shadow-2xl transition duration-300"
                     style="background: linear-gradient(to right, #e44d26, #f16529);">
                     <h1 class="text-white"><span class="text-4xl font-bold">4</span><span
-                            class="text-sm font-bold">MBPS</span> @ kshs500
+                            class="text-sm font-bold">MBPS</span> @ kshs510
                     </h1>
                     <ul class="mb-5 text-left ml-4 mt-4 leading-7">
                         <li class="text-white">4mbps uploads</li>

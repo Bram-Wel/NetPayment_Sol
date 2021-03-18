@@ -185,7 +185,7 @@
                     class="package bg-white shadow rounded-lg mb-4 md:mb-0 p-4 text-center w-4/5 md:w-1/6 hover:shadow-2xl transition duration-300"
                     style="background-image:linear-gradient(to right, #11998e, #38ef7d);">
                     <h1 class="text-white"><span class="text-4xl font-bold">2</span><span
-                            class="text-sm font-bold">MBPS</span> @ kshs250
+                            class="text-sm font-bold">MBPS</span> @ kshs280
                     </h1>
                     <ul class="mb-5 text-left ml-4 mt-4 leading-7">
                         <li class="text-white">2mbps uploads</li>
@@ -274,7 +274,7 @@
                     class="package bg-white shadow rounded-lg p-4 mb-4 md:mb-0 text-center  w-4/5 md:w-1/6 hover:shadow-2xl transition duration-300"
                     style="background-image:linear-gradient(to right, #11998e, #38ef7d);">
                     <h1 class="text-white"><span class="text-4xl font-bold">2</span><span
-                            class="text-sm font-bold">MBPS</span> @ kshs1200
+                            class="text-sm font-bold">MBPS</span> @ kshs1100
                     </h1>
                     <ul class="mb-5 text-left ml-4 mt-4 leading-7">
                         <li class="text-white">2mbps uploads</li>

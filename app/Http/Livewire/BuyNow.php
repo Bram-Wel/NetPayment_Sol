@@ -48,7 +48,7 @@ class BuyNow extends Component
         } elseif ($this->package == 1 && $this->freq == 'weekly') {
             $this->amount = 180;
         } elseif ($this->package == 2 && $this->freq == 'weekly') {
-            $this->amount = 250;
+            $this->amount = 280;
         } elseif ($this->package == 3 && $this->freq == 'weekly') {
             $this->amount = 340;
         } elseif ($this->package == 4 && $this->freq == 'weekly') {
@@ -58,7 +58,7 @@ class BuyNow extends Component
         } elseif ($this->package == 1 && $this->freq == 'monthly') {
             $this->amount = 700;
         } elseif ($this->package == 2 && $this->freq == 'monthly') {
-            $this->amount = 1200;
+            $this->amount = 1100;
         } elseif ($this->package == 3 && $this->freq == 'monthly') {
             $this->amount = 1500;
         } elseif ($this->package == 4 && $this->freq == 'monthly') {

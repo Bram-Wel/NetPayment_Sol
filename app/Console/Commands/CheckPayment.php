@@ -201,13 +201,13 @@ class CheckPayment extends Command
 
                 $sms->send([
                     'to' => '+254' . ltrim($p, '0'),
-                    'message' => "You have successfully subscribed to the $rate package, expires on $date at $time. Did you know you can now watch movies on http://thetechglitch.net under the Movies menu?"
+                    'message' => "You have successfully subscribed to the $rate package, expires on $date at $time."
                 ]);
 
                 $message = new Message();
                 $message->username = $name;
                 $message->phone = $p;
-                $message->message = "You have successfully subscribed to the $rate package, expires on $date at $time. Did you know you can now watch movies on http://thetechglitch.net under the Movies menu?";
+                $message->message = "You have successfully subscribed to the $rate package, expires on $date at $time.?";
                 $message->type = 'sms';
                 $message->save();
 

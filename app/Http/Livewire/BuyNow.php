@@ -40,7 +40,7 @@ class BuyNow extends Component
         } elseif ($this->package == 2 && $this->freq == 'daily') {
             $this->amount = 40;
         } elseif ($this->package == 3 && $this->freq == 'daily') {
-            $this->amount = 50;
+            $this->amount = 55;
         } elseif ($this->package == 4 && $this->freq == 'daily') {
             $this->amount = 75;
         } elseif ($this->package == 5 && $this->freq == 'daily') {
@@ -50,7 +50,7 @@ class BuyNow extends Component
         } elseif ($this->package == 2 && $this->freq == 'weekly') {
             $this->amount = 280;
         } elseif ($this->package == 3 && $this->freq == 'weekly') {
-            $this->amount = 340;
+            $this->amount = 370;
         } elseif ($this->package == 4 && $this->freq == 'weekly') {
             $this->amount = 510;
         } elseif ($this->package == 5 && $this->freq == 'weekly') {

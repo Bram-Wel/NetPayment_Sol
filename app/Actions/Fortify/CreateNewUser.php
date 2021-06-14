@@ -44,20 +44,22 @@ class CreateNewUser implements CreatesNewUsers
 
             $query = (new Query('/ip/hotspot/user/add'))
                 ->equal('name', $input['username'])
-                ->equal('server', 'all')
+                ->equal('server', env('MIKROTIK_HOTSPOT_SERVER'))
                 ->equal('password', $password)
-                ->equal('profile', '2MBPS')
-                ->equal('comment', $input['username']);
+                ->equal('profile', env('MIKROTIK_TRIAL_PACKAGE'));
 
             $client->q($query)->read();
 
             $now = Carbon::now('Africa/Nairobi');
-            $end = $now->addMinutes(5);
+            $end = $now->addDays(1);
 
             $date = date('M/d/Y', strtotime($end));
             $time = date('H:i:s', strtotime($end));
             $username = $input['username'];
-            $source = "/ip hotspot active remove [find user=\"$username\"]; /ip hotspot user set profile=0MBPS [find name=\"$username\"]; /ip hotspot cookie remove [find user=\"$username\"];";
+            $source = "/ip hotspot active remove [find user=$username];
+             /ip hotspot user set profile=0MBPS [find name=$username];
+              /ip hotspot cookie remove [find user=$username];
+              /system scheduler remove [find name=deactivate-$username];";
 
             $query = (new Query('/system/scheduler/add'))
                 ->equal('name', 'deactivate-' . "$username")

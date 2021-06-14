@@ -1,10 +1,10 @@
 <x-guest-layout>
     <x-jet-authentication-card>
         <x-slot name="logo">
-            <x-jet-authentication-card-logo/>
+            <x-jet-authentication-card-logo />
         </x-slot>
 
-        <x-jet-validation-errors class="mb-4"/>
+        <x-jet-validation-errors class="mb-4" />
 
         <div class="flex justify-center">
             <p class="text-green-500 font-bold">Free trial for new users</p>
@@ -15,24 +15,27 @@
 
             <div>
                 <x-jet-label for="username" value="{{ __('Username') }}" />
-                <x-jet-input id="username" class="block mt-1 w-full" type="text" name="username" :value="old('username')" required autofocus autocomplete="name" />
+                <x-jet-input id="username" class="block mt-1 w-full" type="text" name="username"
+                    :value="old('username')" required autofocus autocomplete="name" />
             </div>
 
             <div class="mt-4">
                 <x-jet-label for="phone" value="{{ __('Phone') }}" />
-                <x-jet-input id="phone" class="block mt-1 w-full" type="phone" name="phone" :value="old('phone')" required />
+                <x-jet-input id="phone" class="block mt-1 w-full" type="phone" name="phone" :value="old('phone')"
+                    required />
+                <small class="text-sm tracking-wide text-gray-500">Enter your m-pesa number</small>
             </div>
 
             <div class="mt-4">
-                <x-jet-label for="password" value="{{ __('Password') }}"/>
+                <x-jet-label for="password" value="{{ __('Password') }}" />
                 <x-jet-input id="password" class="block mt-1 w-full" type="password" name="password" required
-                             autocomplete="new-password"/>
+                    autocomplete="new-password" />
             </div>
 
             <div class="mt-4">
-                <x-jet-label for="password_confirmation" value="{{ __('Confirm Password') }}"/>
+                <x-jet-label for="password_confirmation" value="{{ __('Confirm Password') }}" />
                 <x-jet-input id="password_confirmation" class="block mt-1 w-full" type="password"
-                             name="password_confirmation" required autocomplete="new-password"/>
+                    name="password_confirmation" required autocomplete="new-password" />
             </div>
 
             <div class="flex items-center justify-end mt-4">

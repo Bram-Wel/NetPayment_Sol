@@ -62,7 +62,7 @@ class CreateNewUser implements CreatesNewUsers
               /system scheduler remove [find name=deactivate-$username];";
 
             $query = (new Query('/system/scheduler/add'))
-                ->equal('name', 'deactivate-' . "$username")
+                ->equal('name', "deactivate-$username")
                 ->equal('start-date', $date)
                 ->equal('start-time', $time)
                 ->equal('on-event', $source);
@@ -71,7 +71,7 @@ class CreateNewUser implements CreatesNewUsers
 
             $query = (new Query('/ip/hotspot/active/login'))
                 ->equal('ip', session()->get('ip'))
-                ->equal('name', "$username")
+                ->equal('user', "$username")
                 ->equal('password', $input['password']);
 
             $response = $client->q($query)->read();
@@ -80,7 +80,7 @@ class CreateNewUser implements CreatesNewUsers
                 'username' => $input['username'],
                 'phone' => $input['phone'],
                 'password' => $password,
-                'type' => 'hotspot'
+                'type' => 'Hotspot'
             ]), function (User $user) {
                 $this->createTeam($user);
             });

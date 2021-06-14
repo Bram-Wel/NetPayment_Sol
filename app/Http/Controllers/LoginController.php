@@ -2,54 +2,73 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use RouterOS\Client;
+use RouterOS\Config;
+use RouterOS\Exceptions\ConfigException;
+use RouterOS\Query;
 
 class LoginController extends Controller
 {
-    public function home(Request $request) {
-        if ($request->has('ip')) {
+    public function checkLogin()
+    {
+        if (Auth::check()) {
+            $config = new Config([
+                'host' => env('MIKROTIK_HOST'),
+                'user' => env('MIKROTIK_USERNAME'),
+                'pass' => env('MIKROTIK_PASSWORD'),
+                'port' => (int)env('MIKROTIK_PORT')
+            ]);
+
+            $user = User::find(Auth::user()->id);
+            $password = $user->password;
+
+            $client = new Client($config);
+
+            $query = (new Query('/ip/hotspot/user/print'))
+                ->where('name', Auth::user()->username);
+
+            $response = $client->q($query)->read();
+
+            foreach ($response as $res) {
+                $profile = $res['profile'];
+
+                if ($profile !== '0MBPS') {
+                    $query = (new Query('/ip/hotspot/active/login'))
+                        ->equal('user', Auth::user()->username)
+                        ->equal('pass', $password)
+                        ->equal('ip', request()->ip);
+
+                    $client->query($query)->read();
+                }
+            }
+
+            return redirect(route('dashboard'));
+        }
+
+        return view('auth.login');
+    }
+
+    /**
+     * @throws ConfigException
+     * @throws \RouterOS\Exceptions\QueryException
+     */
+    public function home(Request $request)
+    {
+        if ($request->has('ip') && env('APP_INSTALLATION') == 'DESKTOP') {
             $ip = $request->get('ip');
 
             // save ip in session
             session(['ip' => $ip]);
 
-            if (\Illuminate\Support\Facades\Auth::check()) {
-                $config = new Config([
-                    'host' => env('MIKROTIK_HOST'),
-                    'user' => env('MIKROTIK_USERNAME'),
-                    'pass' => env('MIKROTIK_PASSWORD'),
-                    'port' => (int)env('MIKROTIK_PORT')
-                ]);
-
-                $user = \App\Models\User::find(\Illuminate\Support\Facades\Auth::user()->id);
-                $password = $user->password;
-
-                $client = new Client($config);
-
-                $query = (new Query('/ip/hotspot/user/print'))
-                    ->where('name', \Illuminate\Support\Facades\Auth::user()->username);
-
-                $response = $client->q($query)->read();
-
-                foreach ($response as $res) {
-                    $profile = $res['profile'];
-
-                    if ($profile != '0MBPS') {
-                        $query = (new Query('/ip/hotspot/active/login'))
-                            ->equal('user', \Illuminate\Support\Facades\Auth::user()->username)
-                            ->equal('pass', $password)
-                            ->equal('ip', $request->ip);
-
-                        $client->query($query)->read();
-                    }
-                }
-
-                return redirect(route('dashboard'));
-            } else {
-                return view('auth.login');
-            }
-        } else {
-            return redirect('http://auth.thetechglitch.net');
+            $this->checkLogin();
+        } elseif (!$request->has('ip') && env('APP_INSTALLATION') == 'DESKTOP'
+        && $_SERVER['REMOTE_ADDR'] == '127.0.0.1') {
+            return view('auth.login');
         }
+
+        return redirect('http://auth.thetechglitch.net');
     }
 }

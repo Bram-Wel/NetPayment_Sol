@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\EditProfile;
+use App\Http\Controllers\LoginController;
 use App\Http\Controllers\Users\Add;
 use App\Http\Controllers\Users\addProfile;
 use App\Http\Controllers\Users\editUser;
@@ -26,49 +27,7 @@ use RouterOS\Query;
 */
 
 // TODO: UNCOMMENT THESE LINES
-Route::match(['get', 'post'], '/', function (Request $request) {
-    if ($request->ip) {
-        $ip = $request->ip;
-        session(['ip' => $ip]);
-        if (\Illuminate\Support\Facades\Auth::check()) {
-            $config = new Config([
-                'host' => env('MIKROTIK_HOST'),
-                'user' => env('MIKROTIK_USERNAME'),
-                'pass' => env('MIKROTIK_PASSWORD'),
-                'port' => (int)env('MIKROTIK_PORT')
-            ]);
-
-            $user = \App\Models\User::find(\Illuminate\Support\Facades\Auth::user()->id);
-            $password = $user->password;
-
-            $client = new Client($config);
-
-            $query = (new Query('/ip/hotspot/user/print'))
-                ->where('name', \Illuminate\Support\Facades\Auth::user()->username);
-
-            $response = $client->q($query)->read();
-
-            foreach ($response as $res) {
-                $profile = $res['profile'];
-
-                if ($profile != '0MBPS') {
-                    $query = (new Query('/ip/hotspot/active/login'))
-                        ->equal('user', \Illuminate\Support\Facades\Auth::user()->username)
-                        ->equal('pass', $password)
-                        ->equal('ip', $request->ip);
-
-                    $client->query($query)->read();
-                }
-            }
-
-            return redirect(route('dashboard'));
-        } else {
-            return view('auth.login');
-        }
-    } else {
-        return redirect('http://auth.thetechglitch.net');
-    }
-});
+Route::match(['get', 'post'], '/', [LoginController::class, 'home']);
 
 Route::match('get', '/login', function (Request $request) {
     if ($request->ip) {
@@ -114,17 +73,8 @@ Route::match('get', '/login', function (Request $request) {
     }
 })->name('login');
 
-Route::middleware(['auth:sanctum'])->get('/movie/info', [\App\Http\Controllers\MovieController::class, 'movieInfo'])
-    ->name('movie.info');
-
-Route::middleware(['auth:sanctum', 'verified'])->get('/movie/play', [\App\Http\Controllers\MovieController::class, 'playMovie'])
-    ->name('player');
-
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', [\App\Http\Controllers\Admin::class, 'index'])
     ->name('dashboard');
-
-Route::middleware(['auth:sanctum', 'verified'])->get('/movie/packages', [\App\Http\Controllers\MovieController::class, 'showPackages'])
-    ->name('movie-packages');
 
 Route::middleware(['auth:sanctum', 'verified', 'admin'])->get('/users', [\App\Http\Controllers\Users::class, 'index'])
     ->name('Users');
@@ -132,12 +82,6 @@ Route::middleware(['auth:sanctum', 'verified', 'admin'])->get('/users', [\App\Ht
 Route::middleware(['auth:sanctum', 'verified', 'admin'])->get('/payments/clicks', function () {
     return view('payments.payment-clicks');
 })->name('payment.clicks');
-
-Route::middleware(['auth:sanctum', 'verified'])->get('/movies', [\App\Http\Controllers\MovieController::class, 'index'])
-    ->name('movies');
-
-Route::middleware(['auth:sanctum', 'verified'])->get('/test', [\App\Http\Controllers\MovieController::class, 'test'])
-    ->name('test');
 
 Route::middleware(['auth:sanctum', 'verified', 'admin'])->get('/hotspot/users', [\App\Http\Controllers\Users::class, 'HotspotUsers'])
     ->name('hotspot-users');

@@ -9,8 +9,6 @@
     "license": "MIT",
     "require": {
         "php": "~7.0||^8.0",
-        "ext-curl": "*",
-        "ext-simplexml": "*",
         "africastalking/africastalking": "^3.0",
         "barryvdh/laravel-ide-helper": "^v2.9.0",
         "enlightn/enlightn": "^1.6",

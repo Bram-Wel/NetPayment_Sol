@@ -27,7 +27,8 @@ use RouterOS\Query;
 */
 
 // TODO: UNCOMMENT THESE LINES
-Route::match(['get', 'post'], '/', [LoginController::class, 'home']);
+Route::match(['get', 'post'], '/', [LoginController::class, 'home'])
+->name('home');
 
 Route::match('get', '/login', function (Request $request) {
     if ($request->ip) {

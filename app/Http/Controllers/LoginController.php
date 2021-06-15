@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Login;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -42,6 +43,11 @@ class LoginController extends Controller
                         ->equal('ip', request()->ip);
 
                     $client->query($query)->read();
+
+                    $login = new Login();
+                    $login->username = Auth::user()->username;
+                    $login->address = request()->ip;
+                    $login->mac = request()->mac;
                 }
             }
 
@@ -58,10 +64,9 @@ class LoginController extends Controller
     public function home(Request $request)
     {
         if ($request->has('ip') && env('APP_INSTALLATION') == 'DESKTOP') {
-            $ip = $request->get('ip');
-
-            // save ip in session
-            session(['ip' => $ip]);
+            // save ip and mac in session
+            session(['ip' => $request->get('ip')]);
+            session(['mac' => $request->get('mac')]);
 
             $this->checkLogin();
         } elseif (!$request->has('ip') && env('APP_INSTALLATION') == 'DESKTOP'

@@ -7,7 +7,7 @@
         <x-jet-validation-errors class="mb-4" />
 
         <div class="flex justify-center">
-            <p class="text-green-500 font-bold">Free 2 day trial for new users</p>
+            <p class="text-green-500 font-bold">30 mins trial for new users</p>
         </div>
 
         <form method="POST" action="{{ route('register') }}">
@@ -40,7 +40,7 @@
 
             <div class="flex items-center justify-end mt-4">
                 <a class="border-b text-gray-600 hover:text-gray-900" href="{{ route('login') }}">
-                    {{ __('Already registered?') }}
+                    {{ __('Have an account?') }}
                 </a>
 
                 <x-jet-button class="ml-4">

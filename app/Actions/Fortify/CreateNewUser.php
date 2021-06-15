@@ -8,8 +8,10 @@ use App\Models\Team;
 use App\Models\User;
 use RouterOS\Client;
 use RouterOS\Config;
+use App\Models\Login;
 use App\Models\Trial;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 use Laravel\Fortify\Contracts\CreatesNewUsers;
 
@@ -25,11 +27,17 @@ class CreateNewUser implements CreatesNewUsers
      */
     public function create(array $input)
     {
-        Validator::make($input, [
-            'username' => ['required', 'string', 'max:255', 'unique:users'],
+        Validator::make(
+            $input,
+            [
+            'username' => ['required', 'string', 'max:255', 'unique:users', 'regex:/^[a-zA-Z]+$/u'],
             'phone' => ['required', 'string', 'max:10', 'unique:users', 'regex:/^0+[0-9]/'],
             'password' => $this->passwordRules(),
-        ])->validate();
+        ],
+            [
+            'username.regex' => 'Username should only contain letters.'
+        ]
+        )->validate();
 
         return DB::transaction(function () use ($input) {
             $config = new Config([
@@ -60,7 +68,7 @@ class CreateNewUser implements CreatesNewUsers
 
             // check if mac in trials table
             if (Trial::where('mac', session()->get('mac'))->doesntExist()) {
-                $end = $now->addDays(1);
+                $end = $now->addMinutes(30);
 
                 $date = date('M/d/Y', strtotime($end));
                 $time = date('H:i:s', strtotime($end));
@@ -85,7 +93,20 @@ class CreateNewUser implements CreatesNewUsers
 
                 $response = $client->q($query)->read();
 
-                
+
+                if ($_SERVER['REMOTE_ADDR'] !== '127.0.0.1') {
+                    $login = new Login();
+                    $login->username = Auth::user()->username;
+                    $login->address = session()->get('ip');
+                    $login->mac = session()->get('mac');
+                    $login->save();
+
+                    $trial = new Trial();
+                    $trial->username = $input['username'];
+                    $trial->mac = session()->get('mac');
+                    $trial->address = session()->get('ip');
+                    $trial->save();
+                }
             }
 
             return tap(User::create([

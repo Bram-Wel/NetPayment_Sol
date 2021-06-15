@@ -12,6 +12,10 @@
         </div>
         @endif
 
+        <div class="flex justify-center">
+            <p class="text-green-500 font-bold">30 mins trial for new users</p>
+        </div>
+
         <form method="POST" action="{{ route('login') }}">
             @csrf
 
@@ -43,7 +47,7 @@
                 @endif
 
                 <a href="{{ route('register') }}" class="border-b text-gray-600 hover:text-gray-900">
-                    {{ __('Register') }}
+                    {{ __('Create account') }}
                 </a>
 
                 <x-jet-button class="ml-4">

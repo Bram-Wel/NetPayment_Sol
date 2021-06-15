@@ -69,12 +69,21 @@ class UpdateUserProfileInformation implements UpdatesUserProfileInformation
 
                 if (empty($response)) {
                     $query = (new Query('/system/scheduler/print'))
-                        ->where('name', "deactivate-" . $input['username']);
+                        ->where('name', "deactivate-" . $user->username);
 
                     $response = $client->q($query)->r();
 
                     if (count($response) > 0) {
-                        dd($response[0]);
+                        $username = $input['username'];
+                        $source = "/ip hotspot active remove [find user=$username];
+                        /ip hotspot user set profile=0MBPS [find name=$username];
+                        /ip hotspot cookie remove [find user=$username];
+                        /system scheduler remove [find name=deactivate-$username];";
+
+                        $query = (new Query('/system/scheduler/set'))
+                            ->equal('.id', $response[0]['.id'])
+                            ->equal('name', 'deactivate-' . $input['username'])
+                            ->equal('source', $source);
                     }
                 }
             }

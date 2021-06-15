@@ -37,7 +37,7 @@ class UpdateUserProfileInformation implements UpdatesUserProfileInformation
             $user->updateProfilePhoto($input['photo']);
         }
 
-        if ($input['phone'] !== $user->phone) {
+        if ($input['phone'] !== $user->phone || $input['username'] !== $user->username) {
             // $user->forceFill([
             //     'username' => $input['username'],
             //     'phone' => $input['phone'],
@@ -55,11 +55,28 @@ class UpdateUserProfileInformation implements UpdatesUserProfileInformation
                 $client = new Client($config);
 
                 $query = (new Query('/ip/hotspot/user/print'))
-                    ->where('name', $input['username']);
+                    ->where('name', $user->username);
 
                 $response = $client->q($query)->r();
 
-                dd($response);
+                $id = $response[0]['.id'];
+
+                $query = (new Query('/ip/hotspot/user/set'))
+                    ->equal('.id', $id)
+                    ->equal('name', $input['username']);
+
+                $response = $client->q($query)->r();
+
+                if (empty($response)) {
+                    $query = (new Query('/system/scheduler/print'))
+                        ->where('name', "deactivate-" . $input['username']);
+
+                    $response = $client->q($query)->r();
+
+                    if (count($response) > 0) {
+                        dd($response[0]);
+                    }
+                }
             }
         }
     }

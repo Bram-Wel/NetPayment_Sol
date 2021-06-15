@@ -56,14 +56,14 @@
         <div class="col-span-6 sm:col-span-4">
             <x-jet-label for="username" value="{{ __('Username') }}"/>
             <x-jet-input id="username" type="text" class="mt-1 block w-full" wire:model.defer="state.username"
-                         autocomplete="username" readonly/>
+                         autocomplete="username"/>
             <x-jet-input-error for="username" class="mt-2"/>
         </div>
 
         <!-- Email -->
         <div class="col-span-6 sm:col-span-4">
             <x-jet-label for="phone" value="{{ __('Phone') }}"/>
-            <x-jet-input id="phone" type="phone" class="mt-1 block w-full" wire:model.defer="state.phone" readonly/>
+            <x-jet-input id="phone" type="phone" class="mt-1 block w-full" wire:model.defer="state.phone"/>
             <x-jet-input-error for="phone" class="mt-2"/>
         </div>
     </x-slot>

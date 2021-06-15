@@ -31,11 +31,12 @@ class CreateNewUser implements CreatesNewUsers
             $input,
             [
             'username' => ['required', 'string', 'max:100', 'unique:users', 'regex:/^[a-zA-Z]+$/u'],
-            'phone' => ['required', 'string', 'max:10', 'unique:users', 'regex:/^0+[0-9]/'],
+            'phone' => ['required', 'string', 'max:10', 'min:10', 'unique:users', 'regex:/^0+[0-9]/'],
             'password' => $this->passwordRules(),
         ],
             [
-            'username.regex' => 'Username should only contain letters.'
+            'username.regex' => 'Username should only contain letters.',
+            'phone.regex' => 'Phone number must start with a zero.'
         ]
         )->validate();
 

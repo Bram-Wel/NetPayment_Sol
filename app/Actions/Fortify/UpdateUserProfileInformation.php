@@ -2,9 +2,11 @@
 
 namespace App\Actions\Fortify;
 
-use Illuminate\Contracts\Auth\MustVerifyEmail;
-use Illuminate\Support\Facades\Validator;
+use RouterOS\Query;
+use RouterOS\Client;
+use RouterOS\Config;
 use Illuminate\Validation\Rule;
+use Illuminate\Support\Facades\Validator;
 use Laravel\Fortify\Contracts\UpdatesUserProfileInformation;
 
 class UpdateUserProfileInformation implements UpdatesUserProfileInformation
@@ -18,42 +20,47 @@ class UpdateUserProfileInformation implements UpdatesUserProfileInformation
      */
     public function update($user, array $input)
     {
-        Validator::make($input, [
-            'name' => ['required', 'string', 'max:100', 'regex:/^[a-zA-Z]+$/u'],
-            'phone' => ['required', 'max:10', Rule::unique('users')->ignore($user->id)],
+        Validator::make(
+            $input,
+            [
+            'username' => ['required', 'string', 'max:100', 'regex:/^[a-zA-Z]+$/u', Rule::unique('users')->ignore($user->id)],
+            'phone' => ['required', 'max:10', 'min:10', Rule::unique('users')->ignore($user->id)],
             'photo' => ['nullable', 'image', 'max:1024'],
-        ])->validateWithBag('updateProfileInformation');
+        ],
+            [
+            'username.regex' => 'Username should contain only letters.',
+            'phone.regex' => 'Phone number must start with a zero.',
+        ]
+        )->validateWithBag('updateProfileInformation');
 
         if (isset($input['photo'])) {
             $user->updateProfilePhoto($input['photo']);
         }
 
-        if ($input['email'] !== $user->email &&
-            $user instanceof MustVerifyEmail) {
-            $this->updateVerifiedUser($user, $input);
-        } else {
-            $user->forceFill([
-                'name' => $input['name'],
-                'email' => $input['email'],
-            ])->save();
+        if ($input['phone'] !== $user->phone) {
+            // $user->forceFill([
+            //     'username' => $input['username'],
+            //     'phone' => $input['phone'],
+            // ])->save();
+
+
+            if ($input['username'] !== $user->username) {
+                $config = new Config([
+                    'host' => env('MIKROTIK_HOST'),
+                    'user' => env('MIKROTIK_USERNAME'),
+                    'pass' => env('MIKROTIK_PASSWORD'),
+                    'port' => (int)env('MIKROTIK_PORT')
+                ]);
+
+                $client = new Client($config);
+
+                $query = (new Query('/ip/hotspot/user/print'))
+                    ->where('name', $input['username']);
+
+                $response = $client->q($query)->r();
+
+                dd($response);
+            }
         }
-    }
-
-    /**
-     * Update the given verified user's profile information.
-     *
-     * @param  mixed  $user
-     * @param  array  $input
-     * @return void
-     */
-    protected function updateVerifiedUser($user, array $input)
-    {
-        $user->forceFill([
-            'name' => $input['name'],
-            'email' => $input['email'],
-            'email_verified_at' => null,
-        ])->save();
-
-        $user->sendEmailVerificationNotification();
     }
 }

@@ -42,6 +42,12 @@ class CreateNewUser implements CreatesNewUsers
             $client = new Client($config);
             $password = $input['password'];
 
+            // check username does not exist
+            $query = (new Query('/ip/hotspot/user/print'))
+                ->where('name', $input['username']);
+
+            $response = $client->query($query)->read();
+
             $query = (new Query('/ip/hotspot/user/add'))
                 ->equal('name', $input['username'])
                 ->equal('server', env('MIKROTIK_HOTSPOT_SERVER'))
@@ -52,7 +58,7 @@ class CreateNewUser implements CreatesNewUsers
 
             $now = Carbon::now('Africa/Nairobi');
 
-            // check if mac in trails table
+            // check if mac in trials table
             if (Trial::where('mac', session()->get('mac'))->doesntExist()) {
                 $end = $now->addDays(1);
 
@@ -75,9 +81,11 @@ class CreateNewUser implements CreatesNewUsers
                 $query = (new Query('/ip/hotspot/active/login'))
                     ->equal('ip', session()->get('ip'))
                     ->equal('user', "$username")
-                    ->equal('password', $input['password']);
+                    ->equal('pass', $input['password']);
 
                 $response = $client->q($query)->read();
+
+                
             }
 
             return tap(User::create([

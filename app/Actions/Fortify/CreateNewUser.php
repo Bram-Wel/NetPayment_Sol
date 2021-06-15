@@ -30,7 +30,7 @@ class CreateNewUser implements CreatesNewUsers
         Validator::make(
             $input,
             [
-            'username' => ['required', 'string', 'max:255', 'unique:users', 'regex:/^[a-zA-Z]+$/u'],
+            'username' => ['required', 'string', 'max:100', 'unique:users', 'regex:/^[a-zA-Z]+$/u'],
             'phone' => ['required', 'string', 'max:10', 'unique:users', 'regex:/^0+[0-9]/'],
             'password' => $this->passwordRules(),
         ],

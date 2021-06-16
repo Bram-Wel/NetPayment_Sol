@@ -8,7 +8,19 @@ use Livewire\Component;
 
 class BuyNow extends Component
 {
-    public $package, $message, $freq, $timestamp, $shortcode, $consumerKey, $consumerSecret, $phone, $amount, $openModal;
+    public $package;
+    public $message;
+    public $freq;
+    public $timestamp;
+    public $shortcode;
+    public $consumerKey;
+    public $consumerSecret;
+    public $phone;
+    public $amount;
+    public $openModal;
+    public $mpesaResponse;
+    public $mpesaError;
+    public $mpesaStatus=false;
 
     public function mount()
     {
@@ -24,10 +36,12 @@ class BuyNow extends Component
 
     public function saveIp($ip, $phone)
     {
-        $ip = new Ip;
-        $ip->address = session()->get('ip');
-        $ip->phone = $this->phone;
-        $ip->save();
+        if ($_SERVER['REMOTE_ADDR'] !== '127.0.0.1') {
+            $ip = new Ip;
+            $ip->address = session()->get('ip');
+            $ip->phone = $this->phone;
+            $ip->save();
+        }
     }
 
     public function buy()
@@ -69,7 +83,7 @@ class BuyNow extends Component
 
         $this->customerMpesaSTKPush($this->shortcode, $this->timestamp, $this->phone);
 
-        $this->message = "Buy Now";
+        $this->message = "Processing...";
     }
 
     public function customerMpesaSTKPush($shortcode, $timestamp, $phone)
@@ -96,8 +110,14 @@ class BuyNow extends Component
         curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
         curl_setopt($curl, CURLOPT_POST, true);
         curl_setopt($curl, CURLOPT_POSTFIELDS, $data_string);
-        $response = curl_exec($curl);
+        $response = json_decode(curl_exec($curl), true);
+        if (isset($reponse['ResponseDescription'])) {
+            $this->mpesaResponse = $response['ResponseDescription'];
+        } elseif (isset($response['errorMessage'])) {
+            $this->mpesaError = $response['errorMessage'];
+        }
         $this->saveIp(session()->get('ip'), $phone);
+        $this->message = 'Subscribe';
     }
 
     public function generateAccessToken()

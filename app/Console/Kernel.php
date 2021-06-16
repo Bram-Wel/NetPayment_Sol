@@ -26,8 +26,8 @@ class Kernel extends ConsoleKernel
     protected function schedule(Schedule $schedule)
     {
         $schedule->command('check:payment')
-            ->withoutOverlapping(3)
-            ->everyTwoMinutes();
+            ->withoutOverlapping(1)
+            ->everyMinute();
 
         $schedule->command('check:scheduler')
             ->withoutOverlapping(10)

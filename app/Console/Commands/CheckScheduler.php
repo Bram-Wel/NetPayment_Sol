@@ -91,7 +91,7 @@ class CheckScheduler extends Command
                 $message = new Message();
                 $message->username = ltrim($res['name'], 'deactivate-');
                 $message->phone = $phone;
-                $message->message = "Your internet subscription expires today at $endTime.";
+                $message->message = "Your internet subscription expires today at $endTime. You can now change your username, password and phone number you use to pay with in the profile menu.";
                 $message->type = 'sms';
                 $message->save();
             }

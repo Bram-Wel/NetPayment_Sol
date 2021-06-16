@@ -124,7 +124,6 @@ class CheckPayment extends Command
                 $date = date('M/d/Y', strtotime($date));
 
                 $client = new Client($config);
-                $type = User::where('phone', $p)->value('type');
                 $password = DB::table('users')
                     ->where('phone', $p)
                     ->value('password');
@@ -153,14 +152,14 @@ class CheckPayment extends Command
                 $query = (new Query('/ip/hotspot/active/login'))
                     ->equal('ip', $ip)
                     ->equal('user', $name)
-                    ->equal('password', $password);
+                    ->equal('pass', $password);
 
                 $client->query($query)->read();
 
                 $source = "/ip hotspot user set [find name=\"$name\"] profile=0MBPS; /ip hotspot active remove [find user=\"$name\"]; /ip hotspot cookie remove [find user=\"$name\"]; /system scheduler remove [find name=\"deactivate-$name\"];";
 
                 $query = (new Query('/system/scheduler/print'))
-                    ->where('name', "$name");
+                    ->where('name', "deactivate-$name");
 
                 $response = $client->query($query)->read();
 
@@ -199,15 +198,17 @@ class CheckPayment extends Command
 
                 $sms = $AT->sms();
 
+                $message = "You have successfully subscribed to the $rate package, expires on $date at $time.";
+
                 $sms->send([
                     'to' => '+254' . ltrim($p, '0'),
-                    'message' => "You have successfully subscribed to the $rate package, expires on $date at $time."
+                    'message' => $message
                 ]);
 
                 $message = new Message();
                 $message->username = $name;
                 $message->phone = $p;
-                $message->message = "You have successfully subscribed to the $rate package, expires on $date at $time.?";
+                $message->message = $message;
                 $message->type = 'sms';
                 $message->save();
 

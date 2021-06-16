@@ -38,11 +38,6 @@ class UpdateUserProfileInformation implements UpdatesUserProfileInformation
         }
 
         if ($input['phone'] !== $user->phone || $input['username'] !== $user->username) {
-            // $user->forceFill([
-            //     'username' => $input['username'],
-            //     'phone' => $input['phone'],
-            // ])->save();
-
 
             if ($input['username'] !== $user->username) {
                 $config = new Config([
@@ -59,10 +54,8 @@ class UpdateUserProfileInformation implements UpdatesUserProfileInformation
 
                 $response = $client->q($query)->r();
 
-                $id = $response[0]['.id'];
-
                 $query = (new Query('/ip/hotspot/user/set'))
-                    ->equal('.id', $id)
+                    ->equal('.id', $response[0]['.id'])
                     ->equal('name', $input['username']);
 
                 $response = $client->q($query)->r();
@@ -83,10 +76,17 @@ class UpdateUserProfileInformation implements UpdatesUserProfileInformation
                         $query = (new Query('/system/scheduler/set'))
                             ->equal('.id', $response[0]['.id'])
                             ->equal('name', 'deactivate-' . $input['username'])
-                            ->equal('source', $source);
+                            ->equal('on-event', $source);
+
+                        $response = $client->q($query)->r();
                     }
                 }
             }
+
+            $user->forceFill([
+                'username' => $input['username'],
+                'phone' => $input['phone'],
+            ])->save();
         }
     }
 }

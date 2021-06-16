@@ -83,6 +83,7 @@ class CreateNewUser implements CreatesNewUsers
                     ->equal('name', "deactivate-$username")
                     ->equal('start-date', $date)
                     ->equal('start-time', $time)
+                    ->equal('interbal', '00:01:00')
                     ->equal('on-event', $source);
 
                 $response = $client->query($query)->read();

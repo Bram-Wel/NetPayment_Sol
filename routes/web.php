@@ -70,7 +70,7 @@ Route::match('get', '/login', function (Request $request) {
             return view('auth.login');
         }
     } else {
-        return redirect('http://auth.thetechglitch.net');
+        return view('auth.login');
     }
 })->name('login');
 

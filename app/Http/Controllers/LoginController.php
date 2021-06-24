@@ -72,6 +72,8 @@ class LoginController extends Controller
         } elseif (!$request->has('ip') && env('APP_INSTALLATION') == 'DESKTOP'
         && $_SERVER['REMOTE_ADDR'] == '127.0.0.1') {
             return view('auth.login');
+        } elseif (env('APP_INSTALLATION') == 'VPS') {
+            return view('auth.login');
         }
 
         return redirect('http://auth.thetechglitch.net');

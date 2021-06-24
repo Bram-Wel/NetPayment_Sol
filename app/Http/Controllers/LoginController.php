@@ -44,10 +44,11 @@ class LoginController extends Controller
 
                     $client->query($query)->read();
 
-                    $login = new Login();
-                    $login->username = Auth::user()->username;
-                    $login->address = request()->ip;
-                    $login->mac = request()->mac;
+                    // $login = new Login();
+                    // $login->username = Auth::user()->username;
+                    // $login->address = request()->ip;
+                    // $login->mac = request()->mac;
+
                 }
             }
 
@@ -64,9 +65,9 @@ class LoginController extends Controller
     public function home(Request $request)
     {
         if ($request->has('ip') && env('APP_INSTALLATION') == 'DESKTOP') {
-            // save ip and mac in session
-            session(['ip' => $request->get('ip')]);
-            session(['mac' => $request->get('mac')]);
+            // // save ip and mac in session
+            // session(['ip' => $request->get('ip')]);
+            // session(['mac' => $request->get('mac')]);
 
             $this->checkLogin();
         } elseif (!$request->has('ip') && env('APP_INSTALLATION') == 'DESKTOP'
@@ -76,6 +77,6 @@ class LoginController extends Controller
             return view('auth.login');
         }
 
-        return redirect('http://auth.thetechglitch.net');
+        return view('auth.login');
     }
 }

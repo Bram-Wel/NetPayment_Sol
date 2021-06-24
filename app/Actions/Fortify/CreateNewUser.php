@@ -51,6 +51,8 @@ class CreateNewUser implements CreatesNewUsers
             $client = new Client($config);
             $password = $input['password'];
 
+            session(['ip' => $_SERVER['REMOTE_ADDR']]);
+
             // check username does not exist
             $query = (new Query('/ip/hotspot/user/print'))
                 ->where('name', $input['username']);
@@ -61,55 +63,38 @@ class CreateNewUser implements CreatesNewUsers
                 ->equal('name', $input['username'])
                 ->equal('server', env('MIKROTIK_HOTSPOT_SERVER'))
                 ->equal('password', $password)
-                ->equal('profile', Trial::where('mac', session()->get('mac'))->doesntExist() ? env('MIKROTIK_TRIAL_PACKAGE') : '0MBPS');
+                ->equal('profile', env('MIKROTIK_TRIAL_PACKAGE'));
 
             $client->q($query)->read();
 
             $now = Carbon::now('Africa/Nairobi');
 
             // check if mac in trials table
-            if (Trial::where('mac', session()->get('mac'))->doesntExist()) {
-                $end = $now->addMinutes(30);
+            $end = $now->addMinutes(30);
 
-                $date = date('M/d/Y', strtotime($end));
-                $time = date('H:i:s', strtotime($end));
-                $username = $input['username'];
-                $source = "/ip hotspot active remove [find user=$username];
+            $date = date('M/d/Y', strtotime($end));
+            $time = date('H:i:s', strtotime($end));
+            $username = $input['username'];
+            $source = "/ip hotspot active remove [find user=$username];
                 /ip hotspot user set profile=0MBPS [find name=$username];
                 /ip hotspot cookie remove [find user=$username];
                 /system scheduler remove [find name=deactivate-$username];";
 
-                $query = (new Query('/system/scheduler/add'))
+            $query = (new Query('/system/scheduler/add'))
                     ->equal('name', "deactivate-$username")
                     ->equal('start-date', $date)
                     ->equal('start-time', $time)
                     ->equal('interbal', '00:01:00')
                     ->equal('on-event', $source);
 
-                $response = $client->query($query)->read();
+            $response = $client->query($query)->read();
 
-                $query = (new Query('/ip/hotspot/active/login'))
+            $query = (new Query('/ip/hotspot/active/login'))
                     ->equal('ip', session()->get('ip'))
                     ->equal('user', "$username")
                     ->equal('pass', $input['password']);
 
-                $response = $client->q($query)->read();
-
-
-                if ($_SERVER['REMOTE_ADDR'] !== '127.0.0.1') {
-                    $login = new Login();
-                    $login->username = Auth::user()->username;
-                    $login->address = session()->get('ip');
-                    $login->mac = session()->get('mac');
-                    $login->save();
-
-                    $trial = new Trial();
-                    $trial->username = $input['username'];
-                    $trial->mac = session()->get('mac');
-                    $trial->address = session()->get('ip');
-                    $trial->save();
-                }
-            }
+            $response = $client->q($query)->read();
 
             return tap(User::create([
                 'username' => $input['username'],

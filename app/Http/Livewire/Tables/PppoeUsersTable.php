@@ -38,7 +38,7 @@ class PppoeUsersTable extends LivewireDatatable
 
                 $response = $client->q($query)->read();
                 foreach ($response as $res) {
-                    return $res['last-caller-id'];
+                  //  return $res['last-caller-id'];
                 }
             })->label('mac address'),
             Column::callback(['username', 'phone'], function ($username) use ($client) {

@@ -99,7 +99,10 @@ Route::middleware(['auth:sanctum', 'verified', 'admin'])->get('/hotspot/user/act
 Route::middleware(['auth:sanctum', 'verified', 'admin'])->get('/hotspot/user/deactivate/{username}', [\App\Http\Controllers\Users::class, 'DeactivateHotspotUser'])
     ->name('hotspot-user-deactivate');
 
-Route::middleware(['auth:sanctum', 'verified', 'admin'])->get('/active', [\App\Http\Controllers\Users::class, 'HotspotActive'])
+Route::middleware(['auth:sanctum', 'verified', 'admin'])->get('/hotspot/user/delete/{username}', [\App\Http\Controllers\Users::class, 'DeleteHotspotUser'])
+    ->name('hotspot-user-delete');
+
+Route::middleware(['auth:sanctum', 'verified', 'admin'])->get('/active', [\App\Http\Controllers\Users::class, 'PPPOEActive'])
     ->name('active');
 
 Route::middleware(['auth:sanctum', 'verified', 'admin'])->get('/hotspot/user/active/remove/{id}', [\App\Http\Controllers\Controller::class, 'RemoveActive'])
@@ -143,7 +146,7 @@ Route::middleware(['auth:sanctum', 'verified', 'admin'])->get('/user/active/remo
     $client->q($query)->read();
 
     return redirect('/active');
-});
+})->name('pppoe.active.remove');
 
 Route::middleware(['auth:sanctum', 'verified', 'admin'])->get('/profile/remove/{id}', function ($id) {
     try {
@@ -183,6 +186,9 @@ Route::middleware(['auth:sanctum', 'verified', 'admin'])->get('/profile/edit/{na
 
 Route::middleware(['auth:sanctum', 'verified', 'admin'])->get('/user/edit/{name}', [EditUser::class, 'index'])
     ->name('edit-user');
+
+Route::middleware(['auth:sanctum', 'verified', 'admin'])->get('/user/delete/{name}', [\App\Http\Controllers\Users::class, 'deleteUser'])
+->name('delete-user');
 
 Route::middleware(['auth:sanctum', 'verified', 'admin'])->get('/user/deactivate/{name}', [\App\Http\Controllers\Users\deactivate::class, 'index'])
     ->name('deactivate-user');
@@ -225,3 +231,6 @@ Route::middleware(['auth:sanctum', 'verified', 'admin'])->get('/hotspot/profile/
 
 Route::middleware(['auth:sanctum', 'verified', 'admin'])->get('/hotspot/profile/remove/{id}', [\App\Http\Controllers\Profiles::class, 'HotspotProfileDelete'])
     ->name('hotspot-profile-delete');
+
+Route::middleware(['auth:sanctum', 'verified', 'admin'])->get('/hotspot/active', [\App\Http\Controllers\Controller::class, 'hotspotActive'])
+    ->name('hotspot-active');

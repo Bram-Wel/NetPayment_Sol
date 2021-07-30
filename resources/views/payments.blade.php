@@ -1,12 +1,12 @@
 <x-app-layout>
     <x-slot name="header">
         <div class="flex flex-row">
-            <h1 class="text-xl font-bold text-blue-500 mr-10">{{ __('Payments') }}</h1>
+            <h1 class="text-base font-bold text-blue-500 mr-10 border-b border-blue-500">{{ __('Payments') }}</h1>
             <a href="{{ route('payment.clicks') }}"
-               class="text-xl font-bold text-blue-500 ">{{ __('Payment clicks') }}</a>
+               class="text-base font-bold text-blue-500 ">{{ __('Payment clicks') }}</a>
 
             <a href="{{ route('record-payment') }}"
-               class="absolute right-20 text-white font-bold bg-green-400 px-3 py-1 shadow-lg rounded-2xl">Record
+               class="absolute right-20 text-white font-bold bg-green-400 px-5 py-1 shadow rounded hover:shadow-lg transition duration-200">Record
                 payment</a>
         </div>
     </x-slot>

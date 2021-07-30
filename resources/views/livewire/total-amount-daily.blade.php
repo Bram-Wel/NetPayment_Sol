@@ -1,5 +1,4 @@
-{{-- If you look to others for fulfillment, you will never truly be fulfilled. --}}
-<div class="flex flex-row content-between bg-white p-5 rounded shadow-xl" style="width: 18rem">
+<div class="flex flex-row content-between bg-white p-5 rounded shadow hover:shadow-xl transition duration-200" style="width: 18rem">
         <span class="icon bg-green-100 rounded-full w-12 flex align-middle content-center" style="align-items: center"><ion-icon
                 style="font-size: 25px" class="flex content-center align-middle mx-auto"
                 name="wallet-outline"></ion-icon></span>

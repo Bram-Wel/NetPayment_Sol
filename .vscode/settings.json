@@ -12,6 +12,19 @@
             "database": "thetechglitch",
             "username": "root",
             "password": "12345"
+        },
+        {
+            "mysqlOptions": {
+                "authProtocol": "default"
+            },
+            "previewLimit": 50,
+            "server": "192.168.200.10",
+            "port": 3306,
+            "driver": "MariaDB",
+            "name": "thetechglitch",
+            "database": "thetechglitch",
+            "username": "fabian",
+            "password": "1LoveTechGlitch!"
         }
     ]
 }

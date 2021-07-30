@@ -35,6 +35,8 @@ class Add extends Component
         $package->save();
         $this->dispatchBrowserEvent(
             'alert', ['type' => 'success', 'message' => 'Added']);
+        $this->reset();
+        $this->redirect(route('packages'));
     }
 
     public function render()

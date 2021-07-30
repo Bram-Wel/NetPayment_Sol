@@ -22,26 +22,28 @@
                     @endif
 
                     @if(\Illuminate\Support\Facades\Auth::user()->admin == 1)
-                    <x-jet-nav-link href="{{ route('dashboard') }}" :active="request()->routeIs('dashboard')">
-                        {{ __('Dashboard') }}
-                    </x-jet-nav-link>
-                    <x-jet-nav-link href="{{ route('Users') }}" :active="request()->routeIs('Users')">
-                        {{ __('Users') }}
-                    </x-jet-nav-link>
-                    <x-jet-nav-link href="{{ route('active') }}" :active="request()->routeIs('active')">
-                        {{ __('Active Users') }}
-                    </x-jet-nav-link>
-                    <x-jet-nav-link href="{{ route('profiles') }}" :active="request()->routeIs('profiles')">
-                        {{ __('Profiles') }}
-                    </x-jet-nav-link>
-                    <x-jet-nav-link href="{{ route('payments') }}" :active="request()->routeIs('payments')">
-                        {{ __('Payments') }}
-                    </x-jet-nav-link>
-                    <x-jet-nav-link href="{{ route('marketing') }}" :active="request()->routeIs('marketing')">
-                        {{ __('Marketing') }}
-                    </x-jet-nav-link>
-                    <x-jet-nav-link href="{{ route('packages') }}" :active="request()->routeIs('packages')">
-                        {{ __('Packages') }}
+                        <x-jet-nav-link href="{{ route('dashboard') }}" :active="request()->routeIs('dashboard')">
+                            {{ __('Dashboard') }}
+                        </x-jet-nav-link>
+                        <x-jet-nav-link href="{{ route('Users') }}" :active="request()->routeIs('Users')">
+                            {{ __('Users') }}
+                        </x-jet-nav-link>
+                        <x-jet-nav-link href="{{ route('active') }}"
+                                        :active="request()->routeIs('active') or request()->routeIs('hotspot-active')">
+                            {{ __('Active Users') }}
+                        </x-jet-nav-link>
+                        <x-jet-nav-link href="{{ route('profiles') }}"
+                                        :active="request()->routeIs('profiles') or request()->routeIs('hotspot-profiles')">
+                            {{ __('Profiles') }}
+                        </x-jet-nav-link>
+                        <x-jet-nav-link href="{{ route('payments') }}" :active="request()->routeIs('payments')">
+                            {{ __('Payments') }}
+                        </x-jet-nav-link>
+                        <x-jet-nav-link href="{{ route('marketing') }}" :active="request()->routeIs('marketing')">
+                            {{ __('Marketing') }}
+                        </x-jet-nav-link>
+                        <x-jet-nav-link href="{{ route('packages') }}" :active="request()->routeIs('packages')">
+                            {{ __('Packages') }}
                     </x-jet-nav-link>
                     @endif
                 </div>

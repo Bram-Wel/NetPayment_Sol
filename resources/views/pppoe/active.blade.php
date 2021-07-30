@@ -18,12 +18,13 @@
             <div class="mb-5 p-3">
                 <div class="flex flex-col">
                     <div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
-                        <div class="py-2 align-middle inline-block min-w-full sm:px-3 lg:px-8">
-                            <div class="shadow-lg overflow-hidden border-b border-gray-200 sm:rounded-lg">
+                        <div class="py-3 align-middle inline-block min-w-full sm:px-3 lg:px-8">
+                            <div class="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg">
                                 <table class="min-w-full divide-y divide-gray-200">
                                     <thead class="bg-gray-50">
                                     <tr>
-                                        <th class="px-3 py-3 text-left text-xs font-medium text-gray-500 tracking-wider">
+                                        <th scope="col"
+                                            class="px-3 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                                             #
                                         </th>
                                         <th scope="col"
@@ -32,11 +33,11 @@
                                         </th>
                                         <th scope="col"
                                             class="px-3 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                            Ip Address
+                                            Mac Address
                                         </th>
                                         <th scope="col"
                                             class="px-3 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                            Idle Time
+                                            Ip Address
                                         </th>
                                         <th scope="col"
                                             class="px-3 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
@@ -51,24 +52,23 @@
                                     @foreach($users as $index=>$user)
                                         <tr>
                                             <td class="px-3 py-3 whitespace-nowrap">
-                                                {{  $index+1 }}
+                                                {{ $index+1 }}
                                             </td>
                                             <td class="px-3 py-3 whitespace-nowrap">
-                                                {{ $user['user'] }}
+                                                {{ $user['name'] }}
+                                            </td>
+                                            <td class="px-3 py-3 whitespace-nowrap">
+                                                {{ $user['caller-id'] }}
                                             </td>
                                             <td class="px-3 py-3 whitespace-nowrap">
                                                 {{ $user['address'] }}
-                                            </td>
-                                            <td class="px-3 py-3 whitespace-nowrap">
-                                                {{ $user['idle-time'] }}
                                             </td>
                                             <td class="px-3 py-3 whitespace-nowrap text-sm text-gray-500">
                                                 {{ $user['uptime'] }}
                                             </td>
                                             <td class="px-3 py-3 whitespace-nowrap text-right text-sm font-medium">
-                                                <a href="{{ route('hotspot-remove-active', ['id' => $user['.id']]) }}"
-                                                   class="bg-red-500 px-4 py-1 text-white rounded-lg transition
-                                                   duration-200 ">Remove</a>
+                                                <a href="{{ route('pppoe.active.remove', ['id' => $user['.id']]) }}"
+                                                   class="text-white transition duration-200 rounded-lg hover:shadow-lg bg-red-500 px-4 py-1">Remove</a>
                                             </td>
                                         </tr>
                                     @endforeach

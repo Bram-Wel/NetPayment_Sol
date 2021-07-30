@@ -48,6 +48,9 @@ class Edit extends Component
 
         $package->save();
         $this->dispatchBrowserEvent('alert', ['type' => 'success', 'message' => 'Edited successfully']);
+        $this->redirect(route('packages'));
+        $this->reset();
+
     }
 
     public function render()

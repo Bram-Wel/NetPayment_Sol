@@ -52,6 +52,8 @@ class Edit extends Component
 
         $package->save();
         $this->dispatchBrowserEvent('alert', ['type' => 'success', 'message' => 'Edited Successfully']);
+        $this->reset();
+        $this->redirect(route('hotspot-packages'));
     }
 
 

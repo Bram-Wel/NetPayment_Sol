@@ -70,7 +70,24 @@ class Controller extends BaseController
         return redirect(route('hotspot-packages'));
     }
 
-    public function HotspotActive()
+    public function PPPOEActive()
+    {
+        $config = new Config([
+            'host' => env('MIKROTIK_HOST'),
+            'user' => env('MIKROTIK_USERNAME'),
+            'pass' => env('MIKROTIK_PASSWORD'),
+            'port' => (int)env('MIKROTIK_PORT'),
+        ]);
+
+        $client = new Client($config);
+
+        $query = (new Query('/ppp/active/print'));
+        $users = $client->q($query)->read();
+
+        return view('pppoe.active', ['users' => $users]);
+    }
+
+    public function hotspotActive()
     {
         $config = new Config([
             'host' => env('MIKROTIK_HOST'),
